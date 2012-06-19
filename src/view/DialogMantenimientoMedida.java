@@ -34,6 +34,8 @@ import modelo.datos.CDUsoPredio;
 import modelo.datos.CDVereda;
 import modelo.entidad.CEMedida;
 import modelo.entidad.CESituacionConexion;
+import modelo.entidad.CETipoDocumento;
+import modelo.entidad.CETipoPropiedad;
 import util.ArrayListComboBoxModel;
 
 public class DialogMantenimientoMedida extends javax.swing.JDialog {
@@ -2587,10 +2589,44 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
     dispose();
     }//GEN-LAST:event_BtnCancelarActionPerformed
+
     private CEMedida getMedida(){
         CEMedida oCEMedida=new CEMedida();
         CESituacionConexion oSituacionConexion=(CESituacionConexion)CbxSituacionConexion.getSelectedItem();
         oCEMedida.setIdSituacionConexion(oSituacionConexion.getIdSituacionConexion());
+        oCEMedida.setCodDepartamento(TxtDepartamento.getText());
+        oCEMedida.setCodProvincia(TxtProvincia.getText());
+        oCEMedida.setCodDistrito(TxtDistrito.getText());
+        oCEMedida.setSeccion(TxtSeccion.getText());
+        oCEMedida.setManzana(TxtManzana.getText());
+        oCEMedida.setLote(TxtLote.getText());
+        oCEMedida.setConexion(TxtConexion.getText());
+        oCEMedida.setCod_Inscripcion(TxtCodigoInscripcion.getText());
+        oCEMedida.setRutaLectura(TxtRutaLectura.getText());
+        oCEMedida.setRutaReparto(TxtRutaReparto.getText());
+        oCEMedida.setSecuencia(TxtSecuencia.getText());
+        oCEMedida.setCategoria(TxtCategoria.getText());
+
+        CETipoDocumento oCETipoDocumento=(CETipoDocumento)CbxTipoDocumento.getSelectedItem();
+        oCEMedida.setIdTipoDocumento(oCETipoDocumento.getIdTipoDocumento());
+        oCEMedida.setNumeroDocumento(TxtNumDocumento.getText());
+        oCEMedida.setTelefono(TxtTelefono.getText());
+        oCEMedida.setApellidoPaternoPropietario(TxtApellidoPaternoPropietario.getText());
+        oCEMedida.setApellidoMaternoPropietario(TxtApellidoMaternoPropietario.getText());
+        oCEMedida.setNombrePropietario(TxtNombrePropietario.getText());
+        oCEMedida.setApellidoPaternoConyugue(TxtApellidoPaternoConyugue.getText());
+        oCEMedida.setApellidoMaternoConyugue(TxtApellidoMaternoConyugue.getText());
+        oCEMedida.setNombrePropietario(TxtNombrePropietario.getText());
+        oCEMedida.setCorreoElectronico(TxtCorreoElectronico.getText());
+        CETipoPropiedad oCETipoPropiedad=(CETipoPropiedad)CbxTipoPropiedad.getSelectedItem();
+        oCEMedida.setIdTipoPropiedad(oCETipoPropiedad.getIdTipoPropiedad());
+        oCEMedida.setCantHabitantesPredio(Integer.parseInt(TxtCantidadHabitantesPredio.getText()));
+        oCEMedida.setNumPiso(Integer.parseInt(TxtNumPisos.getText()));
+
+
+
+
+        return oCEMedida;
     }
  
 
