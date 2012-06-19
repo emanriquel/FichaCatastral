@@ -1,0 +1,1474 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jTabbedPane1" min="-2" pref="904" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="175" max="-2" attributes="0"/>
+                      <Component id="lblCodigo" min="-2" pref="20" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="lblIdVia" min="-2" pref="20" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="lblIdHabitacion" min="-2" pref="20" max="-2" attributes="0"/>
+                      <EmptySpace pref="395" max="32767" attributes="0"/>
+                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="CbxSituacionConexion" min="-2" pref="123" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="286" pref="778" max="32767" attributes="0"/>
+                      <Component id="BtnGuardar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="BtnCancelar" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="CbxSituacionConexion" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel5" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="lblCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblIdVia" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblIdHabitacion" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jTabbedPane1" min="-2" pref="459" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="BtnCancelar" pref="49" max="32767" attributes="1"/>
+                  <Component id="BtnGuardar" min="-2" pref="49" max="-2" attributes="1"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
+      <Properties>
+        <Property name="tabPlacement" type="int" value="3"/>
+      </Properties>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="jPanel1">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Pag 1">
+                <Property name="tabTitle" type="java.lang.String" value="Pag 1"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jPanel5" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jPanel3" alignment="1" pref="879" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="41" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="jPanel3">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="Identificaci&#xf3;n">
+                      <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                        <EtchetBorder/>
+                      </Border>
+                      <Font PropertyName="font" name="Arial" size="12" style="1"/>
+                      <Color PropertyName="color" blue="0" green="0" red="66" type="rgb"/>
+                    </TitledBorder>
+                  </Border>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="TxtAntiguoCodigoCatastral" min="-2" pref="290" max="-2" attributes="0"/>
+                                  <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                  <Component id="TxtNuevoCodigoCatastral" min="-2" pref="290" max="-2" attributes="0"/>
+                                  <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                  <Component id="TxtCodigoInscripcion" min="-2" pref="250" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel23" min="-2" pref="290" max="-2" attributes="0"/>
+                                  <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                  <Component id="jLabel24" min="-2" pref="290" max="-2" attributes="0"/>
+                                  <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                  <Component id="jLabel37" min="-2" pref="250" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="TxtRutaLectura" min="-2" pref="140" max="-2" attributes="0"/>
+                                  <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                  <Component id="TxtRutaReparto" min="-2" pref="140" max="-2" attributes="0"/>
+                                  <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                  <Component id="TxtSecuencia" min="-2" pref="140" max="-2" attributes="0"/>
+                                  <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                  <Component id="TxtCategoria" min="-2" pref="140" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel38" min="-2" pref="140" max="-2" attributes="0"/>
+                                  <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                  <Component id="jLabel39" min="-2" pref="140" max="-2" attributes="0"/>
+                                  <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                  <Component id="jLabel40" min="-2" pref="140" max="-2" attributes="0"/>
+                                  <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                  <Component id="jLabel41" min="-2" pref="140" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="9" pref="9" max="9" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="TxtAntiguoCodigoCatastral" min="-2" max="-2" attributes="0"/>
+                              <Component id="TxtNuevoCodigoCatastral" min="-2" max="-2" attributes="0"/>
+                              <Component id="TxtCodigoInscripcion" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel23" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="jLabel24" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="jLabel37" min="-2" pref="20" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="20" pref="20" max="20" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="TxtRutaLectura" min="-2" max="-2" attributes="0"/>
+                              <Component id="TxtRutaReparto" min="-2" max="-2" attributes="0"/>
+                              <Component id="TxtSecuencia" min="-2" max="-2" attributes="0"/>
+                              <Component id="TxtCategoria" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel38" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="jLabel39" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="jLabel40" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="jLabel41" min="-2" pref="20" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JTextField" name="TxtAntiguoCodigoCatastral">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel23">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="Antiguo C&#xf3;digo Catastral"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="opaque" type="boolean" value="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel24">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="Nuevo C&#xf3;digo Catastral"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="opaque" type="boolean" value="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="TxtNuevoCodigoCatastral">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel37">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="Codigo Inscripci&#xf3;n"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="opaque" type="boolean" value="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="TxtCodigoInscripcion">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel38">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="Ruta de Lectura"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="opaque" type="boolean" value="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="TxtRutaLectura">
+                </Component>
+                <Component class="javax.swing.JTextField" name="TxtRutaReparto">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel39">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="Ruta de Reparto"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="opaque" type="boolean" value="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel40">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="Secuencia"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="opaque" type="boolean" value="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="TxtSecuencia">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel41">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="Categor&#xed;a"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="opaque" type="boolean" value="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="TxtCategoria">
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel5">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="Datos del Cliente">
+                      <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                        <EtchetBorder/>
+                      </Border>
+                      <Font PropertyName="font" name="Arial" size="12" style="1"/>
+                      <Color PropertyName="color" blue="0" green="0" red="66" type="rgb"/>
+                    </TitledBorder>
+                  </Border>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel52" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="8" pref="8" max="8" attributes="0"/>
+                                  <Component id="CbxTipoDocumento" min="-2" pref="150" max="-2" attributes="0"/>
+                                  <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                  <Component id="jLabel45" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                  <Component id="TxtNumDocumento" min="-2" pref="150" max="-2" attributes="0"/>
+                                  <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                  <Component id="jLabel47" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="8" pref="8" max="8" attributes="0"/>
+                                  <Component id="TxtTelefono" min="-2" pref="150" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="TxtApellidoPaternoPropietario" min="-2" pref="270" max="-2" attributes="0"/>
+                                  <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                  <Component id="TxtApellidoMaternoPropietario" min="-2" pref="260" max="-2" attributes="0"/>
+                                  <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                  <Component id="TxtNombrePropietario" min="-2" pref="290" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel42" min="-2" pref="270" max="-2" attributes="0"/>
+                                  <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                  <Component id="jLabel43" min="-2" pref="260" max="-2" attributes="0"/>
+                                  <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                  <Component id="jLabel44" min="-2" pref="290" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="TxtApellidoPaternoConyugue" min="-2" pref="270" max="-2" attributes="0"/>
+                                  <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                  <Component id="TxtApellidoMaternoConyugue" min="-2" pref="260" max="-2" attributes="0"/>
+                                  <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                  <Component id="TxtNombreConyugue" min="-2" pref="290" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel48" min="-2" pref="270" max="-2" attributes="0"/>
+                                  <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                  <Component id="jLabel50" min="-2" pref="260" max="-2" attributes="0"/>
+                                  <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                  <Component id="jLabel51" min="-2" pref="290" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel46" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="11" pref="11" max="11" attributes="0"/>
+                                  <Component id="TxtCorreoElectronico" min="-2" pref="420" max="-2" attributes="0"/>
+                                  <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                  <Component id="jLabel53" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="32" pref="32" max="32" attributes="0"/>
+                                  <Component id="CbxTipoPropiedad" min="-2" pref="170" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel54" min="-2" pref="160" max="-2" attributes="0"/>
+                                  <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                  <Component id="TxtCantidadHabitantesPredio" min="-2" pref="90" max="-2" attributes="0"/>
+                                  <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                  <Component id="jLabel55" min="-2" pref="70" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                  <Component id="TxtNumPisos" min="-2" pref="90" max="-2" attributes="0"/>
+                                  <EmptySpace min="20" pref="20" max="20" attributes="0"/>
+                                  <Component id="jLabel56" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="13" pref="13" max="13" attributes="0"/>
+                                  <Component id="CbxTipoPredio" min="-2" pref="170" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace pref="13" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="9" pref="9" max="9" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel52" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="CbxTipoDocumento" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel45" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="TxtNumDocumento" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel47" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="TxtTelefono" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="20" pref="20" max="20" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="TxtApellidoPaternoPropietario" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="TxtApellidoMaternoPropietario" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="TxtNombrePropietario" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel42" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="jLabel43" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="jLabel44" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="TxtApellidoPaternoConyugue" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="TxtApellidoMaternoConyugue" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="TxtNombreConyugue" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel48" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="jLabel50" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="jLabel51" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel46" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="TxtCorreoElectronico" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel53" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="CbxTipoPropiedad" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel54" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="TxtCantidadHabitantesPredio" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel55" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="TxtNumPisos" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel56" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="CbxTipoPredio" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JTextField" name="TxtApellidoPaternoPropietario">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel42">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="Apellido Paterno del Propietario"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="opaque" type="boolean" value="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="TxtApellidoMaternoPropietario">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel43">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="Apellido Materno del Propietario"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="opaque" type="boolean" value="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel44">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="Nombre del Propietario"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="opaque" type="boolean" value="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="TxtNombrePropietario">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel45">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Num. Documento:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="CbxTipoDocumento">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel46">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Correo Electr&#xf3;nico:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="TxtCorreoElectronico">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel47">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Telefono:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="TxtTelefono">
+                </Component>
+                <Component class="javax.swing.JTextField" name="TxtApellidoPaternoConyugue">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel48">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="Apellido Paterno del Conyugue"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="opaque" type="boolean" value="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="TxtApellidoMaternoConyugue">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel50">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="Apellido Materno del Conyugue"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="opaque" type="boolean" value="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel51">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="Nombre del Conyugue"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="opaque" type="boolean" value="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="TxtNombreConyugue">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel52">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Tipo de Documento:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="TxtNumDocumento">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel53">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Tipo Propiedad:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="CbxTipoPropiedad">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel54">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Cant. Habitantes del Predio:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="TxtCantidadHabitantesPredio">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel55">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Num. Pisos:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="TxtNumPisos">
+                </Component>
+                <Component class="javax.swing.JComboBox" name="CbxTipoPredio">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel56">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Tipo Predio:"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="jPanel2">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Pag 2">
+                <Property name="tabTitle" type="java.lang.String" value="Pag 2"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel6" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="130" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="jPanel6">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="Datos del Inmueble(Direcci&#xf3;n de Conexi&#xf3;n)">
+                      <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                        <EtchetBorder/>
+                      </Border>
+                      <Font PropertyName="font" name="Arial" size="12" style="1"/>
+                      <Color PropertyName="color" blue="0" green="0" red="66" type="rgb"/>
+                    </TitledBorder>
+                  </Border>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="jLabel64" min="-2" pref="90" max="-2" attributes="0"/>
+                                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                                  <Component id="TxtComplemento" min="-2" pref="480" max="-2" attributes="0"/>
+                                                  <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                                  <Component id="jLabel68" min="-2" pref="120" max="-2" attributes="0"/>
+                                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                                  <Component id="ChckSiNoPredioHabilitado" min="-2" pref="30" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="jLabel66" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="14" pref="14" max="14" attributes="0"/>
+                                                  <Component id="CbxTipoServicio" min="-2" pref="160" max="-2" attributes="0"/>
+                                                  <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                                  <Component id="jLabel67" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="4" pref="4" max="4" attributes="0"/>
+                                                  <Component id="CbxMedioAbastecimiento" min="-2" pref="160" max="-2" attributes="0"/>
+                                                  <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                                  <Component id="jLabel69" min="-2" pref="120" max="-2" attributes="0"/>
+                                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                                  <Component id="CbxSituacionPredio" min="-2" pref="150" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="TxtCodigoVia" min="-2" pref="90" max="-2" attributes="0"/>
+                                                      <EmptySpace min="20" pref="20" max="20" attributes="0"/>
+                                                      <Component id="TxtTipoVia" min="-2" pref="90" max="-2" attributes="0"/>
+                                                      <EmptySpace min="20" pref="20" max="20" attributes="0"/>
+                                                      <Component id="TxtNombreVia" min="-2" pref="400" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="jLabel35" min="-2" pref="90" max="-2" attributes="0"/>
+                                                      <EmptySpace min="20" pref="20" max="20" attributes="0"/>
+                                                      <Component id="jLabel72" min="-2" pref="90" max="-2" attributes="0"/>
+                                                      <EmptySpace min="20" pref="20" max="20" attributes="0"/>
+                                                      <Component id="jLabel71" min="-2" pref="400" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="jButton6" min="-2" pref="32" max="-2" attributes="0"/>
+                                              <EmptySpace pref="34" max="32767" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="TxtNumMunicipal" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                                                  <Component id="jLabel70" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="TxtCodigoHabitacion" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
+                                                  <Component id="jLabel36" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="TxtTipoHabitacion" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
+                                                  <Component id="jLabel34" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="20" pref="20" max="20" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="TxtNombreHabitacion" alignment="0" min="-2" pref="460" max="-2" attributes="0"/>
+                                                  <Component id="jLabel33" alignment="0" min="-2" pref="460" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="jButton5" min="-2" pref="32" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="TxtNumeroManzana" min="-2" pref="90" max="-2" attributes="0"/>
+                                          <EmptySpace min="20" pref="20" max="20" attributes="0"/>
+                                          <Component id="TxtNumeroLote" min="-2" pref="90" max="-2" attributes="0"/>
+                                          <EmptySpace min="20" pref="20" max="20" attributes="0"/>
+                                          <Component id="TxtBlock" min="-2" pref="60" max="-2" attributes="0"/>
+                                          <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                          <Component id="TxtPiso" min="-2" pref="60" max="-2" attributes="0"/>
+                                          <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                          <Component id="TxtNumero" min="-2" pref="60" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel49" min="-2" pref="90" max="-2" attributes="0"/>
+                                          <EmptySpace min="20" pref="20" max="20" attributes="0"/>
+                                          <Component id="jLabel60" min="-2" pref="90" max="-2" attributes="0"/>
+                                          <EmptySpace min="20" pref="20" max="20" attributes="0"/>
+                                          <Component id="jLabel61" min="-2" pref="60" max="-2" attributes="0"/>
+                                          <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                          <Component id="jLabel62" min="-2" pref="60" max="-2" attributes="0"/>
+                                          <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                          <Component id="jLabel63" min="-2" pref="60" max="-2" attributes="0"/>
+                                          <EmptySpace min="20" pref="20" max="20" attributes="0"/>
+                                          <Component id="jLabel65" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="5" pref="5" max="5" attributes="0"/>
+                                          <Component id="CbxUsoPredio" min="-2" pref="170" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel135" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="CbxTipoAlmacenamiento" min="-2" pref="175" max="-2" attributes="1"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace pref="167" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="TxtCodigoVia" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="TxtTipoVia" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="TxtNombreVia" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel35" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                                      <Component id="jLabel72" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                                      <Component id="jLabel71" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Component id="jButton6" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="TxtNumMunicipal" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                  <Component id="jLabel70" min="-2" pref="20" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="TxtCodigoHabitacion" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                  <Component id="jLabel36" min="-2" pref="20" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="TxtTipoHabitacion" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                  <Component id="jLabel34" min="-2" pref="20" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="TxtNombreHabitacion" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                  <Component id="jLabel33" min="-2" pref="20" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="jButton5" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="TxtNumeroManzana" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="TxtNumeroLote" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="TxtBlock" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="TxtPiso" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="TxtNumero" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel49" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="jLabel60" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="jLabel61" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="jLabel62" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="jLabel63" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="jLabel65" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="CbxUsoPredio" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel64" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="TxtComplemento" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel68" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="ChckSiNoPredioHabilitado" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="9" pref="9" max="9" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel66" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="CbxTipoServicio" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel67" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="CbxMedioAbastecimiento" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel69" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="CbxSituacionPredio" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel135" alignment="3" min="-2" pref="17" max="-2" attributes="1"/>
+                              <Component id="CbxTipoAlmacenamiento" alignment="3" min="-2" max="-2" attributes="1"/>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JTextField" name="TxtNumeroManzana">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel49">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value=" Num. Mz."/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="opaque" type="boolean" value="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel60">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value=" Num. Lote"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="opaque" type="boolean" value="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="TxtComplemento">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel61">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="Block"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="opaque" type="boolean" value="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="TxtBlock">
+                </Component>
+                <Component class="javax.swing.JTextField" name="TxtPiso">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel62">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="Piso"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="opaque" type="boolean" value="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel63">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="N&#xfa;mero"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="opaque" type="boolean" value="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="TxtNumero">
+                </Component>
+                <Component class="javax.swing.JComboBox" name="CbxUsoPredio">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel64">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Complemento:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel65">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Uso del Predio:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="TxtNumeroLote">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel66">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Tipo Servicio:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="CbxTipoServicio">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel67">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Medio de Abastecimiento:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="CbxMedioAbastecimiento">
+                </Component>
+                <Component class="javax.swing.JComboBox" name="CbxSituacionPredio">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel68">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="&#xbf;Predio Habilitado?:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel69">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Situaci&#xf3;n del Predio:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JCheckBox" name="ChckSiNoPredioHabilitado">
+                </Component>
+                <Component class="javax.swing.JTextField" name="TxtNombreHabitacion">
+                  <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="TxtCodigoHabitacion">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="TxtTipoHabitacion">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel33">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="Nombre Habilitaci&#xf3;n"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="opaque" type="boolean" value="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel34">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="Tipo Habilitaci&#xf3;n"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="opaque" type="boolean" value="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel35">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="C&#xf3;digo de V&#xed;a"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="opaque" type="boolean" value="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="jButton5">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="..."/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel36">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="C&#xf3;digo Habilitaci&#xf3;n"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="opaque" type="boolean" value="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="jButton6">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="..."/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6ActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel70">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="Num. Municipal"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="opaque" type="boolean" value="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="TxtNumMunicipal">
+                </Component>
+                <Component class="javax.swing.JTextField" name="TxtCodigoVia">
+                  <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="TxtNombreVia">
+                  <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel71">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="Nombre de V&#xed;a"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="opaque" type="boolean" value="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="TxtTipoVia">
+                  <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel72">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="Tipo de V&#xed;a"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="opaque" type="boolean" value="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel135">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Tipo Almacenamiento:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="CbxTipoAlmacenamiento">
+                </Component>
+              </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JComboBox" name="CbxSituacionConexion">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel5">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="12" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="66" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Situaci&#xf3;n de Conexi&#xf3;n:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="BtnGuardar">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/util/save.png"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnGuardarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="BtnCancelar">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/util/cancel.png"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnCancelarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblCodigo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblIdVia">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblIdHabitacion">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>
