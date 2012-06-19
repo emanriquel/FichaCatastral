@@ -5,6 +5,7 @@ public class CEMedida
   private int IdRegistroMedida ;
   private String NumeroFicha ;
   private String FechaEncuesta;
+  private int IdSituacionConexion;
   private int IdCondicionConexionAgua;
   private int IdCondicionConexionDesague;
   private int IdDiametroConexionDesague;
@@ -979,6 +980,20 @@ public class CEMedida
      */
     public void setPorcentajeSocial(double PorcentajeSocial) {
         this.PorcentajeSocial = PorcentajeSocial;
+    }
+
+    /**
+     * @return the IdSituacionConexion
+     */
+    public int getIdSituacionConexion() {
+        return IdSituacionConexion;
+    }
+
+    /**
+     * @param IdSituacionConexion the IdSituacionConexion to set
+     */
+    public void setIdSituacionConexion(int IdSituacionConexion) {
+        this.IdSituacionConexion = IdSituacionConexion;
     }
 
 }
