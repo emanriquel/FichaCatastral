@@ -192,7 +192,7 @@ public class CDMedida
             ps.setString(81,oCEMedida.getApellidoMaternoEntrevistado());
             ps.setString(82,oCEMedida.getNombreCompletoEntrevistado());
             ps.setString(83,oCEMedida.getDocumentoEntrevistado());
-            ps.setInt(84,oCEMedida.getIdTipoPropiedadInquilino());
+            ps.setInt(84,oCEMedida.getIdTipoPropiedadEntrevistado());
             ps.setString(85,oCEMedida.getCodigoFotoCaja());
             ps.setString(86,oCEMedida.getCodigoFotoPredio());
             ps.setString(87,oCEMedida.getCodDepartamento());

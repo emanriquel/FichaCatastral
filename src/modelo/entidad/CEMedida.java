@@ -94,7 +94,7 @@ public class CEMedida
   private String ApellidoMaternoEntrevistado;
   private String NombreCompletoEntrevistado;
   private String DocumentoEntrevistado;
-  private int IdTipoPropiedadInquilino;
+  private int IdTipoPropiedadEntrevistado;
   private String CodigoFotoCaja;
   private String CodigoFotoPredio;
   private String CodDepartamento;
@@ -546,12 +546,12 @@ public class CEMedida
         this.IdTipoPropiedad = IdTipoPropiedad;
     }
 
-    public int getIdTipoPropiedadInquilino() {
-        return IdTipoPropiedadInquilino;
+    public int getIdTipoPropiedadEntrevistado() {
+        return IdTipoPropiedadEntrevistado;
     }
 
-    public void setIdTipoPropiedadInquilino(int IdTipoPropiedadInquilino) {
-        this.IdTipoPropiedadInquilino = IdTipoPropiedadInquilino;
+    public void setIdTipoPropiedadEntrevistado(int IdTipoPropiedadInquilino) {
+        this.IdTipoPropiedadEntrevistado = IdTipoPropiedadInquilino;
     }
 
     public int getIdTipoServicio() {
