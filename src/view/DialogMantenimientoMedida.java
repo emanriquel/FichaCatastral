@@ -2881,4 +2881,18 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     private javax.swing.JTextField jTextField80;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * @return the codigo
+     */
+    public int getCodigo() {
+        return codigo;
+    }
+
+    /**
+     * @param codigo the codigo to set
+     */
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
 }
