@@ -4,13 +4,54 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import modelo.acceso.ConexionBD;
 import modelo.entidad.CETipoServicio;
 
 
 public class CDTipoServicio
 {
+    public CETipoServicio DetalleServicio(CETipoServicio oCETipoServicio)
+    {
+                Connection conexion = ConexionBD.obtenerConexion();
+                try
+                {
+                  List<CETipoServicio> Lst = new ArrayList<CETipoServicio>();
+                  String sql = null;
+                    sql = "SELECT * FROM tipo_servicio WHERE idvia = "+oCETipoServicio.getIdTipoServicio()+";";
+
+                    Statement sentencia = conexion.createStatement();
+                    ResultSet resultado = sentencia.executeQuery(sql);
+
+                    if (resultado!=null)
+                {
+                    while (resultado.next())
+                    {
+                        oCETipoServicio.setIdTipoServicio(resultado.getInt(1));
+                        oCETipoServicio.setCodigo(resultado.getInt(2));
+                        oCETipoServicio.setTipoServicio(resultado.getString(3));
+
+
+                        Lst.add(oCETipoServicio);
+                    }
+                    conexion.close();
+                    return oCETipoServicio;
+                    }
+               return null;
+                }
+                catch(SQLException e)
+            {
+                e.printStackTrace();
+                return null;
+            }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                    return null;
+                }
+         }
     public ArrayList<CETipoServicio> listarTipoServicio()
     {
         ArrayList<CETipoServicio> oLstTipoServicio=new ArrayList<CETipoServicio>();

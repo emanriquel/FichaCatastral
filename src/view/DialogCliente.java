@@ -88,6 +88,10 @@ public class DialogCliente extends javax.swing.JDialog {
         ArrayList oLstTipoAlmacenamiento=oCDTipoAlmacenamiento.listarTipoAlmacenamiento();
         construirModeloCombo(CbxTipoAlmacenamiento, oLstTipoAlmacenamiento);
 
+        CDCondicionConexionAgua oCDCondicionConexionAgua=new CDCondicionConexionAgua();
+        ArrayList oLstCondicionConexionAgua=oCDCondicionConexionAgua.listarCondicionConexionAgua();
+        construirModeloCombo(CbxCondicionConexionAgua, oLstCondicionConexionAgua);
+
     }
     private void construirModeloCombo(JComboBox oBox, ArrayList oLista)
     {
@@ -103,8 +107,8 @@ public class DialogCliente extends javax.swing.JDialog {
                     CECliente oCECliente = new CECliente();
                     if(oCECliente!=null){                                                
                         oCECliente.setIdCliente(Integer.parseInt(lblCodigo.getText()));
-                        CECliente ooCECliente = oCDCliente.DetalleCliente(oCECliente);                        
-                        setClienteDetallado(oCECliente);
+                        CECliente ooCECliente = oCDCliente.DetalleCliente(oCECliente);
+                        setClienteDetallado(ooCECliente);
                         BtnGuardar.setEnabled(true);
                         BtnCancelar.setEnabled(true);
                         
@@ -123,6 +127,7 @@ public class DialogCliente extends javax.swing.JDialog {
          buscarIndexComboMedioAbastecimiento(oCECliente.getIdMedioAbastecimiento());
          buscarIndexComboSituacionPredio(oCECliente.getIdSituacionPredio());
          buscarIndexComboTipoAlmacenamiento(oCECliente.getIdTipoAlmacenamiento());
+         buscarIndexComboCondicionConexionAgua(oCECliente.getIdCondicionConexionAgua());
          lblCodigo.setText(oCECliente.getIdCliente()+"");
          TxtAntiguoCodigoCatastral.setText(oCECliente.getAntiguoCodigoCatastral());
          TxtNuevoCodigoCatastral.setText(oCECliente.getNuevoCodigoCatastral());
@@ -186,6 +191,21 @@ public class DialogCliente extends javax.swing.JDialog {
             if(obj.getIdTipoAlmacenamiento()== pId)
                 {
                     CbxTipoAlmacenamiento.setSelectedIndex(i);
+                    break;
+                }
+          }
+        }
+      }
+   private void buscarIndexComboCondicionConexionAgua(int pId){
+      int size=CbxCondicionConexionAgua.getItemCount();
+      if(size>0)
+      {
+          for(int i=1;i<size;i++)
+          {
+            CECondicionConexionAgua obj =(CECondicionConexionAgua)CbxCondicionConexionAgua.getItemAt(i);
+            if(obj.getIdCondicionConexionAgua()== pId)
+                {
+                    CbxCondicionConexionAgua.setSelectedIndex(i);
                     break;
                 }
           }
@@ -348,6 +368,9 @@ public class DialogCliente extends javax.swing.JDialog {
         CETipoPropiedad oCETipoPropiedad =(CETipoPropiedad)CbxTipoPropiedad.getSelectedItem();
         oCECliente.setIdTipoPropiedad(oCETipoPropiedad.getIdTipoPropiedad());
 
+        CECondicionConexionAgua oCECondicionConexionAgua =(CECondicionConexionAgua)CbxCondicionConexionAgua.getSelectedItem();
+        oCECliente.setIdCondicionConexionAgua(oCECondicionConexionAgua.getIdCondicionConexionAgua());
+
         oCECliente.setCantidadHabitantesPredio(Integer.parseInt(TxtCantidadHabitantesPredio.getText()));
         oCECliente.setNumeroPisos(Integer.parseInt(TxtNumPisos.getText()));
         
@@ -479,6 +502,8 @@ public class DialogCliente extends javax.swing.JDialog {
         jLabel72 = new javax.swing.JLabel();
         jLabel135 = new javax.swing.JLabel();
         CbxTipoAlmacenamiento = new javax.swing.JComboBox();
+        jLabel141 = new javax.swing.JLabel();
+        CbxCondicionConexionAgua = new javax.swing.JComboBox();
         CbxSituacionConexion = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
         BtnGuardar = new javax.swing.JButton();
@@ -980,6 +1005,10 @@ public class DialogCliente extends javax.swing.JDialog {
         jLabel135.setForeground(new java.awt.Color(0, 0, 102));
         jLabel135.setText("Tipo Almacenamiento:");
 
+        jLabel141.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel141.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel141.setText("Cond. Conex:");
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -1007,7 +1036,9 @@ public class DialogCliente extends javax.swing.JDialog {
                                         .addGap(10, 10, 10)
                                         .addComponent(jLabel67)
                                         .addGap(4, 4, 4)
-                                        .addComponent(CbxMedioAbastecimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(CbxCondicionConexionAgua, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(CbxMedioAbastecimiento, javax.swing.GroupLayout.Alignment.TRAILING, 0, 160, Short.MAX_VALUE))
                                         .addGap(10, 10, 10)
                                         .addComponent(jLabel69, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, 0)
@@ -1076,8 +1107,10 @@ public class DialogCliente extends javax.swing.JDialog {
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(jLabel135)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CbxTipoAlmacenamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(167, Short.MAX_VALUE))))
+                                .addComponent(CbxTipoAlmacenamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel141, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(167, 167, 167))))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1142,9 +1175,13 @@ public class DialogCliente extends javax.swing.JDialog {
                     .addComponent(jLabel69, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CbxSituacionPredio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel135, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CbxTipoAlmacenamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel135, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(CbxTipoAlmacenamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel141, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(CbxCondicionConexionAgua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1162,7 +1199,7 @@ public class DialogCliente extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Pag 2", jPanel2);
@@ -1195,39 +1232,36 @@ public class DialogCliente extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 904, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(175, 175, 175)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(165, 165, 165)
                         .addComponent(lblCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(lblIdVia, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblIdHabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 395, Short.MAX_VALUE)
+                        .addComponent(lblIdHabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(BtnGuardar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BtnCancelar))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(CbxSituacionConexion, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(286, 778, Short.MAX_VALUE)
-                        .addComponent(BtnGuardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnCancelar)))
-                .addContainerGap())
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 904, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CbxSituacionConexion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCodigo)
                     .addComponent(lblIdVia)
-                    .addComponent(lblIdHabitacion))
+                    .addComponent(lblIdHabitacion)
+                    .addComponent(CbxSituacionConexion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1299,6 +1333,7 @@ public class DialogCliente extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCancelar;
     private javax.swing.JButton BtnGuardar;
+    private javax.swing.JComboBox CbxCondicionConexionAgua;
     private javax.swing.JComboBox CbxMedioAbastecimiento;
     private javax.swing.JComboBox CbxSituacionConexion;
     private javax.swing.JComboBox CbxSituacionPredio;
@@ -1343,6 +1378,7 @@ public class DialogCliente extends javax.swing.JDialog {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel135;
+    private javax.swing.JLabel jLabel141;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel33;

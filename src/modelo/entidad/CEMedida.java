@@ -105,6 +105,8 @@ public class CEMedida
   private double PorcentajeComercial;
   private double PorcentajeDomestico;
   private double PorcentajeSocial;
+  private double UbicacionConexionAgua;
+  private double UbicacionConexionDesague;
 
     public String getApellidoMaternoConyugue() {
         return ApellidoMaternoConyugue;
@@ -1008,6 +1010,34 @@ public class CEMedida
      */
     public void setIdEstadoMedidor(int IdEstadoMedidor) {
         this.IdEstadoMedidor = IdEstadoMedidor;
+    }
+
+    /**
+     * @return the UbicacionConexionAgua
+     */
+    public double getUbicacionConexionAgua() {
+        return UbicacionConexionAgua;
+    }
+
+    /**
+     * @param UbicacionConexionAgua the UbicacionConexionAgua to set
+     */
+    public void setUbicacionConexionAgua(double UbicacionConexionAgua) {
+        this.UbicacionConexionAgua = UbicacionConexionAgua;
+    }
+
+    /**
+     * @return the UbicacionConexionDesague
+     */
+    public double getUbicacionConexionDesague() {
+        return UbicacionConexionDesague;
+    }
+
+    /**
+     * @param UbicacionConexionDesague the UbicacionConexionDesague to set
+     */
+    public void setUbicacionConexionDesague(double UbicacionConexionDesague) {
+        this.UbicacionConexionDesague = UbicacionConexionDesague;
     }
 
 }

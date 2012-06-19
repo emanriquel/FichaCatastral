@@ -22,7 +22,7 @@ public class CDCliente {
         try
         {
             Connection conn = ConexionBD.obtenerConexion();
-            String sql = "select IdCliente,numerodocumento,CONCAT( ApellidoPaternoPropietario,' ',ApellidoMaternoPropietario,' ,',NombrePropietario) as NombreClientes from cliente; ";
+            String sql = "select IdCliente,NumeroInscripcion,CONCAT( ApellidoPaternoPropietario,' ',ApellidoMaternoPropietario,' ,',NombrePropietario) as NombreClientes from cliente; ";
             PreparedStatement sp = conn.prepareStatement(sql);
             ResultSet rs=sp.executeQuery();
 
@@ -98,6 +98,7 @@ public CECliente DetalleCliente(CECliente oCECliente)
                         oCECliente.setIdMedioAbastecimiento(resultado.getInt(37));
                         oCECliente.setIdSituacionPredio(resultado.getInt(38));
                         oCECliente.setIdTipoAlmacenamiento(resultado.getInt(39));
+                        oCECliente.setIdCondicionConexionAgua(resultado.getInt(40));
 
                         Lst.add(oCECliente);
                     }
@@ -117,13 +118,13 @@ public CECliente DetalleCliente(CECliente oCECliente)
                     return null;
                 }
          }
- public  ArrayList<CECliente> filtrarCliente(String Paramentro)
+ public  ArrayList<CECliente> filtrarClientePorApellidosNombres(String Paramentro)
     {
         ArrayList<CECliente> oLstCCliente=new ArrayList<CECliente>();
         try
         {
             Connection conn = ConexionBD.obtenerConexion();
-            String sql = "select IdCliente,numerodocumento,CONCAT( ApellidoPaternoPropietario,' ',ApellidoMaternoPropietario,' ,',NombrePropietario) as NombreClientes  from cliente  where CONCAT( ApellidoPaternoPropietario,' ',ApellidoMaternoPropietario,' ',NombrePropietario) like CONCAT('"+Paramentro+"', '%');";
+            String sql = "select IdCliente,NumeroInscripcion,CONCAT( ApellidoPaternoPropietario,' ',ApellidoMaternoPropietario,' ,',NombrePropietario) as NombreClientes  from cliente  where CONCAT( ApellidoPaternoPropietario,' ',ApellidoMaternoPropietario,' ',NombrePropietario) like CONCAT('"+Paramentro+"', '%');";
             PreparedStatement sp = conn.prepareStatement(sql);
             ResultSet rs=sp.executeQuery();
 
@@ -131,7 +132,88 @@ public CECliente DetalleCliente(CECliente oCECliente)
             {
                 CECliente oCECliente=new CECliente();
                 oCECliente.setIdCliente(rs.getInt(1));
-                oCECliente.setNumeroDocumento(rs.getString(2));
+                oCECliente.setNumeroInscripcion(rs.getString(2));
+                oCECliente.setNombrePropietario(rs.getString(3));
+                oLstCCliente.add(oCECliente);
+            }
+
+        }
+        catch (SQLException ex)
+        {
+
+        }
+        return oLstCCliente;
+
+    }
+  public  ArrayList<CECliente> filtrarClientePorNumeroInscripcion(String Paramentro)
+    {
+        ArrayList<CECliente> oLstCCliente=new ArrayList<CECliente>();
+        try
+        {
+            Connection conn = ConexionBD.obtenerConexion();
+            String sql = "select IdCliente,NumeroInscripcion,CONCAT( ApellidoPaternoPropietario,' ',ApellidoMaternoPropietario,' ,',NombrePropietario) as NombreClientes  from cliente  where NumeroInscripcion like CONCAT('"+Paramentro+"', '%');";
+            PreparedStatement sp = conn.prepareStatement(sql);
+            ResultSet rs=sp.executeQuery();
+
+            while(rs.next())
+            {
+                CECliente oCECliente=new CECliente();
+                oCECliente.setIdCliente(rs.getInt(1));
+                oCECliente.setNumeroInscripcion(rs.getString(2));
+                oCECliente.setNombrePropietario(rs.getString(3));
+                oLstCCliente.add(oCECliente);
+            }
+
+        }
+        catch (SQLException ex)
+        {
+
+        }
+        return oLstCCliente;
+
+    }
+    public  ArrayList<CECliente> filtrarClientePorNuevoCodigoCatastral(String Paramentro)
+    {
+        ArrayList<CECliente> oLstCCliente=new ArrayList<CECliente>();
+        try
+        {
+            Connection conn = ConexionBD.obtenerConexion();
+            String sql = "select IdCliente,NumeroInscripcion,CONCAT( ApellidoPaternoPropietario,' ',ApellidoMaternoPropietario,' ,',NombrePropietario) as NombreClientes  from cliente  where NuevoCodigoCatastral like CONCAT('"+Paramentro+"', '%');";
+            PreparedStatement sp = conn.prepareStatement(sql);
+            ResultSet rs=sp.executeQuery();
+
+            while(rs.next())
+            {
+                CECliente oCECliente=new CECliente();
+                oCECliente.setIdCliente(rs.getInt(1));
+                oCECliente.setNumeroInscripcion(rs.getString(2));
+                oCECliente.setNombrePropietario(rs.getString(3));
+                oLstCCliente.add(oCECliente);
+            }
+
+        }
+        catch (SQLException ex)
+        {
+
+        }
+        return oLstCCliente;
+
+    }
+ public  ArrayList<CECliente> filtrarClientePorAntiguoCodigoCatastral(String Paramentro)
+    {
+        ArrayList<CECliente> oLstCCliente=new ArrayList<CECliente>();
+        try
+        {
+            Connection conn = ConexionBD.obtenerConexion();
+            String sql = "select IdCliente,NumeroInscripcion,CONCAT( ApellidoPaternoPropietario,' ',ApellidoMaternoPropietario,' ,',NombrePropietario) as NombreClientes  from cliente  where AntiguoCodigoCatastral like CONCAT('"+Paramentro+"', '%');";
+            PreparedStatement sp = conn.prepareStatement(sql);
+            ResultSet rs=sp.executeQuery();
+
+            while(rs.next())
+            {
+                CECliente oCECliente=new CECliente();
+                oCECliente.setIdCliente(rs.getInt(1));
+                oCECliente.setNumeroInscripcion(rs.getString(2));
                 oCECliente.setNombrePropietario(rs.getString(3));
                 oLstCCliente.add(oCECliente);
             }
@@ -177,8 +259,8 @@ public CECliente DetalleCliente(CECliente oCECliente)
         try
         {
             Connection con = ConexionBD.obtenerConexion();
-            String sql = "INSERT INTO cliente (IdSituacionConexion, AntiguoCodigoCatastral, NuevoCodigoCatastral, NumeroInscripcion, RutaLectura, RutaReparto,  Secuencia,  Categoria,  NumMunicipal,  IdTipoDocumento,  NumeroDocumento,  Telefono,  ApellidoPaternoPropietario,  ApellidoMaternoPropietario,  NombrePropietario,  ApellidopPaternoConyugue,  ApellidoMaternoConyugue,  NombreConyugue,  CorreoElectronico,  IdTipoPropiedad,  CantidadHabitantesPredio,  NumeroPisos,  IdTipoPredio,  IdVia,  NumeroMunicipal,  IdHabilitacion,  NumeroManzana,  NumeroLote,  Block,  Piso,  Numero,  IdUsoPredio,  Complemento,  SiNoPredioHabilitado,  IdTipoServicio,  IdMedioAbastecimiento,  IdSituacionPredio,  IdTipoAlmacenamiento ) "
-                    + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+            String sql = "INSERT INTO cliente (IdSituacionConexion, AntiguoCodigoCatastral, NuevoCodigoCatastral, NumeroInscripcion, RutaLectura, RutaReparto,  Secuencia,  Categoria,  NumMunicipal,  IdTipoDocumento,  NumeroDocumento,  Telefono,  ApellidoPaternoPropietario,  ApellidoMaternoPropietario,  NombrePropietario,  ApellidopPaternoConyugue,  ApellidoMaternoConyugue,  NombreConyugue,  CorreoElectronico,  IdTipoPropiedad,  CantidadHabitantesPredio,  NumeroPisos,  IdTipoPredio,  IdVia,  NumeroMunicipal,  IdHabilitacion,  NumeroManzana,  NumeroLote,  Block,  Piso,  Numero,  IdUsoPredio,  Complemento,  SiNoPredioHabilitado,  IdTipoServicio,  IdMedioAbastecimiento,  IdSituacionPredio,  IdTipoAlmacenamiento,IdCondicionConexionAgua) "
+                    + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
             PreparedStatement ps = con.prepareCall(sql);
             ps.setInt(1,oCECliente.getIdSituacionConexion());
             ps.setString(2,oCECliente.getAntiguoCodigoCatastral());
@@ -217,7 +299,8 @@ public CECliente DetalleCliente(CECliente oCECliente)
             ps.setInt(35,oCECliente.getIdTipoServicio());
             ps.setInt(36,oCECliente.getIdMedioAbastecimiento());
             ps.setInt(37,oCECliente.getIdSituacionPredio());
-            ps.setInt(38,oCECliente.getIdTipoAlmacenamiento());            
+            ps.setInt(38,oCECliente.getIdTipoAlmacenamiento());
+            ps.setInt(39,oCECliente.getIdCondicionConexionAgua());
             ps.executeUpdate();
 
             return true;
@@ -235,7 +318,7 @@ public CECliente DetalleCliente(CECliente oCECliente)
         try
         {
             Connection con = ConexionBD.obtenerConexion();
-            String sql = "UPDATE cliente set IdSituacionConexion = ?, AntiguoCodigoCatastral= ?, NuevoCodigoCatastral= ?, NumeroInscripcion= ?, RutaLectura= ?, RutaReparto= ?,  Secuencia= ?,  Categoria = ?,  NumMunicipal = ?,  IdTipoDocumento= ?,  NumeroDocumento = ?,  Telefono= ?,  ApellidoPaternoPropietario= ?,  ApellidoMaternoPropietario= ?,  NombrePropietario= ?,  ApellidopPaternoConyugue= ?,  ApellidoMaternoConyugue = ?,  NombreConyugue = ?,  CorreoElectronico = ?,  IdTipoPropiedad = ?,  CantidadHabitantesPredio = ?,  NumeroPisos = ?,  IdTipoPredio= ?,  IdVia = ?,  NumeroMunicipal= ?,  IdHabilitacion = ?,  NumeroManzana= ?,  NumeroLote= ?,  Block= ?,  Piso= ?,  Numero= ?,  IdUsoPredio= ?,  Complemento= ?,  SiNoPredioHabilitado= ?,  IdTipoServicio = ?,  IdMedioAbastecimiento= ?,  IdSituacionPredio = ?,  IdTipoAlmacenamiento= ?  "
+            String sql = "UPDATE cliente set IdSituacionConexion = ?, AntiguoCodigoCatastral= ?, NuevoCodigoCatastral= ?, NumeroInscripcion= ?, RutaLectura= ?, RutaReparto= ?,  Secuencia= ?,  Categoria = ?,  NumMunicipal = ?,  IdTipoDocumento= ?,  NumeroDocumento = ?,  Telefono= ?,  ApellidoPaternoPropietario= ?,  ApellidoMaternoPropietario= ?,  NombrePropietario= ?,  ApellidopPaternoConyugue= ?,  ApellidoMaternoConyugue = ?,  NombreConyugue = ?,  CorreoElectronico = ?,  IdTipoPropiedad = ?,  CantidadHabitantesPredio = ?,  NumeroPisos = ?,  IdTipoPredio= ?,  IdVia = ?,  NumeroMunicipal= ?,  IdHabilitacion = ?,  NumeroManzana= ?,  NumeroLote= ?,  Block= ?,  Piso= ?,  Numero= ?,  IdUsoPredio= ?,  Complemento= ?,  SiNoPredioHabilitado= ?,  IdTipoServicio = ?,  IdMedioAbastecimiento= ?,  IdSituacionPredio = ?,  IdTipoAlmacenamiento= ?, IdCondicionConexionAgua "
                     + "where IdCliente = ? ;";
             PreparedStatement ps = con.prepareCall(sql);
             ps.setInt(1,oCECliente.getIdSituacionConexion());
@@ -276,7 +359,8 @@ public CECliente DetalleCliente(CECliente oCECliente)
             ps.setInt(36,oCECliente.getIdMedioAbastecimiento());
             ps.setInt(37,oCECliente.getIdSituacionPredio());
             ps.setInt(38,oCECliente.getIdTipoAlmacenamiento());            
-            ps.setInt(39,oCECliente.getIdCliente());            
+            ps.setInt(40,oCECliente.getIdCliente());
+            ps.setInt(39,oCECliente.getIdCondicionConexionAgua());
             ps.executeUpdate();
 
             return true;

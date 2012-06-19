@@ -4,9 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.List;
 import modelo.acceso.ConexionBD;
 import modelo.entidad.CECondicionConexionAgua;
 
@@ -40,4 +40,43 @@ public class CDCondicionConexionAgua
         return oLstCondicionConexionAgua;
 
     }
+    public CECondicionConexionAgua DetalleCondicionConexionAgua(CECondicionConexionAgua oCECondicionConexionAgua)
+    {
+                Connection conexion = ConexionBD.obtenerConexion();
+                try
+                {
+                  List<CECondicionConexionAgua> Lst = new ArrayList<CECondicionConexionAgua>();
+                  String sql = null;
+                    sql = "SELECT * FROM tipo_servicio WHERE idvia = "+oCECondicionConexionAgua.getIdCondicionConexionAgua()+";";
+
+                    Statement sentencia = conexion.createStatement();
+                    ResultSet resultado = sentencia.executeQuery(sql);
+
+                    if (resultado!=null)
+                {
+                    while (resultado.next())
+                    {
+                        oCECondicionConexionAgua.setIdCondicionConexionAgua(resultado.getInt(1));
+                        oCECondicionConexionAgua.setCodigo(resultado.getInt(2));
+                        oCECondicionConexionAgua.setCondicionConexionAgua(resultado.getString(3));
+
+
+                        Lst.add(oCECondicionConexionAgua);
+                    }
+                    conexion.close();
+                    return oCECondicionConexionAgua;
+                    }
+               return null;
+                }
+                catch(SQLException e)
+            {
+                e.printStackTrace();
+                return null;
+            }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                    return null;
+                }
+         }
 }

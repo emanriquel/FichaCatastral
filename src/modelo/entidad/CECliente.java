@@ -19,8 +19,10 @@ public class CECliente {
     private String Secuencia;
     private String Categoria;
     private String NumMunicipal;//10
+    private String Via;
     private int IdTipoDocumento;
     private String NumeroDocumento;
+    private int IdCondicionConexionAgua;
     private String Telefono;
     private String ApellidoPaternoPropietario;
     private String ApellidoMaternoPropietario;    //15
@@ -405,6 +407,34 @@ public class CECliente {
 
     public void setSiNoPredioHabilitado(int SiNoPredioHabilitado) {
         this.SiNoPredioHabilitado = SiNoPredioHabilitado;
+    }
+
+    /**
+     * @return the Via
+     */
+    public String getVia() {
+        return Via;
+    }
+
+    /**
+     * @param Via the Via to set
+     */
+    public void setVia(String Via) {
+        this.Via = Via;
+    }
+
+    /**
+     * @return the IdCondicionConexionAgua
+     */
+    public int getIdCondicionConexionAgua() {
+        return IdCondicionConexionAgua;
+    }
+
+    /**
+     * @param IdCondicionConexionAgua the IdCondicionConexionAgua to set
+     */
+    public void setIdCondicionConexionAgua(int IdCondicionConexionAgua) {
+        this.IdCondicionConexionAgua = IdCondicionConexionAgua;
     }
     
     
