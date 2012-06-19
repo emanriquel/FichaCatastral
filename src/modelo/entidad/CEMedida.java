@@ -25,7 +25,7 @@ public class CEMedida
   private int IdPosicionMedidor;
   private int IdPozoArtesanal;
   private int IdSeguridadMedidor;
-  private int IdSituacion;
+  private int IdSituacionAgua;
   private int IdSituacionPredio;
   private int IdTipoAlmacenamiento;
   private int IdTipoPredio;
@@ -506,12 +506,12 @@ public class CEMedida
         this.IdSeguridadMedidor = IdSeguridadMedidor;
     }
 
-    public int getIdSituacion() {
-        return IdSituacion;
+    public int getIdSituacionAgua() {
+        return IdSituacionAgua;
     }
 
-    public void setIdSituacion(int IdSituacion) {
-        this.IdSituacion = IdSituacion;
+    public void setIdSituacionAgua(int IdSituacion) {
+        this.IdSituacionAgua = IdSituacion;
     }
 
     public int getIdSituacionPredio() {

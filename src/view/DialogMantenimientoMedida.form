@@ -2202,7 +2202,7 @@
                                   <EmptySpace min="20" pref="20" max="20" attributes="0"/>
                                   <Component id="jLabel79" min="-2" pref="80" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Component id="ChckSiNoTapa" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="ChckSiNoTapaConexionAgua" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="jLabel81" min="-2" pref="50" max="-2" attributes="0"/>
@@ -2247,7 +2247,7 @@
                               <Component id="jLabel68" min="-2" pref="20" max="-2" attributes="0"/>
                               <Component id="TxtMaterialConexionAgua" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel79" min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="ChckSiNoTapa" min="-2" max="-2" attributes="0"/>
+                              <Component id="ChckSiNoTapaConexionAgua" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="9" pref="9" max="9" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -2365,7 +2365,7 @@
                     <Property name="text" type="java.lang.String" value="&#xbf;Con Tapa?"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="ChckSiNoTapa">
+                <Component class="javax.swing.JCheckBox" name="ChckSiNoTapaConexionAgua">
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="ChckSiNoFuga">
                 </Component>

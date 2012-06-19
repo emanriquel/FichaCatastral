@@ -36,7 +36,7 @@ public class CDMedida
                     + " IdPosicionMedidor, "
                     + "IdPozoArtesanal, "
                     + "IdSeguridadMedidor, "
-                    + "IdSituacion, "
+                    + "IdSituacionAgua, "
                     + "IdSituacionPredio, "
                     + "IdTipoAlmacenamiento,"
                     + " IdTipoPredio,"
@@ -129,7 +129,7 @@ public class CDMedida
             ps.setInt(18,oCEMedida.getIdPosicionMedidor());
             ps.setInt(19,oCEMedida.getIdPozoArtesanal());
             ps.setInt(20,oCEMedida.getIdSeguridadMedidor());
-            ps.setInt(21,oCEMedida.getIdSituacion());
+            ps.setInt(21,oCEMedida.getIdSituacionAgua());
             ps.setInt(22,oCEMedida.getIdSituacionPredio());
             ps.setInt(23,oCEMedida.getIdTipoAlmacenamiento());
             ps.setInt(24,oCEMedida.getIdTipoPredio());
@@ -179,7 +179,7 @@ public class CDMedida
             ps.setBoolean(69,oCEMedida.isSiNoMedidor());
             ps.setString(70,oCEMedida.getNumeroMedidor());
             ps.setBoolean(71,oCEMedida.isSiNoIlegibleNumMedidor());
-            ps.setInt(72,oCEMedida.getLectura());
+            ps.setDouble(72,oCEMedida.getLectura());
             ps.setBoolean(73,oCEMedida.isSiNoIlegibleLectura());
             ps.setString(74,oCEMedida.getMarcaMedidor());
             ps.setString(75,oCEMedida.getMaterialConexionAgua());

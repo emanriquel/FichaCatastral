@@ -32,13 +32,18 @@ import modelo.datos.CDUbiCajaConexAgua;
 import modelo.datos.CDUbiCajaConexDesague;
 import modelo.datos.CDUsoPredio;
 import modelo.datos.CDVereda;
+import modelo.entidad.CECondicionConexionAgua;
+import modelo.entidad.CEDiametroConexionAgua;
 import modelo.entidad.CEDiametroMedidor;
+import modelo.entidad.CEEstadoCajaAgua;
 import modelo.entidad.CEEstadoMedidor;
 import modelo.entidad.CELlavesPaso;
+import modelo.entidad.CEMaterialCajaAgua;
 import modelo.entidad.CEMedida;
 import modelo.entidad.CEMedioAbastecimiento;
 import modelo.entidad.CEPosicionMedidor;
 import modelo.entidad.CESeguridadMedidor;
+import modelo.entidad.CESituacionAgua;
 import modelo.entidad.CESituacionConexion;
 import modelo.entidad.CESituacionPredio;
 import modelo.entidad.CETipoAlmacenamiento;
@@ -46,6 +51,7 @@ import modelo.entidad.CETipoDocumento;
 import modelo.entidad.CETipoPredio;
 import modelo.entidad.CETipoPropiedad;
 import modelo.entidad.CETipoServicio;
+import modelo.entidad.CEUbiCajaConexAgua;
 import modelo.entidad.CEUsoPredio;
 import util.ArrayListComboBoxModel;
 
@@ -353,7 +359,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel68 = new javax.swing.JLabel();
         TxtMaterialConexionAgua = new javax.swing.JTextField();
         jLabel79 = new javax.swing.JLabel();
-        ChckSiNoTapa = new javax.swing.JCheckBox();
+        ChckSiNoTapaConexionAgua = new javax.swing.JCheckBox();
         ChckSiNoFuga = new javax.swing.JCheckBox();
         jLabel80 = new javax.swing.JLabel();
         jLabel81 = new javax.swing.JLabel();
@@ -1577,7 +1583,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                         .addGap(20, 20, 20)
                         .addComponent(jLabel79, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(ChckSiNoTapa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(ChckSiNoTapaConexionAgua, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel81, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
@@ -1615,7 +1621,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                     .addComponent(jLabel68, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TxtMaterialConexionAgua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel79, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ChckSiNoTapa))
+                    .addComponent(ChckSiNoTapaConexionAgua))
                 .addGap(9, 9, 9)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel81, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2680,6 +2686,23 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         oCEMedida.setIdSeguridadMedidor(oCESeguridadMedidor.getIdSeguridadMedidor());
         CEPosicionMedidor oCEPosicionMedidor=(CEPosicionMedidor)CbxPosicionMedidor.getSelectedItem();
         oCEMedida.setIdPosicionMedidor(oCEPosicionMedidor.getIdPosicionMedidor());
+        CESituacionAgua oCESituacionAgua=(CESituacionAgua)CbxSituacionAgua.getSelectedItem();
+        oCEMedida.setIdSituacionAgua(oCESituacionAgua.getIdSituacionAgua());
+        CEUbiCajaConexAgua oCEUbiCajaConexAgua=(CEUbiCajaConexAgua)CbxUbiCajaConexAgua.getSelectedItem();
+        oCEMedida.setIdUbiCajaConexAgua(oCEUbiCajaConexAgua.getIdUbiCajaConexAgua());
+        CEDiametroConexionAgua oCEDiametroConexionAgua=(CEDiametroConexionAgua)CbxDiametroConexionAgua.getSelectedItem();
+        oCEMedida.setIdDiametroConexionAgua(oCEDiametroConexionAgua.getIdDiametroConexionAgua());
+        CECondicionConexionAgua oCECondicionConexionAgua=(CECondicionConexionAgua)CbxDiametroConexionAgua.getSelectedItem();
+        oCEMedida.setIdCondicionConexionAgua(oCECondicionConexionAgua.getIdCondicionConexionAgua());
+        CEMaterialCajaAgua oCEMaterialCajaAgua=(CEMaterialCajaAgua)CbxMaterialCajaAgua.getSelectedItem();
+        oCEMedida.setIdMaterialCajaAgua(oCEMaterialCajaAgua.getIdMaterialCajaAgua());
+        CEEstadoCajaAgua oCEEstadoCajaAgua=(CEEstadoCajaAgua)CbxEstadoCajaAgua.getSelectedItem();
+        oCEMedida.setIdEstadoCajaAgua(oCEEstadoCajaAgua.getIdEstadoCajaAgua());
+        oCEMedida.setMaterialConexionAgua(TxtMaterialConexionAgua.getText());
+        oCEMedida.setSiNoTapaConexionAgua(ChckSiNoTapaConexionAgua.isSelected());
+        oCEMedida.setSiNoFugaAgua(ChckSiNoFuga.isSelected());
+        oCEMedida.setTipoFugaAgua(1);
+        
         return oCEMedida;
     }
  
@@ -2726,7 +2749,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     private javax.swing.JCheckBox ChckSiNoFugaDesague;
     private javax.swing.JCheckBox ChckSiNoIlegibleLecturaMedidor;
     private javax.swing.JCheckBox ChckSiNoPredioHabilitado;
-    private javax.swing.JCheckBox ChckSiNoTapa;
+    private javax.swing.JCheckBox ChckSiNoTapaConexionAgua;
     private javax.swing.JCheckBox ChkSiNoIlegibleNumeroMedidor;
     private javax.swing.JCheckBox ChkSiNoMedidor;
     private com.toedter.calendar.JDateChooser DateFechaDigitador;
