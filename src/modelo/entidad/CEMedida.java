@@ -79,7 +79,7 @@ public class CEMedida
   private boolean SiNoMedidor;
   private String NumeroMedidor;
   private boolean SiNoIlegibleNumMedidor;
-  private int Lectura;
+  private double Lectura;
   private boolean SiNoIlegibleLectura;
   private String MarcaMedidor;
   private boolean SiNoTapaConexionAgua;
@@ -594,11 +594,11 @@ public class CEMedida
         this.IdVereda = IdVereda;
     }
 
-    public int getLectura() {
+    public double getLectura() {
         return Lectura;
     }
 
-    public void setLectura(int Lectura) {
+    public void setLectura(double Lectura) {
         this.Lectura = Lectura;
     }
 
@@ -994,6 +994,20 @@ public class CEMedida
      */
     public void setIdSituacionConexion(int IdSituacionConexion) {
         this.IdSituacionConexion = IdSituacionConexion;
+    }
+
+    /**
+     * @return the IdEstadoMedidor
+     */
+    public int getIdEstadoMedidor() {
+        return IdEstadoMedidor;
+    }
+
+    /**
+     * @param IdEstadoMedidor the IdEstadoMedidor to set
+     */
+    public void setIdEstadoMedidor(int IdEstadoMedidor) {
+        this.IdEstadoMedidor = IdEstadoMedidor;
     }
 
 }

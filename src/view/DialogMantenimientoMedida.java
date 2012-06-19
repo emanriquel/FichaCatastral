@@ -32,10 +32,21 @@ import modelo.datos.CDUbiCajaConexAgua;
 import modelo.datos.CDUbiCajaConexDesague;
 import modelo.datos.CDUsoPredio;
 import modelo.datos.CDVereda;
+import modelo.entidad.CEDiametroMedidor;
+import modelo.entidad.CEEstadoMedidor;
+import modelo.entidad.CELlavesPaso;
 import modelo.entidad.CEMedida;
+import modelo.entidad.CEMedioAbastecimiento;
+import modelo.entidad.CEPosicionMedidor;
+import modelo.entidad.CESeguridadMedidor;
 import modelo.entidad.CESituacionConexion;
+import modelo.entidad.CESituacionPredio;
+import modelo.entidad.CETipoAlmacenamiento;
 import modelo.entidad.CETipoDocumento;
+import modelo.entidad.CETipoPredio;
 import modelo.entidad.CETipoPropiedad;
+import modelo.entidad.CETipoServicio;
+import modelo.entidad.CEUsoPredio;
 import util.ArrayListComboBoxModel;
 
 public class DialogMantenimientoMedida extends javax.swing.JDialog {
@@ -271,9 +282,9 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel49 = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
         ChckSiNoPredioHabilitado = new javax.swing.JCheckBox();
-        TxtNombrePropietario1 = new javax.swing.JTextField();
-        TxtApellidoPaternoPropietario2 = new javax.swing.JTextField();
-        TxtApellidoMaternoPropietario2 = new javax.swing.JTextField();
+        TxtNombreHabilitacion = new javax.swing.JTextField();
+        TxtCodigoHabilitacion = new javax.swing.JTextField();
+        TxtTipoHabilitacion = new javax.swing.JTextField();
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
@@ -289,7 +300,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         TxtTipoVia = new javax.swing.JTextField();
         jLabel39 = new javax.swing.JLabel();
         jLabel135 = new javax.swing.JLabel();
-        CbxTipoServicio1 = new javax.swing.JComboBox();
+        CbxTipoAlmacenamiento = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         TblUsos = new javax.swing.JTable();
         BtnAgregarUso = new javax.swing.JButton();
@@ -309,12 +320,12 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel69 = new javax.swing.JLabel();
         CbxDiametroMedidor = new javax.swing.JComboBox();
         jLabel71 = new javax.swing.JLabel();
-        ChkSiNoIlegible = new javax.swing.JCheckBox();
+        ChkSiNoIlegibleNumeroMedidor = new javax.swing.JCheckBox();
         jLabel73 = new javax.swing.JLabel();
         ChkSiNoMedidor = new javax.swing.JCheckBox();
         TxtLecturaMedidor = new javax.swing.JTextField();
         jLabel74 = new javax.swing.JLabel();
-        ChckSiNoIlegible = new javax.swing.JCheckBox();
+        ChckSiNoIlegibleLecturaMedidor = new javax.swing.JCheckBox();
         jLabel75 = new javax.swing.JLabel();
         TxtMarcaMedidor = new javax.swing.JTextField();
         jLabel76 = new javax.swing.JLabel();
@@ -571,7 +582,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel13.setOpaque(true);
 
         jLabel14.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel14.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel14.setForeground(new java.awt.Color(0, 0, 102));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("Codigo Inscripción");
@@ -1007,9 +1018,9 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel50.setForeground(new java.awt.Color(0, 0, 102));
         jLabel50.setText("Situación del Predio:");
 
-        TxtApellidoPaternoPropietario2.setEditable(false);
+        TxtCodigoHabilitacion.setEditable(false);
 
-        TxtApellidoMaternoPropietario2.setEditable(false);
+        TxtTipoHabilitacion.setEditable(false);
 
         jLabel33.setBackground(new java.awt.Color(204, 204, 204));
         jLabel33.setFont(new java.awt.Font("Arial", 1, 12));
@@ -1055,6 +1066,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel37.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel37.setOpaque(true);
 
+        TxtCodigoVia.setEditable(false);
+
         jLabel38.setBackground(new java.awt.Color(204, 204, 204));
         jLabel38.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel38.setForeground(new java.awt.Color(0, 0, 102));
@@ -1062,6 +1075,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel38.setText("Nombre de Vía");
         jLabel38.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel38.setOpaque(true);
+
+        TxtTipoVia.setEditable(false);
 
         jLabel39.setBackground(new java.awt.Color(204, 204, 204));
         jLabel39.setFont(new java.awt.Font("Arial", 1, 12));
@@ -1129,15 +1144,15 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                             .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TxtApellidoPaternoPropietario2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxtCodigoHabilitacion, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(10, 10, 10)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TxtApellidoMaternoPropietario2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxtTipoHabilitacion, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(20, 20, 20)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TxtNombrePropietario1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxtNombreHabilitacion, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
@@ -1167,7 +1182,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel135)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CbxTipoServicio1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(CbxTipoAlmacenamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -1192,15 +1207,15 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(TxtApellidoPaternoPropietario2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TxtCodigoHabilitacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(TxtApellidoMaternoPropietario2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TxtTipoHabilitacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(TxtNombrePropietario1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TxtNombreHabilitacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1236,7 +1251,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel135, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CbxTipoServicio1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CbxTipoAlmacenamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11))
         );
 
@@ -1399,7 +1414,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                         .addGap(30, 30, 30)
                         .addComponent(jLabel71, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(ChkSiNoIlegible, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ChkSiNoIlegibleNumeroMedidor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
                         .addComponent(jLabel76, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
@@ -1411,7 +1426,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                         .addGap(30, 30, 30)
                         .addComponent(jLabel75, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(ChckSiNoIlegible, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(ChckSiNoIlegibleLecturaMedidor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel69)
                         .addGap(6, 6, 6)
@@ -1445,7 +1460,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                     .addComponent(jLabel67, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TxtNumeroMedidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel71, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ChkSiNoIlegible)
+                    .addComponent(ChkSiNoIlegibleNumeroMedidor)
                     .addComponent(jLabel76, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TxtMarcaMedidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
@@ -1453,7 +1468,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                     .addComponent(jLabel74, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TxtLecturaMedidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel75, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ChckSiNoIlegible))
+                    .addComponent(ChckSiNoIlegibleLecturaMedidor))
                 .addGap(9, 9, 9)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel69, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2622,10 +2637,49 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         oCEMedida.setIdTipoPropiedad(oCETipoPropiedad.getIdTipoPropiedad());
         oCEMedida.setCantHabitantesPredio(Integer.parseInt(TxtCantidadHabitantesPredio.getText()));
         oCEMedida.setNumPiso(Integer.parseInt(TxtNumPisos.getText()));
-
-
-
-
+        CETipoPredio oCETipoPredio=(CETipoPredio)CbxTipoPredio.getSelectedItem();
+        oCEMedida.setIdTipoPredio(oCETipoPredio.getIdTipoPredio());
+        oCEMedida.setCodigoVia(TxtCodigoVia.getText());
+        oCEMedida.setTipoVia(TxtTipoVia.getText());
+        oCEMedida.setNombreVia(TxtNombreVia.getText());
+        oCEMedida.setCodigoHabilitacion(TxtCodigoHabilitacion.getText());
+        oCEMedida.setTipoVia(TxtTipoHabilitacion.getText());
+        oCEMedida.setNombreHabilitacion(TxtNombreHabilitacion.getText());
+        oCEMedida.setNumManzana(TxtNumeroManzana.getText());
+        oCEMedida.setNumLote(TxtNumeroLote.getText());
+        oCEMedida.setBlock(TxtBlock.getText());
+        oCEMedida.setPiso(TxtPiso.getText());
+        CEUsoPredio oCEUsoPredio=(CEUsoPredio)CbxUsoPredio.getSelectedItem();
+        oCEMedida.setIdUsoPredio(oCEUsoPredio.getIdUsoPredio());
+        oCEMedida.setComplemento(TxtComplemento.getText());
+        oCEMedida.setSiNoPredioHabilitado(ChckSiNoPredioHabilitado.isSelected());
+        CETipoServicio oCETipoServicio=(CETipoServicio)CbxTipoServicio.getSelectedItem();
+        oCEMedida.setIdTipoServicio(oCETipoServicio.getIdTipoServicio());
+        CEMedioAbastecimiento oCEMedioAbastecimiento=(CEMedioAbastecimiento)CbxMedioAbastecimiento.getSelectedItem();
+        oCEMedida.setIdMedioAbastecimiento(oCEMedioAbastecimiento.getIdMedioAbastecimiento());
+        CESituacionPredio oCESituacionPredio=(CESituacionPredio)CbxSituacionPredio.getSelectedItem();
+        oCEMedida.setIdSituacionPredio(oCESituacionPredio.getIdSituacionPredio());
+        CETipoAlmacenamiento oCETipoAlmacenamiento=(CETipoAlmacenamiento) CbxTipoAlmacenamiento.getSelectedItem();
+        oCEMedida.setIdTipoAlmacenamiento(oCETipoAlmacenamiento.getIdTipoAlmacenamiento());
+        oCEMedida.setPorcentajeDomestico(Double.parseDouble(TxtPorcentajeDomestico.getText()));
+        oCEMedida.setPorcentajeComercial(Double.parseDouble(TxtPorcentajeComercial.getText()));
+        oCEMedida.setPorcentajeEstatal(Double.parseDouble(TxtPorcentajeEstatal.getText()));
+        oCEMedida.setPorcentajeSocial(Double.parseDouble(TxtPorcentajeSocial.getText()));
+        oCEMedida.setSiNoMedidor(ChkSiNoMedidor.isSelected());
+        oCEMedida.setNumeroMedidor(TxtNumeroMedidor.getText());
+        oCEMedida.setSiNoIlegibleNumMedidor(ChkSiNoIlegibleNumeroMedidor.isSelected());
+        oCEMedida.setLectura(Double.parseDouble(TxtLecturaMedidor.getText()));
+        oCEMedida.setSiNoIlegibleLectura(ChckSiNoIlegibleLecturaMedidor.isSelected());
+        CEDiametroMedidor oCEDiametroMedidor=(CEDiametroMedidor)CbxDiametroMedidor.getSelectedItem();
+        oCEMedida.setIdDiametroMedidor(oCEDiametroMedidor.getIdDiametroMedidor());
+        CEEstadoMedidor oCEEstadoMedidor=(CEEstadoMedidor)CbxEstadoMedidor.getSelectedItem();
+        oCEMedida.setIdEstadoMedidor(oCEEstadoMedidor.getIdEstadoMedidor());
+        CELlavesPaso oCELlavesPaso=(CELlavesPaso)CbxLlavesPaso.getSelectedItem();
+        oCEMedida.setIdLlavePaso(oCELlavesPaso.getIdLlavesPaso());
+        CESeguridadMedidor oCESeguridadMedidor=(CESeguridadMedidor)CbxSeguridadMedidor.getSelectedItem();
+        oCEMedida.setIdSeguridadMedidor(oCESeguridadMedidor.getIdSeguridadMedidor());
+        CEPosicionMedidor oCEPosicionMedidor=(CEPosicionMedidor)CbxPosicionMedidor.getSelectedItem();
+        oCEMedida.setIdPosicionMedidor(oCEPosicionMedidor.getIdPosicionMedidor());
         return oCEMedida;
     }
  
@@ -2658,22 +2712,22 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     private javax.swing.JComboBox CbxSituacionAgua;
     private javax.swing.JComboBox CbxSituacionConexion;
     private javax.swing.JComboBox CbxSituacionPredio;
+    private javax.swing.JComboBox CbxTipoAlmacenamiento;
     private javax.swing.JComboBox CbxTipoDocumento;
     private javax.swing.JComboBox CbxTipoPredio;
     private javax.swing.JComboBox CbxTipoPropiedad;
     private javax.swing.JComboBox CbxTipoPropiedadEntrevistado;
     private javax.swing.JComboBox CbxTipoServicio;
-    private javax.swing.JComboBox CbxTipoServicio1;
     private javax.swing.JComboBox CbxUbiCajaConexAgua;
     private javax.swing.JComboBox CbxUbiCajaConexDesague;
     private javax.swing.JComboBox CbxUsoPredio;
     private javax.swing.JComboBox CbxVereda;
     private javax.swing.JCheckBox ChckSiNoFuga;
     private javax.swing.JCheckBox ChckSiNoFugaDesague;
-    private javax.swing.JCheckBox ChckSiNoIlegible;
+    private javax.swing.JCheckBox ChckSiNoIlegibleLecturaMedidor;
     private javax.swing.JCheckBox ChckSiNoPredioHabilitado;
     private javax.swing.JCheckBox ChckSiNoTapa;
-    private javax.swing.JCheckBox ChkSiNoIlegible;
+    private javax.swing.JCheckBox ChkSiNoIlegibleNumeroMedidor;
     private javax.swing.JCheckBox ChkSiNoMedidor;
     private com.toedter.calendar.JDateChooser DateFechaDigitador;
     private com.toedter.calendar.JDateChooser DateFechaEncuestador;
@@ -2685,16 +2739,15 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     private javax.swing.JTextField TxtApellidoMaternoConyugue;
     private javax.swing.JTextField TxtApellidoMaternoEntrevistado;
     private javax.swing.JTextField TxtApellidoMaternoPropietario;
-    private javax.swing.JTextField TxtApellidoMaternoPropietario2;
     private javax.swing.JTextField TxtApellidoPaternoConyugue;
     private javax.swing.JTextField TxtApellidoPaternoEntrevistado;
     private javax.swing.JTextField TxtApellidoPaternoPropietario;
-    private javax.swing.JTextField TxtApellidoPaternoPropietario2;
     private javax.swing.JTextField TxtBlock;
     private javax.swing.JTextField TxtCantidadHabitantesPredio;
     private javax.swing.JTextField TxtCategoria;
     private javax.swing.JTextField TxtCodigoDigitador;
     private javax.swing.JTextField TxtCodigoEncuestador;
+    private javax.swing.JTextField TxtCodigoHabilitacion;
     private javax.swing.JTextField TxtCodigoInscripcion;
     private javax.swing.JTextField TxtCodigoSupervisor;
     private javax.swing.JTextField TxtCodigoVia;
@@ -2714,8 +2767,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     private javax.swing.JTextField TxtMaterialConexionAgua;
     private javax.swing.JTextField TxtNombreConyugue;
     private javax.swing.JTextField TxtNombreEntrevistado;
+    private javax.swing.JTextField TxtNombreHabilitacion;
     private javax.swing.JTextField TxtNombrePropietario;
-    private javax.swing.JTextField TxtNombrePropietario1;
     private javax.swing.JTextField TxtNombreVia;
     private javax.swing.JTextField TxtNumDocumento;
     private javax.swing.JTextField TxtNumMunicipal;
@@ -2737,6 +2790,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     private javax.swing.JTextField TxtSeccion;
     private javax.swing.JTextField TxtSecuencia;
     private javax.swing.JTextField TxtTelefono;
+    private javax.swing.JTextField TxtTipoHabilitacion;
     private javax.swing.JTextField TxtTipoVia;
     private javax.swing.JTextField TxtUbiConexAgua;
     private javax.swing.JTextField TxtUbiConexDesague;

@@ -1176,17 +1176,17 @@
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="TxtApellidoPaternoPropietario2" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
+                                      <Component id="TxtCodigoHabilitacion" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
                                       <Component id="jLabel36" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="10" pref="10" max="10" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="TxtApellidoMaternoPropietario2" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
+                                      <Component id="TxtTipoHabilitacion" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
                                       <Component id="jLabel34" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="20" pref="20" max="20" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="TxtNombrePropietario1" alignment="0" min="-2" pref="460" max="-2" attributes="0"/>
+                                      <Component id="TxtNombreHabilitacion" alignment="0" min="-2" pref="460" max="-2" attributes="0"/>
                                       <Component id="jLabel33" alignment="0" min="-2" pref="460" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jButton3" min="-2" pref="32" max="-2" attributes="0"/>
@@ -1220,7 +1220,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel135" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="CbxTipoServicio1" min="-2" pref="175" max="-2" attributes="1"/>
+                                  <Component id="CbxTipoAlmacenamiento" min="-2" pref="175" max="-2" attributes="1"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -1254,17 +1254,17 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="TxtApellidoPaternoPropietario2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TxtCodigoHabilitacion" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                   <Component id="jLabel36" min="-2" pref="20" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="TxtApellidoMaternoPropietario2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TxtTipoHabilitacion" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                   <Component id="jLabel34" min="-2" pref="20" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="TxtNombrePropietario1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TxtNombreHabilitacion" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                   <Component id="jLabel33" min="-2" pref="20" max="-2" attributes="0"/>
                               </Group>
@@ -1306,7 +1306,7 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel135" alignment="3" min="-2" pref="17" max="-2" attributes="1"/>
-                              <Component id="CbxTipoServicio1" alignment="3" min="-2" max="-2" attributes="1"/>
+                              <Component id="CbxTipoAlmacenamiento" alignment="3" min="-2" max="-2" attributes="1"/>
                           </Group>
                           <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                       </Group>
@@ -1507,14 +1507,14 @@
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="ChckSiNoPredioHabilitado">
                 </Component>
-                <Component class="javax.swing.JTextField" name="TxtNombrePropietario1">
+                <Component class="javax.swing.JTextField" name="TxtNombreHabilitacion">
                 </Component>
-                <Component class="javax.swing.JTextField" name="TxtApellidoPaternoPropietario2">
+                <Component class="javax.swing.JTextField" name="TxtCodigoHabilitacion">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="TxtApellidoMaternoPropietario2">
+                <Component class="javax.swing.JTextField" name="TxtTipoHabilitacion">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                   </Properties>
@@ -1639,6 +1639,9 @@
                 <Component class="javax.swing.JTextField" name="TxtNumMunicipal">
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtCodigoVia">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtNombreVia">
                 </Component>
@@ -1664,6 +1667,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtTipoVia">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel39">
                   <Properties>
@@ -1697,7 +1703,7 @@
                     <Property name="text" type="java.lang.String" value="Tipo Almacenamiento:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="CbxTipoServicio1">
+                <Component class="javax.swing.JComboBox" name="CbxTipoAlmacenamiento">
                 </Component>
               </SubComponents>
             </Container>
@@ -1908,7 +1914,7 @@
                                   <EmptySpace min="30" pref="30" max="30" attributes="0"/>
                                   <Component id="jLabel71" min="-2" pref="80" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Component id="ChkSiNoIlegible" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="ChkSiNoIlegibleNumeroMedidor" min="-2" pref="30" max="-2" attributes="0"/>
                                   <EmptySpace min="10" pref="10" max="10" attributes="0"/>
                                   <Component id="jLabel76" min="-2" pref="100" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
@@ -1921,7 +1927,7 @@
                                   <EmptySpace min="30" pref="30" max="30" attributes="0"/>
                                   <Component id="jLabel75" min="-2" pref="80" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Component id="ChckSiNoIlegible" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="ChckSiNoIlegibleLecturaMedidor" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="jLabel69" min="-2" max="-2" attributes="0"/>
@@ -1962,7 +1968,7 @@
                               <Component id="jLabel67" min="-2" pref="20" max="-2" attributes="0"/>
                               <Component id="TxtNumeroMedidor" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel71" min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="ChkSiNoIlegible" min="-2" max="-2" attributes="0"/>
+                              <Component id="ChkSiNoIlegibleNumeroMedidor" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel76" min="-2" pref="20" max="-2" attributes="0"/>
                               <Component id="TxtMarcaMedidor" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -1971,7 +1977,7 @@
                               <Component id="jLabel74" min="-2" pref="20" max="-2" attributes="0"/>
                               <Component id="TxtLecturaMedidor" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel75" min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="ChckSiNoIlegible" min="-2" max="-2" attributes="0"/>
+                              <Component id="ChckSiNoIlegibleLecturaMedidor" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="9" pref="9" max="9" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -2031,7 +2037,7 @@
                     <Property name="text" type="java.lang.String" value="&#xbf;Es ilegible?"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="ChkSiNoIlegible">
+                <Component class="javax.swing.JCheckBox" name="ChkSiNoIlegibleNumeroMedidor">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel73">
                   <Properties>
@@ -2062,7 +2068,7 @@
                     <Property name="text" type="java.lang.String" value="Lectura Medidor:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="ChckSiNoIlegible">
+                <Component class="javax.swing.JCheckBox" name="ChckSiNoIlegibleLecturaMedidor">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel75">
                   <Properties>
