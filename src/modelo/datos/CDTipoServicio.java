@@ -20,7 +20,7 @@ public class CDTipoServicio
                 {
                   List<CETipoServicio> Lst = new ArrayList<CETipoServicio>();
                   String sql = null;
-                    sql = "SELECT * FROM tipo_servicio WHERE idvia = "+oCETipoServicio.getIdTipoServicio()+";";
+                    sql = "SELECT * FROM tipo_servicio WHERE IdTipoServicio = "+oCETipoServicio.getIdTipoServicio()+";";
 
                     Statement sentencia = conexion.createStatement();
                     ResultSet resultado = sentencia.executeQuery(sql);
@@ -30,8 +30,8 @@ public class CDTipoServicio
                     while (resultado.next())
                     {
                         oCETipoServicio.setIdTipoServicio(resultado.getInt(1));
-                        oCETipoServicio.setCodigo(resultado.getInt(2));
-                        oCETipoServicio.setTipoServicio(resultado.getString(3));
+                        oCETipoServicio.setCodigo(resultado.getInt(3));
+                        oCETipoServicio.setTipoServicio(resultado.getString(2));
 
 
                         Lst.add(oCETipoServicio);

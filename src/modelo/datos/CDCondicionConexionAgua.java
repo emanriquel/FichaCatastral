@@ -47,7 +47,7 @@ public class CDCondicionConexionAgua
                 {
                   List<CECondicionConexionAgua> Lst = new ArrayList<CECondicionConexionAgua>();
                   String sql = null;
-                    sql = "SELECT * FROM tipo_servicio WHERE idvia = "+oCECondicionConexionAgua.getIdCondicionConexionAgua()+";";
+                    sql = "SELECT * FROM Condicion_Conexion_Agua WHERE IdCondicionConexionAgua = "+oCECondicionConexionAgua.getIdCondicionConexionAgua()+";";
 
                     Statement sentencia = conexion.createStatement();
                     ResultSet resultado = sentencia.executeQuery(sql);
@@ -57,8 +57,8 @@ public class CDCondicionConexionAgua
                     while (resultado.next())
                     {
                         oCECondicionConexionAgua.setIdCondicionConexionAgua(resultado.getInt(1));
-                        oCECondicionConexionAgua.setCodigo(resultado.getInt(2));
-                        oCECondicionConexionAgua.setCondicionConexionAgua(resultado.getString(3));
+                        oCECondicionConexionAgua.setCodigo(resultado.getInt(3));
+                        oCECondicionConexionAgua.setCondicionConexionAgua(resultado.getString(2));
 
 
                         Lst.add(oCECondicionConexionAgua);

@@ -1,7 +1,9 @@
 package view;
 
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import modelo.datos.CDCondicionConexionAgua;
 import modelo.datos.CDCondicionConexionDesague;
 import modelo.datos.CDDiametroConexionAgua;
@@ -15,6 +17,7 @@ import modelo.datos.CDLlavesPaso;
 import modelo.datos.CDMaterialCajaAgua;
 import modelo.datos.CDMaterialCajaDesague;
 import modelo.datos.CDMaterialTapaDesague;
+import modelo.datos.CDMedida;
 import modelo.datos.CDMedioAbastecimiento;
 import modelo.datos.CDPavimentacion;
 import modelo.datos.CDPosicionMedidor;
@@ -23,6 +26,7 @@ import modelo.datos.CDSeguridadMedidor;
 import modelo.datos.CDSituacionAgua;
 import modelo.datos.CDSituacionConexion;
 import modelo.datos.CDSituacionPredio;
+import modelo.datos.CDTipoAlmacenamiento;
 import modelo.datos.CDTipoDocumento;
 import modelo.datos.CDTipoPredio;
 import modelo.datos.CDTipoPropiedad;
@@ -60,6 +64,7 @@ import modelo.entidad.CETipoAlmacenamiento;
 import modelo.entidad.CETipoDocumento;
 import modelo.entidad.CETipoPredio;
 import modelo.entidad.CETipoPropiedad;
+import modelo.entidad.CETipoPropiedadInquilino;
 import modelo.entidad.CETipoServicio;
 import modelo.entidad.CEUbiCajaConexAgua;
 import modelo.entidad.CEUbiCajaConexDesague;
@@ -71,10 +76,11 @@ import util.ArrayListComboBoxModel;
 public class DialogMantenimientoMedida extends javax.swing.JDialog {
 
     private int codigo;
-    public DialogMantenimientoMedida(java.awt.Frame parent, boolean modal) {
+    public DialogMantenimientoMedida(java.awt.Frame parent, boolean modal,int codigo) {
         super(parent, modal);
         initComponents();
         cargarComboBox();
+        this.codigo=codigo;
     }
     private void cargarComboBox(){
         
@@ -198,6 +204,11 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     CDTipoPropiedadInquilino oCDTipoPropiedadInquilino=new CDTipoPropiedadInquilino();
     ArrayList oLstTipoPropiedadInquilino=oCDTipoPropiedadInquilino.listarTipoPropiedadInquilino();
     construirModeloCombo(CbxTipoPropiedadEntrevistado, oLstTipoPropiedadInquilino);
+
+    CDTipoAlmacenamiento oCDTipoAlmacenamiento=new CDTipoAlmacenamiento();
+    ArrayList oLstTipoAlmacenamiento=oCDTipoAlmacenamiento.listarTipoAlmacenamiento();
+    construirModeloCombo(CbxTipoAlmacenamiento, oLstTipoAlmacenamiento);
+
 
     }
     private void construirModeloCombo(JComboBox oBox, ArrayList oLista)
@@ -522,9 +533,9 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         DateFechaSupervision = new com.toedter.calendar.JDateChooser("dd/MM/yyyy","##/##/####",'_');
         DateFechaDigitador = new com.toedter.calendar.JDateChooser("dd/MM/yyyy","##/##/####",'_');
         jScrollPane3 = new javax.swing.JScrollPane();
-        jLabel137 = new javax.swing.JLabel();
+        LblFotoCaja = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jLabel136 = new javax.swing.JLabel();
+        LblFotoPredio = new javax.swing.JLabel();
         LblCodigoFotoCaja = new javax.swing.JLabel();
         LblCodigoFotoDesague = new javax.swing.JLabel();
         BtnGuardar = new javax.swing.JButton();
@@ -780,7 +791,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Datos del Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12), new java.awt.Color(102, 0, 0))); // NOI18N
 
         jLabel19.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel19.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel19.setForeground(new java.awt.Color(0, 0, 102));
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel19.setText("Apellido Paterno del Propietario");
@@ -788,7 +799,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel19.setOpaque(true);
 
         jLabel20.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel20.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel20.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel20.setForeground(new java.awt.Color(0, 0, 102));
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel20.setText("Apellido Materno del Propietario");
@@ -859,12 +870,12 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel32.setForeground(new java.awt.Color(0, 0, 102));
         jLabel32.setText("Tipo Predio:");
 
-        jLabel138.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel138.setFont(new java.awt.Font("Arial", 3, 12));
         jLabel138.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel138.setText("Cliente:");
         jLabel138.setOpaque(true);
 
-        LblUsuario.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        LblUsuario.setFont(new java.awt.Font("Arial", 3, 12));
         LblUsuario.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LblUsuario.setOpaque(true);
 
@@ -1127,7 +1138,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jButton4.setText("...");
 
         jLabel37.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel37.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel37.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel37.setForeground(new java.awt.Color(0, 0, 102));
         jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel37.setText("Num. Municipal");
@@ -1158,21 +1169,21 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel135.setForeground(new java.awt.Color(0, 0, 102));
         jLabel135.setText("Tipo Almacenamiento:");
 
-        jLabel139.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel139.setFont(new java.awt.Font("Arial", 3, 12));
         jLabel139.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel139.setText("Dirección:");
         jLabel139.setOpaque(true);
 
-        LblDireccion.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        LblDireccion.setFont(new java.awt.Font("Arial", 3, 12));
         LblDireccion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LblDireccion.setOpaque(true);
 
-        jLabel140.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel140.setFont(new java.awt.Font("Arial", 3, 12));
         jLabel140.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel140.setText("Tipo Servicio:");
         jLabel140.setOpaque(true);
 
-        LblTipoServicio.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        LblTipoServicio.setFont(new java.awt.Font("Arial", 3, 12));
         LblTipoServicio.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LblTipoServicio.setOpaque(true);
 
@@ -1278,7 +1289,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                                 .addComponent(LblDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(36, 36, 36)
                                 .addComponent(jLabel140)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                                 .addComponent(LblTipoServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(7, 7, 7))))
         );
@@ -1545,9 +1556,9 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                         .addComponent(jLabel70)
                         .addGap(19, 19, 19)
                         .addComponent(CbxEstadoMedidor, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
+                        .addGap(10, 10, 10)
                         .addComponent(jLabel72, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(CbxLlavesPaso, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel77)
@@ -1585,8 +1596,9 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                     .addComponent(CbxDiametroMedidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel70, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CbxEstadoMedidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel72, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CbxLlavesPaso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(CbxLlavesPaso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel72, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel77, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1609,31 +1621,31 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel89.setForeground(new java.awt.Color(0, 0, 102));
         jLabel89.setText("Diametro de Conex:");
 
-        jLabel90.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel90.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel90.setForeground(new java.awt.Color(0, 0, 102));
         jLabel90.setText("Cond. Conex:");
 
-        jLabel91.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel91.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel91.setForeground(new java.awt.Color(0, 0, 102));
         jLabel91.setText("Mat. Caja:");
 
-        jLabel92.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel92.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel92.setForeground(new java.awt.Color(0, 0, 102));
         jLabel92.setText("Estado Caja:");
 
-        jLabel68.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel68.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel68.setForeground(new java.awt.Color(0, 0, 102));
         jLabel68.setText("Mat. de la Conexión:");
 
-        jLabel79.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel79.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel79.setForeground(new java.awt.Color(0, 0, 102));
         jLabel79.setText("¿Con Tapa?");
 
-        jLabel80.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel80.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel80.setForeground(new java.awt.Color(0, 0, 102));
         jLabel80.setText("Tipo de Fuga:");
 
-        jLabel81.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel81.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel81.setForeground(new java.awt.Color(0, 0, 102));
         jLabel81.setText("¿Fugas?");
 
@@ -1649,12 +1661,10 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         RbtOpcionIndeterminado.setFont(new java.awt.Font("Arial", 1, 11));
         RbtOpcionIndeterminado.setText("Indeterminado");
 
-        jLabel141.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel141.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel141.setFont(new java.awt.Font("Arial", 3, 12));
         jLabel141.setText("Cond. Conex:");
 
-        LblCondicionConexion.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        LblCondicionConexion.setForeground(new java.awt.Color(0, 0, 102));
+        LblCondicionConexion.setFont(new java.awt.Font("Arial", 3, 12));
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -1720,7 +1730,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(CbxMaterialCajaAgua, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(CbxDiametroConexionAgua, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(10, 10, 10))
+                .addGap(65, 65, 65))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1747,10 +1757,11 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel92, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CbxEstadoCajaAgua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TxtMaterialConexionAgua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TxtMaterialConexionAgua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel92, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(CbxEstadoCajaAgua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(11, 11, 11))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1877,9 +1888,9 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1170, Short.MAX_VALUE)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 887, Short.MAX_VALUE)
                     .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1170, Short.MAX_VALUE))
+                    .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 887, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -1891,7 +1902,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Pag 3", jPanel6);
@@ -2011,7 +2022,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel56.setOpaque(true);
 
         jLabel57.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel57.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel57.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel57.setForeground(new java.awt.Color(0, 0, 102));
         jLabel57.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel57.setText("Nombre ");
@@ -2495,9 +2506,9 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jPanel19.add(jPanel20);
         jPanel20.setBounds(0, 0, 0, 0);
 
-        jLabel106.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel106.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel106.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel106.setText("Foto Desagüe:");
+        jLabel106.setText("Foto Predio:");
 
         TxtFotoDesague.setEnabled(false);
 
@@ -2575,9 +2586,9 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
 
         DateFechaDigitador.setDateFormatString("dd/MM/yyyy");
 
-        jScrollPane3.setViewportView(jLabel137);
+        jScrollPane3.setViewportView(LblFotoCaja);
 
-        jScrollPane4.setViewportView(jLabel136);
+        jScrollPane4.setViewportView(LblFotoPredio);
 
         LblCodigoFotoCaja.setText("Codigo");
 
@@ -2632,29 +2643,28 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                                     .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel17Layout.createSequentialGroup()
-                                            .addComponent(TxtFotoCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(0, 0, 0)
-                                            .addComponent(BtnFotoCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(jLabel113, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
+                                        .addComponent(TxtFotoCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, 0)
+                                        .addComponent(BtnFotoCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel17Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(LblCodigoFotoCaja)))
+                                .addComponent(LblCodigoFotoCaja))
+                            .addGroup(jPanel17Layout.createSequentialGroup()
+                                .addGap(7, 7, 7)
+                                .addComponent(jLabel113, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 320, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LblCodigoFotoDesague)
-                            .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel106, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
-                                    .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel17Layout.createSequentialGroup()
-                                            .addComponent(TxtFotoDesague, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(BtnFotoDesague, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGap(12, 12, 12))))))
+                            .addComponent(jLabel106, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel17Layout.createSequentialGroup()
+                                .addComponent(TxtFotoDesague, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BtnFotoDesague, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
+                            .addComponent(LblCodigoFotoDesague))
+                        .addGap(12, 12, 12)))
                 .addContainerGap())
         );
         jPanel17Layout.setVerticalGroup(
@@ -2679,8 +2689,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                     .addComponent(LblCodigoFotoDesague))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TxtUbiConexAgua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2792,16 +2802,44 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
 
     private void BtnFotoCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnFotoCajaActionPerformed
       jFileChooser1.showOpenDialog(null);
-      TxtFotoCaja.setText(jFileChooser2.getSelectedFile().getAbsolutePath());
+      TxtFotoCaja.setText(jFileChooser1.getSelectedFile().getAbsolutePath());
+      LblCodigoFotoCaja.setText(jFileChooser1.getSelectedFile().getName());
+      LblFotoCaja.setIcon(new ImageIcon(jFileChooser1.getSelectedFile().getAbsolutePath()));
     }//GEN-LAST:event_BtnFotoCajaActionPerformed
 
     private void BtnFotoDesagueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnFotoDesagueActionPerformed
         jFileChooser2.showOpenDialog(null);
         TxtFotoDesague.setText(jFileChooser2.getSelectedFile().getAbsolutePath());
+        LblCodigoFotoDesague.setText(jFileChooser2.getSelectedFile().getName());
+        LblFotoPredio.setIcon(new ImageIcon(jFileChooser2.getSelectedFile().getAbsolutePath()));
     }//GEN-LAST:event_BtnFotoDesagueActionPerformed
 
     private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarActionPerformed
-        // TODO add your handling code here:
+    try
+    {
+    if(codigo==1){
+        // insertar
+        CEMedida oCEMedida=getMedida();
+        CDMedida oCDMedida=new CDMedida();
+        boolean valor=oCDMedida.registrarMedida(oCEMedida);
+        if(valor)
+        {
+           JOptionPane.showMessageDialog(null, "Se registro correctamente");
+        }
+        else{
+           JOptionPane.showMessageDialog(null, "No se pudo guardar el registro");
+        }
+    }
+    else{
+        //editar
+    }
+    }
+    catch(Exception ex)
+    {
+         JOptionPane.showMessageDialog(null, "No se pudo guardar el registro. Campos Incompletos");
+         ex.printStackTrace();
+    }
+
     }//GEN-LAST:event_BtnGuardarActionPerformed
 
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
@@ -2816,6 +2854,22 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     if(oCEClienteSeleccionado!=null)
     {
      LblUsuario.setText(oCEClienteSeleccionado.getApellidoPaternoPropietario()+" "+oCEClienteSeleccionado.getApellidoMaternoPropietario() +","+oCEClienteSeleccionado.getNombrePropietario());
+      
+        CEVia oCEVia = new CEVia();
+        CDVia oCDVia = new CDVia();
+        oCEVia.setIdVia(oCEClienteSeleccionado.getIdVia());
+        CEVia ooCEVia = oCDVia.DetalleVia(oCEVia);
+        LblDireccion.setText(ooCEVia.getNombreVia());
+        CETipoServicio oCETipoServicio = new CETipoServicio();
+        CDTipoServicio oCDTipoServicio = new CDTipoServicio();
+        oCETipoServicio.setIdTipoServicio(oCEClienteSeleccionado.getIdTipoServicio());
+        CETipoServicio ooCETipoServicio = oCDTipoServicio.DetalleServicio(oCETipoServicio);
+        LblTipoServicio.setText(ooCETipoServicio.getTipoServicio());
+        CECondicionConexionAgua oCECondicionConexionAgua = new CECondicionConexionAgua();
+        CDCondicionConexionAgua oCDCondicionConexionAgua = new CDCondicionConexionAgua();
+        oCECondicionConexionAgua.setIdCondicionConexionAgua(oCEClienteSeleccionado.getIdCondicionConexionAgua());
+        CECondicionConexionAgua ooCECondicionConexionAgua = oCDCondicionConexionAgua.DetalleCondicionConexionAgua(oCECondicionConexionAgua);
+        LblCondicionConexion.setText(ooCECondicionConexionAgua.getCondicionConexionAgua());
     }
     }//GEN-LAST:event_BtnBuscarUsuarioActionPerformed
 
@@ -2836,12 +2890,12 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         CDTipoServicio oCDTipoServicio = new CDTipoServicio();
         oCETipoServicio.setIdTipoServicio(oCEClienteSeleccionado.getIdTipoServicio());
         CETipoServicio ooCETipoServicio = oCDTipoServicio.DetalleServicio(oCETipoServicio);
+        LblTipoServicio.setText(ooCETipoServicio.getTipoServicio());
         CECondicionConexionAgua oCECondicionConexionAgua = new CECondicionConexionAgua();
         CDCondicionConexionAgua oCDCondicionConexionAgua = new CDCondicionConexionAgua();
         oCECondicionConexionAgua.setIdCondicionConexionAgua(oCEClienteSeleccionado.getIdCondicionConexionAgua());
         CECondicionConexionAgua ooCECondicionConexionAgua = oCDCondicionConexionAgua.DetalleCondicionConexionAgua(oCECondicionConexionAgua);
         LblCondicionConexion.setText(ooCECondicionConexionAgua.getCondicionConexionAgua());
-        LblDireccion.setText(ooCETipoServicio.getTipoServicio());
     }
     }//GEN-LAST:event_TxtCodigoInscripcionActionPerformed
     private void limpiarEtiquetasDeConsulta(){
@@ -2928,7 +2982,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         oCEMedida.setIdUbiCajaConexAgua(oCEUbiCajaConexAgua.getIdUbiCajaConexAgua());
         CEDiametroConexionAgua oCEDiametroConexionAgua=(CEDiametroConexionAgua)CbxDiametroConexionAgua.getSelectedItem();
         oCEMedida.setIdDiametroConexionAgua(oCEDiametroConexionAgua.getIdDiametroConexionAgua());
-        CECondicionConexionAgua oCECondicionConexionAgua=(CECondicionConexionAgua)CbxDiametroConexionAgua.getSelectedItem();
+        CECondicionConexionAgua oCECondicionConexionAgua=(CECondicionConexionAgua)CbxCondicionConexionAgua.getSelectedItem();
         oCEMedida.setIdCondicionConexionAgua(oCECondicionConexionAgua.getIdCondicionConexionAgua());
         CEMaterialCajaAgua oCEMaterialCajaAgua=(CEMaterialCajaAgua)CbxMaterialCajaAgua.getSelectedItem();
         oCEMedida.setIdMaterialCajaAgua(oCEMaterialCajaAgua.getIdMaterialCajaAgua());
@@ -2942,7 +2996,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         oCEMedida.setIdUbiCajaConexDesague(oCEUbiCajaConexDesague.getIdUbiCajaConexDesague());
         CEDiametroConexionDesague oCEDiametroConexionDesague=(CEDiametroConexionDesague)CbxDiametroConexionDesague.getSelectedItem();
         oCEMedida.setIdDiametroConexionDesague(oCEDiametroConexionDesague.getIdDiametroConexionDesague());
-        CECondicionConexionDesague oCECondicionConexionDesague=(CECondicionConexionDesague)CbxDiametroConexionDesague.getSelectedItem();
+        CECondicionConexionDesague oCECondicionConexionDesague=(CECondicionConexionDesague)CbxCondicionConexDesague.getSelectedItem();
         oCEMedida.setIdCondicionConexionDesague(oCECondicionConexionDesague.getIdCondicionConexionDesague());
 
         CEMaterialCajaDesague oCEMaterialCajaDesague=(CEMaterialCajaDesague)CbxMaterialCajaDesague.getSelectedItem();
@@ -2976,8 +3030,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         oCEMedida.setApellidoPaternoEntrevistado(TxtApellidoMaternoEntrevistado.getText());
         oCEMedida.setNombreCompletoEntrevistado(TxtNombreEntrevistado.getText());
         oCEMedida.setNumeroDocumento(TxtNumDocumento.getText());
-        CETipoPropiedad oCETipoPropiedadEntrevistado=(CETipoPropiedad)CbxTipoPropiedadEntrevistado.getSelectedItem();
-        oCEMedida.setIdTipoPropiedadEntrevistado(oCETipoPropiedadEntrevistado.getIdTipoPropiedad());
+        CETipoPropiedadInquilino oCETipoPropiedadEntrevistado=(CETipoPropiedadInquilino)CbxTipoPropiedadEntrevistado.getSelectedItem();
+        oCEMedida.setIdTipoPropiedadEntrevistado(oCETipoPropiedadEntrevistado.getIdTipoPropiedadInquilino());
         oCEMedida.setCodigoFotoCaja(LblCodigoFotoCaja.getText());
         oCEMedida.setCodigoFotoPredio(LblCodigoFotoDesague.getText());
         oCEMedida.setUbicacionConexionAgua(Double.parseDouble(TxtUbiConexAgua.getText()));
@@ -3046,6 +3100,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     private javax.swing.JLabel LblCodigoFotoDesague;
     private javax.swing.JLabel LblCondicionConexion;
     private javax.swing.JLabel LblDireccion;
+    private javax.swing.JLabel LblFotoCaja;
+    private javax.swing.JLabel LblFotoPredio;
     private javax.swing.JLabel LblTipoServicio;
     private javax.swing.JLabel LblUsuario;
     private javax.swing.JRadioButton RbtOpcionAntes;
@@ -3162,8 +3218,6 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel133;
     private javax.swing.JLabel jLabel134;
     private javax.swing.JLabel jLabel135;
-    private javax.swing.JLabel jLabel136;
-    private javax.swing.JLabel jLabel137;
     private javax.swing.JLabel jLabel138;
     private javax.swing.JLabel jLabel139;
     private javax.swing.JLabel jLabel14;

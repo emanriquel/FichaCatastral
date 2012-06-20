@@ -196,7 +196,7 @@ public class FrameSistemaMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnNuevoRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNuevoRegistroActionPerformed
-     DialogMantenimientoMedida oDialogMantenimientoMedida=new DialogMantenimientoMedida(null,true);
+     DialogMantenimientoMedida oDialogMantenimientoMedida=new DialogMantenimientoMedida(null,true,1);
      oDialogMantenimientoMedida.setLocationRelativeTo(null);
      oDialogMantenimientoMedida.setVisible(true);
     }//GEN-LAST:event_BtnNuevoRegistroActionPerformed

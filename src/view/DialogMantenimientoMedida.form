@@ -1053,7 +1053,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel138">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Arial" size="12" style="1"/>
+                      <Font name="Arial" size="12" style="3"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="2"/>
                     <Property name="text" type="java.lang.String" value="Cliente:"/>
@@ -1063,7 +1063,7 @@
                 <Component class="javax.swing.JLabel" name="LblUsuario">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Arial" size="12" style="1"/>
+                      <Font name="Arial" size="12" style="3"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="2"/>
                     <Property name="opaque" type="boolean" value="true"/>
@@ -1282,7 +1282,7 @@
                                           <Component id="LblDireccion" min="-2" pref="404" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                                           <Component id="jLabel140" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace pref="14" max="32767" attributes="0"/>
+                                          <EmptySpace pref="10" max="32767" attributes="0"/>
                                           <Component id="LblTipoServicio" min="-2" pref="265" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -1786,7 +1786,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel139">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Arial" size="12" style="1"/>
+                      <Font name="Arial" size="12" style="3"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="2"/>
                     <Property name="text" type="java.lang.String" value="Direcci&#xf3;n:"/>
@@ -1796,7 +1796,7 @@
                 <Component class="javax.swing.JLabel" name="LblDireccion">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Arial" size="12" style="1"/>
+                      <Font name="Arial" size="12" style="3"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="2"/>
                     <Property name="opaque" type="boolean" value="true"/>
@@ -1805,7 +1805,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel140">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Arial" size="12" style="1"/>
+                      <Font name="Arial" size="12" style="3"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="2"/>
                     <Property name="text" type="java.lang.String" value="Tipo Servicio:"/>
@@ -1815,7 +1815,7 @@
                 <Component class="javax.swing.JLabel" name="LblTipoServicio">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Arial" size="12" style="1"/>
+                      <Font name="Arial" size="12" style="3"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="2"/>
                     <Property name="opaque" type="boolean" value="true"/>
@@ -1974,9 +1974,9 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jPanel9" alignment="0" pref="1170" max="32767" attributes="0"/>
+                          <Component id="jPanel9" alignment="0" pref="887" max="32767" attributes="0"/>
                           <Component id="jPanel8" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jPanel7" alignment="0" pref="1170" max="32767" attributes="0"/>
+                          <Component id="jPanel7" alignment="0" pref="887" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -1991,7 +1991,7 @@
                       <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="37" max="32767" attributes="0"/>
+                      <EmptySpace pref="17" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -2053,9 +2053,9 @@
                                   <Component id="jLabel70" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="19" pref="19" max="19" attributes="0"/>
                                   <Component id="CbxEstadoMedidor" min="-2" pref="160" max="-2" attributes="0"/>
-                                  <EmptySpace min="20" pref="20" max="20" attributes="0"/>
+                                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                   <Component id="jLabel72" min="-2" pref="90" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="CbxLlavesPaso" min="-2" pref="120" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
@@ -2101,8 +2101,10 @@
                               <Component id="CbxDiametroMedidor" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel70" min="-2" pref="20" max="-2" attributes="0"/>
                               <Component id="CbxEstadoMedidor" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel72" min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="CbxLlavesPaso" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="CbxLlavesPaso" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel72" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace min="10" pref="10" max="10" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -2358,7 +2360,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2392,10 +2394,12 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace pref="7" max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel92" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                                      <Component id="CbxEstadoCajaAgua" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="TxtMaterialConexionAgua" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jLabel92" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                          <Component id="CbxEstadoCajaAgua" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                                   <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                               </Group>
@@ -2587,10 +2591,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel141">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Arial" size="12" style="1"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="66" green="0" red="0" type="rgb"/>
+                      <Font name="Arial" size="12" style="3"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Cond. Conex:"/>
                   </Properties>
@@ -2598,10 +2599,7 @@
                 <Component class="javax.swing.JLabel" name="LblCondicionConexion">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Arial" size="12" style="1"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="66" green="0" red="0" type="rgb"/>
+                      <Font name="Arial" size="12" style="3"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -3880,40 +3878,36 @@
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                                  <Component id="jScrollPane3" alignment="0" max="32767" attributes="1"/>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="TxtFotoCaja" min="-2" pref="350" max="-2" attributes="0"/>
-                                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                                      <Component id="BtnFotoCaja" min="-2" pref="30" max="-2" attributes="0"/>
-                                                  </Group>
+                                              <Component id="jScrollPane3" alignment="1" pref="380" max="32767" attributes="1"/>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Component id="TxtFotoCaja" min="-2" pref="350" max="-2" attributes="0"/>
+                                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                                  <Component id="BtnFotoCaja" min="-2" pref="30" max="-2" attributes="0"/>
                                               </Group>
-                                              <Component id="jLabel113" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="LblCodigoFotoCaja" min="-2" max="-2" attributes="0"/>
                                       </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="7" pref="7" max="7" attributes="0"/>
+                                          <Component id="jLabel113" min="-2" pref="60" max="-2" attributes="0"/>
+                                          <EmptySpace pref="320" max="32767" attributes="0"/>
+                                      </Group>
                                   </Group>
                                   <EmptySpace pref="43" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="LblCodigoFotoDesague" min="-2" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel106" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                  <Component id="jScrollPane4" alignment="0" max="32767" attributes="1"/>
-                                                  <Group type="102" alignment="1" attributes="0">
-                                                      <Component id="TxtFotoDesague" min="-2" pref="402" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="BtnFotoDesague" min="-2" pref="30" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                          </Group>
+                                      <Component id="jLabel106" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="TxtFotoDesague" min="-2" pref="402" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="BtnFotoDesague" min="-2" pref="30" max="-2" attributes="0"/>
                                       </Group>
+                                      <Component id="jScrollPane4" alignment="0" pref="438" max="32767" attributes="1"/>
+                                      <Component id="LblCodigoFotoDesague" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -3948,8 +3942,8 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jScrollPane4" pref="298" max="32767" attributes="0"/>
-                              <Component id="jScrollPane3" alignment="1" pref="298" max="32767" attributes="0"/>
+                              <Component id="jScrollPane3" pref="298" max="32767" attributes="0"/>
+                              <Component id="jScrollPane4" alignment="1" pref="298" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -4565,7 +4559,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="66" green="0" red="0" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Foto Desag&#xfc;e:"/>
+                    <Property name="text" type="java.lang.String" value="Foto Predio:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtFotoDesague">
@@ -4765,7 +4759,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JLabel" name="jLabel137">
+                    <Component class="javax.swing.JLabel" name="LblFotoCaja">
                     </Component>
                   </SubComponents>
                 </Container>
@@ -4773,7 +4767,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JLabel" name="jLabel136">
+                    <Component class="javax.swing.JLabel" name="LblFotoPredio">
                     </Component>
                   </SubComponents>
                 </Container>
