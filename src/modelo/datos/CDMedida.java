@@ -31,86 +31,86 @@ public class CDMedida
                     + " IdMaterialCajaDesague," //14
                     + " IdMaterialTapaAgua, " //15
                     + "IdMaterialTapaDesague," //16
-                    + " IdMedioAbastecimiento,"
-                    + " IdPavimentacion,"
-                    + " IdPosicionMedidor, "
-                    + "IdPozoArtesanal, "
-                    + "IdSeguridadMedidor, "
-                    + "IdSituacionAgua, "
-                    + "IdSituacionPredio, "
-                    + "IdTipoAlmacenamiento,"
-                    + " IdTipoPredio,"
-                    + "IdTipoPropiedad,"
-                    + " IdTipoServicio,"
-                    + " IdUbiCajaConexAgua,"
-                    + " IdUbiCajaConexDesague,"
-                    + " IdUsoPredio, "
-                    + "IdVereda,"
-                    + " Cod_Encuestador,"
-                    + " Fecha_Encuestador, "
-                    + "Cod_Supervisor,"
-                    + " Fecha_Supervisor,"
-                    + " Cod_Digitador,"
-                    + " Fecha_Digitador,"
-                    + " Cod_Inscripcion,"
-                    + " Manzana, "
-                    + "Lote, "
-                    + "Conexion,"
-                    + "RutaLectura,"
-                    + "RutaReparto,"
-                    + "Secuencia,"
-                    + "Categoria,"
-                    + "CodigoVia,"
-                    + "TipoVia,"
-                    + "NombreVia,"
-                    + "NumMunicipal,"
-                    + "CodigoHabilitacion,"
-                    + "TipoHabilitacion,"
-                    + "NombreHabilitacion,"
-                    + "NumManzana,"
-                    + "NumLote,"
-                    + "Block, "
-                    + "Piso, "
-                    + "Numero,"
-                    + "Complemento,"
-                    + "ApellidoPaternoPropietario,"
-                    + "ApellidoMaternoPropietario,"
-                    + "NombrePropietario,"
-                    + "ApellidoPaternoConyugue,"
-                    + "ApellidoMaternoConyugue,"
-                    + "NombreConyugue,"
-                    + "CorreoElectronico, "
-                    + "CantHabitantesPredio,"
-                    + "NumPiso,"
-                    + "SiNoPredioHabilitado,"
-                    + "SiNoMedidor,"
-                    + "NumeroMedidor,"
-                    + "SiNoIlegibleNumMedidor,"
-                    + "Lectura, "
-                    + "SiNoIlegibleLectura, "
-                    + "MarcaMedidor, "
-                    + "SiNoTapaConexionAgua, "
-                    + "MaterialConexionAgua,"
-                    + "SiNoFugaAgua, "
-                    + "TipoFugaAgua,"
-                    + "SiNoFugaDesague,"
-                    + "FrecuenciaAbastecimientoHorasPorDia, "
-                    + "FrecuenciaAbastecimientoDiasPorSemana, "
-                    + "Observaciones, "
-                    + "ApellidoPaternoEntrevistado, "
-                    + "ApellidoMaternoEntrevistado, "
-                    + "NombreCompletoEntrevistado, "
-                    + "DocumentoEntrevistado, "
-                    + "IdTipoPropiedadInquilino, "
-                    + "CodigoFotoCaja, "
-                    + "CodigoFotoPredio, "
-                    + "CodDepartamento, "
-                    + "CodProvincia, "
-                    + "CodDistrito,"
-                    + "Seccion,"
-                    + "IdTipoDocumento,"
-                    + "NumeroDocumento,"
-                    + "Telefono) "
+                    + " IdMedioAbastecimiento," //17
+                    + " IdPavimentacion,"//18
+                    + " IdPosicionMedidor, "//19
+                    + "IdPozoArtesanal, "//20
+                    + "IdSeguridadMedidor, "//21
+                    + "IdSituacionAgua, "//22
+                    + "IdSituacionPredio, "//23
+                    + "IdTipoAlmacenamiento,"//24
+                    + " IdTipoPredio,"//25
+                    + "IdTipoPropiedad,"//26
+                    + " IdTipoServicio,"//27
+                    + " IdUbiCajaConexAgua," //28
+                    + " IdUbiCajaConexDesague," //29
+                    + " IdUsoPredio, " //30
+                    + "IdVereda,"//31
+                    + " Cod_Encuestador," //32
+                    + " Fecha_Encuestador, " //33
+                    + "Cod_Supervisor,"//34
+                    + " Fecha_Supervisor,"//35
+                    + " Cod_Digitador,"//36
+                    + " Fecha_Digitador,"//37
+                    + " Cod_Inscripcion,"//38
+                    + " Manzana, "//39
+                    + "Lote, "//40
+                    + "Conexion,"//41
+                    + "RutaLectura,"//42
+                    + "RutaReparto,"//43
+                    + "Secuencia,"//44
+                    + "Categoria,"//45
+                    + "CodigoVia,"//46
+                    + "TipoVia,"//47
+                    + "NombreVia,"//48
+                    + "NumMunicipal,"//49
+                    + "CodigoHabilitacion,"//50
+                    + "TipoHabilitacion,"//51
+                    + "NombreHabilitacion,"//52
+                    + "NumManzana,"//53
+                    + "NumLote,"//54
+                    + "Block, "//55
+                    + "Piso, "//56
+                    + "Numero,"//57
+                    + "Complemento,"//58
+                    + "ApellidoPaternoPropietario,"//59
+                    + "ApellidoMaternoPropietario,"//60
+                    + "NombrePropietario,"//61
+                    + "ApellidoPaternoConyugue,"//62
+                    + "ApellidoMaternoConyugue,"//63
+                    + "NombreConyugue,"//64
+                    + "CorreoElectronico, "//65
+                    + "CantHabitantesPredio,"//66
+                    + "NumPiso,"//67
+                    + "SiNoPredioHabilitado,"//68
+                    + "SiNoMedidor,"//69
+                    + "NumeroMedidor,"//70
+                    + "SiNoIlegibleNumMedidor,"//71
+                    + "Lectura, "//72
+                    + "SiNoIlegibleLectura, "//73
+                    + "MarcaMedidor, "//74
+                    + "SiNoTapaConexionAgua, "//75
+                    + "MaterialConexionAgua,"//76
+                    + "SiNoFugaAgua, "//77
+                    + "TipoFugaAgua,"//78
+                    + "SiNoFugaDesague,"//79
+                    + "FrecuenciaAbastecimientoHorasPorDia, "//80
+                    + "FrecuenciaAbastecimientoDiasPorSemana, "//81
+                    + "Observaciones, "//82
+                    + "ApellidoPaternoEntrevistado, "//83
+                    + "ApellidoMaternoEntrevistado, "//84
+                    + "NombreCompletoEntrevistado, "//85
+                    + "DocumentoEntrevistado, "//86
+                    + "IdTipoPropiedadInquilino, "//87
+                    + "CodigoFotoCaja, "//88
+                    + "CodigoFotoPredio, "//89
+                    + "CodDepartamento, "//90
+                    + "CodProvincia, "//91
+                    + "CodDistrito,"//92
+                    + "Seccion,"//93
+                    + "IdTipoDocumento,"//94
+                    + "NumeroDocumento,"//95
+                    + "Telefono) "//96
                     + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = con.prepareCall(sql);
             ps.setString(1,oCEMedida.getNumeroFicha());
@@ -187,26 +187,28 @@ public class CDMedida
             ps.setDouble(72,oCEMedida.getLectura());
             ps.setBoolean(73,oCEMedida.isSiNoIlegibleLectura());
             ps.setString(74,oCEMedida.getMarcaMedidor());
-            ps.setString(75,oCEMedida.getMaterialConexionAgua());
-            ps.setBoolean(76,oCEMedida.isSiNoFugaAgua());
-            ps.setBoolean(77,oCEMedida.isSiNoFugaDesague());
-            ps.setDouble(78,oCEMedida.getFrecuenciaAbastecimientoHorasPorDia());
-            ps.setDouble(79,oCEMedida.getFrecuenciaAbastecimientoDiasPorSemana());
-            ps.setString(80,oCEMedida.getObservaciones());
-            ps.setString(81,oCEMedida.getApellidoPaternoEntrevistado());
-            ps.setString(82,oCEMedida.getApellidoMaternoEntrevistado());
-            ps.setString(83,oCEMedida.getNombreCompletoEntrevistado());
-            ps.setString(84,oCEMedida.getDocumentoEntrevistado());
-            ps.setInt(85,oCEMedida.getIdTipoPropiedadEntrevistado());
-            ps.setString(86,oCEMedida.getCodigoFotoCaja());
-            ps.setString(87,oCEMedida.getCodigoFotoPredio());
-            ps.setString(88,oCEMedida.getCodDepartamento());
-            ps.setString(89,oCEMedida.getCodProvincia());
-            ps.setString(90,oCEMedida.getCodDistrito());
-            ps.setString(91,oCEMedida.getSeccion());
-
-
-
+            ps.setBoolean(75,oCEMedida.isSiNoTapaConexionAgua());
+            ps.setString(76,oCEMedida.getMaterialConexionAgua());
+            ps.setBoolean(77,oCEMedida.isSiNoFugaAgua());
+            ps.setInt(78,oCEMedida.getTipoFugaAgua());
+            ps.setBoolean(79,oCEMedida.isSiNoFugaDesague());
+            ps.setDouble(80,oCEMedida.getFrecuenciaAbastecimientoHorasPorDia());
+            ps.setDouble(81,oCEMedida.getFrecuenciaAbastecimientoDiasPorSemana());
+            ps.setString(82,oCEMedida.getObservaciones());
+            ps.setString(83,oCEMedida.getApellidoPaternoEntrevistado());
+            ps.setString(84,oCEMedida.getApellidoMaternoEntrevistado());
+            ps.setString(85,oCEMedida.getNombreCompletoEntrevistado());
+            ps.setString(86,oCEMedida.getDocumentoEntrevistado());
+            ps.setInt(87,oCEMedida.getIdTipoPropiedadEntrevistado());
+            ps.setString(88,oCEMedida.getCodigoFotoCaja());
+            ps.setString(89,oCEMedida.getCodigoFotoPredio());
+            ps.setString(90,oCEMedida.getCodDepartamento());
+            ps.setString(91,oCEMedida.getCodProvincia());
+            ps.setString(92,oCEMedida.getCodDistrito());
+            ps.setString(93,oCEMedida.getSeccion());
+            ps.setInt(94, oCEMedida.getIdTipoDocumento());
+            ps.setString(95, oCEMedida.getNumeroDocumento());
+            ps.setString(96, oCEMedida.getTelefono());
             ps.execute();
 
 

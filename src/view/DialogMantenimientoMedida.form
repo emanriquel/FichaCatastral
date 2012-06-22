@@ -51,7 +51,7 @@
                           <EmptySpace min="274" pref="274" max="274" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel4" min="-2" pref="115" max="-2" attributes="0"/>
-                              <Component id="jTextField1" min="-2" pref="115" max="-2" attributes="0"/>
+                              <Component id="TxtNumeroFicha" min="-2" pref="115" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -76,7 +76,7 @@
                       <EmptySpace min="31" pref="31" max="31" attributes="0"/>
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
+                      <Component id="TxtNumeroFicha" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -136,7 +136,7 @@
         <Property name="opaque" type="boolean" value="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="TxtNumeroFicha">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
@@ -3085,7 +3085,7 @@
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="TxtNumeroDocumento" min="-2" pref="130" max="-2" attributes="0"/>
+                                      <Component id="TxtNumeroDocumentoEntrevistado" min="-2" pref="130" max="-2" attributes="0"/>
                                       <Component id="jLabel58" min="-2" pref="130" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="20" pref="20" max="20" attributes="0"/>
@@ -3118,7 +3118,7 @@
                                   <EmptySpace min="10" pref="10" max="10" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="TxtNumeroDocumento" min="-2" max="-2" attributes="0"/>
+                                          <Component id="TxtNumeroDocumentoEntrevistado" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                           <Component id="jLabel58" min="-2" pref="20" max="-2" attributes="0"/>
                                       </Group>
@@ -3774,7 +3774,7 @@
                     <Property name="text" type="java.lang.String" value="Tipo Propiedad:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="TxtNumeroDocumento">
+                <Component class="javax.swing.JTextField" name="TxtNumeroDocumentoEntrevistado">
                 </Component>
               </SubComponents>
             </Container>
