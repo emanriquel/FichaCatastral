@@ -3228,6 +3228,30 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         TxtMarcaMedidor.setText(oCEMedida.getMarcaMedidor());
         TxtLecturaMedidor.setText(oCEMedida.getLectura()+"");
         ChckSiNoIlegibleLecturaMedidor.setSelected(oCEMedida.isSiNoIlegibleLectura());
+        buscarDiametroMedidor(oCEMedida.getIdDiametroMedidor());
+        buscarEstadoMedidor(oCEMedida.getIdEstadoMedidor());
+        buscarLlavesPaso(oCEMedida.getIdLlavePaso());
+        buscarEstadoMedidor(oCEMedida.getIdEstadoMedidor());
+        buscarSeguridadMedidor(oCEMedida.getIdSeguridadMedidor());
+        buscarPosicionMedidor(oCEMedida.getIdPosicionMedidor());
+        buscarSituacionAgua(oCEMedida.getIdSituacionAgua());
+        buscarUbiCajaConexAgua(oCEMedida.getIdUbiCajaConexAgua());
+        buscarDiametroConexionAgua(oCEMedida.getIdDiametroConexionAgua());
+        buscarCondicionConexionAgua(oCEMedida.getIdCondicionConexionAgua());
+        TxtMaterialConexionAgua.setText(oCEMedida.getMaterialConexionAgua());
+        buscarEstadoCajaAgua(oCEMedida.getIdEstadoCajaAgua());
+        buscarMaterialCajaAgua(oCEMedida.getIdMaterialCajaAgua());
+        buscarEstadoTapaAgua(oCEMedida.getIdEstadoTapaAgua());
+        ChckSiNoFugaAgua.setSelected(oCEMedida.isSiNoFugaAgua());
+        // tipo fuga
+        buscarUbiCajaConexDesague(oCEMedida.getIdUbiCajaConexDesague());
+        buscarUbiCajaConexDesague(oCEMedida.getIdDiametroConexionDesague());
+        buscarUbiCajaConexDesague(oCEMedida.getIdCondicionConexionDesague());
+        buscarUbiCajaConexDesague(oCEMedida.getIdMaterialCajaDesague());
+        buscarUbiCajaConexDesague(oCEMedida.getIdMaterialTapaDesague());
+        buscarUbiCajaConexDesague(oCEMedida.getIdEstadoTapaDesague());
+        buscarUbiCajaConexDesague(oCEMedida.getIdEstadoCajaDesague());
+        ChckSiNoFugaDesague.setSelected(oCEMedida.isSiNoFugaDesague());
     }
 
     private void buscarSituacionConexion(int IdSituacionConexion)
@@ -3325,6 +3349,215 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
             if(IdTipoDocumento==((CETipoAlmacenamiento)CbxTipoAlmacenamiento.getSelectedItem()).getIdTipoAlmacenamiento())
             {
                 CbxTipoAlmacenamiento.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+    private void buscarDiametroMedidor(int IdTipoDocumento)
+    {
+        for(int i=0;i<CbxDiametroMedidor.getItemCount();i++)
+        {
+            if(IdTipoDocumento==((CEDiametroMedidor)CbxDiametroMedidor.getSelectedItem()).getIdDiametroMedidor())
+            {
+                CbxDiametroMedidor.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+    private void buscarEstadoMedidor(int IdTipoDocumento)
+    {
+        for(int i=0;i<CbxEstadoMedidor.getItemCount();i++)
+        {
+            if(IdTipoDocumento==((CEEstadoMedidor)CbxEstadoMedidor.getSelectedItem()).getIdEstadoMedidor())
+            {
+                CbxEstadoMedidor.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+     private void buscarLlavesPaso(int IdTipoDocumento)
+    {
+        for(int i=0;i<CbxLlavesPaso.getItemCount();i++)
+        {
+            if(IdTipoDocumento==((CELlavesPaso)CbxLlavesPaso.getSelectedItem()).getIdLlavesPaso())
+            {
+                CbxLlavesPaso.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+       private void buscarSeguridadMedidor(int IdTipoDocumento)
+    {
+        for(int i=0;i<CbxSeguridadMedidor.getItemCount();i++)
+        {
+            if(IdTipoDocumento==((CESeguridadMedidor)CbxSeguridadMedidor.getSelectedItem()).getIdSeguridadMedidor())
+            {
+                CbxSeguridadMedidor.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+    private void buscarPosicionMedidor(int IdTipoDocumento)
+    {
+        for(int i=0;i<CbxPosicionMedidor.getItemCount();i++)
+        {
+            if(IdTipoDocumento==((CEPosicionMedidor)CbxPosicionMedidor.getSelectedItem()).getIdPosicionMedidor())
+            {
+                CbxPosicionMedidor.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+    private void buscarSituacionAgua(int IdTipoDocumento)
+    {
+        for(int i=0;i<CbxSituacionAgua.getItemCount();i++)
+        {
+            if(IdTipoDocumento==((CESituacionAgua)CbxSituacionAgua.getSelectedItem()).getIdSituacionAgua())
+            {
+                CbxSituacionAgua.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+    private void buscarUbiCajaConexAgua(int IdTipoDocumento)
+    {
+        for(int i=0;i<CbxUbiCajaConexAgua.getItemCount();i++)
+        {
+            if(IdTipoDocumento==((CEUbiCajaConexAgua)CbxUbiCajaConexAgua.getSelectedItem()).getIdUbiCajaConexAgua())
+            {
+                CbxUbiCajaConexAgua.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+    private void buscarDiametroConexionAgua(int IdTipoDocumento)
+    {
+        for(int i=0;i<CbxDiametroConexionAgua.getItemCount();i++)
+        {
+            if(IdTipoDocumento==((CEDiametroConexionAgua)CbxDiametroConexionAgua.getSelectedItem()).getIdDiametroConexionAgua())
+            {
+                CbxDiametroConexionAgua.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+    private void buscarCondicionConexionAgua(int IdTipoDocumento)
+    {
+        for(int i=0;i<CbxCondicionConexionAgua.getItemCount();i++)
+        {
+            if(IdTipoDocumento==((CECondicionConexionAgua)CbxCondicionConexionAgua.getSelectedItem()).getIdCondicionConexionAgua())
+            {
+                CbxCondicionConexionAgua.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+    private void buscarEstadoCajaAgua(int IdTipoDocumento)
+    {
+        for(int i=0;i<CbxEstadoCajaAgua.getItemCount();i++)
+        {
+            if(IdTipoDocumento==((CEUbiCajaConexAgua)CbxEstadoCajaAgua.getSelectedItem()).getIdUbiCajaConexAgua())
+            {
+                CbxEstadoCajaAgua.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+  private void buscarMaterialCajaAgua(int IdTipoDocumento)
+    {
+        for(int i=0;i<CbxMaterialCajaAgua.getItemCount();i++)
+        {
+            if(IdTipoDocumento==((CEUbiCajaConexAgua)CbxMaterialCajaAgua.getSelectedItem()).getIdUbiCajaConexAgua())
+            {
+                CbxMaterialCajaAgua.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+   private void buscarEstadoTapaAgua(int IdTipoDocumento)
+    {
+        for(int i=0;i<CbxEstadoTapaAgua.getItemCount();i++)
+        {
+            if(IdTipoDocumento==((CEEstadoTapaAgua)CbxEstadoTapaAgua.getSelectedItem()).getIdEstadoTapaAgua())
+            {
+                CbxEstadoTapaAgua.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+    private void buscarUbiCajaConexDesague(int IdTipoDocumento)
+    {
+        for(int i=0;i<CbxUbiCajaConexDesague.getItemCount();i++)
+        {
+            if(IdTipoDocumento==((CEUbiCajaConexDesague)CbxUbiCajaConexDesague.getSelectedItem()).getIdUbiCajaConexDesague())
+            {
+                CbxUbiCajaConexDesague.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+    private void buscarDiametroConexDesague(int IdTipoDocumento)
+    {
+        for(int i=0;i<CbxDiametroConexionDesague.getItemCount();i++)
+        {
+            if(IdTipoDocumento==((CEEstadoTapaAgua)CbxDiametroConexionDesague.getSelectedItem()).getIdEstadoTapaAgua())
+            {
+                CbxDiametroConexionDesague.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+      private void buscarCondicionConexDesague(int IdTipoDocumento)
+    {
+        for(int i=0;i<CbxCondicionConexDesague.getItemCount();i++)
+        {
+            if(IdTipoDocumento==((CECondicionConexionDesague)CbxCondicionConexDesague.getSelectedItem()).getIdCondicionConexionDesague())
+            {
+                CbxCondicionConexDesague.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+    private void buscarMaterialCajaDesague(int IdTipoDocumento)
+    {
+        for(int i=0;i<CbxMaterialCajaDesague.getItemCount();i++)
+        {
+            if(IdTipoDocumento==((CEMaterialCajaDesague)CbxMaterialCajaDesague.getSelectedItem()).getIdMaterialCajaDesague());
+            {
+                CbxMaterialCajaDesague.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+    private void buscarMaterialTapaDesague(int IdTipoDocumento)
+    {
+        for(int i=0;i<CbxMaterialTapaDesague.getItemCount();i++)
+        {
+            if(IdTipoDocumento==((CEMaterialTapaDesague)CbxMaterialTapaDesague.getSelectedItem()).getIdMaterialTapaDesague());
+            {
+                CbxMaterialTapaDesague.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+    private void buscarEstadoTapaDesague(int IdTipoDocumento)
+    {
+        for(int i=0;i<CbxEstadoTapaDesague.getItemCount();i++)
+        {
+            if(IdTipoDocumento==((CEEstadoTapaDesague)CbxEstadoTapaDesague.getSelectedItem()).getIdEstadoTapaDesague())
+            {
+                CbxEstadoTapaDesague.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+    private void buscarEstadoCajaDesague(int IdTipoDocumento)
+    {
+        for(int i=0;i<CbxEstadoCajaDesague.getItemCount();i++)
+        {
+            if(IdTipoDocumento==((CEEstadoCajaDesague)CbxEstadoCajaDesague.getSelectedItem()).getIdEstadoCajaDesague())
+            {
+                CbxEstadoCajaDesague.setSelectedIndex(i);
                 break;
             }
         }
