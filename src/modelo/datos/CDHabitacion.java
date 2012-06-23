@@ -8,19 +8,19 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.acceso.ConexionBD;
-import modelo.entidad.CEHabitacion;
+import modelo.entidad.CEHabilitacion;
 
 /**
  *
  * @author Edwar
  */
 public class CDHabitacion {
-    public CEHabitacion DetalleVia(CEHabitacion oCEHabitacion)
+    public CEHabilitacion DetalleVia(CEHabilitacion oCEHabitacion)
     {
                 Connection conexion = ConexionBD.obtenerConexion();
                 try
                 {
-                  List<CEHabitacion> Lst = new ArrayList<CEHabitacion>();
+                  List<CEHabilitacion> Lst = new ArrayList<CEHabilitacion>();
                   String sql = null;                  
                     sql = "SELECT * FROM habilitacion WHERE idhabilitacion = "+oCEHabitacion.getIdHabitacion()+";";
                     
@@ -31,10 +31,10 @@ public class CDHabitacion {
                 {
                     while (resultado.next())
                     {                        
-                        oCEHabitacion.setIdHabitacion(resultado.getInt(1));                        
+                        oCEHabitacion.setIdHabilitacion(resultado.getInt(1));
                         oCEHabitacion.setCodigo(resultado.getInt(2));
                         oCEHabitacion.setTipo(resultado.getString(3));
-                        oCEHabitacion.setNombreHabitacion(resultado.getString(4));
+                        oCEHabitacion.setNombreHabilitacion(resultado.getString(4));
 
                         Lst.add(oCEHabitacion);
                     }
@@ -54,9 +54,9 @@ public class CDHabitacion {
                     return null;
                 }
          }
-    public ArrayList<CEHabitacion> listarHabilitacion(int tipo,String Parametro)
+    public ArrayList<CEHabilitacion> listarHabilitacion(int tipo,String Parametro)
     {
-        ArrayList<CEHabitacion> oLstHabilitacion=new ArrayList<CEHabitacion>();
+        ArrayList<CEHabilitacion> oLstHabilitacion=new ArrayList<CEHabilitacion>();
         try
         {
             Connection conn = ConexionBD.obtenerConexion();
@@ -77,11 +77,11 @@ public class CDHabitacion {
 
             while(rs.next())
             {
-                CEHabitacion oCEHabitacion=new CEHabitacion();
-                oCEHabitacion.setIdHabitacion(rs.getInt(1));
+                CEHabilitacion oCEHabitacion=new CEHabilitacion();
+                oCEHabitacion.setIdHabilitacion(rs.getInt(1));
                 oCEHabitacion.setCodigo(rs.getInt(2));
                 oCEHabitacion.setTipo(rs.getString(3));
-                oCEHabitacion.setNombreHabitacion(rs.getString(4));
+                oCEHabitacion.setNombreHabilitacion(rs.getString(4));
                 oLstHabilitacion.add(oCEHabitacion);
             }
 

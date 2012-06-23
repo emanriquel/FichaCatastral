@@ -2,7 +2,9 @@ package modelo.datos;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.acceso.ConexionBD;
@@ -16,7 +18,7 @@ public class CDMedida
         {
             Connection con = ConexionBD.obtenerConexion();
             String sql = "INSERT INTO registro_medida (NumeroFicha,"//1
-                    + "FechaEncuesta, "//2
+                    + "PorcentajeSocial,"//2
                     + "IdCondicionConexionAgua," //3
                     + "IdCondicionConexionDesague, " //4
                     + "IdDiametroConexionDesague, " //5
@@ -92,7 +94,7 @@ public class CDMedida
                     + "SiNoTapaConexionAgua, "//75
                     + "MaterialConexionAgua,"//76
                     + "SiNoFugaAgua, "//77
-                    + "TipoFugaAgua,"//78
+                    + "IdTipoFugaAgua,"//78
                     + "SiNoFugaDesague,"//79
                     + "FrecuenciaAbastecimientoHorasPorDia, "//80
                     + "FrecuenciaAbastecimientoDiasPorSemana, "//81
@@ -109,12 +111,119 @@ public class CDMedida
                     + "CodDistrito,"//92
                     + "Seccion,"//93
                     + "IdTipoDocumento,"//94
-                    + "NumeroDocumento,"//95
-                    + "Telefono) "//96
-                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    + "NumeroDocumentoPropietario,"//95
+                    + "Telefono,"//96
+                    + "UbicacionConexionAgua,"//97
+                    + "UbicacionConexionDesague,"//98
+                    + "IdEstadoMedidorAgua,"
+                    + "PorcentajeComercial,"
+                    + "PorcentajeDomestico,"
+                    + "PorcentajeEstatal)"//99
+                    + "VALUES (?, "
+                    + "?,"
+                    + " ?,"
+                    + " ?, "
+                    + "?, "
+                    + "?, "
+                    + "?, "
+                    + "?, "
+                    + "?, "
+                    + "?, "
+                    + "?, "
+                    + "?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?, "
+                    + "?, "
+                    + "?, "
+                    + "?, "
+                    + "?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?, "
+                    + "?, "
+                    + "?, "
+                    + "?, "
+                    + "?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?, "
+                    + "?, "
+                    + "?,"
+                    + " ?,"
+                    + " ?, "
+                    + "?, "
+                    + "?,"
+                    + " ?, "
+                    + "?, "
+                    + "?,"
+                    + " ?,"
+                    + " ?, "
+                    + "?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + "?,"
+                    + "?,"
+                    + " ?,"
+                    + " ?,"
+                    + "?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?, "
+                    + "?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?, "
+                    + "?, "
+                    + "?,"
+                    + " ?,"
+                    + "?, "
+                    + "?,"
+                    + " ?, "
+                    + "?, "
+                    + "?, "
+                    + "?, "
+                    + "?,"
+                    + "?, "
+                    + "?, "
+                    + "?,"
+                    + "?,"
+                    + " ?,"
+                    + " ?, "
+                    + "?, "
+                    + "?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?, "
+                    + "?, "
+                    + "?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + "?,"
+                    + "?,"
+                    + "?,"
+                    + "?,"
+                    + "?,"
+                    + "?,"
+                    + "?,"
+                    + "?,"
+                    + "?,"
+                    + "?,"
+                    + "?,"
+                    + "?)";
             PreparedStatement ps = con.prepareCall(sql);
-            ps.setString(1,oCEMedida.getNumeroFicha());
-            ps.setString(2,oCEMedida.getFechaEncuesta());
+            ps.setInt(1,1);
+            ps.setDouble(2,oCEMedida.getPorcentajeSocial());
             ps.setInt(3,oCEMedida.getIdCondicionConexionAgua());
             ps.setInt(4,oCEMedida.getIdCondicionConexionDesague());
             ps.setInt(5,oCEMedida.getIdDiametroConexionDesague());
@@ -209,10 +318,13 @@ public class CDMedida
             ps.setInt(94, oCEMedida.getIdTipoDocumento());
             ps.setString(95, oCEMedida.getNumeroDocumento());
             ps.setString(96, oCEMedida.getTelefono());
+            ps.setDouble(97, oCEMedida.getUbicacionConexionAgua());
+            ps.setDouble(98, oCEMedida.getUbicacionConexionDesague());
+            ps.setDouble(99, oCEMedida.getIdEstadoMedidor());
+            ps.setDouble(100, oCEMedida.getPorcentajeComercial());
+            ps.setDouble(101, oCEMedida.getPorcentajeDomestico());
+            ps.setDouble(102, oCEMedida.getPorcentajeEstatal());
             ps.execute();
-
-
-
             return true;
         }
         catch (SQLException ex)
@@ -221,6 +333,83 @@ public class CDMedida
             return false;
         }
         
+
+    }
+       public ArrayList<CEMedida> listarPorCodigoInscripcion(String dato)
+    {
+        ArrayList<CEMedida> oLstLlavesPaso=new ArrayList<CEMedida>();
+        try
+        {
+            Connection conn = ConexionBD.obtenerConexion();
+            String sql = "SELECT  rm.NumeroFicha, rm.Cod_Inscripcion,concat(rm.ApellidoPaternoPropietario,' ',rm.ApellidoMaternoPropietario,',',rm.NombrePropietario),rm.Fecha_Encuestador,  rm.CodDepartamento,  rm.CodProvincia,  rm.CodDistrito,  rm.Manzana,  rm.Lote,  rm.CodigoVia,  rm.TipoVia,  rm.NombreVia,  rm.CodigoHabilitacion,  rm.TipoHabilitacion,  rm.NombreHabilitacion FROM medidor.registro_medida rm"
+                    + " WHERE rm.Cod_Inscripcion like '"+dato+"%'";
+            PreparedStatement sp = conn.prepareStatement(sql);
+            ResultSet rs=sp.executeQuery();
+            while(rs.next())
+            {
+                CEMedida oCEMedida=new CEMedida();
+                oCEMedida.setNumeroFicha(rs.getString(1));
+                oCEMedida.setCod_Inscripcion(rs.getString(2));
+                oCEMedida.setApellidoPaternoPropietario(rs.getString(3));
+                oCEMedida.setCodDepartamento(rs.getString(4));
+                oCEMedida.setCodProvincia(rs.getString(5));
+                oCEMedida.setCodDistrito(rs.getString(6));
+                oCEMedida.setManzana(rs.getString(7));
+                oCEMedida.setLote(rs.getString(8));
+                oCEMedida.setCodigoVia(rs.getString(9));
+                oCEMedida.setTipoVia(rs.getString(10));
+                oCEMedida.setNombreVia(rs.getString(11));
+                oCEMedida.setCodigoHabilitacion(rs.getString(12));
+                oCEMedida.setTipoHabilitacion(rs.getString(13));
+                oCEMedida.setNombreHabilitacion(rs.getString(14));
+                oLstLlavesPaso.add(oCEMedida);
+            }
+
+        }
+        catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        }
+        return oLstLlavesPaso;
+
+    }
+       public ArrayList<CEMedida> listarPorUsuario(String dato)
+    {
+        ArrayList<CEMedida> oLstLlavesPaso=new ArrayList<CEMedida>();
+        try
+        {
+            Connection conn = ConexionBD.obtenerConexion();
+            String sql = "SELECT  rm.NumeroFicha, rm.Cod_Inscripcion,concat(rm.ApellidoPaternoPropietario,' ',rm.ApellidoMaternoPropietario,',',rm.NombrePropietario),rm.Fecha_Encuestador,  rm.CodDepartamento,  rm.CodProvincia,  rm.CodDistrito,  rm.Manzana,  rm.Lote,  rm.CodigoVia,  rm.TipoVia,  rm.NombreVia,  rm.CodigoHabilitacion,  rm.TipoHabilitacion,  rm.NombreHabilitacion FROM medidor.registro_medida rm"
+                    + " WHERE rm.concat(rm.ApellidoPaternoPropietario,' ',rm.ApellidoMaternoPropietario,',',rm.NombrePropietario) like '"+dato+"%'";
+            PreparedStatement sp = conn.prepareStatement(sql);
+            ResultSet rs=sp.executeQuery();
+            while(rs.next())
+            {
+                CEMedida oCEMedida=new CEMedida();
+                oCEMedida.setNumeroFicha(rs.getString(1));
+                oCEMedida.setCod_Inscripcion(rs.getString(2));
+                oCEMedida.setApellidoPaternoPropietario(rs.getString(3));
+                oCEMedida.setCodDepartamento(rs.getString(4));
+                oCEMedida.setCodProvincia(rs.getString(5));
+                oCEMedida.setCodDistrito(rs.getString(6));
+                oCEMedida.setManzana(rs.getString(7));
+                oCEMedida.setLote(rs.getString(8));
+                oCEMedida.setCodigoVia(rs.getString(9));
+                oCEMedida.setTipoVia(rs.getString(10));
+                oCEMedida.setNombreVia(rs.getString(11));
+                oCEMedida.setCodigoHabilitacion(rs.getString(12));
+                oCEMedida.setTipoHabilitacion(rs.getString(13));
+                oCEMedida.setNombreHabilitacion(rs.getString(14));
+                oLstLlavesPaso.add(oCEMedida);
+            }
+
+        }
+        catch (SQLException ex)
+        {
+
+            ex.printStackTrace();
+        }
+        return oLstLlavesPaso;
 
     }
 }

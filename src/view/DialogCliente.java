@@ -171,13 +171,13 @@ public class DialogCliente extends javax.swing.JDialog {
                     
     }
     private void CargarHabitacion(int id){
-        CEHabitacion oCEHabitacion = new CEHabitacion();
+        CEHabilitacion oCEHabitacion = new CEHabilitacion();
         CDHabitacion oCDHabitacion = new CDHabitacion();
-        oCEHabitacion.setIdHabitacion(id);
-        CEHabitacion ooCEHabitacion = oCDHabitacion.DetalleVia(oCEHabitacion);
+        oCEHabitacion.setIdHabilitacion(id);
+        CEHabilitacion ooCEHabitacion = oCDHabitacion.DetalleVia(oCEHabitacion);
         TxtCodigoHabitacion.setText(oCEHabitacion.getCodigo()+"");
         TxtTipoHabitacion.setText(oCEHabitacion.getTipo());
-        TxtNombreHabitacion.setText(oCEHabitacion.getNombreHabitacion());
+        TxtNombreHabitacion.setText(oCEHabitacion.getNombreHabilitacion());
                     
     }
     
@@ -1275,19 +1275,21 @@ public class DialogCliente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        FiltrarHabilitacion oFiltrarHabilitacion = new FiltrarHabilitacion(null, true,1);
-        oFiltrarHabilitacion.show();
-        CEHabitacion oCEHabitacion = oFiltrarHabilitacion.GetHabilitacion();
+        FiltrarHabilitacion oFiltrarHabilitacion = new FiltrarHabilitacion(null, true,1,"");
+        oFiltrarHabilitacion.setLocationRelativeTo(null);
+        oFiltrarHabilitacion.setVisible(true);
+        CEHabilitacion oCEHabitacion = oFiltrarHabilitacion.GetHabilitacion();
         lblIdHabitacion.setText(oCEHabitacion.getIdHabitacion()+"");
         TxtCodigoHabitacion.setText(oCEHabitacion.getCodigo()+"");
         TxtTipoHabitacion.setText(oCEHabitacion.getTipo());
-        TxtNombreHabitacion.setText(oCEHabitacion.getNombreHabitacion());
+        TxtNombreHabitacion.setText(oCEHabitacion.getNombreHabilitacion());
                
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        FiltrarVia oFiltrarVia = new FiltrarVia(null, true);
-        oFiltrarVia.show();
+        FiltrarVia oFiltrarVia = new FiltrarVia(null, true,"");
+        oFiltrarVia.setLocationRelativeTo(null);
+        oFiltrarVia.setVisible(true);
         CEVia oCEVia = oFiltrarVia.GetVia();
         lblIdVia.setText(oCEVia.getIdVia()+"");
         TxtCodigoVia.setText(oCEVia.getCodigo()+"");

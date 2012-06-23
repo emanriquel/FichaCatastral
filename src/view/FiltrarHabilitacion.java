@@ -21,30 +21,21 @@ import javax.swing.JRootPane;
 import javax.swing.KeyStroke;
 import javax.swing.table.TableColumn;
 import modelo.datos.CDHabitacion;
-import modelo.entidad.CEHabitacion;
+import modelo.entidad.CEHabilitacion;
 import util.ArrayListTableModel;
 
-/**
- *
- * @author EDWAR
- */
+
 public class FiltrarHabilitacion extends javax.swing.JDialog implements ActionListener {
 
-    /** Creates new form FiltrarSujeto */
-//    public FiltrarSujeto(java.awt.Dialog parent, boolean modal) {
-//        super(parent, modal);
-//        initComponents();
-////        agruparJRBBusqueda();
-//        txtBusqueda.requestFocus();
-//        // configurarTabla();
-//    }
-    public FiltrarHabilitacion(java.awt.Dialog parent, boolean modal,int dat) {
+    public FiltrarHabilitacion(java.awt.Dialog parent, boolean modal,int dat,String dato) {
         super(parent, modal);
         initComponents();
         
-        txtFiltro.requestFocus();                
+        txtFiltro.requestFocus();
+        txtFiltro.setText(dato);
         configurarTabla();
-        getLista();
+        getLista2();
+      
     }
     
     private void configurarTabla() {
@@ -109,33 +100,33 @@ public class FiltrarHabilitacion extends javax.swing.JDialog implements ActionLi
     
     private void fillTable(ArrayList oListaAux) {
         ArrayList oRow;
-        CEHabitacion oCEHabitacion;
+        CEHabilitacion oCEHabitacion;
         ArrayListTableModel oModelo = (ArrayListTableModel) jTable1.getModel();
         int size = oListaAux.size();
         limpiarTabla();
         if (size != 0) {
             for (int i = 0; i < size; i++) {
-                oCEHabitacion = new CEHabitacion();
-                oCEHabitacion = (CEHabitacion) oListaAux.get(i);
+                oCEHabitacion = new CEHabilitacion();
+                oCEHabitacion = (CEHabilitacion) oListaAux.get(i);
                 oRow = new ArrayList();
                 oRow.add(0, oCEHabitacion.getIdHabitacion());
                 oRow.add(1, oCEHabitacion.getCodigo());
                 oRow.add(2, oCEHabitacion.getTipo());
-                oRow.add(3, oCEHabitacion.getNombreHabitacion());                                
+                oRow.add(3, oCEHabitacion.getNombreHabilitacion());
                 oModelo.addRow(oRow);
             }
         }
     }
     
-    public CEHabitacion GetHabilitacion() {
+    public CEHabilitacion GetHabilitacion() {
         int selectedRow = FilaSeleccionada;
-        CEHabitacion oCEHabitacion = new CEHabitacion();
+        CEHabilitacion oCEHabitacion = new CEHabilitacion();
         if (selectedRow != -1) {
             txtFiltro.setText(String.valueOf(jTable1.getValueAt(selectedRow, 3)));
-            oCEHabitacion.setIdHabitacion(Integer.parseInt(jTable1.getValueAt(selectedRow, 0).toString()));            
+            oCEHabitacion.setIdHabilitacion(Integer.parseInt(jTable1.getValueAt(selectedRow, 0).toString()));
             oCEHabitacion.setCodigo(Integer.parseInt(jTable1.getValueAt(selectedRow, 1).toString()));
             oCEHabitacion.setTipo(String.valueOf(jTable1.getValueAt(selectedRow, 2)));
-            oCEHabitacion.setNombreHabitacion(String.valueOf(jTable1.getValueAt(selectedRow, 3)));
+            oCEHabitacion.setNombreHabilitacion(String.valueOf(jTable1.getValueAt(selectedRow, 3)));
             
             dispose();
         }
@@ -171,12 +162,22 @@ public class FiltrarHabilitacion extends javax.swing.JDialog implements ActionLi
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Consultar Contacto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 12), new java.awt.Color(102, 0, 0))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Consultar Habilitacion", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 12), new java.awt.Color(102, 0, 0))); // NOI18N
 
         jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Ingrese Datos");
 
+        txtFiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFiltroActionPerformed(evt);
+            }
+        });
         txtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtFiltroKeyReleased(evt);
@@ -187,27 +188,22 @@ public class FiltrarHabilitacion extends javax.swing.JDialog implements ActionLi
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1)))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Resultados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 12), new java.awt.Color(102, 0, 0))); // NOI18N
@@ -238,13 +234,13 @@ public class FiltrarHabilitacion extends javax.swing.JDialog implements ActionLi
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -255,8 +251,8 @@ public class FiltrarHabilitacion extends javax.swing.JDialog implements ActionLi
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -266,7 +262,7 @@ public class FiltrarHabilitacion extends javax.swing.JDialog implements ActionLi
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(41, 41, 41))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -325,14 +321,29 @@ public class FiltrarHabilitacion extends javax.swing.JDialog implements ActionLi
             FilaSeleccionada = jTable1.getSelectedRow();
             if (FilaSeleccionada != -1) {
                 GetHabilitacion();
-                //dispose();
             }
         }
     }//GEN-LAST:event_jTable1KeyPressed
 
     private void txtFiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyReleased
-        getLista2();
+ if(evt.getKeyCode()==evt.VK_DOWN)
+     {
+         int size =jTable1.getRowCount();
+         if(size>0)
+         {
+         jTable1.requestFocus();
+         jTable1.setRowSelectionInterval(0,0);
+         }
+     }
     }//GEN-LAST:event_txtFiltroKeyReleased
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        getLista2();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiltroActionPerformed
+        getLista2();
+    }//GEN-LAST:event_txtFiltroActionPerformed
         
     /**
      * @param args the command line arguments

@@ -1251,7 +1251,7 @@
                                               </Group>
                                           </Group>
                                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                          <Component id="jButton4" min="-2" pref="32" max="-2" attributes="0"/>
+                                          <Component id="BtnVia" min="-2" pref="32" max="-2" attributes="0"/>
                                           <EmptySpace pref="34" max="32767" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="TxtNumMunicipal" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
@@ -1274,7 +1274,7 @@
                                               <Component id="jLabel33" alignment="0" min="-2" pref="460" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jButton3" min="-2" pref="32" max="-2" attributes="0"/>
+                                          <Component id="BtnHabilitacion" min="-2" pref="32" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="1">
                                           <Component id="jLabel139" min="-2" max="-2" attributes="0"/>
@@ -1318,7 +1318,7 @@
                                       <Component id="jLabel38" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Component id="jButton4" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="BtnVia" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Component id="TxtNumMunicipal" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
@@ -1370,7 +1370,7 @@
                                       <Component id="ChckSiNoPredioHabilitado" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Component id="jButton3" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="BtnHabilitacion" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -1586,6 +1586,9 @@
                 <Component class="javax.swing.JCheckBox" name="ChckSiNoPredioHabilitado">
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtNombreHabilitacion">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TxtNombreHabilitacionActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtCodigoHabilitacion">
                   <Properties>
@@ -1660,10 +1663,13 @@
                     <Property name="opaque" type="boolean" value="true"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton3">
+                <Component class="javax.swing.JButton" name="BtnHabilitacion">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="..."/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnHabilitacionActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel36">
                   <Properties>
@@ -1686,10 +1692,13 @@
                     <Property name="opaque" type="boolean" value="true"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton4">
+                <Component class="javax.swing.JButton" name="BtnVia">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="..."/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnViaActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTextField29">
                 </Component>
@@ -1722,6 +1731,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtNombreVia">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TxtNombreViaActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel38">
                   <Properties>
@@ -1974,9 +1986,9 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jPanel7" alignment="0" max="32767" attributes="0"/>
                           <Component id="jPanel9" alignment="0" pref="887" max="32767" attributes="0"/>
                           <Component id="jPanel8" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jPanel7" alignment="0" pref="887" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -1986,12 +1998,12 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel7" min="-2" pref="174" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="17" max="32767" attributes="0"/>
+                      <EmptySpace pref="31" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -2015,15 +2027,15 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel73" min="-2" pref="100" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                   <Component id="ChkSiNoMedidor" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel67" min="-2" pref="100" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                   <Component id="TxtNumeroMedidor" min="-2" pref="230" max="-2" attributes="0"/>
@@ -2036,7 +2048,7 @@
                                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                   <Component id="TxtMarcaMedidor" min="-2" pref="230" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel74" min="-2" pref="100" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                   <Component id="TxtLecturaMedidor" min="-2" pref="230" max="-2" attributes="0"/>
@@ -2045,7 +2057,7 @@
                                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                   <Component id="ChckSiNoIlegibleLecturaMedidor" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel69" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="6" pref="6" max="6" attributes="0"/>
                                   <Component id="CbxDiametroMedidor" min="-2" pref="150" max="-2" attributes="0"/>
@@ -2058,7 +2070,7 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="CbxLlavesPaso" min="-2" pref="120" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel77" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="33" pref="33" max="33" attributes="0"/>
                                   <Component id="CbxSeguridadMedidor" min="-2" pref="150" max="-2" attributes="0"/>
@@ -2068,13 +2080,13 @@
                                   <Component id="CbxPosicionMedidor" min="-2" pref="160" max="-2" attributes="0"/>
                               </Group>
                           </Group>
+                          <EmptySpace pref="35" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="9" pref="9" max="9" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel73" min="-2" pref="20" max="-2" attributes="0"/>
                               <Component id="ChkSiNoMedidor" min="-2" max="-2" attributes="0"/>
@@ -2101,7 +2113,7 @@
                               <Component id="CbxDiametroMedidor" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel70" min="-2" pref="20" max="-2" attributes="0"/>
                               <Component id="CbxEstadoMedidor" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                   <Component id="CbxLlavesPaso" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel72" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                               </Group>
@@ -2113,6 +2125,7 @@
                               <Component id="jLabel78" min="-2" pref="20" max="-2" attributes="0"/>
                               <Component id="CbxPosicionMedidor" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace pref="6" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2285,143 +2298,159 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
+                              <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jLabel79" alignment="1" max="32767" attributes="1"/>
-                                      <Component id="jLabel92" alignment="1" max="32767" attributes="1"/>
+                                      <Component id="jLabel141" alignment="0" pref="80" max="32767" attributes="1"/>
+                                      <Component id="jLabel87" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                                      <Component id="jLabel92" alignment="0" min="-2" max="-2" attributes="1"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="CbxEstadoCajaAgua" pref="179" max="32767" attributes="1"/>
+                                      <Component id="CbxSituacionAgua" alignment="1" pref="179" max="32767" attributes="1"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="LblCondicionConexion" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jLabel142" min="-2" pref="134" max="-2" attributes="1"/>
+                                      </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="CbxEstadoCajaAgua" pref="146" max="32767" attributes="0"/>
-                                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                                          <Component id="jLabel68" min="-2" pref="120" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="TxtMaterialConexionAgua" pref="432" max="32767" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="jLabel88" min="-2" pref="90" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="CbxUbiCajaConexAgua" min="-2" pref="166" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="jLabel90" min="-2" max="-2" attributes="1"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="CbxCondicionConexionAgua" max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabel89" min="-2" pref="120" max="-2" attributes="0"/>
+                                              <Component id="jLabel68" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="TxtMaterialConexionAgua" max="32767" attributes="1"/>
+                                              <Component id="CbxDiametroConexionAgua" alignment="0" min="-2" pref="160" max="-2" attributes="1"/>
+                                          </Group>
                                       </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="ChckSiNoTapaConexionAgua" pref="35" max="32767" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel91" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jLabel81" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="CbxMaterialCajaAgua" min="-2" pref="160" max="-2" attributes="0"/>
+                                          <EmptySpace pref="48" max="32767" attributes="0"/>
+                                          <Component id="jLabel79" min="-2" max="-2" attributes="1"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="ChckSiNoTapaConexionAgua" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                          <Component id="jLabel136" min="-2" max="-2" attributes="1"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="ChckSiNoFugaAgua" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                                          <Component id="jLabel80" min="-2" pref="80" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                          <Component id="RbtOpcionAntes" min="-2" pref="60" max="-2" attributes="0"/>
-                                          <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-                                          <Component id="RbtOpcionDespues" min="-2" pref="80" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                          <Component id="RbtOpcionIndeterminado" min="-2" pref="120" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="251" max="-2" attributes="0"/>
+                                          <Component id="CbxMaterialTapaAgua" min="-2" pref="161" max="-2" attributes="1"/>
                                       </Group>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Group type="102" alignment="1" attributes="1">
-                                          <Component id="jLabel141" min="-2" pref="80" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="LblCondicionConexion" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jLabel87" min="-2" pref="60" max="-2" attributes="0"/>
-                                          <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-                                          <Component id="CbxSituacionAgua" min="-2" pref="150" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="20" pref="20" max="20" attributes="0"/>
-                                          <Component id="jLabel88" min="-2" pref="90" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="CbxUbiCajaConexAgua" min="-2" pref="166" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="1">
-                                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                                          <Component id="jLabel90" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="CbxCondicionConexionAgua" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="jLabel89" min="-2" pref="120" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="jLabel91" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="CbxMaterialCajaAgua" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
-                                      <Component id="CbxDiametroConexionAgua" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="jLabel137" min="-2" max="-2" attributes="1"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="CbxEstadoTapaAgua" min="-2" pref="155" max="-2" attributes="1"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="jLabel81" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="ChckSiNoFugaAgua" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                                  <Component id="jLabel80" min="-2" pref="80" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                  <Component id="RbtOpcionAntes" min="-2" pref="60" max="-2" attributes="0"/>
+                                  <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                  <Component id="RbtOpcionDespues" min="-2" pref="80" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                  <Component id="RbtOpcionIndeterminado" min="-2" pref="120" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel87" min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="CbxSituacionAgua" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel88" min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="jLabel89" min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="CbxDiametroConexionAgua" min="-2" max="-2" attributes="0"/>
-                              <Component id="CbxUbiCajaConexAgua" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel87" min="-2" pref="20" max="-2" attributes="0"/>
+                                      <Component id="CbxSituacionAgua" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jLabel141" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                      <Component id="LblCondicionConexion" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jLabel92" min="-2" pref="20" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabel89" min="-2" pref="20" max="-2" attributes="0"/>
+                                              <Component id="CbxDiametroConexionAgua" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="TxtMaterialConexionAgua" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel68" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabel88" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                                              <Component id="CbxUbiCajaConexAgua" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="CbxCondicionConexionAgua" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel142" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                              <Component id="jLabel90" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="ChckSiNoTapaConexionAgua" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel79" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                          <Component id="CbxMaterialTapaAgua" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel136" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                          <Component id="CbxEstadoCajaAgua" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="CbxMaterialCajaAgua" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel91" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                  <Component id="CbxCondicionConexionAgua" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel90" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="CbxEstadoTapaAgua" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel137" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel141" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                                  <Component id="LblCondicionConexion" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                  <Component id="CbxMaterialCajaAgua" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel91" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace pref="7" max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="TxtMaterialConexionAgua" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabel92" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                                          <Component id="CbxEstadoCajaAgua" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jLabel68" min="-2" pref="20" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="ChckSiNoTapaConexionAgua" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel79" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
                               <Component id="jLabel80" min="-2" pref="20" max="-2" attributes="0"/>
                               <Component id="RbtOpcionAntes" min="-2" max="-2" attributes="0"/>
                               <Component id="RbtOpcionDespues" min="-2" max="-2" attributes="0"/>
-                              <Component id="RbtOpcionIndeterminado" min="-2" max="-2" attributes="0"/>
+                              <Component id="RbtOpcionIndeterminado" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="jLabel81" alignment="1" max="32767" attributes="1"/>
                                   <Component id="ChckSiNoFugaAgua" alignment="1" min="-2" max="-2" attributes="1"/>
                               </Group>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2502,8 +2531,6 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Estado Caja:"/>
                   </Properties>
-                </Component>
-                <Component class="javax.swing.JComboBox" name="CbxEstadoCajaAgua">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel68">
                   <Properties>
@@ -2601,6 +2628,42 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial" size="12" style="3"/>
                     </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="CbxEstadoCajaAgua">
+                </Component>
+                <Component class="javax.swing.JComboBox" name="CbxMaterialTapaAgua">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel136">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Mat. Tapa:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="CbxEstadoTapaAgua">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel137">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Estado Tapa:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel142">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="3"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Cond. Conex:"/>
                   </Properties>
                 </Component>
               </SubComponents>
