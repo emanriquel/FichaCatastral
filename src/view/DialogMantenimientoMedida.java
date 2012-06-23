@@ -3175,10 +3175,160 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
 
     private void setRegistroMedida(CEMedida oCEMedida)
     {
-        
-        
+        TxtNumeroFicha.setText(oCEMedida.getNumeroFicha()+"");
+        buscarSituacionConexion(oCEMedida.getIdSituacionConexion());
+        TxtDepartamento.setText(oCEMedida.getCodDepartamento());
+        TxtProvincia.setText(oCEMedida.getCodProvincia());
+        TxtDistrito.setText(oCEMedida.getCodDistrito());
+        TxtSeccion.setText(oCEMedida.getSeccion()+"");
+        TxtManzana.setText(oCEMedida.getManzana()+"");
+        TxtLote.setText(oCEMedida.getLote()+"");
+        TxtConexion.setText(oCEMedida.getConexion()+"");
+        TxtCodigoInscripcion.setText(oCEMedida.getCod_Inscripcion()+"");
+        TxtRutaLectura.setText(oCEMedida.getRutaLectura()+"");
+        TxtRutaReparto.setText(oCEMedida.getRutaReparto()+"");
+        TxtSecuencia.setText(oCEMedida.getSecuencia()+"");
+        TxtCategoria.setText(oCEMedida.getCategoria()+"");
+        buscarTipoDocumento(oCEMedida.getIdTipoDocumento());
+        TxtNumDocumento.setText(oCEMedida.getNumeroDocumento()+"");
+        TxtTelefono.setText(oCEMedida.getTelefono()+"");
+        TxtApellidoPaternoPropietario.setText(oCEMedida.getApellidoPaternoPropietario());
+        TxtApellidoMaternoPropietario.setText(oCEMedida.getApellidoMaternoPropietario());
+        TxtNombrePropietario.setText(oCEMedida.getNombrePropietario());
+        TxtApellidoPaternoConyugue.setText(oCEMedida.getApellidoPaternoConyugue());
+        TxtApellidoMaternoConyugue.setText(oCEMedida.getApellidoMaternoConyugue());
+        TxtNombreConyugue.setText(oCEMedida.getNombreConyugue());
+        TxtCorreoElectronico.setText(oCEMedida.getCorreoElectronico());
+        buscarTipoPropiedad(oCEMedida.getIdTipoPropiedad());
+        TxtCantidadHabitantesPredio.setText(oCEMedida.getCantHabitantesPredio()+"");
+        TxtNumPisos.setText(oCEMedida.getNumPiso()+"");
+        buscarTipoPredio(oCEMedida.getIdTipoPredio());
+        TxtCodigoVia.setText(oCEMedida.getCodigoVia()+"");
+        TxtTipoVia.setText(oCEMedida.getTipoVia());
+        TxtNombreVia.setText(oCEMedida.getNombreVia());
+        TxtNumMunicipal.setText(oCEMedida.getNumMunicipal());
+        TxtCodigoHabilitacion.setText(oCEMedida.getCodigoVia()+"");
+        TxtTipoHabilitacion.setText(oCEMedida.getTipoVia());
+        TxtNombreHabilitacion.setText(oCEMedida.getNombreVia());
+        TxtNumeroManzana.setText(oCEMedida.getNumManzana());
+        TxtNumeroLote.setText(oCEMedida.getNumLote());
+        TxtBlock.setText(oCEMedida.getBlock());
+        TxtPiso.setText(oCEMedida.getPiso());
+        TxtNumero.setText(oCEMedida.getNumero());
+        buscarUsoPredio(oCEMedida.getIdUsoPredio());
+        TxtComplemento.setText(oCEMedida.getComplemento());
+        ChckSiNoPredioHabilitado.setSelected(oCEMedida.isSiNoPredioHabilitado());
+        buscarTipoServicio(oCEMedida.getIdTipoServicio());
+        buscarMedioAbastecimiento(oCEMedida.getIdMedioAbastecimiento());
+        buscarSituacionPredio(oCEMedida.getIdSituacionPredio());
+        buscarTipoAlmacenamiento(oCEMedida.getIdTipoAlmacenamiento());
+        ChkSiNoMedidor.setSelected(oCEMedida.isSiNoMedidor());
+        TxtNumeroMedidor.setText(oCEMedida.getNumeroMedidor());
+        ChkSiNoIlegibleNumeroMedidor.setSelected(oCEMedida.isSiNoIlegibleNumMedidor());
+        TxtMarcaMedidor.setText(oCEMedida.getMarcaMedidor());
+        TxtLecturaMedidor.setText(oCEMedida.getLectura()+"");
+        ChckSiNoIlegibleLecturaMedidor.setSelected(oCEMedida.isSiNoIlegibleLectura());
     }
 
+    private void buscarSituacionConexion(int IdSituacionConexion)
+    {
+        for(int i=0;i<CbxSituacionConexion.getItemCount();i++)
+        {
+            if(IdSituacionConexion==((CESituacionConexion)CbxSituacionConexion.getSelectedItem()).getIdSituacionConexion())
+            {
+                CbxSituacionConexion.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+     private void buscarTipoDocumento(int IdTipoDocumento)
+    {
+        for(int i=0;i<CbxTipoDocumento.getItemCount();i++)
+        {
+            if(IdTipoDocumento==((CETipoDocumento)CbxTipoDocumento.getSelectedItem()).getIdTipoDocumento())
+            {
+                CbxTipoDocumento.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+    private void buscarTipoPropiedad(int IdTipoDocumento)
+    {
+        for(int i=0;i<CbxTipoPropiedad.getItemCount();i++)
+        {
+            if(IdTipoDocumento==((CETipoPropiedad)CbxTipoPropiedad.getSelectedItem()).getIdTipoPropiedad())
+            {
+                CbxTipoPropiedad.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+    private void buscarTipoPredio(int IdTipoDocumento)
+    {
+        for(int i=0;i<CbxTipoPredio.getItemCount();i++)
+        {
+            if(IdTipoDocumento==((CETipoPredio)CbxTipoPredio.getSelectedItem()).getIdTipoPredio())
+            {
+                CbxTipoPredio.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+    private void buscarUsoPredio(int IdTipoDocumento)
+    {
+        for(int i=0;i<CbxUsoPredio.getItemCount();i++)
+        {
+            if(IdTipoDocumento==((CEUsoPredio)CbxUsoPredio.getSelectedItem()).getIdUsoPredio())
+            {
+                CbxUsoPredio.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+    private void buscarTipoServicio(int IdTipoDocumento)
+    {
+        for(int i=0;i<CbxTipoServicio.getItemCount();i++)
+        {
+            if(IdTipoDocumento==((CETipoServicio)CbxTipoServicio.getSelectedItem()).getIdTipoServicio())
+            {
+                CbxTipoServicio.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+    private void buscarMedioAbastecimiento(int IdTipoDocumento)
+    {
+        for(int i=0;i<CbxMedioAbastecimiento.getItemCount();i++)
+        {
+            if(IdTipoDocumento==((CEMedioAbastecimiento)CbxMedioAbastecimiento.getSelectedItem()).getIdMedioAbastecimiento())
+            {
+                CbxMedioAbastecimiento.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+    private void buscarSituacionPredio(int IdTipoDocumento)
+    {
+        for(int i=0;i<CbxSituacionPredio.getItemCount();i++)
+        {
+            if(IdTipoDocumento==((CESituacionPredio)CbxSituacionPredio.getSelectedItem()).getIdSituacionPredio())
+            {
+                CbxSituacionPredio.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+     private void buscarTipoAlmacenamiento(int IdTipoDocumento)
+    {
+        for(int i=0;i<CbxTipoAlmacenamiento.getItemCount();i++)
+        {
+            if(IdTipoDocumento==((CETipoAlmacenamiento)CbxTipoAlmacenamiento.getSelectedItem()).getIdTipoAlmacenamiento())
+            {
+                CbxTipoAlmacenamiento.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAgregarUso;
     private javax.swing.JButton BtnBuscarUsuario;
