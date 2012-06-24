@@ -35,7 +35,7 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="BtnGuardar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="BtnCancelar" min="-2" pref="65" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
@@ -84,7 +84,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="BtnCancelar" max="32767" attributes="1"/>
-                  <Component id="BtnGuardar" alignment="0" min="-2" pref="53" max="-2" attributes="1"/>
+                  <Component id="BtnGuardar" alignment="0" pref="53" max="32767" attributes="1"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -3968,7 +3968,7 @@
                                           <Component id="BtnFotoDesague" min="-2" pref="30" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="jScrollPane4" alignment="0" pref="438" max="32767" attributes="1"/>
-                                      <Component id="LblCodigoFotoDesague" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="LblCodigoFotoPredio" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                               </Group>
@@ -4001,7 +4001,7 @@
                           <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="LblCodigoFotoCaja" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="LblCodigoFotoDesague" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="LblCodigoFotoPredio" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
@@ -4839,7 +4839,7 @@
                     <Property name="text" type="java.lang.String" value="Codigo"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="LblCodigoFotoDesague">
+                <Component class="javax.swing.JLabel" name="LblCodigoFotoPredio">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Codigo"/>
                   </Properties>

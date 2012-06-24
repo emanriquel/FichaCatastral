@@ -53,6 +53,11 @@ public class FrameSistemaMenu extends javax.swing.JFrame {
             }
         });
         TblListadoRegistro.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        TblListadoRegistro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TblListadoRegistroMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(TblListadoRegistro);
         TblListadoRegistro.getColumnModel().getColumn(0).setPreferredWidth(60);
         TblListadoRegistro.getColumnModel().getColumn(1).setPreferredWidth(80);
@@ -190,7 +195,7 @@ public class FrameSistemaMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnNuevoRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNuevoRegistroActionPerformed
-     DialogMantenimientoMedida oDialogMantenimientoMedida=new DialogMantenimientoMedida(null,true,1);
+     DialogMantenimientoMedida oDialogMantenimientoMedida=new DialogMantenimientoMedida(null,true,1,null);
      oDialogMantenimientoMedida.setLocationRelativeTo(null);
      oDialogMantenimientoMedida.setVisible(true);
     }//GEN-LAST:event_BtnNuevoRegistroActionPerformed
@@ -204,10 +209,10 @@ public class FrameSistemaMenu extends javax.swing.JFrame {
             for(CEMedida oCEMedida:oLstMedida)
             {
                 Vector oVector=new Vector();
-                oVector.add(oCEMedida.getNumeroFicha());
+                   oVector.add(oCEMedida.getNumeroFicha());
                 oVector.add(oCEMedida.getCod_Inscripcion());
-                oVector.add(oCEMedida.getApellidoPaternoPropietario());
-                oVector.add(oCEMedida.getFechaEncuesta());
+                oVector.add(oCEMedida);
+                oVector.add(oCEMedida.getFecha_Encuestador());
                 oVector.add(oCEMedida.getCodDepartamento());
                 oVector.add(oCEMedida.getCodProvincia());
                 oVector.add(oCEMedida.getCodDistrito());
@@ -219,6 +224,7 @@ public class FrameSistemaMenu extends javax.swing.JFrame {
                 oVector.add(oCEMedida.getCodigoHabilitacion());
                 oVector.add(oCEMedida.getTipoHabilitacion());
                 oVector.add(oCEMedida.getNombreHabilitacion());
+                oVector.add(oCEMedida.getFecha_Encuestador());
                 ((DefaultTableModel)TblListadoRegistro.getModel()).addRow(oVector);
             }
         }
@@ -231,8 +237,8 @@ public class FrameSistemaMenu extends javax.swing.JFrame {
                 Vector oVector=new Vector();
                 oVector.add(oCEMedida.getNumeroFicha());
                 oVector.add(oCEMedida.getCod_Inscripcion());
-                oVector.add(oCEMedida.getApellidoPaternoPropietario());
-                oVector.add(oCEMedida.getFechaEncuesta());
+                oVector.add(oCEMedida);
+                oVector.add(oCEMedida.getFecha_Encuestador());
                 oVector.add(oCEMedida.getCodDepartamento());
                 oVector.add(oCEMedida.getCodProvincia());
                 oVector.add(oCEMedida.getCodDistrito());
@@ -244,11 +250,26 @@ public class FrameSistemaMenu extends javax.swing.JFrame {
                 oVector.add(oCEMedida.getCodigoHabilitacion());
                 oVector.add(oCEMedida.getTipoHabilitacion());
                 oVector.add(oCEMedida.getNombreHabilitacion());
+
                 ((DefaultTableModel)TblListadoRegistro.getModel()).addRow(oVector);
 
             }
         }
     }//GEN-LAST:event_TxtFiltroActionPerformed
+
+    private void TblListadoRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TblListadoRegistroMouseClicked
+       if(evt.getClickCount()==2)
+       {
+           int fila=TblListadoRegistro.getSelectedRow();
+           if(fila!=-1)
+           {
+               CEMedida oCEMedida=(CEMedida)TblListadoRegistro.getValueAt(fila,2);
+               DialogMantenimientoMedida oDialogMantenimientoMedida=new DialogMantenimientoMedida(null,true, 3,oCEMedida);
+               oDialogMantenimientoMedida.setLocationRelativeTo(null);
+               oDialogMantenimientoMedida.setVisible(true);
+           }
+       }
+    }//GEN-LAST:event_TblListadoRegistroMouseClicked
    
    private void limpiarTabla(){
        DefaultTableModel oDefaultTableModel=(DefaultTableModel)TblListadoRegistro.getModel();

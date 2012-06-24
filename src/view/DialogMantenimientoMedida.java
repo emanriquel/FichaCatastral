@@ -1,6 +1,7 @@
 package view;
 
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -81,11 +82,15 @@ import util.ArrayListComboBoxModel;
 public class DialogMantenimientoMedida extends javax.swing.JDialog {
 
     private int codigo;
-    public DialogMantenimientoMedida(java.awt.Frame parent, boolean modal,int codigo) {
+    public DialogMantenimientoMedida(java.awt.Frame parent, boolean modal,int codigo,CEMedida oCEMedida) {
         super(parent, modal);
         initComponents();
         cargarComboBox();
         this.codigo=codigo;
+        if(codigo==3){
+            setMedida((new CDMedida()).ConsultarMedida(oCEMedida.getIdRegistroMedida()));
+
+        }
     }
     private void cargarComboBox(){
         
@@ -555,7 +560,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jScrollPane4 = new javax.swing.JScrollPane();
         LblFotoPredio = new javax.swing.JLabel();
         LblCodigoFotoCaja = new javax.swing.JLabel();
-        LblCodigoFotoDesague = new javax.swing.JLabel();
+        LblCodigoFotoPredio = new javax.swing.JLabel();
         BtnGuardar = new javax.swing.JButton();
         BtnCancelar = new javax.swing.JButton();
 
@@ -2656,7 +2661,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
 
         LblCodigoFotoCaja.setText("Codigo");
 
-        LblCodigoFotoDesague.setText("Codigo");
+        LblCodigoFotoPredio.setText("Codigo");
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -2727,7 +2732,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(BtnFotoDesague, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
-                            .addComponent(LblCodigoFotoDesague))
+                            .addComponent(LblCodigoFotoPredio))
                         .addGap(12, 12, 12)))
                 .addContainerGap())
         );
@@ -2750,7 +2755,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                 .addGap(3, 3, 3)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LblCodigoFotoCaja)
-                    .addComponent(LblCodigoFotoDesague))
+                    .addComponent(LblCodigoFotoPredio))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
@@ -2819,7 +2824,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(BtnGuardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(BtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE)
@@ -2857,7 +2862,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(BtnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BtnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BtnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -2874,7 +2879,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     private void BtnFotoDesagueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnFotoDesagueActionPerformed
         jFileChooser2.showOpenDialog(null);
         TxtFotoDesague.setText(jFileChooser2.getSelectedFile().getAbsolutePath());
-        LblCodigoFotoDesague.setText(jFileChooser2.getSelectedFile().getName());
+        LblCodigoFotoPredio.setText(jFileChooser2.getSelectedFile().getName());
         LblFotoPredio.setIcon(new ImageIcon(jFileChooser2.getSelectedFile().getAbsolutePath()));
     }//GEN-LAST:event_BtnFotoDesagueActionPerformed
 
@@ -3004,7 +3009,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     }
     private CEMedida getMedida(){
         CEMedida oCEMedida=new CEMedida();
-        oCEMedida.setNumeroFicha(TxtNumeroFicha.getText());//1
+        oCEMedida.setNumeroFicha(Integer.parseInt(TxtNumeroFicha.getText()));//1
         CESituacionConexion oSituacionConexion=(CESituacionConexion)CbxSituacionConexion.getSelectedItem();
         oCEMedida.setIdSituacionConexion(oSituacionConexion.getIdSituacionConexion());//2
         oCEMedida.setCodDepartamento(TxtDepartamento.getText());//3
@@ -3158,7 +3163,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         oCEMedida.setIdTipoPropiedadEntrevistado(oCETipoPropiedadEntrevistado.getIdTipoPropiedadInquilino());//92 ok
 
         oCEMedida.setCodigoFotoCaja(LblCodigoFotoCaja.getText());//93
-        oCEMedida.setCodigoFotoPredio(LblCodigoFotoDesague.getText());//94
+        oCEMedida.setCodigoFotoPredio(LblCodigoFotoPredio.getText());//94
         oCEMedida.setUbicacionConexionAgua(Double.parseDouble(TxtUbiConexAgua.getText()));//95
         oCEMedida.setUbicacionConexionDesague(Double.parseDouble(TxtUbiConexDesague.getText()));//96
         oCEMedida.setCod_Encuestador(TxtCodigoEncuestador.getText());//97
@@ -3173,7 +3178,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         return oCEMedida;
     }
 
-    private void setRegistroMedida(CEMedida oCEMedida)
+    private void setMedida(CEMedida oCEMedida)
     {
         TxtNumeroFicha.setText(oCEMedida.getNumeroFicha()+"");
         buscarSituacionConexion(oCEMedida.getIdSituacionConexion());
@@ -3245,15 +3250,55 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         ChckSiNoFugaAgua.setSelected(oCEMedida.isSiNoFugaAgua());
         // tipo fuga
         buscarUbiCajaConexDesague(oCEMedida.getIdUbiCajaConexDesague());
-        buscarUbiCajaConexDesague(oCEMedida.getIdDiametroConexionDesague());
-        buscarUbiCajaConexDesague(oCEMedida.getIdCondicionConexionDesague());
-        buscarUbiCajaConexDesague(oCEMedida.getIdMaterialCajaDesague());
-        buscarUbiCajaConexDesague(oCEMedida.getIdMaterialTapaDesague());
-        buscarUbiCajaConexDesague(oCEMedida.getIdEstadoTapaDesague());
-        buscarUbiCajaConexDesague(oCEMedida.getIdEstadoCajaDesague());
+        buscarDiametroConexDesague(oCEMedida.getIdDiametroConexionDesague());
+        buscarCondicionConexDesague(oCEMedida.getIdCondicionConexionDesague());
+        buscarMaterialCajaDesague(oCEMedida.getIdMaterialCajaDesague());
+        buscarMaterialTapaDesague(oCEMedida.getIdMaterialTapaDesague());
+        buscarEstadoTapaDesague(oCEMedida.getIdEstadoTapaDesague());
+        buscarEstadoCajaDesague(oCEMedida.getIdEstadoCajaDesague());
         ChckSiNoFugaDesague.setSelected(oCEMedida.isSiNoFugaDesague());
+        buscarPavimentacion(oCEMedida.getIdPavimentacion());
+        buscarVereda(oCEMedida.getIdVereda());
+        buscarPozoArtesanal(oCEMedida.getIdPozoArtesanal());
+        TxtHorasPorDia.setText(oCEMedida.getFrecuenciaAbastecimientoHorasPorDia()+"");
+        TxtDiaPorSemana.setText(oCEMedida.getFrecuenciaAbastecimientoDiasPorSemana()+"");
+        TxtObservaciones.setText(oCEMedida.getObservaciones());
+        TxtApellidoPaternoEntrevistado.setText(oCEMedida.getApellidoPaternoEntrevistado());
+        TxtApellidoMaternoEntrevistado.setText(oCEMedida.getApellidoMaternoEntrevistado());
+        TxtNombreEntrevistado.setText(oCEMedida.getNombreCompletoEntrevistado());
+        TxtNumeroDocumentoEntrevistado.setText(oCEMedida.getDocumentoEntrevistado());
+        buscarTipoPropiedadEntrevistado(oCEMedida.getIdTipoPropiedadEntrevistado());
+        LblCodigoFotoCaja.setText(oCEMedida.getCodigoFotoCaja());
+        LblCodigoFotoPredio.setText(oCEMedida.getCodigoFotoPredio());
+        TxtUbiConexAgua.setText(oCEMedida.getUbicacionConexionAgua()+"");
+        TxtUbiConexDesague.setText(oCEMedida.getUbicacionConexionDesague()+"");
+        TxtCodigoEncuestador.setText(oCEMedida.getCod_Encuestador());
+        TxtCodigoDigitador.setText(oCEMedida.getCod_Digitado());
+        TxtCodigoSupervisor.setText(oCEMedida.getCod_Supervisor());
+        int ano=Integer.parseInt(oCEMedida.getFecha_Encuestador().substring(0,4));
+        int mes=Integer.parseInt(oCEMedida.getFecha_Encuestador().substring(5,7));
+        int dia=Integer.parseInt(oCEMedida.getFecha_Encuestador().substring(8,10));
+        DateFechaEncuestador.setCalendar(new GregorianCalendar(ano,mes-1,dia));
+        int ano1=Integer.parseInt(oCEMedida.getFecha_Encuestador().substring(0,4));
+        int mes1=Integer.parseInt(oCEMedida.getFecha_Encuestador().substring(5,7));
+        int dia1=Integer.parseInt(oCEMedida.getFecha_Encuestador().substring(8,10));
+        DateFechaSupervision.setCalendar(new GregorianCalendar(ano1,mes1-1,dia1));
+        int ano2=Integer.parseInt(oCEMedida.getFecha_Encuestador().substring(0,4));
+        int mes2=Integer.parseInt(oCEMedida.getFecha_Encuestador().substring(5,7));
+        int dia2=Integer.parseInt(oCEMedida.getFecha_Encuestador().substring(8,10));
+        DateFechaDigitador.setCalendar(new GregorianCalendar(ano2,mes2-1,dia2));
     }
-
+    private void buscarTipoPropiedadEntrevistado(int IdSituacionConexion)
+    {
+        for(int i=0;i<CbxTipoPropiedadEntrevistado.getItemCount();i++)
+        {
+            if(IdSituacionConexion==((CETipoPropiedadInquilino)CbxTipoPropiedadEntrevistado.getSelectedItem()).getIdTipoPropiedadInquilino())
+            {
+                CbxTipoPropiedadEntrevistado.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
     private void buscarSituacionConexion(int IdSituacionConexion)
     {
         for(int i=0;i<CbxSituacionConexion.getItemCount();i++)
@@ -3456,7 +3501,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxEstadoCajaAgua.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CEUbiCajaConexAgua)CbxEstadoCajaAgua.getSelectedItem()).getIdUbiCajaConexAgua())
+            if(IdTipoDocumento==((CEEstadoCajaAgua)CbxEstadoCajaAgua.getSelectedItem()).getIdEstadoCajaAgua())
             {
                 CbxEstadoCajaAgua.setSelectedIndex(i);
                 break;
@@ -3467,7 +3512,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxMaterialCajaAgua.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CEUbiCajaConexAgua)CbxMaterialCajaAgua.getSelectedItem()).getIdUbiCajaConexAgua())
+            if(IdTipoDocumento==((CEMaterialCajaAgua)CbxMaterialCajaAgua.getSelectedItem()).getIdMaterialCajaAgua())
             {
                 CbxMaterialCajaAgua.setSelectedIndex(i);
                 break;
@@ -3500,7 +3545,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxDiametroConexionDesague.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CEEstadoTapaAgua)CbxDiametroConexionDesague.getSelectedItem()).getIdEstadoTapaAgua())
+            if(IdTipoDocumento==((CEDiametroConexionDesague)CbxDiametroConexionDesague.getSelectedItem()).getIdDiametroConexionDesague())
             {
                 CbxDiametroConexionDesague.setSelectedIndex(i);
                 break;
@@ -3562,6 +3607,39 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
             }
         }
     }
+    private void buscarPavimentacion(int IdTipoDocumento)
+    {
+        for(int i=0;i<CbxPavimentacion.getItemCount();i++)
+        {
+            if(IdTipoDocumento==((CEPavimentacion)CbxPavimentacion.getSelectedItem()).getIdPavimentacion())
+            {
+                CbxPavimentacion.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+    private void buscarVereda(int IdTipoDocumento)
+    {
+        for(int i=0;i<CbxVereda.getItemCount();i++)
+        {
+            if(IdTipoDocumento==((CEVereda)CbxVereda.getSelectedItem()).getIdVereda())
+            {
+                CbxVereda.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+        private void buscarPozoArtesanal(int IdTipoDocumento)
+    {
+        for(int i=0;i<CbxPozoArtesanal.getItemCount();i++)
+        {
+            if(IdTipoDocumento==((CEPozoArtesanal)CbxPozoArtesanal.getSelectedItem()).getIdPozoArtesanal())
+            {
+                CbxPozoArtesanal.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAgregarUso;
     private javax.swing.JButton BtnBuscarUsuario;
@@ -3616,7 +3694,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     private com.toedter.calendar.JDateChooser DateFechaEncuestador;
     private com.toedter.calendar.JDateChooser DateFechaSupervision;
     private javax.swing.JLabel LblCodigoFotoCaja;
-    private javax.swing.JLabel LblCodigoFotoDesague;
+    private javax.swing.JLabel LblCodigoFotoPredio;
     private javax.swing.JLabel LblCondicionConexion;
     private javax.swing.JLabel LblDireccion;
     private javax.swing.JLabel LblFotoCaja;

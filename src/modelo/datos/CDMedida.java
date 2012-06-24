@@ -118,7 +118,8 @@ public class CDMedida
                     + "IdEstadoMedidorAgua,"
                     + "PorcentajeComercial,"
                     + "PorcentajeDomestico,"
-                    + "PorcentajeEstatal)"//99
+                    + "PorcentajeEstatal,"
+                    + "IdSituacionConexion)"//99
                     + "VALUES (?, "
                     + "?,"
                     + " ?,"
@@ -220,7 +221,7 @@ public class CDMedida
                     + "?,"
                     + "?,"
                     + "?,"
-                    + "?)";
+                    + "?,?)";
             PreparedStatement ps = con.prepareCall(sql);
             ps.setInt(1,1);
             ps.setDouble(2,oCEMedida.getPorcentajeSocial());
@@ -324,6 +325,7 @@ public class CDMedida
             ps.setDouble(100, oCEMedida.getPorcentajeComercial());
             ps.setDouble(101, oCEMedida.getPorcentajeDomestico());
             ps.setDouble(102, oCEMedida.getPorcentajeEstatal());
+            ps.setDouble(103, oCEMedida.getIdSituacionConexion());
             ps.execute();
             return true;
         }
@@ -341,14 +343,30 @@ public class CDMedida
         try
         {
             Connection conn = ConexionBD.obtenerConexion();
-            String sql = "SELECT  rm.NumeroFicha, rm.Cod_Inscripcion,concat(rm.ApellidoPaternoPropietario,' ',rm.ApellidoMaternoPropietario,',',rm.NombrePropietario),rm.Fecha_Encuestador,  rm.CodDepartamento,  rm.CodProvincia,  rm.CodDistrito,  rm.Manzana,  rm.Lote,  rm.CodigoVia,  rm.TipoVia,  rm.NombreVia,  rm.CodigoHabilitacion,  rm.TipoHabilitacion,  rm.NombreHabilitacion FROM medidor.registro_medida rm"
+            String sql = "SELECT  rm.NumeroFicha,"
+                    + " rm.Cod_Inscripcion,"
+                    + "concat(rm.ApellidoPaternoPropietario,' ',rm.ApellidoMaternoPropietario,',',rm.NombrePropietario),"
+                    + "  rm.CodDepartamento,  "
+                    + "rm.CodProvincia,"
+                    + "  rm.CodDistrito,  "
+                    + "rm.Manzana, "
+                    + " rm.Lote, "
+                    + " rm.CodigoVia,"
+                    + "  rm.TipoVia, "
+                    + " rm.NombreVia, "
+                    + " rm.CodigoHabilitacion, "
+                    + " rm.TipoHabilitacion, "
+                    + " rm.NombreHabilitacion,"
+                    + "rm.IdRegistroMedida,"
+                     + "rm.Fecha_Encuestador"
+                    + " FROM medidor.registro_medida rm"
                     + " WHERE rm.Cod_Inscripcion like '"+dato+"%'";
             PreparedStatement sp = conn.prepareStatement(sql);
             ResultSet rs=sp.executeQuery();
             while(rs.next())
             {
                 CEMedida oCEMedida=new CEMedida();
-                oCEMedida.setNumeroFicha(rs.getString(1));
+                oCEMedida.setNumeroFicha(rs.getInt(1));
                 oCEMedida.setCod_Inscripcion(rs.getString(2));
                 oCEMedida.setApellidoPaternoPropietario(rs.getString(3));
                 oCEMedida.setCodDepartamento(rs.getString(4));
@@ -362,6 +380,8 @@ public class CDMedida
                 oCEMedida.setCodigoHabilitacion(rs.getString(12));
                 oCEMedida.setTipoHabilitacion(rs.getString(13));
                 oCEMedida.setNombreHabilitacion(rs.getString(14));
+                oCEMedida.setIdRegistroMedida(rs.getInt(15));
+                oCEMedida.setFecha_Encuestador(rs.getString(16));
                 oLstLlavesPaso.add(oCEMedida);
             }
 
@@ -380,13 +400,13 @@ public class CDMedida
         {
             Connection conn = ConexionBD.obtenerConexion();
             String sql = "SELECT  rm.NumeroFicha, rm.Cod_Inscripcion,concat(rm.ApellidoPaternoPropietario,' ',rm.ApellidoMaternoPropietario,',',rm.NombrePropietario),rm.Fecha_Encuestador,  rm.CodDepartamento,  rm.CodProvincia,  rm.CodDistrito,  rm.Manzana,  rm.Lote,  rm.CodigoVia,  rm.TipoVia,  rm.NombreVia,  rm.CodigoHabilitacion,  rm.TipoHabilitacion,  rm.NombreHabilitacion FROM medidor.registro_medida rm"
-                    + " WHERE rm.concat(rm.ApellidoPaternoPropietario,' ',rm.ApellidoMaternoPropietario,',',rm.NombrePropietario) like '"+dato+"%'";
+                    + " WHERE rm.concat(rm.ApellidoPaternoPropietario,' ',rm.ApellidoMaternoPropietario,',',rm.NombrePropietario,rm.IdRegistroMedida) like '"+dato+"%'";
             PreparedStatement sp = conn.prepareStatement(sql);
             ResultSet rs=sp.executeQuery();
             while(rs.next())
             {
                 CEMedida oCEMedida=new CEMedida();
-                oCEMedida.setNumeroFicha(rs.getString(1));
+                oCEMedida.setNumeroFicha(rs.getInt(1));
                 oCEMedida.setCod_Inscripcion(rs.getString(2));
                 oCEMedida.setApellidoPaternoPropietario(rs.getString(3));
                 oCEMedida.setCodDepartamento(rs.getString(4));
@@ -400,6 +420,7 @@ public class CDMedida
                 oCEMedida.setCodigoHabilitacion(rs.getString(12));
                 oCEMedida.setTipoHabilitacion(rs.getString(13));
                 oCEMedida.setNombreHabilitacion(rs.getString(14));
+                oCEMedida.setIdRegistroMedida(rs.getInt(15));
                 oLstLlavesPaso.add(oCEMedida);
             }
 
@@ -410,6 +431,162 @@ public class CDMedida
             ex.printStackTrace();
         }
         return oLstLlavesPaso;
+
+    }
+    public CEMedida ConsultarMedida(int dato)
+    {
+        CEMedida oCEMedida=new CEMedida();
+        try
+        {
+            Connection conn = ConexionBD.obtenerConexion();
+            String sql = "SELECT IdRegistroMedida,NumeroFicha,IdCondicionConexionAgua,IdCondicionConexionDesague,IdDiametroConexionDesague,  IdDiametroConexionAgua,  IdDiametroMedidor,  IdEstadoCajaAgua,  IdEstadoCajaDesague,  IdEstadoTapaAgua,  IdEstadoTapaDesague,  IdLlavePaso,  IdMaterialCajaAgua,  IdMaterialCajaDesague,  IdMaterialTapaAgua,  IdMaterialTapaDesague,  IdMedioAbastecimiento,  IdPavimentacion,  IdPosicionMedidor,  IdPozoArtesanal,  IdSeguridadMedidor,  IdSituacionAgua,  IdSituacionPredio,  IdTipoAlmacenamiento,  IdTipoPredio,  IdTipoPropiedad,  IdTipoServicio,  IdUbiCajaConexAgua,  IdUbiCajaConexDesague,  IdUsoPredio,  IdVereda,  Cod_Encuestador,  Fecha_Encuestador,  Cod_Supervisor,  Fecha_Supervisor,  Cod_Digitador,  Fecha_Digitador,  Cod_Inscripcion,  Manzana,  Lote,  Conexion,  RutaLectura,  RutaReparto,  Secuencia,  Categoria,  CodigoVia,  TipoVia,  NombreVia,  NumMunicipal,  CodigoHabilitacion,  TipoHabilitacion,  NombreHabilitacion,  NumManzana,  NumLote,  Block,  Piso,  Numero,  Complemento,  ApellidoPaternoPropietario,  ApellidoMaternoPropietario,  NombrePropietario,  ApellidoPaternoConyugue,  ApellidoMaternoConyugue,  NombreConyugue,  CorreoElectronico,  CantHabitantesPredio,  NumPiso,  SiNoPredioHabilitado,  SiNoMedidor,  NumeroMedidor,  SiNoIlegibleNumMedidor,  Lectura,  SiNoIlegibleLectura,  MarcaMedidor,  SiNoTapaConexionAgua,  MaterialConexionAgua,  IdTipoFugaAgua,  SiNoFugaAgua,  SiNoFugaDesague,  FrecuenciaAbastecimientoHorasPorDia,  FrecuenciaAbastecimientoDiasPorSemana,  Observaciones,  ApellidoPaternoEntrevistado,  ApellidoMaternoEntrevistado,  NombreCompletoEntrevistado,  DocumentoEntrevistado,  IdTipoPropiedadInquilino,  CodigoFotoCaja,  CodigoFotoPredio,  CodDepartamento,  CodProvincia,  CodDistrito,  Seccion,  IdTipoDocumento,  Telefono,  NumeroDocumentoPropietario,  UbicacionConexionAgua,  UbicacionConexionDesague,  IdEstadoMedidorAgua,  PorcentajeComercial,  PorcentajeEstatal,  PorcentajeDomestico,  PorcentajeSocial,IdSituacionConexion FROM"
+                    + " registro_medida m where m.IdRegistroMedida="+dato;
+            PreparedStatement sp = conn.prepareStatement(sql);
+            ResultSet rs=sp.executeQuery();
+            if(rs.next())
+            {
+                oCEMedida.setNumeroFicha(rs.getInt(2));//1
+                oCEMedida.setIdSituacionConexion(rs.getInt(104));//2
+                oCEMedida.setCodDepartamento(rs.getString(90));//3
+                oCEMedida.setCodProvincia(rs.getString(91));//4
+                oCEMedida.setCodDistrito(rs.getString(92));//5
+                oCEMedida.setSeccion(rs.getString(93));//6
+                oCEMedida.setManzana(rs.getString(39));//7
+                oCEMedida.setLote(rs.getString(40));//8
+                oCEMedida.setConexion(rs.getString(41));//9 OK
+
+                oCEMedida.setCod_Inscripcion(rs.getString(38));//10
+                oCEMedida.setRutaLectura(rs.getString(42));//11
+                oCEMedida.setRutaReparto(rs.getString(43));//12
+                oCEMedida.setSecuencia(rs.getString(44));//13
+                oCEMedida.setCategoria(rs.getString(45));//14 OK
+
+                oCEMedida.setIdTipoDocumento(rs.getInt(94));//15
+                oCEMedida.setNumeroDocumento(rs.getString(96));//16
+                oCEMedida.setTelefono(rs.getString(95));//17
+                oCEMedida.setApellidoPaternoPropietario(rs.getString(59));//18
+                oCEMedida.setApellidoMaternoPropietario(rs.getString(60));//19
+                oCEMedida.setNombrePropietario(rs.getString(61));//20
+                oCEMedida.setApellidoPaternoConyugue(rs.getString(62));//21
+                oCEMedida.setApellidoMaternoConyugue(rs.getString(63));//22 OK
+
+                oCEMedida.setNombreConyugue(rs.getString(64));//23
+                oCEMedida.setCorreoElectronico(rs.getString(65));//24
+                oCEMedida.setIdTipoPropiedad(rs.getInt(26));//25
+                oCEMedida.setCantHabitantesPredio(rs.getInt(66));//26
+                oCEMedida.setNumPiso(rs.getInt(67));//27
+                oCEMedida.setIdTipoPredio(rs.getInt(25));//28 OK
+
+
+                oCEMedida.setCodigoVia(rs.getString(46));//29
+                oCEMedida.setTipoVia(rs.getString(47));//30
+                oCEMedida.setNombreVia(rs.getString(48));//31
+                oCEMedida.setNumMunicipal(rs.getString(49));//32
+                oCEMedida.setCodigoHabilitacion(rs.getString(50));//33
+                oCEMedida.setTipoHabilitacion(rs.getString(51));//34
+                oCEMedida.setNombreHabilitacion(rs.getString(52));//35
+                oCEMedida.setNumManzana(rs.getString(53));//36 OK
+
+
+                oCEMedida.setNumLote(rs.getString(54));//37
+                oCEMedida.setBlock(rs.getString(55));//38
+                oCEMedida.setPiso(rs.getString(56));//39
+                oCEMedida.setNumero(rs.getString(57));//40
+                oCEMedida.setIdUsoPredio(rs.getInt(30));//41 ok
+
+
+                oCEMedida.setComplemento(rs.getString(58));//42
+                oCEMedida.setSiNoPredioHabilitado(rs.getBoolean(68));//43
+                oCEMedida.setIdTipoServicio(rs.getInt(27));//44
+                oCEMedida.setIdMedioAbastecimiento(rs.getInt(17));//45
+                oCEMedida.setIdSituacionPredio(rs.getInt(23));//46
+                oCEMedida.setIdTipoAlmacenamiento(rs.getInt(24));//47
+
+                oCEMedida.setPorcentajeDomestico(rs.getDouble(102));//48
+                oCEMedida.setPorcentajeComercial(rs.getDouble(100));//49
+                oCEMedida.setPorcentajeEstatal(rs.getDouble(101));//50
+                oCEMedida.setPorcentajeSocial(rs.getDouble(103));//51
+
+                oCEMedida.setSiNoMedidor(rs.getBoolean(69));//52
+                oCEMedida.setNumeroMedidor(rs.getString(70));//53
+                oCEMedida.setSiNoIlegibleNumMedidor(rs.getBoolean(71));//54
+                oCEMedida.setMarcaMedidor(rs.getString(74));//55
+                oCEMedida.setLectura(rs.getInt(72));//56
+                oCEMedida.setSiNoIlegibleLectura(rs.getBoolean(73));//57
+
+
+                oCEMedida.setIdDiametroMedidor(rs.getInt(7));//58
+                oCEMedida.setIdEstadoMedidor(rs.getInt(99));//59 ok
+
+
+                oCEMedida.setIdLlavePaso(rs.getInt(12));//60
+                oCEMedida.setIdSeguridadMedidor(rs.getInt(21));//61
+                oCEMedida.setIdPosicionMedidor(rs.getInt(19));//62
+                oCEMedida.setIdSituacionAgua(rs.getInt(22));//63
+                oCEMedida.setIdUbiCajaConexAgua(rs.getInt(28));//64
+                oCEMedida.setIdDiametroConexionAgua(rs.getInt(6));//65 ok
+
+
+                oCEMedida.setIdCondicionConexionAgua(rs.getInt(3));//66
+                oCEMedida.setIdMaterialCajaAgua(rs.getInt(13));//67
+                oCEMedida.setIdEstadoCajaAgua(rs.getInt(8));//68
+                oCEMedida.setMaterialConexionAgua(rs.getString(76));//69
+                oCEMedida.setSiNoTapaConexionAgua(rs.getBoolean(75));//70
+
+                oCEMedida.setIdMaterialTapaAgua(rs.getInt(15));//68
+
+                oCEMedida.setIdEstadoTapaAgua(rs.getInt(10));//68
+
+                oCEMedida.setSiNoFugaAgua(rs.getBoolean(78));//71
+                oCEMedida.setTipoFugaAgua(rs.getInt(77));//72 ok
+
+                oCEMedida.setIdUbiCajaConexDesague(rs.getInt(29));//74
+                oCEMedida.setIdDiametroConexionDesague(rs.getInt(5));//75
+                oCEMedida.setIdCondicionConexionDesague(rs.getInt(4));//76
+                oCEMedida.setIdMaterialCajaDesague(rs.getInt(14));//77
+                oCEMedida.setIdMaterialTapaDesague(rs.getInt(16));//78   ok
+
+
+                oCEMedida.setIdEstadoTapaDesague(rs.getInt(11));//79
+                oCEMedida.setIdEstadoCajaDesague(rs.getInt(9));//80
+                oCEMedida.setSiNoFugaDesague(rs.getBoolean(79));//81
+                oCEMedida.setIdPavimentacion(rs.getInt(18));//82
+                oCEMedida.setIdVereda(rs.getInt(31));//83 ok
+
+
+                oCEMedida.setIdPozoArtesanal(rs.getInt(20));//84
+                oCEMedida.setFrecuenciaAbastecimientoHorasPorDia(rs.getDouble(80));//85
+                oCEMedida.setFrecuenciaAbastecimientoDiasPorSemana(rs.getDouble(81));//86 ok
+
+                oCEMedida.setObservaciones(rs.getString(82));//87
+                oCEMedida.setApellidoPaternoEntrevistado(rs.getString(83));//88
+                oCEMedida.setApellidoMaternoEntrevistado(rs.getString(84));//89
+                oCEMedida.setNombreCompletoEntrevistado(rs.getString(85));//90
+                oCEMedida.setDocumentoEntrevistado(rs.getString(86));//91
+                oCEMedida.setIdTipoPropiedadEntrevistado(rs.getInt(87));//92 ok
+
+                oCEMedida.setCodigoFotoCaja(rs.getString(88));//93
+                oCEMedida.setCodigoFotoPredio(rs.getString(89));//94
+                oCEMedida.setUbicacionConexionAgua(rs.getInt(97));//95
+                oCEMedida.setUbicacionConexionDesague(rs.getInt(98));//96
+                oCEMedida.setCod_Encuestador(rs.getString(32));//97
+
+
+                oCEMedida.setFecha_Encuestador(rs.getString(33));//98
+                oCEMedida.setCod_Supervisor(rs.getString(34));//99
+                oCEMedida.setFecha_Supervisor(rs.getString(35));//100
+                oCEMedida.setCod_Digitado(rs.getString(36));//101
+                oCEMedida.setFecha_Digitador(rs.getString(37));//102
+
+            }
+
+        }
+        catch (SQLException ex)
+        {
+
+            ex.printStackTrace();
+        }
+        return oCEMedida;
 
     }
 }

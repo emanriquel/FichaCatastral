@@ -3,8 +3,7 @@ package modelo.entidad;
 public class CEMedida
 {
   private int IdRegistroMedida ;
-  private String NumeroFicha ;
-  private String FechaEncuesta;
+  private int NumeroFicha ;
   private int IdSituacionConexion;
   private int IdCondicionConexionAgua;
   private int IdCondicionConexionDesague;
@@ -300,14 +299,7 @@ public class CEMedida
         this.DocumentoEntrevistado = DocumentoEntrevistado;
     }
 
-    public String getFechaEncuesta() {
-        return FechaEncuesta;
-    }
-
-    public void setFechaEncuesta(String FechaEncuesta) {
-        this.FechaEncuesta = FechaEncuesta;
-    }
-
+ 
     public String getFecha_Digitador() {
         return Fecha_Digitador;
     }
@@ -716,11 +708,11 @@ public class CEMedida
         this.Numero = Numero;
     }
 
-    public String getNumeroFicha() {
+    public int getNumeroFicha() {
         return NumeroFicha;
     }
 
-    public void setNumeroFicha(String NumeroFicha) {
+    public void setNumeroFicha(int NumeroFicha) {
         this.NumeroFicha = NumeroFicha;
     }
 
@@ -1038,6 +1030,11 @@ public class CEMedida
      */
     public void setUbicacionConexionDesague(double UbicacionConexionDesague) {
         this.UbicacionConexionDesague = UbicacionConexionDesague;
+    }
+
+    @Override
+    public String toString() {
+        return this.ApellidoPaternoPropietario;
     }
 
 }
