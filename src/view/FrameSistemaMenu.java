@@ -2,6 +2,7 @@ package view;
 
 import java.util.List;
 import java.util.Vector;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.datos.CDMedida;
@@ -11,6 +12,7 @@ public class FrameSistemaMenu extends javax.swing.JFrame {
 
     public FrameSistemaMenu() {
         initComponents();
+        setExtendedState(FrameSistemaMenu.MAXIMIZED_BOTH);
     }
 
     @SuppressWarnings("unchecked")

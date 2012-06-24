@@ -6,7 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import view.FrameSistemaMenu;
+import view.FrmAccesoSistema;
 
 public class ClasePrincipal {
 
@@ -19,7 +19,7 @@ public class ClasePrincipal {
             UIManager.put("CheckBox.disabledForeground", Color.BLACK);
             UIManager.put("CheckBox.disabledBackground", new Color(236, 233, 216));
             UIManager.setLookAndFeel(new WindowsLookAndFeel());
-            FrameSistemaMenu oFramePrincipal = new FrameSistemaMenu();
+            FrmAccesoSistema oFramePrincipal = new FrmAccesoSistema();
             oFramePrincipal.setLocationRelativeTo(null);
             oFramePrincipal.setVisible(true);
         }

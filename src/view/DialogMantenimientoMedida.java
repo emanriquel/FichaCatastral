@@ -1,5 +1,10 @@
 package view;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import javax.swing.ImageIcon;
@@ -2904,8 +2909,9 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
             boolean valor=oCDMedida.registrarMedida(oCEMedida);
             if(valor)
             {
+                copiarImagenes(jFileChooser1.getSelectedFile(),1);
+                copiarImagenes(jFileChooser2.getSelectedFile(),2);
                JOptionPane.showMessageDialog(null, "Se registro correctamente");
-
             }
             else
             {
@@ -2923,6 +2929,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                 boolean valor=oCDMedida.actualizarMedida(oCEMedida);
                 if(valor)
                 {
+                    copiarImagenes(jFileChooser1.getSelectedFile(),1);
+                    copiarImagenes(jFileChooser2.getSelectedFile(),2);
                    JOptionPane.showMessageDialog(null, "Se actualizo correctamente");
                    dispose();
                 }
@@ -2941,7 +2949,35 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     }
 
     }//GEN-LAST:event_BtnGuardarActionPerformed
+    private void copiarImagenes(File in,int tipo){
 
+       try
+        {
+
+        FileInputStream fis = new FileInputStream(in.getPath());
+        FileOutputStream fos=null;
+        if(tipo==1)
+        {
+        fos = new FileOutputStream("C:/Program Files/FichasCatastral/Imagenes/Caja/"+in.getName());
+        }
+        else
+        {
+        fos = new FileOutputStream("C:/Program Files/FichasCatastral/Imagenes/Predio/"+in.getName());
+        }
+        FileChannel canalFuente = fis.getChannel();
+        FileChannel canalDestino = fos.getChannel();
+        canalFuente.transferTo(0, canalFuente.size(), canalDestino);
+        fis.close();
+        fos.close();
+        }
+        catch (IOException ex)
+        {
+            ex.printStackTrace();
+
+
+        }
+
+    }
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
     dispose();
     }//GEN-LAST:event_BtnCancelarActionPerformed
@@ -3218,6 +3254,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
 
     private void setMedida(CEMedida oCEMedida)
     {
+        LblFotoCaja.setIcon(new ImageIcon(("C:/Program Files/FichasCatastral/Imagenes/Caja/"+oCEMedida.getCodigoFotoCaja())));
+        LblFotoPredio.setIcon(new ImageIcon(("C:/Program Files/FichasCatastral/Imagenes/Predio/"+oCEMedida.getCodigoFotoPredio())));
         TxtNumeroFicha.setText(oCEMedida.getNumeroFicha()+"");
         buscarSituacionConexion(oCEMedida.getIdSituacionConexion());
         TxtDepartamento.setText(oCEMedida.getCodDepartamento());
