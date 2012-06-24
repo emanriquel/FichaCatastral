@@ -1,12 +1,11 @@
-
 package view;
 
 import java.util.List;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.datos.CDMedida;
 import modelo.entidad.CEMedida;
-import sun.jdbc.odbc.OdbcDef;
 
 public class FrameSistemaMenu extends javax.swing.JFrame {
 
@@ -76,9 +75,14 @@ public class FrameSistemaMenu extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Arial", 1, 11));
+        jButton1.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/v-search_more.png"))); // NOI18N
         jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         BtnNuevoRegistro.setFont(new java.awt.Font("Arial", 1, 12));
         BtnNuevoRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/document_2_add.png"))); // NOI18N
@@ -91,17 +95,27 @@ public class FrameSistemaMenu extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Arial", 1, 12));
+        jButton3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/file_delete.png"))); // NOI18N
         jButton3.setText("Eliminar");
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setFont(new java.awt.Font("Arial", 1, 12));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/edit.gif"))); // NOI18N
         jButton4.setText("Modificar");
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/logo.png"))); // NOI18N
 
@@ -118,6 +132,7 @@ public class FrameSistemaMenu extends javax.swing.JFrame {
         lblNroReg.setOpaque(true);
 
         buttonGroup1.add(RbtInscripcion);
+        RbtInscripcion.setSelected(true);
         RbtInscripcion.setText("Nº Inscripción");
 
         buttonGroup1.add(RbtUsuarip);
@@ -202,7 +217,11 @@ public class FrameSistemaMenu extends javax.swing.JFrame {
 
     private void TxtFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtFiltroActionPerformed
         limpiarTabla();
-        if(opcion()==1)
+        filtrar();
+       
+    }//GEN-LAST:event_TxtFiltroActionPerformed
+    private void filtrar(){
+         if(opcion()==1)
         {
             CDMedida cDMedida=new CDMedida();
             List<CEMedida> oLstMedida=cDMedida.listarPorCodigoInscripcion(TxtFiltro.getText());
@@ -255,8 +274,7 @@ public class FrameSistemaMenu extends javax.swing.JFrame {
 
             }
         }
-    }//GEN-LAST:event_TxtFiltroActionPerformed
-
+    }
     private void TblListadoRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TblListadoRegistroMouseClicked
        if(evt.getClickCount()==2)
        {
@@ -270,6 +288,43 @@ public class FrameSistemaMenu extends javax.swing.JFrame {
            }
        }
     }//GEN-LAST:event_TblListadoRegistroMouseClicked
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+     int fila=TblListadoRegistro.getSelectedRow();
+           if(fila!=-1)
+           {
+               CEMedida oCEMedida=(CEMedida)TblListadoRegistro.getValueAt(fila,2);
+               DialogMantenimientoMedida oDialogMantenimientoMedida=new DialogMantenimientoMedida(null,true, 2,oCEMedida);
+               oDialogMantenimientoMedida.setLocationRelativeTo(null);
+               oDialogMantenimientoMedida.setVisible(true);
+           }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+       int fila=TblListadoRegistro.getSelectedRow();
+           if(fila!=-1)
+           {
+               CEMedida oCEMedida=(CEMedida)TblListadoRegistro.getValueAt(fila,2);
+               int opcion=JOptionPane.showConfirmDialog(null, "¿Esta seguro de eliminar el registro de la ficha?","Mensaje de Confirmación", JOptionPane.YES_NO_OPTION);
+               if(opcion==JOptionPane.YES_OPTION)
+               {
+                   CDMedida oCDMedida=new  CDMedida();
+                   boolean valor=oCDMedida.eliminarMedida(oCEMedida.getIdRegistroMedida());
+                   if(!valor)
+                   {
+                    JOptionPane.showMessageDialog(null,"No se pudo eliminar la ficha");
+                   }
+                   else{
+                    limpiarTabla();
+                    filtrar();
+                   }
+               }
+           }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        filtrar();
+    }//GEN-LAST:event_jButton1ActionPerformed
    
    private void limpiarTabla(){
        DefaultTableModel oDefaultTableModel=(DefaultTableModel)TblListadoRegistro.getModel();

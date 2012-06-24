@@ -78,10 +78,12 @@ import modelo.entidad.CEUsoPredio;
 import modelo.entidad.CEVereda;
 import modelo.entidad.CEVia;
 import util.ArrayListComboBoxModel;
+import util.ConvertidorFecha;
 
 public class DialogMantenimientoMedida extends javax.swing.JDialog {
 
     private int codigo;
+    private int IdRegistroMedida;
     public DialogMantenimientoMedida(java.awt.Frame parent, boolean modal,int codigo,CEMedida oCEMedida) {
         super(parent, modal);
         initComponents();
@@ -89,7 +91,15 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         this.codigo=codigo;
         if(codigo==3){
             setMedida((new CDMedida()).ConsultarMedida(oCEMedida.getIdRegistroMedida()));
-
+            BtnGuardar.setVisible(false);
+            BtnCancelar.setVisible(false);
+        }
+        else{
+            if(codigo==2)
+            {
+                setMedida((new CDMedida()).ConsultarMedida(oCEMedida.getIdRegistroMedida()));
+                this.IdRegistroMedida=oCEMedida.getIdRegistroMedida();
+            }
         }
     }
     private void cargarComboBox(){
@@ -2884,24 +2894,45 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnFotoDesagueActionPerformed
 
     private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarActionPerformed
-    try
-    {
-    if(codigo==1){
-        // insertar
-        CEMedida oCEMedida=getMedida();
-        CDMedida oCDMedida=new CDMedida();
-        boolean valor=oCDMedida.registrarMedida(oCEMedida);
-        if(valor)
+        try
         {
-           JOptionPane.showMessageDialog(null, "Se registro correctamente");
+            if(codigo==1)
+            {
+            // insertar
+            CEMedida oCEMedida=getMedida();
+            CDMedida oCDMedida=new CDMedida();
+            boolean valor=oCDMedida.registrarMedida(oCEMedida);
+            if(valor)
+            {
+               JOptionPane.showMessageDialog(null, "Se registro correctamente");
+
+            }
+            else
+            {
+               JOptionPane.showMessageDialog(null, "No se pudo guardar el registro");
+            }
         }
-        else{
-           JOptionPane.showMessageDialog(null, "No se pudo guardar el registro");
+            else
+            {
+               if(codigo==2)
+               {
+                // modificar
+                CEMedida oCEMedida=getMedida();
+                CDMedida oCDMedida=new CDMedida();
+                oCEMedida.setIdRegistroMedida(IdRegistroMedida);
+                boolean valor=oCDMedida.actualizarMedida(oCEMedida);
+                if(valor)
+                {
+                   JOptionPane.showMessageDialog(null, "Se actualizo correctamente");
+                   dispose();
+                }
+                else
+                {
+                   JOptionPane.showMessageDialog(null, "No se pudo actualizar el registro");
+                   
+                }
+            }
         }
-    }
-    else{
-        //editar
-    }
     }
     catch(Exception ex)
     {
@@ -3028,6 +3059,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
 
         CETipoDocumento oCETipoDocumento=(CETipoDocumento)CbxTipoDocumento.getSelectedItem();
         oCEMedida.setIdTipoDocumento(oCETipoDocumento.getIdTipoDocumento());//15
+        
         oCEMedida.setNumeroDocumento(TxtNumDocumento.getText());//16
         oCEMedida.setTelefono(TxtTelefono.getText());//17
         oCEMedida.setApellidoPaternoPropietario(TxtApellidoPaternoPropietario.getText());//18
@@ -3168,12 +3200,18 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         oCEMedida.setUbicacionConexionDesague(Double.parseDouble(TxtUbiConexDesague.getText()));//96
         oCEMedida.setCod_Encuestador(TxtCodigoEncuestador.getText());//97
 
-
-        oCEMedida.setFecha_Encuestador(DateFechaEncuestador.getDate()+"");//98
+        ConvertidorFecha oConvertidorFecha=new ConvertidorFecha();
+        oConvertidorFecha.setFecha(DateFechaEncuestador.getCalendar());
+        oConvertidorFecha.setFechaConvertida();
+        oCEMedida.setFecha_Encuestador(oConvertidorFecha.getFechaConvertida()+"");//98
         oCEMedida.setCod_Supervisor(TxtCodigoSupervisor.getText());//99
-        oCEMedida.setFecha_Supervisor(DateFechaSupervision.getDate()+"");//100
+        oConvertidorFecha.setFecha(DateFechaSupervision.getCalendar());
+        oConvertidorFecha.setFechaConvertida();
+        oCEMedida.setFecha_Supervisor(oConvertidorFecha.getFechaConvertida()+"");//100
         oCEMedida.setCod_Digitado(TxtCodigoDigitador.getText());//101
-        oCEMedida.setFecha_Digitador(DateFechaDigitador.getDate()+"");//102
+         oConvertidorFecha.setFecha(DateFechaSupervision.getCalendar());
+        oConvertidorFecha.setFechaConvertida();
+        oCEMedida.setFecha_Digitador(oConvertidorFecha.getFechaConvertida()+"");//102
 
         return oCEMedida;
     }
@@ -3227,6 +3265,10 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         buscarMedioAbastecimiento(oCEMedida.getIdMedioAbastecimiento());
         buscarSituacionPredio(oCEMedida.getIdSituacionPredio());
         buscarTipoAlmacenamiento(oCEMedida.getIdTipoAlmacenamiento());
+        TxtPorcentajeComercial.setText(oCEMedida.getPorcentajeComercial()+"");
+        TxtPorcentajeDomestico.setText(oCEMedida.getPorcentajeDomestico()+"");
+        TxtPorcentajeEstatal.setText(oCEMedida.getPorcentajeEstatal()+"");
+        TxtPorcentajeSocial.setText(oCEMedida.getPorcentajeSocial()+"");
         ChkSiNoMedidor.setSelected(oCEMedida.isSiNoMedidor());
         TxtNumeroMedidor.setText(oCEMedida.getNumeroMedidor());
         ChkSiNoIlegibleNumeroMedidor.setSelected(oCEMedida.isSiNoIlegibleNumMedidor());
@@ -3292,7 +3334,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxTipoPropiedadEntrevistado.getItemCount();i++)
         {
-            if(IdSituacionConexion==((CETipoPropiedadInquilino)CbxTipoPropiedadEntrevistado.getSelectedItem()).getIdTipoPropiedadInquilino())
+            if(IdSituacionConexion==((CETipoPropiedadInquilino)CbxTipoPropiedadEntrevistado.getItemAt(i)).getIdTipoPropiedadInquilino())
             {
                 CbxTipoPropiedadEntrevistado.setSelectedIndex(i);
                 break;
@@ -3303,7 +3345,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxSituacionConexion.getItemCount();i++)
         {
-            if(IdSituacionConexion==((CESituacionConexion)CbxSituacionConexion.getSelectedItem()).getIdSituacionConexion())
+            if(IdSituacionConexion==((CESituacionConexion)CbxSituacionConexion.getItemAt(i)).getIdSituacionConexion())
             {
                 CbxSituacionConexion.setSelectedIndex(i);
                 break;
@@ -3312,9 +3354,10 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     }
      private void buscarTipoDocumento(int IdTipoDocumento)
     {
+         
         for(int i=0;i<CbxTipoDocumento.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CETipoDocumento)CbxTipoDocumento.getSelectedItem()).getIdTipoDocumento())
+            if(IdTipoDocumento==((CETipoDocumento)CbxTipoDocumento.getItemAt(i)).getIdTipoDocumento())
             {
                 CbxTipoDocumento.setSelectedIndex(i);
                 break;
@@ -3325,7 +3368,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxTipoPropiedad.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CETipoPropiedad)CbxTipoPropiedad.getSelectedItem()).getIdTipoPropiedad())
+            if(IdTipoDocumento==((CETipoPropiedad)CbxTipoPropiedad.getItemAt(i)).getIdTipoPropiedad())
             {
                 CbxTipoPropiedad.setSelectedIndex(i);
                 break;
@@ -3336,7 +3379,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxTipoPredio.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CETipoPredio)CbxTipoPredio.getSelectedItem()).getIdTipoPredio())
+            if(IdTipoDocumento==((CETipoPredio)CbxTipoPredio.getItemAt(i)).getIdTipoPredio())
             {
                 CbxTipoPredio.setSelectedIndex(i);
                 break;
@@ -3347,7 +3390,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxUsoPredio.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CEUsoPredio)CbxUsoPredio.getSelectedItem()).getIdUsoPredio())
+            if(IdTipoDocumento==((CEUsoPredio)CbxUsoPredio.getItemAt(i)).getIdUsoPredio())
             {
                 CbxUsoPredio.setSelectedIndex(i);
                 break;
@@ -3358,7 +3401,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxTipoServicio.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CETipoServicio)CbxTipoServicio.getSelectedItem()).getIdTipoServicio())
+            if(IdTipoDocumento==((CETipoServicio)CbxTipoServicio.getItemAt(i)).getIdTipoServicio())
             {
                 CbxTipoServicio.setSelectedIndex(i);
                 break;
@@ -3369,7 +3412,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxMedioAbastecimiento.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CEMedioAbastecimiento)CbxMedioAbastecimiento.getSelectedItem()).getIdMedioAbastecimiento())
+            if(IdTipoDocumento==((CEMedioAbastecimiento)CbxMedioAbastecimiento.getItemAt(i)).getIdMedioAbastecimiento())
             {
                 CbxMedioAbastecimiento.setSelectedIndex(i);
                 break;
@@ -3380,7 +3423,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxSituacionPredio.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CESituacionPredio)CbxSituacionPredio.getSelectedItem()).getIdSituacionPredio())
+            if(IdTipoDocumento==((CESituacionPredio)CbxSituacionPredio.getItemAt(i)).getIdSituacionPredio())
             {
                 CbxSituacionPredio.setSelectedIndex(i);
                 break;
@@ -3391,7 +3434,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxTipoAlmacenamiento.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CETipoAlmacenamiento)CbxTipoAlmacenamiento.getSelectedItem()).getIdTipoAlmacenamiento())
+            if(IdTipoDocumento==((CETipoAlmacenamiento)CbxTipoAlmacenamiento.getItemAt(i)).getIdTipoAlmacenamiento())
             {
                 CbxTipoAlmacenamiento.setSelectedIndex(i);
                 break;
@@ -3402,7 +3445,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxDiametroMedidor.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CEDiametroMedidor)CbxDiametroMedidor.getSelectedItem()).getIdDiametroMedidor())
+            if(IdTipoDocumento==((CEDiametroMedidor)CbxDiametroMedidor.getItemAt(i)).getIdDiametroMedidor())
             {
                 CbxDiametroMedidor.setSelectedIndex(i);
                 break;
@@ -3413,7 +3456,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxEstadoMedidor.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CEEstadoMedidor)CbxEstadoMedidor.getSelectedItem()).getIdEstadoMedidor())
+            if(IdTipoDocumento==((CEEstadoMedidor)CbxEstadoMedidor.getItemAt(i)).getIdEstadoMedidor())
             {
                 CbxEstadoMedidor.setSelectedIndex(i);
                 break;
@@ -3424,7 +3467,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxLlavesPaso.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CELlavesPaso)CbxLlavesPaso.getSelectedItem()).getIdLlavesPaso())
+            if(IdTipoDocumento==((CELlavesPaso)CbxLlavesPaso.getItemAt(i)).getIdLlavesPaso())
             {
                 CbxLlavesPaso.setSelectedIndex(i);
                 break;
@@ -3435,7 +3478,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxSeguridadMedidor.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CESeguridadMedidor)CbxSeguridadMedidor.getSelectedItem()).getIdSeguridadMedidor())
+            if(IdTipoDocumento==((CESeguridadMedidor)CbxSeguridadMedidor.getItemAt(i)).getIdSeguridadMedidor())
             {
                 CbxSeguridadMedidor.setSelectedIndex(i);
                 break;
@@ -3446,7 +3489,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxPosicionMedidor.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CEPosicionMedidor)CbxPosicionMedidor.getSelectedItem()).getIdPosicionMedidor())
+            if(IdTipoDocumento==((CEPosicionMedidor)CbxPosicionMedidor.getItemAt(i)).getIdPosicionMedidor())
             {
                 CbxPosicionMedidor.setSelectedIndex(i);
                 break;
@@ -3457,7 +3500,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxSituacionAgua.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CESituacionAgua)CbxSituacionAgua.getSelectedItem()).getIdSituacionAgua())
+            if(IdTipoDocumento==((CESituacionAgua)CbxSituacionAgua.getItemAt(i)).getIdSituacionAgua())
             {
                 CbxSituacionAgua.setSelectedIndex(i);
                 break;
@@ -3468,7 +3511,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxUbiCajaConexAgua.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CEUbiCajaConexAgua)CbxUbiCajaConexAgua.getSelectedItem()).getIdUbiCajaConexAgua())
+            if(IdTipoDocumento==((CEUbiCajaConexAgua)CbxUbiCajaConexAgua.getItemAt(i)).getIdUbiCajaConexAgua())
             {
                 CbxUbiCajaConexAgua.setSelectedIndex(i);
                 break;
@@ -3479,7 +3522,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxDiametroConexionAgua.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CEDiametroConexionAgua)CbxDiametroConexionAgua.getSelectedItem()).getIdDiametroConexionAgua())
+            if(IdTipoDocumento==((CEDiametroConexionAgua)CbxDiametroConexionAgua.getItemAt(i)).getIdDiametroConexionAgua())
             {
                 CbxDiametroConexionAgua.setSelectedIndex(i);
                 break;
@@ -3490,7 +3533,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxCondicionConexionAgua.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CECondicionConexionAgua)CbxCondicionConexionAgua.getSelectedItem()).getIdCondicionConexionAgua())
+            if(IdTipoDocumento==((CECondicionConexionAgua)CbxCondicionConexionAgua.getItemAt(i)).getIdCondicionConexionAgua())
             {
                 CbxCondicionConexionAgua.setSelectedIndex(i);
                 break;
@@ -3501,7 +3544,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxEstadoCajaAgua.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CEEstadoCajaAgua)CbxEstadoCajaAgua.getSelectedItem()).getIdEstadoCajaAgua())
+            if(IdTipoDocumento==((CEEstadoCajaAgua)CbxEstadoCajaAgua.getItemAt(i)).getIdEstadoCajaAgua())
             {
                 CbxEstadoCajaAgua.setSelectedIndex(i);
                 break;
@@ -3512,7 +3555,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxMaterialCajaAgua.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CEMaterialCajaAgua)CbxMaterialCajaAgua.getSelectedItem()).getIdMaterialCajaAgua())
+            if(IdTipoDocumento==((CEMaterialCajaAgua)CbxMaterialCajaAgua.getItemAt(i)).getIdMaterialCajaAgua())
             {
                 CbxMaterialCajaAgua.setSelectedIndex(i);
                 break;
@@ -3523,7 +3566,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxEstadoTapaAgua.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CEEstadoTapaAgua)CbxEstadoTapaAgua.getSelectedItem()).getIdEstadoTapaAgua())
+            if(IdTipoDocumento==((CEEstadoTapaAgua)CbxEstadoTapaAgua.getItemAt(i)).getIdEstadoTapaAgua())
             {
                 CbxEstadoTapaAgua.setSelectedIndex(i);
                 break;
@@ -3534,7 +3577,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxUbiCajaConexDesague.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CEUbiCajaConexDesague)CbxUbiCajaConexDesague.getSelectedItem()).getIdUbiCajaConexDesague())
+            if(IdTipoDocumento==((CEUbiCajaConexDesague)CbxUbiCajaConexDesague.getItemAt(i)).getIdUbiCajaConexDesague())
             {
                 CbxUbiCajaConexDesague.setSelectedIndex(i);
                 break;
@@ -3545,7 +3588,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxDiametroConexionDesague.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CEDiametroConexionDesague)CbxDiametroConexionDesague.getSelectedItem()).getIdDiametroConexionDesague())
+            if(IdTipoDocumento==((CEDiametroConexionDesague)CbxDiametroConexionDesague.getItemAt(i)).getIdDiametroConexionDesague())
             {
                 CbxDiametroConexionDesague.setSelectedIndex(i);
                 break;
@@ -3556,7 +3599,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxCondicionConexDesague.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CECondicionConexionDesague)CbxCondicionConexDesague.getSelectedItem()).getIdCondicionConexionDesague())
+            if(IdTipoDocumento==((CECondicionConexionDesague)CbxCondicionConexDesague.getItemAt(i)).getIdCondicionConexionDesague())
             {
                 CbxCondicionConexDesague.setSelectedIndex(i);
                 break;
@@ -3567,7 +3610,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxMaterialCajaDesague.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CEMaterialCajaDesague)CbxMaterialCajaDesague.getSelectedItem()).getIdMaterialCajaDesague());
+            if(IdTipoDocumento==((CEMaterialCajaDesague)CbxMaterialCajaDesague.getItemAt(i)).getIdMaterialCajaDesague());
             {
                 CbxMaterialCajaDesague.setSelectedIndex(i);
                 break;
@@ -3578,7 +3621,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxMaterialTapaDesague.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CEMaterialTapaDesague)CbxMaterialTapaDesague.getSelectedItem()).getIdMaterialTapaDesague());
+            if(IdTipoDocumento==((CEMaterialTapaDesague)CbxMaterialTapaDesague.getItemAt(i)).getIdMaterialTapaDesague());
             {
                 CbxMaterialTapaDesague.setSelectedIndex(i);
                 break;
@@ -3589,7 +3632,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxEstadoTapaDesague.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CEEstadoTapaDesague)CbxEstadoTapaDesague.getSelectedItem()).getIdEstadoTapaDesague())
+            if(IdTipoDocumento==((CEEstadoTapaDesague)CbxEstadoTapaDesague.getItemAt(i)).getIdEstadoTapaDesague())
             {
                 CbxEstadoTapaDesague.setSelectedIndex(i);
                 break;
@@ -3600,7 +3643,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxEstadoCajaDesague.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CEEstadoCajaDesague)CbxEstadoCajaDesague.getSelectedItem()).getIdEstadoCajaDesague())
+            if(IdTipoDocumento==((CEEstadoCajaDesague)CbxEstadoCajaDesague.getItemAt(i)).getIdEstadoCajaDesague())
             {
                 CbxEstadoCajaDesague.setSelectedIndex(i);
                 break;
@@ -3611,7 +3654,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxPavimentacion.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CEPavimentacion)CbxPavimentacion.getSelectedItem()).getIdPavimentacion())
+            if(IdTipoDocumento==((CEPavimentacion)CbxPavimentacion.getItemAt(i)).getIdPavimentacion())
             {
                 CbxPavimentacion.setSelectedIndex(i);
                 break;
@@ -3622,7 +3665,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxVereda.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CEVereda)CbxVereda.getSelectedItem()).getIdVereda())
+            if(IdTipoDocumento==((CEVereda)CbxVereda.getItemAt(i)).getIdVereda())
             {
                 CbxVereda.setSelectedIndex(i);
                 break;
@@ -3633,7 +3676,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxPozoArtesanal.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CEPozoArtesanal)CbxPozoArtesanal.getSelectedItem()).getIdPozoArtesanal())
+            if(IdTipoDocumento==((CEPozoArtesanal)CbxPozoArtesanal.getItemAt(i)).getIdPozoArtesanal())
             {
                 CbxPozoArtesanal.setSelectedIndex(i);
                 break;
