@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.Color;
+import java.awt.Container;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableColumn;
@@ -14,6 +16,9 @@ public class DialogGestionCliente extends javax.swing.JDialog {
     private CECliente oCEClienteSeleccionado=null;
     public DialogGestionCliente(java.awt.Frame parent, boolean modal,int codigo,String parametro) {
         super(parent, modal);
+        Container con = this.getContentPane();
+	con.setBackground( new Color(204,204,204 ));
+
         initComponents();
         OcultarCampos();
         setupTable();
@@ -22,6 +27,10 @@ public class DialogGestionCliente extends javax.swing.JDialog {
         this.codigo=codigo;
         txtfiltro.setText(parametro);
         txtfiltro.requestFocus();
+        if(codigo==0)
+        {
+            BtnAceptar.setVisible(false);
+        }
 
     }
 private void OcultarCampos(){
@@ -138,7 +147,7 @@ private void OcultarCampos(){
                 oRow = new ArrayList();
                 oRow.add(0, oCECliente.getIdCliente());
                 oRow.add(1, oCECliente.getNumeroDocumento());
-                oRow.add(2, oCECliente.getNombrePropietario());                
+                oRow.add(2, oCECliente.getApellidoPaternoPropietario());
                 oModelo.addRow(oRow);
             }
         }
@@ -189,8 +198,9 @@ private void OcultarCampos(){
         RbtNumInscripcion = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Gestión de Usuarios");
 
-        BtnNuevoRegistro.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        BtnNuevoRegistro.setFont(new java.awt.Font("Arial", 1, 12));
         BtnNuevoRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/Farm-Fresh_group_add.png"))); // NOI18N
         BtnNuevoRegistro.setText("Nuevo");
         BtnNuevoRegistro.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -201,7 +211,7 @@ private void OcultarCampos(){
             }
         });
 
-        BtnModificar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        BtnModificar.setFont(new java.awt.Font("Arial", 1, 12));
         BtnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/group_edit.png"))); // NOI18N
         BtnModificar.setText("Modificar");
         BtnModificar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -223,7 +233,7 @@ private void OcultarCampos(){
             }
         });
 
-        BtnBuscarUsuario.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        BtnBuscarUsuario.setFont(new java.awt.Font("Arial", 1, 11));
         BtnBuscarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/v-search_more.png"))); // NOI18N
         BtnBuscarUsuario.setText("Buscar");
         BtnBuscarUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -232,7 +242,7 @@ private void OcultarCampos(){
             }
         });
 
-        lblFiltro.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lblFiltro.setFont(new java.awt.Font("Arial", 1, 14));
         lblFiltro.setForeground(new java.awt.Color(0, 0, 51));
         lblFiltro.setText("Filtro:");
 
@@ -333,10 +343,10 @@ private void OcultarCampos(){
                                 .addComponent(lblFiltro))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(BtnAceptar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                                    .addComponent(BtnEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
                                     .addComponent(BtnNuevoRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
                                     .addComponent(BtnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
-                                    .addComponent(BtnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))
+                                    .addComponent(BtnAceptar, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
@@ -362,12 +372,12 @@ private void OcultarCampos(){
                             .addComponent(txtfiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(BtnBuscarUsuario))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(BtnNuevoRegistro)
                         .addGap(18, 18, 18)
                         .addComponent(BtnModificar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(BtnEliminar)
                         .addGap(18, 18, 18)
                         .addComponent(BtnAceptar))

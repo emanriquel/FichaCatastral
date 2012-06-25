@@ -657,6 +657,62 @@ public class CDMedida
         return oLstLlavesPaso;
 
     }
+    public ArrayList<CEMedida> listarPorNumeroFicha(String dato)
+    {
+        ArrayList<CEMedida> oLstLlavesPaso=new ArrayList<CEMedida>();
+        try
+        {
+            Connection conn = ConexionBD.obtenerConexion();
+            String sql = "SELECT  rm.NumeroFicha,"
+                    + " rm.Cod_Inscripcion,"
+                    + "concat(rm.ApellidoPaternoPropietario,' ',rm.ApellidoMaternoPropietario,',',rm.NombrePropietario),"
+                    + "  rm.CodDepartamento,  "
+                    + "rm.CodProvincia,"
+                    + "  rm.CodDistrito,  "
+                    + "rm.Manzana, "
+                    + " rm.Lote, "
+                    + " rm.CodigoVia,"
+                    + "  rm.TipoVia, "
+                    + " rm.NombreVia, "
+                    + " rm.CodigoHabilitacion, "
+                    + " rm.TipoHabilitacion, "
+                    + " rm.NombreHabilitacion,"
+                    + "rm.IdRegistroMedida,"
+                     + "rm.Fecha_Encuestador"
+                    + " FROM medidor.registro_medida rm"
+                    + " WHERE rm.NumeroFicha like '"+dato+"%'";
+            PreparedStatement sp = conn.prepareStatement(sql);
+            ResultSet rs=sp.executeQuery();
+            while(rs.next())
+            {
+                CEMedida oCEMedida=new CEMedida();
+                oCEMedida.setNumeroFicha(rs.getInt(1));
+                oCEMedida.setCod_Inscripcion(rs.getString(2));
+                oCEMedida.setApellidoPaternoPropietario(rs.getString(3));
+                oCEMedida.setCodDepartamento(rs.getString(4));
+                oCEMedida.setCodProvincia(rs.getString(5));
+                oCEMedida.setCodDistrito(rs.getString(6));
+                oCEMedida.setManzana(rs.getString(7));
+                oCEMedida.setLote(rs.getString(8));
+                oCEMedida.setCodigoVia(rs.getString(9));
+                oCEMedida.setTipoVia(rs.getString(10));
+                oCEMedida.setNombreVia(rs.getString(11));
+                oCEMedida.setCodigoHabilitacion(rs.getString(12));
+                oCEMedida.setTipoHabilitacion(rs.getString(13));
+                oCEMedida.setNombreHabilitacion(rs.getString(14));
+                oCEMedida.setIdRegistroMedida(rs.getInt(15));
+                oCEMedida.setFecha_Encuestador(rs.getString(16));
+                oLstLlavesPaso.add(oCEMedida);
+            }
+
+        }
+        catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        }
+        return oLstLlavesPaso;
+
+    }
     public CEMedida ConsultarMedida(int dato)
     {
         CEMedida oCEMedida=new CEMedida();
