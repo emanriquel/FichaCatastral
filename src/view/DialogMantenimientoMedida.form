@@ -140,6 +140,10 @@
     <Component class="javax.swing.JTextField" name="TxtNumeroFicha">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="12" style="1"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
@@ -195,6 +199,9 @@
           </Layout>
           <SubComponents>
             <Component class="javax.swing.JComboBox" name="CbxSituacionConexion">
+              <Events>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="CbxSituacionConexionItemStateChanged"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel5">
               <Properties>
@@ -349,6 +356,9 @@
               </Layout>
               <SubComponents>
                 <Component class="javax.swing.JTextField" name="TxtDepartamento">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel6">
                   <Properties>
@@ -393,6 +403,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtProvincia">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel8">
                   <Properties>
@@ -416,6 +429,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtDistrito">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel9">
                   <Properties>
@@ -447,6 +463,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtSeccion">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel11">
                   <Properties>
@@ -470,6 +489,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtManzana">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel12">
                   <Properties>
@@ -493,6 +515,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtLote">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel13">
                   <Properties>
@@ -516,6 +541,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtConexion">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel14">
                   <Properties>
@@ -539,6 +567,12 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtCodigoInscripcion">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                      <ComponentRef name="TxtRutaLectura"/>
+                    </Property>
+                  </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TxtCodigoInscripcionActionPerformed"/>
                   </Events>
@@ -565,8 +599,14 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtRutaLectura">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtRutaReparto">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel16">
                   <Properties>
@@ -611,6 +651,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtSecuencia">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel18">
                   <Properties>
@@ -634,6 +677,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtCategoria">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="BtnBuscarUsuario">
                   <Properties>
@@ -810,6 +856,9 @@
               </Layout>
               <SubComponents>
                 <Component class="javax.swing.JTextField" name="TxtApellidoPaternoPropietario">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel19">
                   <Properties>
@@ -833,6 +882,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtApellidoMaternoPropietario">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel20">
                   <Properties>
@@ -877,6 +929,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtNombrePropietario">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel22">
                   <Properties>
@@ -903,6 +958,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtCorreoElectronico">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel24">
                   <Properties>
@@ -916,8 +974,14 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtTelefono">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtApellidoPaternoConyugue">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel25">
                   <Properties>
@@ -941,6 +1005,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtApellidoMaternoConyugue">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel26">
                   <Properties>
@@ -985,6 +1052,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtNombreConyugue">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel28">
                   <Properties>
@@ -998,6 +1068,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtNumDocumento">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel29">
                   <Properties>
@@ -1024,6 +1097,10 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtCantidadHabitantesPredio">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel31">
                   <Properties>
@@ -1037,6 +1114,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtNumPisos">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="CbxTipoPredio">
                 </Component>
@@ -1241,10 +1321,7 @@
                                                   <Component id="jLabel38" min="-2" pref="400" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="TxtCodigoVia" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
-                                                      <Component id="jTextField29" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
-                                                  </Group>
+                                                  <Component id="TxtCodigoVia" min="-2" pref="90" max="-2" attributes="0"/>
                                                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                                                   <Component id="TxtTipoVia" min="-2" pref="90" max="-2" attributes="0"/>
                                                   <EmptySpace min="20" pref="20" max="20" attributes="0"/>
@@ -1309,7 +1386,6 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="TxtCodigoVia" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextField29" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="TxtTipoVia" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="TxtNombreVia" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -1394,6 +1470,9 @@
               </Layout>
               <SubComponents>
                 <Component class="javax.swing.JTextField" name="TxtNumeroManzana">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel40">
                   <Properties>
@@ -1438,6 +1517,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtComplemento">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel42">
                   <Properties>
@@ -1461,8 +1543,14 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtBlock">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtPiso">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel43">
                   <Properties>
@@ -1507,6 +1595,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtNumero">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="CbxUsoPredio">
                 </Component>
@@ -1533,6 +1624,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtNumeroLote">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel47">
                   <Properties>
@@ -1590,6 +1684,9 @@
                 <Component class="javax.swing.JCheckBox" name="ChckSiNoPredioHabilitado">
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtNombreHabilitacion">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                  </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TxtNombreHabilitacionActionPerformed"/>
                   </Events>
@@ -1597,11 +1694,13 @@
                 <Component class="javax.swing.JTextField" name="TxtCodigoHabilitacion">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtTipoHabilitacion">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel33">
@@ -1704,7 +1803,11 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnViaActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField29">
+                <Component class="javax.swing.JTextField" name="TxtCodigoVia">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel37">
                   <Properties>
@@ -1728,13 +1831,17 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtNumMunicipal">
-                </Component>
-                <Component class="javax.swing.JTextField" name="TxtCodigoVia">
                   <Properties>
-                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtNombreVia">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                      <ComponentRef name="TxtNumMunicipal"/>
+                    </Property>
+                  </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TxtNombreViaActionPerformed"/>
                   </Events>
@@ -1763,6 +1870,7 @@
                 <Component class="javax.swing.JTextField" name="TxtTipoVia">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel39">
@@ -1935,8 +2043,14 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="-"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnEliminarUsoActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="TxtPorcentajeDomestico">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel51">
               <Properties>
@@ -1961,6 +2075,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="TxtPorcentajeComercial">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel53">
               <Properties>
@@ -1974,8 +2091,14 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="TxtPorcentajeEstatal">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="TxtPorcentajeSocial">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel54">
               <Properties>
@@ -3940,13 +4063,8 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="LblCodigoFotoCaja" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="7" pref="7" max="7" attributes="0"/>
                                           <Component id="jLabel113" min="-2" pref="60" max="-2" attributes="0"/>
-                                          <EmptySpace pref="320" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -3955,27 +4073,29 @@
                                           </Group>
                                           <EmptySpace min="-2" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jScrollPane3" alignment="1" pref="380" max="32767" attributes="2"/>
+                                              <Component id="LblCodigoFotoCaja" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="TxtFotoCaja" min="-2" pref="350" max="-2" attributes="0"/>
                                                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                                   <Component id="BtnFotoCaja" min="-2" pref="30" max="-2" attributes="0"/>
                                               </Group>
+                                              <Group type="102" attributes="0">
+                                                  <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                                  <Component id="jPanelImageCaja" max="32767" attributes="1"/>
+                                              </Group>
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                                  <EmptySpace pref="27" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel106" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
                                       <Component id="LblCodigoFotoPredio" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                          <Component id="jScrollPane4" alignment="0" pref="438" max="32767" attributes="2"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="TxtFotoDesague" min="-2" pref="402" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="BtnFotoDesague" min="-2" pref="30" max="-2" attributes="0"/>
-                                          </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="TxtFotoDesague" min="-2" pref="402" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="BtnFotoDesague" min="-2" pref="30" max="-2" attributes="0"/>
                                       </Group>
+                                      <Component id="jPanelImagePredio" alignment="0" max="32767" attributes="1"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                               </Group>
@@ -4049,17 +4169,22 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="LblCodigoFotoCaja" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="LblCodigoFotoPredio" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane3" pref="264" max="32767" attributes="2"/>
-                              <Component id="jScrollPane4" alignment="0" pref="264" max="32767" attributes="2"/>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                                  <Component id="LblCodigoFotoPredio" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="LblCodigoFotoCaja" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jPanelImagePredio" max="32767" attributes="0"/>
+                              <Component id="jPanelImageCaja" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="TxtUbiConexAgua" min="-2" max="-2" attributes="0"/>
@@ -4876,22 +5001,6 @@
                     <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.toedter.calendar.JDateChooser(&quot;dd/MM/yyyy&quot;,&quot;##/##/####&quot;,&apos;_&apos;)"/>
                   </AuxValues>
                 </Component>
-                <Container class="javax.swing.JScrollPane" name="jScrollPane3">
-
-                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                  <SubComponents>
-                    <Component class="javax.swing.JLabel" name="LblFotoCaja">
-                    </Component>
-                  </SubComponents>
-                </Container>
-                <Container class="javax.swing.JScrollPane" name="jScrollPane4">
-
-                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                  <SubComponents>
-                    <Component class="javax.swing.JLabel" name="LblFotoPredio">
-                    </Component>
-                  </SubComponents>
-                </Container>
                 <Component class="javax.swing.JLabel" name="LblCodigoFotoCaja">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Codigo"/>
@@ -4902,6 +5011,50 @@
                     <Property name="text" type="java.lang.String" value="Codigo"/>
                   </Properties>
                 </Component>
+                <Container class="util.JPanelImage" name="jPanelImagePredio">
+                  <Properties>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                        <EtchetBorder/>
+                      </Border>
+                    </Property>
+                  </Properties>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace min="0" pref="436" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace min="0" pref="264" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                </Container>
+                <Container class="util.JPanelImage" name="jPanelImageCaja">
+                  <Properties>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                        <EtchetBorder/>
+                      </Border>
+                    </Property>
+                  </Properties>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace min="0" pref="378" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace min="0" pref="264" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                </Container>
               </SubComponents>
             </Container>
           </SubComponents>

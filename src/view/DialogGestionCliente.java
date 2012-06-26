@@ -1,9 +1,18 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Container;
+import java.awt.KeyboardFocusManager;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
+import javax.swing.AbstractAction;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 import javax.swing.table.TableColumn;
 import modelo.datos.CDCliente;
 import modelo.entidad.CECliente;
@@ -17,8 +26,8 @@ public class DialogGestionCliente extends javax.swing.JDialog {
     public DialogGestionCliente(java.awt.Frame parent, boolean modal,int codigo,String parametro) {
         super(parent, modal);
         Container con = this.getContentPane();
+        
 	con.setBackground( new Color(204,204,204 ));
-
         initComponents();
         OcultarCampos();
         setupTable();
@@ -29,6 +38,10 @@ public class DialogGestionCliente extends javax.swing.JDialog {
         if(codigo==0)
         {
             BtnAceptar.setVisible(false);
+        }
+        else
+        {
+            getFiltro();
         }
 
     }
@@ -229,7 +242,7 @@ private void OcultarCampos(){
             }
         });
 
-        BtnAceptar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        BtnAceptar.setFont(new java.awt.Font("Arial", 1, 12));
         BtnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/Accept-Male-User.png"))); // NOI18N
         BtnAceptar.setText("Aceptar");
         BtnAceptar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -286,116 +299,132 @@ private void OcultarCampos(){
                 TblResultadosKeyTyped(evt);
             }
         });
-        jScrollPane1.setViewportView(TblResultados);
+        TblResultados.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "ProjSave");
+        TblResultados.getActionMap().put("ProjSave", new AbstractAction()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    int fila = TblResultados.getSelectedRow();
+                    if ((fila > -1))
+                    {
+                        if(codigo!=0)
+                        {
+                            getClienteSeleccionado();
+                            dispose();
+                        }
+                    }
+                }
+            });
+            jScrollPane1.setViewportView(TblResultados);
 
-        lblCodigo.setText("0");
+            lblCodigo.setText("0");
 
-        lblNroReg.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lblNroReg.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblNroReg.setOpaque(true);
+            lblNroReg.setFont(new java.awt.Font("Arial", 1, 12));
+            lblNroReg.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+            lblNroReg.setOpaque(true);
 
-        BtnEliminar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        BtnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/delete_user.png"))); // NOI18N
-        BtnEliminar.setText("Eliminar");
-        BtnEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        BtnEliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        BtnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnEliminarActionPerformed(evt);
-            }
-        });
+            BtnEliminar.setFont(new java.awt.Font("Arial", 1, 12));
+            BtnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/delete_user.png"))); // NOI18N
+            BtnEliminar.setText("Eliminar");
+            BtnEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+            BtnEliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+            BtnEliminar.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    BtnEliminarActionPerformed(evt);
+                }
+            });
 
-        buttonGroup1.add(RbtAntiguoCodigo);
-        RbtAntiguoCodigo.setText("Antiguo Codigo Catastral");
+            buttonGroup1.add(RbtAntiguoCodigo);
+            RbtAntiguoCodigo.setText("Antiguo Codigo Catastral");
 
-        buttonGroup1.add(RbtNuevoCodigo);
-        RbtNuevoCodigo.setText("Nuevo Codigo Catastral");
-        RbtNuevoCodigo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RbtNuevoCodigoActionPerformed(evt);
-            }
-        });
+            buttonGroup1.add(RbtNuevoCodigo);
+            RbtNuevoCodigo.setText("Nuevo Codigo Catastral");
+            RbtNuevoCodigo.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    RbtNuevoCodigoActionPerformed(evt);
+                }
+            });
 
-        buttonGroup1.add(RbtApellidos);
-        RbtApellidos.setText("Apellidos y Nombres");
+            buttonGroup1.add(RbtApellidos);
+            RbtApellidos.setText("Apellidos y Nombres");
 
-        buttonGroup1.add(RbtNumInscripcion);
-        RbtNumInscripcion.setSelected(true);
-        RbtNumInscripcion.setText("Nº Inscripcion");
+            buttonGroup1.add(RbtNumInscripcion);
+            RbtNumInscripcion.setSelected(true);
+            RbtNumInscripcion.setText("Nº Inscripcion");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblNroReg, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(lblCodigo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(RbtNumInscripcion)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(RbtAntiguoCodigo)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(RbtNuevoCodigo)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(RbtApellidos)
-                                    .addGap(32, 32, 32))
+            javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+            getContentPane().setLayout(layout);
+            layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(lblNroReg, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblCodigo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(RbtNumInscripcion)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(RbtAntiguoCodigo)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(RbtNuevoCodigo)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(RbtApellidos)
+                                        .addGap(32, 32, 32))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtfiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(BtnBuscarUsuario))
+                                    .addComponent(lblFiltro))
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(txtfiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(BtnBuscarUsuario))
-                                .addComponent(lblFiltro))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(BtnEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
-                                    .addComponent(BtnNuevoRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
-                                    .addComponent(BtnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
-                                    .addComponent(BtnAceptar, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblCodigo)
-                        .addGap(19, 19, 19))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(lblFiltro)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(RbtNumInscripcion)
-                            .addComponent(RbtAntiguoCodigo)
-                            .addComponent(RbtNuevoCodigo)
-                            .addComponent(RbtApellidos))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtfiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BtnBuscarUsuario))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(BtnNuevoRegistro)
-                        .addGap(18, 18, 18)
-                        .addComponent(BtnModificar)
-                        .addGap(18, 18, 18)
-                        .addComponent(BtnEliminar)
-                        .addGap(18, 18, 18)
-                        .addComponent(BtnAceptar))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblNroReg, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
-        );
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(BtnEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                                        .addComponent(BtnNuevoRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                                        .addComponent(BtnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                                        .addComponent(BtnAceptar, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addContainerGap())
+            );
+            layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(lblCodigo)
+                            .addGap(19, 19, 19))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(lblFiltro)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(RbtNumInscripcion)
+                                .addComponent(RbtAntiguoCodigo)
+                                .addComponent(RbtNuevoCodigo)
+                                .addComponent(RbtApellidos))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtfiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(BtnBuscarUsuario))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(BtnNuevoRegistro)
+                            .addGap(18, 18, 18)
+                            .addComponent(BtnModificar)
+                            .addGap(18, 18, 18)
+                            .addComponent(BtnEliminar)
+                            .addGap(18, 18, 18)
+                            .addComponent(BtnAceptar))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(lblNroReg, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
+            );
 
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
+            pack();
+        }// </editor-fold>//GEN-END:initComponents
 
     private void BtnNuevoRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNuevoRegistroActionPerformed
         CECliente  oCECliente = new CECliente();
@@ -484,7 +513,10 @@ private void OcultarCampos(){
             oCECliente.setIdCliente(Integer.parseInt(lblCodigo.getText()));
             CECliente ooCECliente = oCDCliente.DetalleCliente(oCECliente);
             oCEClienteSeleccionado=ooCECliente;
+            if(codigo!=0)
+            {
             dispose();
+            }
         }
     }//GEN-LAST:event_TblResultadosMouseClicked
 
@@ -493,13 +525,16 @@ private void OcultarCampos(){
     }//GEN-LAST:event_txtfiltroActionPerformed
 
     private void RbtNuevoCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RbtNuevoCodigoActionPerformed
-        // TODO add your handling code here:
+    
     }//GEN-LAST:event_RbtNuevoCodigoActionPerformed
     public CECliente getClienteSeleccionado(){
+        CDCliente oCDCliente =new CDCliente();
+        CECliente oCECliente = new CECliente();
+        oCECliente.setIdCliente(Integer.parseInt(TblResultados.getValueAt(TblResultados.getSelectedRow(),0).toString()));
+        CECliente ooCECliente = oCDCliente.DetalleCliente(oCECliente);
+        oCEClienteSeleccionado=ooCECliente;
         return oCEClienteSeleccionado;
-    }
-  
-    
+    } 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAceptar;
     private javax.swing.JButton BtnBuscarUsuario;

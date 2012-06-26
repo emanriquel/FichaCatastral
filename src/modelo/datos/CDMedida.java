@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.acceso.ConexionBD;
 import modelo.entidad.CEMedida;
+import modelo.entidad.CEUsos;
 
 public class CDMedida
 {
@@ -17,6 +18,8 @@ public class CDMedida
         try
         {
             Connection con = ConexionBD.obtenerConexion();
+            con.setAutoCommit(false);
+            con.setTransactionIsolation(Connection.TRANSACTION_READ_UNCOMMITTED);
             String sql = "INSERT INTO registro_medida (NumeroFicha,"//1
                     + "PorcentajeSocial,"//2
                     + "IdCondicionConexionAgua," //3
@@ -326,8 +329,57 @@ public class CDMedida
             ps.setDouble(101, oCEMedida.getPorcentajeDomestico());
             ps.setDouble(102, oCEMedida.getPorcentajeEstatal());
             ps.setDouble(103, oCEMedida.getIdSituacionConexion());
-            ps.execute();
-            return true;
+            boolean valor=ps.execute();
+            ResultSet oRS=ps.getGeneratedKeys();
+            if(oRS.next())
+            {
+                oCEMedida.setIdRegistroMedida(oRS.getInt(0));
+            }
+
+            if(valor)
+            {
+                boolean a=true;
+                for(CEUsos oCEUsos:oCEMedida.getoLstUsos())
+                {
+
+                    if(oCEUsos.getCodigo()==1)
+                    {
+                        String sql2="INSERT INTO usos (Numero, Respo, TipoUso, CodUso, PtosAgua, NumPersona, Complemento, Categoria) VALUES ( ?,?,?,?,?,?,?,?)";
+                        PreparedStatement ps1 = con.prepareCall(sql2);
+                        ps1.setString(2, oCEUsos.getNumero());
+                        ps1.setString(3, oCEUsos.getRespo());
+                        ps1.setString(4, oCEUsos.getTipoUso());
+                        ps1.setString(5, oCEUsos.getCodUso());
+                        ps1.setString(6, oCEUsos.getPtosAgua());
+                        ps1.setString(7, oCEUsos.getNumPersona());
+                        ps1.setString(8, oCEUsos.getComplemento());
+                        ps1.setString(9, oCEUsos.getCategoria());
+                        a=ps1.execute();
+                        if(!a)
+                        {
+                            break;
+                        }
+                    }
+                }
+                if(a)
+                {
+                    con.commit();
+                    String sql4 = "update medidor m set m.Valor=m.Valor+1 where m.Nombre='NumFicha'";
+                    PreparedStatement ps1 = con.prepareCall(sql4);
+                    ps1.execute();
+                    return true;
+                }
+                else
+                {
+                   con.rollback();
+                   return false; 
+                }
+            }
+            else
+            {
+                con.rollback();
+                return false;
+            }
         }
         catch (SQLException ex)
         {
@@ -550,8 +602,83 @@ public class CDMedida
             ps.setDouble(101, oCEMedida.getPorcentajeDomestico());
             ps.setDouble(102, oCEMedida.getPorcentajeEstatal());
             ps.setDouble(103, oCEMedida.getIdSituacionConexion());
-            ps.execute();
-            return true;
+            boolean valor=ps.execute();
+            if(valor)
+            {
+                boolean a=true;
+                for(CEUsos oCEUsos:oCEMedida.getoLstUsos())
+                {
+
+                    if(oCEUsos.getCodigo()==1)
+                    {
+                        String sql2="INSERT INTO usos (Numero, Respo, TipoUso, CodUso, PtosAgua, NumPersona, Complemento, Categoria) VALUES ( ?,?,?,?,?,?,?,?,?)";
+                        PreparedStatement ps1 = con.prepareCall(sql2);
+                        ps1.setString(1, oCEUsos.getNumero());
+                        ps1.setString(2, oCEUsos.getRespo());
+                        ps1.setString(3, oCEUsos.getTipoUso());
+                        ps1.setString(4, oCEUsos.getCodUso());
+                        ps1.setString(5, oCEUsos.getPtosAgua());
+                        ps1.setString(6, oCEUsos.getNumPersona());
+                        ps1.setString(7, oCEUsos.getComplemento());
+                        ps1.setString(8, oCEUsos.getCategoria());
+                         ps1.setInt(9, oCEMedida.getIdRegistroMedida());
+                        a=ps1.execute();
+                        if(!a)
+                        {
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        if(oCEUsos.getCodigo()==2)
+                        {
+                            String sql2="UPDATE   usos SET   Numero = ?, Respo = ?, TipoUso = ?, CodUso =?, PtosAgua =?,  NumPersona = ?, Complemento = ?, Categoria = ?,IdRegistroMedida=? WHERE IdUso = ?";
+                            PreparedStatement ps1 = con.prepareCall(sql2);
+                            ps1.setString(1, oCEUsos.getNumero());
+                            ps1.setString(2, oCEUsos.getRespo());
+                            ps1.setString(3, oCEUsos.getTipoUso());
+                            ps1.setString(4, oCEUsos.getCodUso());
+                            ps1.setString(5, oCEUsos.getPtosAgua());
+                            ps1.setString(6, oCEUsos.getNumPersona());
+                            ps1.setString(7, oCEUsos.getComplemento());
+                            ps1.setString(8, oCEUsos.getCategoria());
+                            ps1.setInt(9, oCEMedida.getIdRegistroMedida());
+                            ps1.setInt(10, oCEUsos.getIdUso());
+                            a=ps1.execute();
+                            if(!a)
+                            {
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            String sql2="delete from usos where IdUso=?";
+                            PreparedStatement ps1 = con.prepareCall(sql2);
+                            ps1.setInt(1, oCEUsos.getIdUso());
+                            a=ps1.execute();
+                            if(!a)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
+                if(a)
+                {
+                    con.commit();
+                    return true;
+                }
+                else
+                {
+                   con.rollback();
+                   return false;
+                }
+            }
+            else
+            {
+                con.rollback();
+                return false;
+            }
         }
         catch (SQLException ex)
         {
@@ -961,8 +1088,9 @@ public class CDMedida
                 oCEMedida.setFecha_Supervisor(rs.getString(35));//100
                 oCEMedida.setCod_Digitado(rs.getString(36));//101
                 oCEMedida.setFecha_Digitador(rs.getString(37));//102
-
+                oCEMedida.setoLstUsos(oLstUsos());
             }
+            conn.close();
 
         }
         catch (SQLException ex)
@@ -973,14 +1101,46 @@ public class CDMedida
         return oCEMedida;
 
     }
+    public ArrayList oLstUsos()
+    {
+        try {
+            Connection con = ConexionBD.obtenerConexion();
+            ArrayList<CEUsos> oLstUsos=new ArrayList<CEUsos>();
+            String sql = "SELECT IdRegistroMedida,IdUso, Numero, Respo,TipoUso,CodUso,PtosAgua,NumPersona,Complemento,Categoria FROM medidor.usos";
+            PreparedStatement sp = con.prepareStatement(sql);
+            ResultSet rs = sp.executeQuery();
+            while(rs.next())
+            {
+                CEUsos oCEUsos=new CEUsos();
+                oCEUsos.setIdRegistroMedida(rs.getInt(1));
+                oCEUsos.setIdUso(rs.getInt(2));
+                oCEUsos.setNumero(rs.getString(3));
+                oCEUsos.setRespo(rs.getString(4));
+                oCEUsos.setTipoUso(rs.getString(5));
+                oCEUsos.setCodUso(rs.getString(6));
+                oCEUsos.setPtosAgua(rs.getString(7));
+                oCEUsos.setNumPersona(rs.getString(8));
+                oCEUsos.setComplemento(rs.getString(9));
+                oCEUsos.setCategoria(rs.getString(10));
+                oLstUsos.add(oCEUsos);
+            }
+            return oLstUsos;
+        } catch (SQLException ex) {
+            Logger.getLogger(CDMedida.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
     public boolean eliminarMedida(int dato)
     {
         try
         {
             Connection con = ConexionBD.obtenerConexion();
             String sql = "DELETE FROM registro_medida where IdRegistroMedida="+dato;
+            String sql2 = "DELETE FROM usos where IdRegistroMedida="+dato;
             PreparedStatement ps = con.prepareCall(sql);
+            PreparedStatement ps1 = con.prepareCall(sql2);
             ps.execute();
+            ps1.execute();
             return true;
         }
         catch (SQLException ex)

@@ -2,6 +2,9 @@ package view;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.KeyboardFocusManager;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -13,6 +16,10 @@ import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import modelo.datos.CDCondicionConexionAgua;
 import modelo.datos.CDCondicionConexionDesague;
@@ -31,6 +38,7 @@ import modelo.datos.CDMaterialTapaAgua;
 import modelo.datos.CDMaterialTapaDesague;
 import modelo.datos.CDMedida;
 import modelo.datos.CDMedioAbastecimiento;
+import modelo.datos.CDParametro;
 import modelo.datos.CDPavimentacion;
 import modelo.datos.CDPosicionMedidor;
 import modelo.datos.CDPozoArtesanal;
@@ -48,7 +56,6 @@ import modelo.datos.CDUbiCajaConexAgua;
 import modelo.datos.CDUbiCajaConexDesague;
 import modelo.datos.CDUsoPredio;
 import modelo.datos.CDVereda;
-import modelo.datos.CDVia;
 import modelo.entidad.CECliente;
 import modelo.entidad.CECondicionConexionAgua;
 import modelo.entidad.CECondicionConexionDesague;
@@ -95,6 +102,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     private int codigo;
     private int IdRegistroMedida;
     private boolean cargo=false;
+    ArrayList<CEUsos> oLstUsosEliminados =new ArrayList<CEUsos>();
     public DialogMantenimientoMedida(java.awt.Frame parent, boolean modal,int codigo,CEMedida oCEMedida) {
         super(parent, modal);
         initComponents();
@@ -102,10 +110,33 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         Container con = this.getContentPane();
 	con.setBackground( new Color(204,204,204 ));
         cargarComboBox();
+        cargarEventoTablaGrupos(TblUsos);
         this.codigo=codigo;
+        TxtDepartamento.requestFocus();
         RbtOpcionAntes.setEnabled(false);
         RbtOpcionDespues.setEnabled(false);
         RbtOpcionIndeterminado.setEnabled(false);
+        TxtNumeroFicha.setText((new CDParametro()).generarNumeroFicha());
+        KeyboardFocusManager focusManager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+        focusManager.addPropertyChangeListener(
+        new PropertyChangeListener() {
+            public void propertyChange(PropertyChangeEvent e) {
+                String prop = e.getPropertyName();
+                if (("focusOwner".equals(prop)) &&
+                      ((e.getNewValue()) instanceof JTextField))
+                      {
+                         ((JTextField)(e.getNewValue())).setForeground(Color.BLUE);
+                      }
+                else
+                {
+                   if(e.getOldValue() instanceof JTextField)
+                      {
+                         ((JTextField)(e.getOldValue())).setForeground(Color.BLACK);
+                      }
+                }
+            }
+        }
+    );
         if(codigo==3){
             setMedida((new CDMedida()).ConsultarMedida(oCEMedida.getIdRegistroMedida()));
             BtnGuardar.setVisible(false);
@@ -119,6 +150,32 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
             }
         }
         cargo=true;
+    }
+     private void cargarEventoTablaGrupos(final JTable tbl)
+    {
+        ((DefaultTableModel)tbl.getModel()).addTableModelListener(
+         new TableModelListener()
+          {
+            public void tableChanged(TableModelEvent tme)
+              {
+                  {
+                    if(tme.getType()==tme.UPDATE)
+                    {
+                        if(tme.getColumn()==7)
+                        {
+                            int suma=0;
+                            for(int i=0;i<TblUsos.getRowCount();i++)
+                            {
+                                int cant=Integer.parseInt(TblUsos.getValueAt(i,7).toString());
+                                suma=cant+suma;
+                            }
+                            TxtCantidadHabitantesPredio.setText(suma+"");
+                        }
+                    }
+                  }
+               }
+          });
+
     }
     private void cargarComboBox(){
         
@@ -369,10 +426,9 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         BtnHabilitacion = new javax.swing.JButton();
         jLabel36 = new javax.swing.JLabel();
         BtnVia = new javax.swing.JButton();
-        jTextField29 = new javax.swing.JTextField();
+        TxtCodigoVia = new javax.swing.JTextField();
         jLabel37 = new javax.swing.JLabel();
         TxtNumMunicipal = new javax.swing.JTextField();
-        TxtCodigoVia = new javax.swing.JTextField();
         TxtNombreVia = new javax.swing.JTextField();
         jLabel38 = new javax.swing.JLabel();
         TxtTipoVia = new javax.swing.JTextField();
@@ -583,12 +639,10 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         DateFechaEncuestador = new com.toedter.calendar.JDateChooser("dd/MM/yyyy","##/##/####",'_');
         DateFechaSupervision = new com.toedter.calendar.JDateChooser("dd/MM/yyyy","##/##/####",'_');
         DateFechaDigitador = new com.toedter.calendar.JDateChooser("dd/MM/yyyy","##/##/####",'_');
-        jScrollPane3 = new javax.swing.JScrollPane();
-        LblFotoCaja = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        LblFotoPredio = new javax.swing.JLabel();
         LblCodigoFotoCaja = new javax.swing.JLabel();
         LblCodigoFotoPredio = new javax.swing.JLabel();
+        jPanelImagePredio = new util.JPanelImage();
+        jPanelImageCaja = new util.JPanelImage();
         BtnGuardar = new javax.swing.JButton();
         BtnCancelar = new javax.swing.JButton();
 
@@ -612,14 +666,24 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel4.setOpaque(true);
 
         TxtNumeroFicha.setEditable(false);
+        TxtNumeroFicha.setFont(new java.awt.Font("Tahoma", 1, 12));
+        TxtNumeroFicha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);
+
+        CbxSituacionConexion.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CbxSituacionConexionItemStateChanged(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel5.setForeground(new java.awt.Color(0, 0, 102));
         jLabel5.setText("Situación de Conexión:");
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Identificación", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12), new java.awt.Color(102, 0, 0))); // NOI18N
+
+        TxtDepartamento.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel6.setBackground(new java.awt.Color(204, 204, 204));
         jLabel6.setFont(new java.awt.Font("Arial", 1, 12));
@@ -637,6 +701,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel7.setOpaque(true);
 
+        TxtProvincia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         jLabel8.setBackground(new java.awt.Color(204, 204, 204));
         jLabel8.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel8.setForeground(new java.awt.Color(0, 0, 102));
@@ -644,6 +710,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel8.setText("Distrito");
         jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel8.setOpaque(true);
+
+        TxtDistrito.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel9.setFont(new java.awt.Font("Arial", 0, 14));
         jLabel9.setText("Nuevo Código Catastral");
@@ -656,6 +724,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel10.setOpaque(true);
 
+        TxtSeccion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         jLabel11.setBackground(new java.awt.Color(204, 204, 204));
         jLabel11.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel11.setForeground(new java.awt.Color(0, 0, 102));
@@ -663,6 +733,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel11.setText("Manzana");
         jLabel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel11.setOpaque(true);
+
+        TxtManzana.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel12.setBackground(new java.awt.Color(204, 204, 204));
         jLabel12.setFont(new java.awt.Font("Arial", 1, 12));
@@ -672,6 +744,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel12.setOpaque(true);
 
+        TxtLote.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         jLabel13.setBackground(new java.awt.Color(204, 204, 204));
         jLabel13.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel13.setForeground(new java.awt.Color(0, 0, 102));
@@ -679,6 +753,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel13.setText("Conex");
         jLabel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel13.setOpaque(true);
+
+        TxtConexion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel14.setBackground(new java.awt.Color(204, 204, 204));
         jLabel14.setFont(new java.awt.Font("Arial", 1, 12));
@@ -688,6 +764,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel14.setOpaque(true);
 
+        TxtCodigoInscripcion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TxtCodigoInscripcion.setNextFocusableComponent(TxtRutaLectura);
         TxtCodigoInscripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TxtCodigoInscripcionActionPerformed(evt);
@@ -701,6 +779,10 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel15.setText("Ruta de Lectura");
         jLabel15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel15.setOpaque(true);
+
+        TxtRutaLectura.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        TxtRutaReparto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel16.setBackground(new java.awt.Color(204, 204, 204));
         jLabel16.setFont(new java.awt.Font("Arial", 1, 12));
@@ -718,6 +800,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel17.setOpaque(true);
 
+        TxtSecuencia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         jLabel18.setBackground(new java.awt.Color(204, 204, 204));
         jLabel18.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel18.setForeground(new java.awt.Color(0, 0, 102));
@@ -725,6 +809,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel18.setText("Categoría");
         jLabel18.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel18.setOpaque(true);
+
+        TxtCategoria.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         BtnBuscarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/user-search.gif"))); // NOI18N
         BtnBuscarUsuario.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -842,6 +928,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Datos del Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12), new java.awt.Color(102, 0, 0))); // NOI18N
 
+        TxtApellidoPaternoPropietario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         jLabel19.setBackground(new java.awt.Color(204, 204, 204));
         jLabel19.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel19.setForeground(new java.awt.Color(0, 0, 102));
@@ -849,6 +937,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel19.setText("Apellido Paterno del Propietario");
         jLabel19.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel19.setOpaque(true);
+
+        TxtApellidoMaternoPropietario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel20.setBackground(new java.awt.Color(204, 204, 204));
         jLabel20.setFont(new java.awt.Font("Arial", 1, 12));
@@ -866,6 +956,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel21.setOpaque(true);
 
+        TxtNombrePropietario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         jLabel22.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel22.setForeground(new java.awt.Color(0, 0, 102));
         jLabel22.setText("Num. Documento:");
@@ -874,9 +966,15 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel23.setForeground(new java.awt.Color(0, 0, 102));
         jLabel23.setText("Correo Electrónico:");
 
+        TxtCorreoElectronico.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         jLabel24.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel24.setForeground(new java.awt.Color(0, 0, 102));
         jLabel24.setText("Telefono:");
+
+        TxtTelefono.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        TxtApellidoPaternoConyugue.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel25.setBackground(new java.awt.Color(204, 204, 204));
         jLabel25.setFont(new java.awt.Font("Arial", 1, 12));
@@ -885,6 +983,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel25.setText("Apellido Paterno del Conyugue");
         jLabel25.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel25.setOpaque(true);
+
+        TxtApellidoMaternoConyugue.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel26.setBackground(new java.awt.Color(204, 204, 204));
         jLabel26.setFont(new java.awt.Font("Arial", 1, 12));
@@ -902,9 +1002,13 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel27.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel27.setOpaque(true);
 
+        TxtNombreConyugue.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         jLabel28.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel28.setForeground(new java.awt.Color(0, 0, 102));
         jLabel28.setText("Tipo de Documento:");
+
+        TxtNumDocumento.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel29.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel29.setForeground(new java.awt.Color(0, 0, 102));
@@ -914,9 +1018,14 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel30.setForeground(new java.awt.Color(0, 0, 102));
         jLabel30.setText("Cant. Habitantes del Predio:");
 
+        TxtCantidadHabitantesPredio.setEditable(false);
+        TxtCantidadHabitantesPredio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         jLabel31.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel31.setForeground(new java.awt.Color(0, 0, 102));
         jLabel31.setText("Num. Pisos:");
+
+        TxtNumPisos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel32.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel32.setForeground(new java.awt.Color(0, 0, 102));
@@ -1085,6 +1194,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Datos del Inmueble(Dirección de Conexión)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12), new java.awt.Color(102, 0, 0))); // NOI18N
 
+        TxtNumeroManzana.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         jLabel40.setBackground(new java.awt.Color(204, 204, 204));
         jLabel40.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel40.setForeground(new java.awt.Color(0, 0, 102));
@@ -1101,6 +1212,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel41.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel41.setOpaque(true);
 
+        TxtComplemento.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         jLabel42.setBackground(new java.awt.Color(204, 204, 204));
         jLabel42.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel42.setForeground(new java.awt.Color(0, 0, 102));
@@ -1108,6 +1221,10 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel42.setText("Block");
         jLabel42.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel42.setOpaque(true);
+
+        TxtBlock.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        TxtPiso.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel43.setBackground(new java.awt.Color(204, 204, 204));
         jLabel43.setFont(new java.awt.Font("Arial", 1, 12));
@@ -1125,6 +1242,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel44.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel44.setOpaque(true);
 
+        TxtNumero.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         jLabel45.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel45.setForeground(new java.awt.Color(0, 0, 102));
         jLabel45.setText("Complemento:");
@@ -1132,6 +1251,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel46.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel46.setForeground(new java.awt.Color(0, 0, 102));
         jLabel46.setText("Uso del Predio:");
+
+        TxtNumeroLote.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel47.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel47.setForeground(new java.awt.Color(0, 0, 102));
@@ -1155,6 +1276,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel50.setForeground(new java.awt.Color(0, 0, 102));
         jLabel50.setText("Situación del Predio:");
 
+        TxtNombreHabilitacion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         TxtNombreHabilitacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TxtNombreHabilitacionActionPerformed(evt);
@@ -1162,8 +1284,10 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         });
 
         TxtCodigoHabilitacion.setEditable(false);
+        TxtCodigoHabilitacion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         TxtTipoHabilitacion.setEditable(false);
+        TxtTipoHabilitacion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel33.setBackground(new java.awt.Color(204, 204, 204));
         jLabel33.setFont(new java.awt.Font("Arial", 1, 12));
@@ -1211,6 +1335,9 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
             }
         });
 
+        TxtCodigoVia.setEditable(false);
+        TxtCodigoVia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         jLabel37.setBackground(new java.awt.Color(204, 204, 204));
         jLabel37.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel37.setForeground(new java.awt.Color(0, 0, 102));
@@ -1219,8 +1346,10 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel37.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel37.setOpaque(true);
 
-        TxtCodigoVia.setEditable(false);
+        TxtNumMunicipal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        TxtNombreVia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TxtNombreVia.setNextFocusableComponent(TxtNumMunicipal);
         TxtNombreVia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TxtNombreViaActionPerformed(evt);
@@ -1228,7 +1357,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         });
 
         jLabel38.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel38.setFont(new java.awt.Font("Arial", 1, 12));
+        jLabel38.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel38.setForeground(new java.awt.Color(0, 0, 102));
         jLabel38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel38.setText("Nombre de Vía");
@@ -1236,6 +1365,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel38.setOpaque(true);
 
         TxtTipoVia.setEditable(false);
+        TxtTipoVia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel39.setBackground(new java.awt.Color(204, 204, 204));
         jLabel39.setFont(new java.awt.Font("Arial", 1, 12));
@@ -1254,7 +1384,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel139.setText("Dirección:");
         jLabel139.setOpaque(true);
 
-        LblDireccion.setFont(new java.awt.Font("Arial", 3, 12));
+        LblDireccion.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         LblDireccion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LblDireccion.setOpaque(true);
 
@@ -1336,9 +1466,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                                         .addGap(20, 20, 20)
                                         .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel5Layout.createSequentialGroup()
-                                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(TxtCodigoVia, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTextField29, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(TxtCodigoVia, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(20, 20, 20)
                                         .addComponent(TxtTipoVia, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(20, 20, 20)
@@ -1387,7 +1515,6 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(TxtCodigoVia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TxtTipoVia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TxtNombreVia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1491,6 +1618,13 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         });
 
         BtnEliminarUso.setText("-");
+        BtnEliminarUso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEliminarUsoActionPerformed(evt);
+            }
+        });
+
+        TxtPorcentajeDomestico.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel51.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel51.setForeground(new java.awt.Color(0, 0, 102));
@@ -1500,9 +1634,15 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel52.setForeground(new java.awt.Color(0, 0, 102));
         jLabel52.setText("% Comercial:");
 
+        TxtPorcentajeComercial.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         jLabel53.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel53.setForeground(new java.awt.Color(0, 0, 102));
         jLabel53.setText("% Estatal:");
+
+        TxtPorcentajeEstatal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        TxtPorcentajeSocial.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel54.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel54.setForeground(new java.awt.Color(0, 0, 102));
@@ -2759,13 +2899,35 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
 
         DateFechaDigitador.setDateFormatString("dd/MM/yyyy");
 
-        jScrollPane3.setViewportView(LblFotoCaja);
-
-        jScrollPane4.setViewportView(LblFotoPredio);
-
         LblCodigoFotoCaja.setText("Codigo");
 
         LblCodigoFotoPredio.setText("Codigo");
+
+        jPanelImagePredio.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        javax.swing.GroupLayout jPanelImagePredioLayout = new javax.swing.GroupLayout(jPanelImagePredio);
+        jPanelImagePredio.setLayout(jPanelImagePredioLayout);
+        jPanelImagePredioLayout.setHorizontalGroup(
+            jPanelImagePredioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 436, Short.MAX_VALUE)
+        );
+        jPanelImagePredioLayout.setVerticalGroup(
+            jPanelImagePredioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 264, Short.MAX_VALUE)
+        );
+
+        jPanelImageCaja.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        javax.swing.GroupLayout jPanelImageCajaLayout = new javax.swing.GroupLayout(jPanelImageCaja);
+        jPanelImageCaja.setLayout(jPanelImageCajaLayout);
+        jPanelImageCajaLayout.setHorizontalGroup(
+            jPanelImageCajaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 378, Short.MAX_VALUE)
+        );
+        jPanelImageCajaLayout.setVerticalGroup(
+            jPanelImageCajaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 264, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -2776,33 +2938,31 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel17Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(LblCodigoFotoCaja))
-                            .addGroup(jPanel17Layout.createSequentialGroup()
                                 .addGap(7, 7, 7)
-                                .addComponent(jLabel113, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 320, Short.MAX_VALUE))
+                                .addComponent(jLabel113, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel17Layout.createSequentialGroup()
                                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                                    .addComponent(LblCodigoFotoCaja)
                                     .addGroup(jPanel17Layout.createSequentialGroup()
                                         .addComponent(TxtFotoCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, 0)
-                                        .addComponent(BtnFotoCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(41, 41, 41)
+                                        .addComponent(BtnFotoCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel17Layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jPanelImageCaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel106, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(LblCodigoFotoPredio)
-                            .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel17Layout.createSequentialGroup()
-                                    .addComponent(TxtFotoDesague, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(BtnFotoDesague, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel17Layout.createSequentialGroup()
+                                .addComponent(TxtFotoDesague, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BtnFotoDesague, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanelImagePredio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(12, 12, 12))
                     .addGroup(jPanel17Layout.createSequentialGroup()
                         .addGap(115, 115, 115)
@@ -2859,15 +3019,18 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                             .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(TxtFotoDesague, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(BtnFotoDesague, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(3, 3, 3)
-                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LblCodigoFotoCaja)
-                    .addComponent(LblCodigoFotoPredio))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(jPanel17Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(LblCodigoFotoPredio))
+                    .addGroup(jPanel17Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LblCodigoFotoCaja)))
+                .addGap(4, 4, 4)
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelImagePredio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelImageCaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel17Layout.createSequentialGroup()
                         .addComponent(TxtUbiConexAgua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2983,14 +3146,14 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
       jFileChooser1.showOpenDialog(null);
       TxtFotoCaja.setText(jFileChooser1.getSelectedFile().getAbsolutePath());
       LblCodigoFotoCaja.setText(jFileChooser1.getSelectedFile().getName());
-      LblFotoCaja.setIcon(new ImageIcon(jFileChooser1.getSelectedFile().getAbsolutePath()));
+      jPanelImageCaja.setImage(new ImageIcon(jFileChooser1.getSelectedFile().getAbsolutePath()).getImage());
     }//GEN-LAST:event_BtnFotoCajaActionPerformed
 
     private void BtnFotoDesagueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnFotoDesagueActionPerformed
         jFileChooser2.showOpenDialog(null);
         TxtFotoDesague.setText(jFileChooser2.getSelectedFile().getAbsolutePath());
         LblCodigoFotoPredio.setText(jFileChooser2.getSelectedFile().getName());
-        LblFotoPredio.setIcon(new ImageIcon(jFileChooser2.getSelectedFile().getAbsolutePath()));
+      jPanelImagePredio.setImage(new ImageIcon(jFileChooser2.getSelectedFile().getAbsolutePath()).getImage());
     }//GEN-LAST:event_BtnFotoDesagueActionPerformed
 
     private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarActionPerformed
@@ -3076,7 +3239,24 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
     dispose();
     }//GEN-LAST:event_BtnCancelarActionPerformed
-
+    private int getOpcionTipoFuga()
+    {
+        if(RbtOpcionAntes.isSelected())
+        {
+            return 1;
+        }
+        else
+        {
+           if(RbtOpcionDespues.isSelected())
+            {
+                return 2;
+            }
+            else
+            {
+                return 3;
+            }
+        }
+    }
     private void BtnBuscarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarUsuarioActionPerformed
     DialogGestionCliente oCliente=new DialogGestionCliente(null,true,1,TxtCodigoInscripcion.getText());
     oCliente.setLocationRelativeTo(null);
@@ -3084,15 +3264,14 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     CECliente oCEClienteSeleccionado=oCliente.getClienteSeleccionado();
     if(oCEClienteSeleccionado!=null)
     {
-     LblUsuario.setText(oCEClienteSeleccionado.getApellidoPaternoPropietario());
-      
-       
+        LblUsuario.setText(oCEClienteSeleccionado.getApellidoPaternoPropietario());
         LblDireccion.setText(oCEClienteSeleccionado.getDireccion());
         CECondicionConexionAgua oCECondicionConexionAgua = new CECondicionConexionAgua();
         CDCondicionConexionAgua oCDCondicionConexionAgua = new CDCondicionConexionAgua();
         oCECondicionConexionAgua.setIdCondicionConexionAgua(oCEClienteSeleccionado.getIdCondicionConexionAgua());
         CECondicionConexionAgua ooCECondicionConexionAgua = oCDCondicionConexionAgua.DetalleCondicionConexionAgua(oCECondicionConexionAgua);
         LblCondicionConexionConsulta.setText(ooCECondicionConexionAgua.getCondicionConexionAgua());
+        CbxTipoDocumento.requestFocus();
     }
     }//GEN-LAST:event_BtnBuscarUsuarioActionPerformed
 
@@ -3104,13 +3283,14 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     if(oCEClienteSeleccionado!=null)
     {
         LblUsuario.setText(oCEClienteSeleccionado.getApellidoPaternoPropietario());
-      
+        TxtCodigoInscripcion.setText(oCEClienteSeleccionado.getNumeroInscripcion());
         LblDireccion.setText(oCEClienteSeleccionado.getDireccion());
         CECondicionConexionAgua oCECondicionConexionAgua = new CECondicionConexionAgua();
         CDCondicionConexionAgua oCDCondicionConexionAgua = new CDCondicionConexionAgua();
         oCECondicionConexionAgua.setIdCondicionConexionAgua(oCEClienteSeleccionado.getIdCondicionConexionAgua());
         CECondicionConexionAgua ooCECondicionConexionAgua = oCDCondicionConexionAgua.DetalleCondicionConexionAgua(oCECondicionConexionAgua);
         LblCondicionConexion.setText(ooCECondicionConexionAgua.getCondicionConexionAgua());
+        CbxTipoDocumento.requestFocus();
     }
     }//GEN-LAST:event_TxtCodigoInscripcionActionPerformed
 
@@ -3134,7 +3314,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnHabilitacionActionPerformed
 
     private void TxtNombreViaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtNombreViaActionPerformed
-          FiltrarVia oFiltrarVia = new FiltrarVia(null, true,TxtNombreVia.getText());
+        FiltrarVia oFiltrarVia = new FiltrarVia(null, true,TxtNombreVia.getText());
+        oFiltrarVia.setLocationRelativeTo(null);
         oFiltrarVia.setVisible(true);
         CEVia oCEVia = oFiltrarVia.GetVia();
         TxtCodigoVia.setText(oCEVia.getCodigo()+"");
@@ -3143,7 +3324,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     }//GEN-LAST:event_TxtNombreViaActionPerformed
 
     private void TxtNombreHabilitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtNombreHabilitacionActionPerformed
-     FiltrarHabilitacion oFiltrarHabilitacion = new FiltrarHabilitacion(null, true,1,TxtNombreHabilitacion.getText());
+        FiltrarHabilitacion oFiltrarHabilitacion = new FiltrarHabilitacion(null, true,1,TxtNombreHabilitacion.getText());
+        oFiltrarHabilitacion.setLocationRelativeTo(null);
         oFiltrarHabilitacion.setVisible(true);
         CEHabilitacion oCEHabitacion = oFiltrarHabilitacion.GetHabilitacion();
         TxtCodigoHabilitacion.setText(oCEHabitacion.getCodigo()+"");
@@ -3419,6 +3601,35 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
          CbxMaterialCajaAgua.setEnabled(true);
     }
     }//GEN-LAST:event_CbxEstadoCajaAguaItemStateChanged
+
+    private void BtnEliminarUsoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarUsoActionPerformed
+     int fila=TblUsos.getSelectedRow();
+     if(fila!=-1)
+     {
+        Object valor=TblUsos.getValueAt(fila,1);
+        if(valor instanceof CEUsos)
+        {
+            ((CEUsos)valor).setCodigo(3);
+             oLstUsosEliminados.add((CEUsos)valor);
+        }
+     }
+    }//GEN-LAST:event_BtnEliminarUsoActionPerformed
+
+    private void CbxSituacionConexionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CbxSituacionConexionItemStateChanged
+     if(((CESituacionConexion)CbxSituacionConexion.getSelectedItem()).getIdSituacionConexion()==2||((CESituacionConexion)CbxSituacionConexion.getSelectedItem()).getIdSituacionConexion()==3)
+     {
+         jTabbedPane1.setEnabledAt(2,false);
+         CbxTipoServicio.setSelectedIndex(0);
+     }
+    else
+    {
+         if(codigo==1)
+         {
+            jTabbedPane1.setEnabledAt(2,true);
+            CbxTipoServicio.setSelectedIndex(0);
+         }
+    }
+    }//GEN-LAST:event_CbxSituacionConexionItemStateChanged
     private void limpiarEtiquetasDeConsulta(){
         
     }
@@ -3540,7 +3751,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         oCEMedida.setIdEstadoTapaAgua(oCEEstadoTapaAgua.getIdEstadoTapaAgua());//68
 
         oCEMedida.setSiNoFugaAgua(ChckSiNoFugaAgua.isSelected());//71
-        oCEMedida.setTipoFugaAgua(1);//72 ok
+        oCEMedida.setTipoFugaAgua(getOpcionTipoFuga());//72 ok
 
         CEUbiCajaConexDesague oCEUbiCajaConexDesague=(CEUbiCajaConexDesague) CbxUbiCajaConexDesague.getSelectedItem();
         oCEMedida.setIdUbiCajaConexDesague(oCEUbiCajaConexDesague.getIdUbiCajaConexDesague());//74
@@ -3596,45 +3807,71 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
          oConvertidorFecha.setFecha(DateFechaSupervision.getCalendar());
         oConvertidorFecha.setFechaConvertida();
         oCEMedida.setFecha_Digitador(oConvertidorFecha.getFechaConvertida()+"");//102
+        oCEMedida.setoLstUsos(getLstUsos());
         return oCEMedida;
     }
+    private void setLstUsos(ArrayList<CEUsos> oLst)
+    {
+        for(CEUsos oCEUsos:oLst)
+        {
+            Vector oVector=new Vector();
+            oVector.add(oCEUsos.getCodigo());
+            oVector.add(oCEUsos);
+            oVector.add(oCEUsos.getNumero());
+            oVector.add(oCEUsos.getRespo());
+            oVector.add(oCEUsos.getTipoUso());
+            oVector.add(oCEUsos.getCodUso());
+            oVector.add(oCEUsos.getPtosAgua());
+            oVector.add(oCEUsos.getNumPersona());
+            oVector.add(oCEUsos.getComplemento());
+            oVector.add(oCEUsos.getCategoria());
+            ((DefaultTableModel)TblUsos.getModel()).addRow(oVector);
+        }
 
+    }
     private ArrayList<CEUsos> getLstUsos()
     {
+
         ArrayList<CEUsos> oLstUsos =new ArrayList<CEUsos>();
         int size=TblUsos.getRowCount();
         for(int i=0;i<size;i++)
         {
            Object valor=TblUsos.getValueAt(i,1);
-           int codigo=Integer.parseInt(TblUsos.getValueAt(i,0).toString());
+           int codigoI=Integer.parseInt(TblUsos.getValueAt(i,0).toString());
+            CEUsos oCEUsos=new CEUsos();
            if(valor instanceof CEUsos)
            {
-             CEUsos oCEUsos=new CEUsos();
+           
              oCEUsos.setIdUso(oCEUsos.getIdUso());
-             oCEUsos.setCodigo(codigo);
-             oCEUsos.setNumero(TblUsos.getValueAt(i, 2).toString());
-             oCEUsos.setRespo(TblUsos.getValueAt(i, 3).toString());
-             oCEUsos.setTipoUso(TblUsos.getValueAt(i, 4).toString());
-             oCEUsos.setCodUso(TblUsos.getValueAt(i, 5).toString());
-             oCEUsos.setPtosAgua(TblUsos.getValueAt(i, 6).toString());
-             oCEUsos.setNumPersona(TblUsos.getValueAt(i, 7).toString());
-             oCEUsos.setComplemento(TblUsos.getValueAt(i, 8).toString());
-             oCEUsos.setCategoria(TblUsos.getValueAt(i, 9).toString());
+             oCEUsos.setCodigo(codigoI);
+             
            }
            else
            {
-
+             oCEUsos.setCodigo(1);         
            }
-
+         oCEUsos.setNumero(TblUsos.getValueAt(i, 2).toString());
+         oCEUsos.setRespo(TblUsos.getValueAt(i, 3).toString());
+         oCEUsos.setTipoUso(TblUsos.getValueAt(i, 4).toString());
+         oCEUsos.setCodUso(TblUsos.getValueAt(i, 5).toString());
+         oCEUsos.setPtosAgua(TblUsos.getValueAt(i, 6).toString());
+         oCEUsos.setNumPersona(TblUsos.getValueAt(i, 7).toString());
+         oCEUsos.setComplemento(TblUsos.getValueAt(i, 8).toString());
+         oCEUsos.setCategoria(TblUsos.getValueAt(i, 9).toString());
+         oLstUsos.add(oCEUsos);
         }
 
+        for(CEUsos oCeu:oLstUsosEliminados)
+        {
+            oLstUsos.add(oCeu);
+        }
         return oLstUsos;
     }
 
     private void setMedida(CEMedida oCEMedida)
     {
-        LblFotoCaja.setIcon(new ImageIcon(("C:/Program Files/FichasCatastral/Imagenes/Caja/"+oCEMedida.getCodigoFotoCaja())));
-        LblFotoPredio.setIcon(new ImageIcon(("C:/Program Files/FichasCatastral/Imagenes/Predio/"+oCEMedida.getCodigoFotoPredio())));
+        jPanelImageCaja.setImage(new ImageIcon(("C:/Program Files/FichasCatastral/Imagenes/Caja/"+oCEMedida.getCodigoFotoCaja())).getImage());
+        jPanelImagePredio.setImage(new ImageIcon(("C:/Program Files/FichasCatastral/Imagenes/Predio/"+oCEMedida.getCodigoFotoPredio())).getImage());
         TxtNumeroFicha.setText(oCEMedida.getNumeroFicha()+"");
         buscarSituacionConexion(oCEMedida.getIdSituacionConexion());
         TxtDepartamento.setText(oCEMedida.getCodDepartamento());
@@ -3708,6 +3945,21 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         buscarEstadoTapaAgua(oCEMedida.getIdEstadoTapaAgua());
         ChckSiNoFugaAgua.setSelected(oCEMedida.isSiNoFugaAgua());
         // tipo fuga
+        if(oCEMedida.getTipoFugaAgua()==1)
+        {
+            RbtOpcionAntes.setSelected(true);
+        }
+        else
+        {
+            if(oCEMedida.getTipoFugaAgua()==2)
+            {
+                RbtOpcionDespues.setSelected(true);
+            }
+            else
+            {
+                RbtOpcionIndeterminado.setSelected(true);
+            }
+        }
         buscarUbiCajaConexDesague(oCEMedida.getIdUbiCajaConexDesague());
         buscarDiametroConexDesague(oCEMedida.getIdDiametroConexionDesague());
         buscarCondicionConexDesague(oCEMedida.getIdCondicionConexionDesague());
@@ -3746,6 +3998,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         int mes2=Integer.parseInt(oCEMedida.getFecha_Encuestador().substring(5,7));
         int dia2=Integer.parseInt(oCEMedida.getFecha_Encuestador().substring(8,10));
         DateFechaDigitador.setCalendar(new GregorianCalendar(ano2,mes2-1,dia2));
+        setLstUsos(oLstUsosEliminados);
     }
     private void buscarTipoPropiedadEntrevistado(int IdSituacionConexion)
     {
@@ -4158,8 +4411,6 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     private javax.swing.JLabel LblCondicionConexion;
     private javax.swing.JLabel LblCondicionConexionConsulta;
     private javax.swing.JLabel LblDireccion;
-    private javax.swing.JLabel LblFotoCaja;
-    private javax.swing.JLabel LblFotoPredio;
     private javax.swing.JLabel LblTipoServicio;
     private javax.swing.JLabel LblUsuario;
     private javax.swing.JRadioButton RbtOpcionAntes;
@@ -4396,12 +4647,11 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private util.JPanelImage jPanelImageCaja;
+    private util.JPanelImage jPanelImagePredio;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField29;
     private javax.swing.JTextField jTextField49;
     private javax.swing.JTextField jTextField50;
     private javax.swing.JTextField jTextField51;

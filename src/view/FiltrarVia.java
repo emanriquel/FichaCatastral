@@ -34,8 +34,7 @@ public class FiltrarVia extends javax.swing.JDialog implements ActionListener {
     
     public FiltrarVia(java.awt.Dialog parent, boolean modal,String param) {
         super(parent, modal);
-        initComponents();
-        
+        initComponents();        
         txtFiltro.requestFocus();
         txtFiltro.setText(param);
         configurarTabla();

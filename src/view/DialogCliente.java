@@ -18,7 +18,6 @@ public class DialogCliente extends javax.swing.JDialog {
         initComponents();
         //cargarComboBox();
     }
-    
     public DialogCliente(java.awt.Frame parent, boolean modal,CECliente oCECliente,int  Operacion) {
         super(parent, modal);
         initComponents();
@@ -31,8 +30,7 @@ public class DialogCliente extends javax.swing.JDialog {
             AbrirDialogBusqueda();
         }else{
             CargarParaNuevo();            
-        }
-        
+        }        
     }
     
     private void OcultarCampos(){
@@ -40,12 +38,8 @@ public class DialogCliente extends javax.swing.JDialog {
         lblIdHabitacion.setVisible(false);
         lblIdVia.setVisible(false);
     }
-    private void CargarParaNuevo(){
-        
+    private void CargarParaNuevo(){        
         TxtAntiguoCodigoCatastral.requestFocus();
-        
-        
-        
     }
     private void cargarComboBox(){            
         
@@ -90,8 +84,7 @@ public class DialogCliente extends javax.swing.JDialog {
          
          buscarIndexComboTipoDocumento(oCECliente.getIdTipoDocumento());
          TxtDireccion.setText(oCECliente.getDireccion());
-         buscarIndexComboMedioAbastecimiento(oCECliente.getIdMedioAbastecimiento());
-         System.out.print(oCECliente.getIdCondicionConexionAgua()+"");
+         buscarIndexComboMedioAbastecimiento(oCECliente.getIdMedioAbastecimiento());         
          buscarIndexComboCondicionConexionAgua(oCECliente.getIdCondicionConexionAgua());
          lblCodigo.setText(oCECliente.getIdCliente()+"");
          TxtAntiguoCodigoCatastral.setText(oCECliente.getAntiguoCodigoCatastral());
@@ -106,7 +99,8 @@ public class DialogCliente extends javax.swing.JDialog {
          TxtApellidoPaternoPropietario.setText(oCECliente.getApellidoPaternoPropietario());
          TxtCorreoElectronico.setText(oCECliente.getCorreoElectronico());
          TxtDireccion.setText(oCECliente.getDireccion());
-         
+         buscarIndexComboCondicionConexionAgua(oCECliente.getIdCondicionConexionAgua());
+         buscarIndexComboTipoServicio(oCECliente.getIdCliente());
      }
     
     
@@ -127,7 +121,22 @@ public class DialogCliente extends javax.swing.JDialog {
           }
         }
       }
-   
+     private void buscarIndexComboTipoServicio(int pId){
+      int size=CbxTipoServicio.getItemCount();
+      if(size>0)
+      {
+          for(int i=1;i<size;i++)
+          {
+            CETipoServicio obj =(CETipoServicio)CbxTipoServicio.getItemAt(i);
+            if(obj.getIdTipoServicio()== pId)
+                {
+                    CbxTipoServicio.setSelectedIndex(i);
+                    break;
+                }
+          }
+        }
+      }
+
     private void buscarIndexComboMedioAbastecimiento(int pId){
       int size=CbxMedioAbastecimiento.getItemCount();
       if(size>0)
@@ -170,8 +179,6 @@ public class DialogCliente extends javax.swing.JDialog {
         if(pOperacion != 1){
         oCECliente.setIdCliente(Integer.parseInt(lblCodigo.getText()));
         }
-        
-        
         oCECliente.setAntiguoCodigoCatastral(TxtAntiguoCodigoCatastral.getText());
         oCECliente.setNuevoCodigoCatastral(TxtNuevoCodigoCatastral.getText());
         oCECliente.setNumeroInscripcion(TxtCodigoInscripcion.getText());
@@ -193,6 +200,9 @@ public class DialogCliente extends javax.swing.JDialog {
 
         CEMedioAbastecimiento oCEMedioAbastecimiento =(CEMedioAbastecimiento)CbxMedioAbastecimiento.getSelectedItem();
         oCECliente.setIdMedioAbastecimiento(oCEMedioAbastecimiento.getIdMedioAbastecimiento());
+
+        CETipoServicio oCETipoServicio =(CETipoServicio)CbxTipoServicio.getSelectedItem();
+        oCECliente.setIdTipoServicio(oCETipoServicio.getIdTipoServicio());
         
         return oCECliente;
     }
@@ -235,6 +245,8 @@ public class DialogCliente extends javax.swing.JDialog {
         CbxMedioAbastecimiento = new javax.swing.JComboBox();
         jLabel141 = new javax.swing.JLabel();
         CbxCondicionConexionAgua = new javax.swing.JComboBox();
+        CbxTipoServicio = new javax.swing.JComboBox();
+        jLabel48 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         BtnGuardar = new javax.swing.JButton();
@@ -373,7 +385,7 @@ public class DialogCliente extends javax.swing.JDialog {
         TxtApellidoPaternoPropietario.setBounds(30, 60, 830, 20);
 
         jLabel42.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel42.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel42.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel42.setForeground(new java.awt.Color(0, 0, 102));
         jLabel42.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel42.setText("Apellidos y Nombres / Razon Social");
@@ -382,7 +394,7 @@ public class DialogCliente extends javax.swing.JDialog {
         jPanel5.add(jLabel42);
         jLabel42.setBounds(30, 80, 830, 20);
 
-        jLabel45.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel45.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel45.setForeground(new java.awt.Color(0, 0, 102));
         jLabel45.setText("Num. Documento:");
         jPanel5.add(jLabel45);
@@ -391,7 +403,7 @@ public class DialogCliente extends javax.swing.JDialog {
         CbxTipoDocumento.setBounds(150, 30, 150, 20);
 
         jLabel46.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel46.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel46.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel46.setForeground(new java.awt.Color(0, 0, 102));
         jLabel46.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel46.setText("Correo Electrónico");
@@ -420,7 +432,7 @@ public class DialogCliente extends javax.swing.JDialog {
         TxtNumDocumento.setBounds(460, 30, 150, 20);
 
         jLabel70.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel70.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel70.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel70.setForeground(new java.awt.Color(0, 0, 102));
         jLabel70.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel70.setText("Dirección");
@@ -431,7 +443,7 @@ public class DialogCliente extends javax.swing.JDialog {
         jPanel5.add(TxtDireccion);
         TxtDireccion.setBounds(370, 110, 490, 20);
 
-        jLabel67.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel67.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel67.setForeground(new java.awt.Color(0, 0, 102));
         jLabel67.setText("Medio de Abastecimiento:");
         jPanel5.add(jLabel67);
@@ -439,13 +451,27 @@ public class DialogCliente extends javax.swing.JDialog {
         jPanel5.add(CbxMedioAbastecimiento);
         CbxMedioAbastecimiento.setBounds(180, 170, 170, 20);
 
-        jLabel141.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel141.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel141.setForeground(new java.awt.Color(0, 0, 102));
         jLabel141.setText("Cond. Conex:");
         jPanel5.add(jLabel141);
         jLabel141.setBounds(370, 170, 74, 20);
         jPanel5.add(CbxCondicionConexionAgua);
         CbxCondicionConexionAgua.setBounds(450, 170, 170, 20);
+
+        CbxTipoServicio.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CbxTipoServicioItemStateChanged(evt);
+            }
+        });
+        jPanel5.add(CbxTipoServicio);
+        CbxTipoServicio.setBounds(708, 170, 150, 20);
+
+        jLabel48.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel48.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel48.setText("Tipo Servicio:");
+        jPanel5.add(jLabel48);
+        jLabel48.setBounds(630, 170, 76, 20);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -592,6 +618,10 @@ public class DialogCliente extends javax.swing.JDialog {
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
       dispose();
     }//GEN-LAST:event_BtnCancelarActionPerformed
+
+    private void CbxTipoServicioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CbxTipoServicioItemStateChanged
+      
+    }//GEN-LAST:event_CbxTipoServicioItemStateChanged
     private Boolean Validar(){
        
         return true;
@@ -602,6 +632,7 @@ public class DialogCliente extends javax.swing.JDialog {
     private javax.swing.JComboBox CbxCondicionConexionAgua;
     private javax.swing.JComboBox CbxMedioAbastecimiento;
     private javax.swing.JComboBox CbxTipoDocumento;
+    private javax.swing.JComboBox CbxTipoServicio;
     private javax.swing.JTextField TxtAntiguoCodigoCatastral;
     private javax.swing.JTextField TxtApellidoPaternoPropietario;
     private javax.swing.JTextField TxtCategoria;
@@ -626,6 +657,7 @@ public class DialogCliente extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel67;
     private javax.swing.JLabel jLabel70;

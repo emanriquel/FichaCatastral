@@ -25,6 +25,7 @@ public class CECliente {
     private String ApellidoPaternoPropietario;
     private String CorreoElectronico;
     private int IdMedioAbastecimiento;
+    private int IdTipoServicio;
 
     public CECliente() {
     }
@@ -183,6 +184,20 @@ public class CECliente {
      */
     public void setIdCondicionConexionAgua(int IdCondicionConexionAgua) {
         this.IdCondicionConexionAgua = IdCondicionConexionAgua;
+    }
+
+    /**
+     * @return the IdTipoServicio
+     */
+    public int getIdTipoServicio() {
+        return IdTipoServicio;
+    }
+
+    /**
+     * @param IdTipoServicio the IdTipoServicio to set
+     */
+    public void setIdTipoServicio(int IdTipoServicio) {
+        this.IdTipoServicio = IdTipoServicio;
     }
 
  

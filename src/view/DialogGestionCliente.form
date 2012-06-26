@@ -218,6 +218,9 @@
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="TblResultadosMousePressed"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TblResultadosKeyTyped"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="TblResultados.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), &quot;ProjSave&quot;);&#xa;TblResultados.getActionMap().put(&quot;ProjSave&quot;, new AbstractAction()&#xa;        {&#xa;        public void actionPerformed(ActionEvent e)&#xa;        {&#xa;            int fila = TblResultados.getSelectedRow();&#xa;             if ((fila &gt; -1))&#xa;             {  &#xa;                if(codigo!=0)&#xa;                {&#xa;                getClienteSeleccionado();&#xa;                dispose();&#xa;                }&#xa;             }&#xa;            }&#xa;        });"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
