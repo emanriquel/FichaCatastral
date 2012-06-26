@@ -84,6 +84,7 @@ import modelo.entidad.CETipoServicio;
 import modelo.entidad.CEUbiCajaConexAgua;
 import modelo.entidad.CEUbiCajaConexDesague;
 import modelo.entidad.CEUsoPredio;
+import modelo.entidad.CEUsos;
 import modelo.entidad.CEVereda;
 import modelo.entidad.CEVia;
 import util.ArrayListComboBoxModel;
@@ -596,7 +597,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/logo.png"))); // NOI18N
 
         jLabel2.setDisplayedMnemonic('M');
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 24));
         jLabel2.setForeground(new java.awt.Color(0, 51, 102));
         jLabel2.setText("Mantenimiento de Ficha de Datos Catastrales");
 
@@ -604,7 +605,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel3.setText("EPS EMAPAVIGSSA");
 
         jLabel4.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 14));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Ficha Numero");
         jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -1456,18 +1457,31 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Nº", "Respo", "Tipo de Uso", "Cod. Uso", "Ptos Agua", "Num. Persona", "Complemento", "Categoría"
+                "Codigo", "Uso", "Nº", "Respo", "Tipo de Uso", "Cod. Uso", "Ptos Agua", "Num. Persona", "Complemento", "Categoría"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true, true, true, true, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         jScrollPane1.setViewportView(TblUsos);
+        TblUsos.getColumnModel().getColumn(0).setMinWidth(0);
+        TblUsos.getColumnModel().getColumn(0).setPreferredWidth(0);
+        TblUsos.getColumnModel().getColumn(0).setMaxWidth(0);
+        TblUsos.getColumnModel().getColumn(1).setMinWidth(0);
+        TblUsos.getColumnModel().getColumn(1).setPreferredWidth(0);
+        TblUsos.getColumnModel().getColumn(1).setMaxWidth(0);
 
         BtnAgregarUso.setText("+");
         BtnAgregarUso.addActionListener(new java.awt.event.ActionListener() {
@@ -1786,7 +1800,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         RbtOpcionIndeterminado.setFont(new java.awt.Font("Arial", 1, 11));
         RbtOpcionIndeterminado.setText("Indeterminado");
 
-        jLabel141.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        jLabel141.setFont(new java.awt.Font("Arial", 3, 12));
         jLabel141.setText("Cond. Conex:");
 
         LblCondicionConexion.setFont(new java.awt.Font("Arial", 3, 12));
@@ -1805,7 +1819,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel137.setForeground(new java.awt.Color(0, 0, 102));
         jLabel137.setText("Estado Tapa:");
 
-        LblCondicionConexionConsulta.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        LblCondicionConexionConsulta.setFont(new java.awt.Font("Arial", 3, 12));
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -2478,7 +2492,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel110.setOpaque(true);
 
         jLabel111.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel111.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel111.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel111.setForeground(new java.awt.Color(0, 0, 102));
         jLabel111.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel111.setText("Ub. Conex. de Desag.");
@@ -3582,8 +3596,39 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
          oConvertidorFecha.setFecha(DateFechaSupervision.getCalendar());
         oConvertidorFecha.setFechaConvertida();
         oCEMedida.setFecha_Digitador(oConvertidorFecha.getFechaConvertida()+"");//102
-
         return oCEMedida;
+    }
+
+    private ArrayList<CEUsos> getLstUsos()
+    {
+        ArrayList<CEUsos> oLstUsos =new ArrayList<CEUsos>();
+        int size=TblUsos.getRowCount();
+        for(int i=0;i<size;i++)
+        {
+           Object valor=TblUsos.getValueAt(i,1);
+           int codigo=Integer.parseInt(TblUsos.getValueAt(i,0).toString());
+           if(valor instanceof CEUsos)
+           {
+             CEUsos oCEUsos=new CEUsos();
+             oCEUsos.setIdUso(oCEUsos.getIdUso());
+             oCEUsos.setCodigo(codigo);
+             oCEUsos.setNumero(TblUsos.getValueAt(i, 2).toString());
+             oCEUsos.setRespo(TblUsos.getValueAt(i, 3).toString());
+             oCEUsos.setTipoUso(TblUsos.getValueAt(i, 4).toString());
+             oCEUsos.setCodUso(TblUsos.getValueAt(i, 5).toString());
+             oCEUsos.setPtosAgua(TblUsos.getValueAt(i, 6).toString());
+             oCEUsos.setNumPersona(TblUsos.getValueAt(i, 7).toString());
+             oCEUsos.setComplemento(TblUsos.getValueAt(i, 8).toString());
+             oCEUsos.setCategoria(TblUsos.getValueAt(i, 9).toString());
+           }
+           else
+           {
+
+           }
+
+        }
+
+        return oLstUsos;
     }
 
     private void setMedida(CEMedida oCEMedida)

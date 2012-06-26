@@ -91,6 +91,8 @@ public class DialogCliente extends javax.swing.JDialog {
          buscarIndexComboTipoDocumento(oCECliente.getIdTipoDocumento());
          TxtDireccion.setText(oCECliente.getDireccion());
          buscarIndexComboMedioAbastecimiento(oCECliente.getIdMedioAbastecimiento());
+         System.out.print(oCECliente.getIdCondicionConexionAgua()+"");
+         buscarIndexComboCondicionConexionAgua(oCECliente.getIdCondicionConexionAgua());
          lblCodigo.setText(oCECliente.getIdCliente()+"");
          TxtAntiguoCodigoCatastral.setText(oCECliente.getAntiguoCodigoCatastral());
          TxtNuevoCodigoCatastral.setText(oCECliente.getNuevoCodigoCatastral());
@@ -186,11 +188,9 @@ public class DialogCliente extends javax.swing.JDialog {
         oCECliente.setApellidoPaternoPropietario(TxtApellidoPaternoPropietario.getText());
         oCECliente.setCorreoElectronico(TxtCorreoElectronico.getText());
         
+        CECondicionConexionAgua oCECondicionConexionAgua =(CECondicionConexionAgua)CbxCondicionConexionAgua.getSelectedItem();
+        oCECliente.setIdCondicionConexionAgua(oCECondicionConexionAgua.getIdCondicionConexionAgua());
 
-      
-        
-    
-        
         CEMedioAbastecimiento oCEMedioAbastecimiento =(CEMedioAbastecimiento)CbxMedioAbastecimiento.getSelectedItem();
         oCECliente.setIdMedioAbastecimiento(oCEMedioAbastecimiento.getIdMedioAbastecimiento());
         
@@ -536,6 +536,7 @@ public class DialogCliente extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblIdHabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(764, 764, 764)
                         .addComponent(BtnGuardar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(BtnCancelar))
@@ -554,8 +555,8 @@ public class DialogCliente extends javax.swing.JDialog {
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BtnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
-                    .addComponent(BtnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BtnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                    .addComponent(BtnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -592,9 +593,7 @@ public class DialogCliente extends javax.swing.JDialog {
       dispose();
     }//GEN-LAST:event_BtnCancelarActionPerformed
     private Boolean Validar(){
-        if("0".equals(lblIdHabitacion.getText())||"0".equals(lblIdVia.getText())){
-            return false;
-        }
+       
         return true;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

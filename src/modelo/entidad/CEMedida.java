@@ -1,5 +1,7 @@
 package modelo.entidad;
 
+import java.util.ArrayList;
+
 public class CEMedida
 {
   private int IdRegistroMedida ;
@@ -106,6 +108,7 @@ public class CEMedida
   private double PorcentajeSocial;
   private double UbicacionConexionAgua;
   private double UbicacionConexionDesague;
+  private ArrayList<CEUsos> oLstUsos;
 
     public String getApellidoMaternoConyugue() {
         return ApellidoMaternoConyugue;
@@ -1035,6 +1038,20 @@ public class CEMedida
     @Override
     public String toString() {
         return this.ApellidoPaternoPropietario;
+    }
+
+    /**
+     * @return the oLstUsos
+     */
+    public ArrayList<CEUsos> getoLstUsos() {
+        return oLstUsos;
+    }
+
+    /**
+     * @param oLstUsos the oLstUsos to set
+     */
+    public void setoLstUsos(ArrayList<CEUsos> oLstUsos) {
+        this.oLstUsos = oLstUsos;
     }
 
 }

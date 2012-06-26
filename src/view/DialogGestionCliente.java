@@ -22,7 +22,6 @@ public class DialogGestionCliente extends javax.swing.JDialog {
         initComponents();
         OcultarCampos();
         setupTable();
-        getLista();
         habilitar(true);
         this.codigo=codigo;
         txtfiltro.setText(parametro);
@@ -56,6 +55,8 @@ private void OcultarCampos(){
         };
         oModelo.addColumn("ID");
         oModelo.addColumn("Nro Inscripcion");
+        oModelo.addColumn("Antiguo Cod. Catas");
+        oModelo.addColumn("Nuevo Cod. Catas");
         oModelo.addColumn("Cliente");
 
         TblResultados.setModel(oModelo);
@@ -68,13 +69,17 @@ private void OcultarCampos(){
         
         TableColumn coltipo = TblResultados.getColumnModel().getColumn(1);
 //        colIdUnidad.setPreferredWidth(5);
-        coltipo.setMinWidth(160);
-        coltipo.setMaxWidth(160);        
-        
-         TableColumn coltipo1 = TblResultados.getColumnModel().getColumn(2);
+        coltipo.setPreferredWidth(100);
+                TableColumn colAC = TblResultados.getColumnModel().getColumn(2);
 //        colIdUnidad.setPreferredWidth(5);
-        coltipo1.setMinWidth(350);
-        coltipo1.setMaxWidth(350);
+        colAC.setPreferredWidth(120);
+                TableColumn colNC = TblResultados.getColumnModel().getColumn(3);
+//        colIdUnidad.setPreferredWidth(5);
+        colNC.setPreferredWidth(120);
+        
+         TableColumn coltipo1 = TblResultados.getColumnModel().getColumn(4);
+//        colIdUnidad.setPreferredWidth(5);
+        coltipo1.setPreferredWidth(350);
         
         //TblResultados.getTableHeader().setReorderingAllowed(false);
     }    
@@ -116,12 +121,12 @@ private void OcultarCampos(){
         else{
          if(elegirOpcion()==2)
             {
-            oLista = (ArrayList) oCDCliente.filtrarClientePorNuevoCodigoCatastral(txtfiltro.getText());
+            oLista = (ArrayList) oCDCliente.filtrarClientePorAntiguoCodigoCatastral(txtfiltro.getText());
             }
         else{
              if(elegirOpcion()==3)
              {
-                 oLista = (ArrayList) oCDCliente.filtrarClientePorAntiguoCodigoCatastral(txtfiltro.getText());
+                 oLista = (ArrayList) oCDCliente.filtrarClientePorNuevoCodigoCatastral(txtfiltro.getText());
              }
             else
              {
@@ -146,8 +151,10 @@ private void OcultarCampos(){
                 oCECliente = (CECliente) oListaAux.get(i);
                 oRow = new ArrayList();
                 oRow.add(0, oCECliente.getIdCliente());
-                oRow.add(1, oCECliente.getNumeroDocumento());
-                oRow.add(2, oCECliente.getApellidoPaternoPropietario());
+                oRow.add(1, oCECliente.getNumeroInscripcion());
+                oRow.add(2, oCECliente.getAntiguoCodigoCatastral());
+                oRow.add(3, oCECliente.getNuevoCodigoCatastral());
+                oRow.add(4, oCECliente.getApellidoPaternoPropietario());
                 oModelo.addRow(oRow);
             }
         }
@@ -265,6 +272,7 @@ private void OcultarCampos(){
 
             }
         ));
+        TblResultados.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         TblResultados.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TblResultadosMouseClicked(evt);

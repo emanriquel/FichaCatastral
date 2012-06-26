@@ -35,6 +35,37 @@ public class CDUsuario
 
         }
         return oLstUsuario;
+    }
+    public boolean verificarUsuario(String usuario, String password)
+    {
+
+        try
+        {
+            Connection conn = ConexionBD.obtenerConexion();
+            String sql = "SELECT usuario,contrasenia FROM usuario us where us.usuario='"+usuario+"'";
+            PreparedStatement sp = conn.prepareStatement(sql);
+            ResultSet rs=sp.executeQuery();
+            if(rs.next())
+            {
+                CEUsuario oCEUsuario=new CEUsuario();
+                
+                oCEUsuario.setUsuario(rs.getString(1));
+                oCEUsuario.setPassword(rs.getString(2));
+
+                if(oCEUsuario.getPassword().equals(password))
+                {
+                    return true;
+                }
+                return false;
+
+            }
+            return false;
+
+        }
+        catch (SQLException ex)
+        {
+            return false;
+        }
 
     }
 }
