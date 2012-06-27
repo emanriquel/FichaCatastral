@@ -70,6 +70,7 @@ public CECliente DetalleCliente(CECliente oCECliente)
                         oCECliente.setDireccion(resultado.getString(14));
                         oCECliente.setIdMedioAbastecimiento(resultado.getInt(15));
                         oCECliente.setIdCondicionConexionAgua(resultado.getInt(16));
+                        oCECliente.setIdTipoServicio(resultado.getInt(17));
 
                         Lst.add(oCECliente);
                     }
@@ -253,7 +254,8 @@ public CECliente DetalleCliente(CECliente oCECliente)
                     + "CorreoElectronico,"
                     + "IdMedioAbastecimiento,"
                     + "IdCondicionConexionAgua,"
-                    + "Direccion) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                    + "Direccion,"
+                    + "IdTipoServicio) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?.?)";
             PreparedStatement ps = con.prepareCall(sql);
               ps.setString(1,oCECliente.getAntiguoCodigoCatastral());
             ps.setString(2,oCECliente.getNuevoCodigoCatastral());
@@ -271,6 +273,7 @@ public CECliente DetalleCliente(CECliente oCECliente)
             ps.setInt(14,oCECliente.getIdCondicionConexionAgua());
             ps.setString(15,oCECliente.getDireccion());
             ps.setInt(16,oCECliente.getIdCliente());
+            ps.setInt(17,oCECliente.getIdTipoServicio());
             ps.executeUpdate();
 
             return true;
@@ -303,7 +306,8 @@ public CECliente DetalleCliente(CECliente oCECliente)
                     + "CorreoElectronico = ?,"
                     + "IdMedioAbastecimiento= ?, "
                     + "IdCondicionConexionAgua=?,"
-                    + "Direccion=? "
+                    + "Direccion=?,"
+                    + "IdTipoServicio=? "
                     + "where IdCliente = ? ;";
             PreparedStatement ps = con.prepareCall(sql);
             ps.setString(1,oCECliente.getAntiguoCodigoCatastral());
@@ -321,7 +325,8 @@ public CECliente DetalleCliente(CECliente oCECliente)
             ps.setInt(13,oCECliente.getIdMedioAbastecimiento());
             ps.setInt(14,oCECliente.getIdCondicionConexionAgua());
             ps.setString(15,oCECliente.getDireccion());
-            ps.setInt(16,oCECliente.getIdCliente());
+            ps.setInt(16,oCECliente.getIdTipoServicio());
+            ps.setInt(17,oCECliente.getIdCliente());
             ps.executeUpdate();
 
             return true;

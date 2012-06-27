@@ -338,30 +338,31 @@ public class CDMedida
 
             if(valor)
             {
-                boolean a=true;
+                int a=1;
                 for(CEUsos oCEUsos:oCEMedida.getoLstUsos())
                 {
 
                     if(oCEUsos.getCodigo()==1)
                     {
-                        String sql2="INSERT INTO usos (Numero, Respo, TipoUso, CodUso, PtosAgua, NumPersona, Complemento, Categoria) VALUES ( ?,?,?,?,?,?,?,?)";
+                        String sql2="INSERT INTO usos (Numero, Respo, TipoUso, CodUso, PtosAgua, NumPersona, Complemento, Categoria,IdRegistoMedida) VALUES ( ?,?,?,?,?,?,?,?,?)";
                         PreparedStatement ps1 = con.prepareCall(sql2);
-                        ps1.setString(2, oCEUsos.getNumero());
-                        ps1.setString(3, oCEUsos.getRespo());
-                        ps1.setString(4, oCEUsos.getTipoUso());
-                        ps1.setString(5, oCEUsos.getCodUso());
-                        ps1.setString(6, oCEUsos.getPtosAgua());
-                        ps1.setString(7, oCEUsos.getNumPersona());
-                        ps1.setString(8, oCEUsos.getComplemento());
-                        ps1.setString(9, oCEUsos.getCategoria());
-                        a=ps1.execute();
-                        if(!a)
+                        ps1.setString(1, oCEUsos.getNumero());
+                        ps1.setString(2, oCEUsos.getRespo());
+                        ps1.setString(3, oCEUsos.getTipoUso());
+                        ps1.setString(4, oCEUsos.getCodUso());
+                        ps1.setString(5, oCEUsos.getPtosAgua());
+                        ps1.setString(6, oCEUsos.getNumPersona());
+                        ps1.setString(7, oCEUsos.getComplemento());
+                        ps1.setString(8, oCEUsos.getCategoria());
+                        ps1.setInt(9, oCEUsos.getIdRegistroMedida());
+                        a=ps1.executeUpdate();
+                        if(a==2)
                         {
                             break;
                         }
                     }
                 }
-                if(a)
+                if(a==1)
                 {
                     con.commit();
                     String sql4 = "update medidor m set m.Valor=m.Valor+1 where m.Nombre='NumFicha'";
@@ -394,6 +395,7 @@ public class CDMedida
         try
         {
             Connection con = ConexionBD.obtenerConexion();
+            con.setAutoCommit(false);
             String sql = "update  registro_medida  set NumeroFicha =?,"//1
                     + "PorcentajeSocial  =?,"//2
                     + "IdCondicionConexionAgua  =?," //3
@@ -499,7 +501,7 @@ public class CDMedida
                     + "IdSituacionConexion =?"//103
                     + " where IdRegistroMedida="+oCEMedida.getIdRegistroMedida();//104
             PreparedStatement ps = con.prepareCall(sql);
-            ps.setInt(1,1);
+            ps.setInt(1,oCEMedida.getNumeroFicha());
             ps.setDouble(2,oCEMedida.getPorcentajeSocial());
             ps.setInt(3,oCEMedida.getIdCondicionConexionAgua());
             ps.setInt(4,oCEMedida.getIdCondicionConexionDesague());
@@ -602,16 +604,16 @@ public class CDMedida
             ps.setDouble(101, oCEMedida.getPorcentajeDomestico());
             ps.setDouble(102, oCEMedida.getPorcentajeEstatal());
             ps.setDouble(103, oCEMedida.getIdSituacionConexion());
-            boolean valor=ps.execute();
-            if(valor)
+            int valor=ps.executeUpdate();
+            if(valor==1)
             {
-                boolean a=true;
+                int a=1;
                 for(CEUsos oCEUsos:oCEMedida.getoLstUsos())
                 {
 
                     if(oCEUsos.getCodigo()==1)
                     {
-                        String sql2="INSERT INTO usos (Numero, Respo, TipoUso, CodUso, PtosAgua, NumPersona, Complemento, Categoria) VALUES ( ?,?,?,?,?,?,?,?,?)";
+                        String sql2="INSERT INTO usos (Numero, Respo, TipoUso, CodUso, PtosAgua, NumPersona, Complemento, Categoria,IdRegistroMedida) VALUES ( ?,?,?,?,?,?,?,?,?)";
                         PreparedStatement ps1 = con.prepareCall(sql2);
                         ps1.setString(1, oCEUsos.getNumero());
                         ps1.setString(2, oCEUsos.getRespo());
@@ -622,8 +624,8 @@ public class CDMedida
                         ps1.setString(7, oCEUsos.getComplemento());
                         ps1.setString(8, oCEUsos.getCategoria());
                          ps1.setInt(9, oCEMedida.getIdRegistroMedida());
-                        a=ps1.execute();
-                        if(!a)
+                        a=ps1.executeUpdate();
+                        if(a==2)
                         {
                             break;
                         }
@@ -644,26 +646,29 @@ public class CDMedida
                             ps1.setString(8, oCEUsos.getCategoria());
                             ps1.setInt(9, oCEMedida.getIdRegistroMedida());
                             ps1.setInt(10, oCEUsos.getIdUso());
-                            a=ps1.execute();
-                            if(!a)
+                            a=ps1.executeUpdate();
+                            if(a==2)
                             {
                                 break;
                             }
                         }
                         else
                         {
-                            String sql2="delete from usos where IdUso=?";
-                            PreparedStatement ps1 = con.prepareCall(sql2);
-                            ps1.setInt(1, oCEUsos.getIdUso());
-                            a=ps1.execute();
-                            if(!a)
+                            if(oCEUsos.getCodigo()==3)
                             {
-                                break;
+                                String sql2="delete from usos where IdUso=?";
+                                PreparedStatement ps1 = con.prepareCall(sql2);
+                                ps1.setInt(1, oCEUsos.getIdUso());
+                                a=ps1.executeUpdate();
+                                if(a==2)
+                                {
+                                    break;
+                                }
                             }
                         }
                     }
                 }
-                if(a)
+                if(a==1)
                 {
                     con.commit();
                     return true;

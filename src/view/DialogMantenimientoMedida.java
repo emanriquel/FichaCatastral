@@ -166,8 +166,15 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                             int suma=0;
                             for(int i=0;i<TblUsos.getRowCount();i++)
                             {
+                                if(TblUsos.getValueAt(i,7)!=null)
+                                {
                                 int cant=Integer.parseInt(TblUsos.getValueAt(i,7).toString());
                                 suma=cant+suma;
+                                }
+                                else
+                                {
+                                suma=0+suma;
+                                }
                             }
                             TxtCantidadHabitantesPredio.setText(suma+"");
                         }
@@ -666,7 +673,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel4.setOpaque(true);
 
         TxtNumeroFicha.setEditable(false);
-        TxtNumeroFicha.setFont(new java.awt.Font("Tahoma", 1, 12));
+        TxtNumeroFicha.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         TxtNumeroFicha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);
@@ -1036,7 +1043,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel138.setText("Cliente:");
         jLabel138.setOpaque(true);
 
-        LblUsuario.setFont(new java.awt.Font("Arial", 3, 12));
+        LblUsuario.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        LblUsuario.setForeground(new java.awt.Color(51, 102, 0));
         LblUsuario.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LblUsuario.setOpaque(true);
 
@@ -1195,6 +1203,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Datos del Inmueble(Dirección de Conexión)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12), new java.awt.Color(102, 0, 0))); // NOI18N
 
         TxtNumeroManzana.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TxtNumeroManzana.setNextFocusableComponent(TxtNumeroLote);
 
         jLabel40.setBackground(new java.awt.Color(204, 204, 204));
         jLabel40.setFont(new java.awt.Font("Arial", 1, 12));
@@ -1223,8 +1232,10 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel42.setOpaque(true);
 
         TxtBlock.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TxtBlock.setNextFocusableComponent(TxtPiso);
 
         TxtPiso.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TxtPiso.setNextFocusableComponent(TxtNumero);
 
         jLabel43.setBackground(new java.awt.Color(204, 204, 204));
         jLabel43.setFont(new java.awt.Font("Arial", 1, 12));
@@ -1253,6 +1264,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel46.setText("Uso del Predio:");
 
         TxtNumeroLote.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TxtNumeroLote.setNextFocusableComponent(TxtBlock);
 
         jLabel47.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel47.setForeground(new java.awt.Color(0, 0, 102));
@@ -1277,6 +1289,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel50.setText("Situación del Predio:");
 
         TxtNombreHabilitacion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TxtNombreHabilitacion.setNextFocusableComponent(TxtNumeroManzana);
         TxtNombreHabilitacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TxtNombreHabilitacionActionPerformed(evt);
@@ -1347,6 +1360,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel37.setOpaque(true);
 
         TxtNumMunicipal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TxtNumMunicipal.setNextFocusableComponent(TxtNombreHabilitacion);
 
         TxtNombreVia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         TxtNombreVia.setNextFocusableComponent(TxtNumMunicipal);
@@ -1385,6 +1399,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel139.setOpaque(true);
 
         LblDireccion.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        LblDireccion.setForeground(new java.awt.Color(0, 102, 0));
         LblDireccion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LblDireccion.setOpaque(true);
 
@@ -1393,7 +1408,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel140.setText("Tipo Servicio:");
         jLabel140.setOpaque(true);
 
-        LblTipoServicio.setFont(new java.awt.Font("Arial", 3, 12));
+        LblTipoServicio.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        LblTipoServicio.setForeground(new java.awt.Color(0, 102, 0));
         LblTipoServicio.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LblTipoServicio.setOpaque(true);
 
@@ -1602,6 +1618,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        TblUsos.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        TblUsos.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(TblUsos);
         TblUsos.getColumnModel().getColumn(0).setMinWidth(0);
         TblUsos.getColumnModel().getColumn(0).setPreferredWidth(0);
@@ -1609,6 +1627,12 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         TblUsos.getColumnModel().getColumn(1).setMinWidth(0);
         TblUsos.getColumnModel().getColumn(1).setPreferredWidth(0);
         TblUsos.getColumnModel().getColumn(1).setMaxWidth(0);
+        TblUsos.getColumnModel().getColumn(2).setPreferredWidth(30);
+        TblUsos.getColumnModel().getColumn(3).setPreferredWidth(60);
+        TblUsos.getColumnModel().getColumn(4).setPreferredWidth(200);
+        TblUsos.getColumnModel().getColumn(7).setPreferredWidth(80);
+        TblUsos.getColumnModel().getColumn(8).setPreferredWidth(300);
+        TblUsos.getColumnModel().getColumn(9).setPreferredWidth(60);
 
         BtnAgregarUso.setText("+");
         BtnAgregarUso.addActionListener(new java.awt.event.ActionListener() {
@@ -1959,7 +1983,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel137.setForeground(new java.awt.Color(0, 0, 102));
         jLabel137.setText("Estado Tapa:");
 
-        LblCondicionConexionConsulta.setFont(new java.awt.Font("Arial", 3, 12));
+        LblCondicionConexionConsulta.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        LblCondicionConexionConsulta.setForeground(new java.awt.Color(51, 102, 0));
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -3187,8 +3212,15 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                 boolean valor=oCDMedida.actualizarMedida(oCEMedida);
                 if(valor)
                 {
-                    copiarImagenes(jFileChooser1.getSelectedFile(),1);
-                    copiarImagenes(jFileChooser2.getSelectedFile(),2);
+                    if(jFileChooser1.getSelectedFile()!=null)
+                    {
+                        copiarImagenes(jFileChooser1.getSelectedFile(),1);
+                    }
+                    if(jFileChooser2.getSelectedFile()!=null)
+                    {
+                        copiarImagenes(jFileChooser2.getSelectedFile(),1);
+                    }
+                   
                    JOptionPane.showMessageDialog(null, "Se actualizo correctamente");
                    dispose();
                 }
@@ -3264,13 +3296,20 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     CECliente oCEClienteSeleccionado=oCliente.getClienteSeleccionado();
     if(oCEClienteSeleccionado!=null)
     {
+
         LblUsuario.setText(oCEClienteSeleccionado.getApellidoPaternoPropietario());
         LblDireccion.setText(oCEClienteSeleccionado.getDireccion());
+        TxtCodigoInscripcion.setText(oCEClienteSeleccionado.getNumeroInscripcion());
         CECondicionConexionAgua oCECondicionConexionAgua = new CECondicionConexionAgua();
         CDCondicionConexionAgua oCDCondicionConexionAgua = new CDCondicionConexionAgua();
         oCECondicionConexionAgua.setIdCondicionConexionAgua(oCEClienteSeleccionado.getIdCondicionConexionAgua());
         CECondicionConexionAgua ooCECondicionConexionAgua = oCDCondicionConexionAgua.DetalleCondicionConexionAgua(oCECondicionConexionAgua);
         LblCondicionConexionConsulta.setText(ooCECondicionConexionAgua.getCondicionConexionAgua());
+         CETipoServicio oCETipoServicio = new CETipoServicio();
+        CDTipoServicio oCDTipoServicio = new CDTipoServicio();
+        oCETipoServicio.setIdTipoServicio(oCEClienteSeleccionado.getIdTipoServicio());
+        CETipoServicio ooCETipoServicio = oCDTipoServicio.DetalleServicio(oCETipoServicio);
+        LblTipoServicio.setText(ooCETipoServicio.getTipoServicio());
         CbxTipoDocumento.requestFocus();
     }
     }//GEN-LAST:event_BtnBuscarUsuarioActionPerformed
@@ -3290,6 +3329,11 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         oCECondicionConexionAgua.setIdCondicionConexionAgua(oCEClienteSeleccionado.getIdCondicionConexionAgua());
         CECondicionConexionAgua ooCECondicionConexionAgua = oCDCondicionConexionAgua.DetalleCondicionConexionAgua(oCECondicionConexionAgua);
         LblCondicionConexion.setText(ooCECondicionConexionAgua.getCondicionConexionAgua());
+        CETipoServicio oCETipoServicio = new CETipoServicio();
+        CDTipoServicio oCDTipoServicio = new CDTipoServicio();
+        oCETipoServicio.setIdTipoServicio(oCEClienteSeleccionado.getIdTipoServicio());
+        CETipoServicio ooCETipoServicio = oCDTipoServicio.DetalleServicio(oCETipoServicio);
+        LblTipoServicio.setText(ooCETipoServicio.getTipoServicio());
         CbxTipoDocumento.requestFocus();
     }
     }//GEN-LAST:event_TxtCodigoInscripcionActionPerformed
@@ -3339,6 +3383,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
 
     private void BtnAgregarUsoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarUsoActionPerformed
      Vector oVector=new Vector();
+     oVector.add(0);
      ((DefaultTableModel)TblUsos.getModel()).addRow(oVector);
     }//GEN-LAST:event_BtnAgregarUsoActionPerformed
 
@@ -3611,7 +3656,23 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         {
             ((CEUsos)valor).setCodigo(3);
              oLstUsosEliminados.add((CEUsos)valor);
+
         }
+        ((DefaultTableModel)TblUsos.getModel()).removeRow(fila);
+        int suma=0;
+         for(int i=0;i<TblUsos.getRowCount();i++)
+                            {
+                                if(TblUsos.getValueAt(i,7)!=null)
+                                {
+                                int cant=Integer.parseInt(TblUsos.getValueAt(i,7).toString());
+                                suma=cant+suma;
+                                }
+                                else
+                                {
+                                suma=0+suma;
+                                }
+                            }
+                            TxtCantidadHabitantesPredio.setText(suma+"");
      }
     }//GEN-LAST:event_BtnEliminarUsoActionPerformed
 
@@ -3855,7 +3916,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
          oCEUsos.setTipoUso(TblUsos.getValueAt(i, 4).toString());
          oCEUsos.setCodUso(TblUsos.getValueAt(i, 5).toString());
          oCEUsos.setPtosAgua(TblUsos.getValueAt(i, 6).toString());
-         oCEUsos.setNumPersona(TblUsos.getValueAt(i, 7).toString());
+         oCEUsos.setNumPersona(TblUsos.getValueAt(i, 7)==null?"0":TblUsos.getValueAt(i, 7).toString());
          oCEUsos.setComplemento(TblUsos.getValueAt(i, 8).toString());
          oCEUsos.setCategoria(TblUsos.getValueAt(i, 9).toString());
          oLstUsos.add(oCEUsos);
@@ -3998,7 +4059,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         int mes2=Integer.parseInt(oCEMedida.getFecha_Encuestador().substring(5,7));
         int dia2=Integer.parseInt(oCEMedida.getFecha_Encuestador().substring(8,10));
         DateFechaDigitador.setCalendar(new GregorianCalendar(ano2,mes2-1,dia2));
-        setLstUsos(oLstUsosEliminados);
+        setLstUsos(oCEMedida.getoLstUsos());
     }
     private void buscarTipoPropiedadEntrevistado(int IdSituacionConexion)
     {

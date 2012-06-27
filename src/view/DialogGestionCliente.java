@@ -286,6 +286,7 @@ private void OcultarCampos(){
             }
         ));
         TblResultados.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        TblResultados.getTableHeader().setReorderingAllowed(false);
         TblResultados.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TblResultadosMouseClicked(evt);

@@ -55,6 +55,9 @@ public class DialogCliente extends javax.swing.JDialog {
         ArrayList oLstCondicionConexionAgua=oCDCondicionConexionAgua.listarCondicionConexionAgua();
         construirModeloCombo(CbxCondicionConexionAgua, oLstCondicionConexionAgua);
 
+           CDTipoServicio oCDTipoServicio=new CDTipoServicio();
+    ArrayList oLstTipoServicio=oCDTipoServicio.listarTipoServicio();
+    construirModeloCombo(CbxTipoServicio, oLstTipoServicio);
     }
     private void construirModeloCombo(JComboBox oBox, ArrayList oLista)
     {
@@ -100,7 +103,7 @@ public class DialogCliente extends javax.swing.JDialog {
          TxtCorreoElectronico.setText(oCECliente.getCorreoElectronico());
          TxtDireccion.setText(oCECliente.getDireccion());
          buscarIndexComboCondicionConexionAgua(oCECliente.getIdCondicionConexionAgua());
-         buscarIndexComboTipoServicio(oCECliente.getIdCliente());
+         buscarIndexComboTipoServicio(oCECliente.getIdTipoServicio());
      }
     
     
@@ -443,21 +446,21 @@ public class DialogCliente extends javax.swing.JDialog {
         jPanel5.add(TxtDireccion);
         TxtDireccion.setBounds(370, 110, 490, 20);
 
-        jLabel67.setFont(new java.awt.Font("Arial", 1, 12));
+        jLabel67.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel67.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel67.setText("Medio de Abastecimiento:");
+        jLabel67.setText("Medio de Abas.:");
         jPanel5.add(jLabel67);
-        jLabel67.setBounds(30, 170, 146, 20);
+        jLabel67.setBounds(290, 170, 90, 20);
         jPanel5.add(CbxMedioAbastecimiento);
-        CbxMedioAbastecimiento.setBounds(180, 170, 170, 20);
+        CbxMedioAbastecimiento.setBounds(380, 170, 170, 20);
 
-        jLabel141.setFont(new java.awt.Font("Arial", 1, 12));
+        jLabel141.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel141.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel141.setText("Cond. Conex:");
+        jLabel141.setText("Cond. Conex Agua:");
         jPanel5.add(jLabel141);
-        jLabel141.setBounds(370, 170, 74, 20);
+        jLabel141.setBounds(580, 170, 110, 20);
         jPanel5.add(CbxCondicionConexionAgua);
-        CbxCondicionConexionAgua.setBounds(450, 170, 170, 20);
+        CbxCondicionConexionAgua.setBounds(690, 170, 170, 20);
 
         CbxTipoServicio.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -465,13 +468,13 @@ public class DialogCliente extends javax.swing.JDialog {
             }
         });
         jPanel5.add(CbxTipoServicio);
-        CbxTipoServicio.setBounds(708, 170, 150, 20);
+        CbxTipoServicio.setBounds(110, 170, 150, 20);
 
         jLabel48.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel48.setForeground(new java.awt.Color(0, 0, 102));
         jLabel48.setText("Tipo Servicio:");
         jPanel5.add(jLabel48);
-        jLabel48.setBounds(630, 170, 76, 20);
+        jLabel48.setBounds(30, 170, 76, 20);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
