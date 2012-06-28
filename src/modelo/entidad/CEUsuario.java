@@ -4,6 +4,24 @@ public class CEUsuario {
     private int IdUsuario;
     private String Usuario;
     private String Password;
+    private int IdTipoUsuario;
+    private String TipoUsuario;
+
+    public int getIdTipoUsuario() {
+        return IdTipoUsuario;
+    }
+
+    public void setIdTipoUsuario(int IdTipoUsuario) {
+        this.IdTipoUsuario = IdTipoUsuario;
+    }
+
+    public String getTipoUsuario() {
+        return TipoUsuario;
+    }
+
+    public void setTipoUsuario(String TipoUsuario) {
+        this.TipoUsuario = TipoUsuario;
+    }
 
 
     public int getIdUsuario() {
@@ -30,5 +48,11 @@ public class CEUsuario {
     public void setPassword(String Password) {
         this.Password = Password;
     }
+
+    @Override
+    public String toString() {
+        return  Usuario;
+    }
+    
 
 }

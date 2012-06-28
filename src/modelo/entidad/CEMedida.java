@@ -111,6 +111,7 @@ public class CEMedida
   private int IdTipoCaracteristicasCajaDesague;
   private int IdMaterialConexionAgua;
   private int IdMaterialConexionDesague;
+  private int IdTipoFotoAgua;
 
     public int getIdMaterialConexionAgua() {
         return IdMaterialConexionAgua;
@@ -1069,6 +1070,20 @@ public class CEMedida
      */
     public void setoLstUsos(ArrayList<CEUsos> oLstUsos) {
         this.oLstUsos = oLstUsos;
+    }
+
+    /**
+     * @return the IdTipoFotoAgua
+     */
+    public int getIdTipoFotoAgua() {
+        return IdTipoFotoAgua;
+    }
+
+    /**
+     * @param IdTipoFotoAgua the IdTipoFotoAgua to set
+     */
+    public void setIdTipoFotoAgua(int IdTipoFotoAgua) {
+        this.IdTipoFotoAgua = IdTipoFotoAgua;
     }
 
 }

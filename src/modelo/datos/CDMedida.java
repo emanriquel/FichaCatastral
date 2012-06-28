@@ -124,7 +124,8 @@ public class CDMedida
                     + "PorcentajeEstatal,"
                     + "IdSituacionConexion,"
                     + "IdMaterialConexionDesague,"
-                    + "IdTipoCaracteristicaDesague)"//99
+                    + "IdTipoCaracteristicaDesague,"
+                    + "IdTipoFotoAgua)"//99
                     + "VALUES (?, "
                     + "?,"
                     + " ?,"
@@ -226,7 +227,7 @@ public class CDMedida
                     + "?,"
                     + "?,"
                     + "?,"
-                    + "?,?,?,?)";
+                    + "?,?,?,?,?)";
             PreparedStatement ps = con.prepareCall(sql);
             ps.setString(1,oCEMedida.getNumeroFicha());
             ps.setDouble(2,oCEMedida.getPorcentajeSocial());
@@ -333,6 +334,7 @@ public class CDMedida
             ps.setInt(103, oCEMedida.getIdSituacionConexion());
             ps.setInt(104, oCEMedida.getIdMaterialConexionDesague());
             ps.setInt(105, oCEMedida.getIdTipoCaracteristicasCajaDesague());
+            ps.setInt(106, oCEMedida.getIdTipoFotoAgua());
             int valor=ps.executeUpdate();
             ResultSet oRS=ps.getGeneratedKeys();
             if(oRS.next())
@@ -505,7 +507,8 @@ public class CDMedida
                     + "PorcentajeEstatal =?,"//102
                     + "IdSituacionConexion =?,"
                     + "IdMaterialConexionDesague=?,"
-                    + "IdTipoCaracteristicaDesague=?"//103
+                    + "IdTipoCaracteristicaDesague=?,"
+                    + "IdTipoFotoAgua=?"//103
                     + " where IdRegistroMedida="+oCEMedida.getIdRegistroMedida();//104
             PreparedStatement ps = con.prepareCall(sql);
             ps.setString(1,oCEMedida.getNumeroFicha());
@@ -613,6 +616,7 @@ public class CDMedida
             ps.setDouble(103, oCEMedida.getIdSituacionConexion());
             ps.setInt(104,oCEMedida.getIdMaterialConexionDesague());
             ps.setInt(105,oCEMedida.getIdTipoCaracteristicasCajaDesague());
+            ps.setInt(106,oCEMedida.getIdTipoFotoAgua());
 
             int valor=ps.executeUpdate();
             if(valor==1)
@@ -724,7 +728,7 @@ public class CDMedida
                     + " rm.TipoHabilitacion, "
                     + " rm.NombreHabilitacion,"
                     + "rm.IdRegistroMedida,"
-                     + "rm.Fecha_Encuestador"
+                     + "date_format(rm.Fecha_Encuestador,'%d/%m/%Y')"
                     + " FROM medidor.registro_medida rm"
                     + " WHERE rm.Cod_Inscripcion like '"+dato+"%'";
             PreparedStatement sp = conn.prepareStatement(sql);
@@ -967,7 +971,8 @@ public class CDMedida
                     + "PorcentajeSocial,"
                     + "IdSituacionConexion,"
                     + "IdMaterialConexionDesague,"
-                    + "IdTipoCaracteristicaDesague"
+                    + "IdTipoCaracteristicaDesague,"
+                    + "IdTipoFotoAgua"
                     + " FROM"
                     + " registro_medida m where m.IdRegistroMedida="+dato;
             PreparedStatement sp = conn.prepareStatement(sql);
@@ -978,6 +983,7 @@ public class CDMedida
                 oCEMedida.setIdSituacionConexion(rs.getInt(104));//2
                 oCEMedida.setIdMaterialConexionDesague(rs.getInt(105));//2
                 oCEMedida.setIdTipoCaracteristicasCajaDesague(rs.getInt(106));//2
+                oCEMedida.setIdTipoFotoAgua(rs.getInt(107));//2
                 oCEMedida.setCodDepartamento(rs.getString(90));//3
                 oCEMedida.setCodProvincia(rs.getString(91));//4
                 oCEMedida.setCodDistrito(rs.getString(92));//5

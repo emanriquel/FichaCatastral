@@ -686,8 +686,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         LblCodigoFotoPredio = new javax.swing.JLabel();
         jPanelImagePredio = new util.JPanelImage();
         jPanelImageCaja = new util.JPanelImage();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        RbtAgua = new javax.swing.JRadioButton();
+        RbtDesague = new javax.swing.JRadioButton();
         BtnGuardar = new javax.swing.JButton();
         BtnCancelar = new javax.swing.JButton();
 
@@ -696,11 +696,11 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/logo.png"))); // NOI18N
 
         jLabel2.setDisplayedMnemonic('M');
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 24));
         jLabel2.setForeground(new java.awt.Color(0, 51, 102));
         jLabel2.setText("Mantenimiento de Ficha de Datos Catastrales");
 
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 24));
         jLabel3.setText("EPS EMAPAVIGSSA");
 
         jLabel4.setBackground(new java.awt.Color(204, 204, 204));
@@ -722,7 +722,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel5.setForeground(new java.awt.Color(0, 0, 102));
         jLabel5.setText("Estado de Conexión:");
 
@@ -876,52 +876,47 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                         .addComponent(jLabel9))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(14, 14, 14)
-                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(TxtDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(15, 15, 15)
-                                        .addComponent(TxtProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(15, 15, 15)
-                                        .addComponent(TxtDistrito, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(15, 15, 15)
-                                        .addComponent(TxtSeccion, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(15, 15, 15)
-                                        .addComponent(TxtManzana, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(15, 15, 15)
-                                        .addComponent(TxtLote, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(15, 15, 15)
-                                        .addComponent(TxtConexion, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(15, 15, 15)
-                                        .addComponent(TxtCodigoInscripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(15, 15, 15)
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(15, 15, 15)
-                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(15, 15, 15)
-                                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(15, 15, 15)
-                                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(15, 15, 15)
-                                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(15, 15, 15)
-                                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(15, 15, 15)
-                                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(TxtDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15)
+                                .addComponent(TxtProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15)
+                                .addComponent(TxtDistrito, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15)
+                                .addComponent(TxtSeccion, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15)
+                                .addComponent(TxtManzana, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15)
+                                .addComponent(TxtLote, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15)
+                                .addComponent(TxtConexion, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15)
+                                .addComponent(TxtCodigoInscripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15)
+                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15)
+                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15)
+                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15)
+                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(10, 10, 10)
-                                .addComponent(BtnBuscarUsuario))
+                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(TxtRutaLectura, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(10, 10, 10)
@@ -929,7 +924,9 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                                 .addGap(10, 10, 10)
                                 .addComponent(TxtSecuencia, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(10, 10, 10)
-                                .addComponent(TxtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(TxtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(10, 10, 10)
+                        .addComponent(BtnBuscarUsuario)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -958,7 +955,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(20, 20, 20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TxtRutaLectura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TxtRutaReparto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -968,7 +965,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Datos del Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12), new java.awt.Color(102, 0, 0))); // NOI18N
@@ -1206,7 +1204,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                     .addComponent(TxtNumPisos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CbxTipoPredio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -1439,7 +1437,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel139.setText("Dirección:");
         jLabel139.setOpaque(true);
 
-        LblDireccion.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        LblDireccion.setFont(new java.awt.Font("Arial", 3, 12));
         LblDireccion.setForeground(new java.awt.Color(0, 102, 0));
         LblDireccion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LblDireccion.setOpaque(true);
@@ -1945,7 +1943,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jPanel8.add(CbxSituacionAgua);
         CbxSituacionAgua.setBounds(70, 30, 134, 20);
 
-        jLabel87.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel87.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel87.setForeground(new java.awt.Color(0, 0, 102));
         jLabel87.setText("Situación:");
         jPanel8.add(jLabel87);
@@ -1953,13 +1951,13 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jPanel8.add(CbxUbiCajaConexAgua);
         CbxUbiCajaConexAgua.setBounds(310, 60, 135, 20);
 
-        jLabel88.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel88.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel88.setForeground(new java.awt.Color(0, 0, 102));
         jLabel88.setText("Ubi/Caja/Conex:");
         jPanel8.add(jLabel88);
         jLabel88.setBounds(220, 60, 90, 20);
 
-        jLabel89.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel89.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel89.setForeground(new java.awt.Color(0, 0, 102));
         jLabel89.setText("Diametro de Conex:");
         jPanel8.add(jLabel89);
@@ -1969,7 +1967,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jPanel8.add(CbxCondicionConexionAgua);
         CbxCondicionConexionAgua.setBounds(310, 90, 110, 20);
 
-        jLabel90.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel90.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel90.setForeground(new java.awt.Color(0, 0, 102));
         jLabel90.setText("Cond. Conex:");
         jPanel8.add(jLabel90);
@@ -1977,25 +1975,25 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jPanel8.add(CbxMaterialCajaAgua);
         CbxMaterialCajaAgua.setBounds(520, 60, 108, 20);
 
-        jLabel91.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel91.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel91.setForeground(new java.awt.Color(0, 0, 102));
         jLabel91.setText("Mat. Caja:");
         jPanel8.add(jLabel91);
         jLabel91.setBounds(460, 60, 55, 20);
 
-        jLabel92.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel92.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel92.setForeground(new java.awt.Color(0, 0, 102));
         jLabel92.setText("Estado Caja:");
         jPanel8.add(jLabel92);
         jLabel92.setBounds(220, 30, 70, 20);
 
-        jLabel68.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel68.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel68.setForeground(new java.awt.Color(0, 0, 102));
         jLabel68.setText("Mat. de la Conexión:");
         jPanel8.add(jLabel68);
         jLabel68.setBounds(430, 90, 113, 20);
 
-        jLabel79.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel79.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel79.setForeground(new java.awt.Color(0, 0, 102));
         jLabel79.setText("¿Con Tapa?");
         jPanel8.add(jLabel79);
@@ -2042,7 +2040,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         RbtOpcionAntes.setBounds(480, 120, 60, 20);
 
         buttonGroup1.add(RbtOpcionDespues);
-        RbtOpcionDespues.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        RbtOpcionDespues.setFont(new java.awt.Font("Arial", 1, 11));
         RbtOpcionDespues.setText("Después");
         jPanel8.add(RbtOpcionDespues);
         RbtOpcionDespues.setBounds(550, 120, 80, 20);
@@ -2053,7 +2051,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jPanel8.add(RbtOpcionIndeterminado);
         RbtOpcionIndeterminado.setBounds(630, 120, 120, 20);
 
-        jLabel141.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        jLabel141.setFont(new java.awt.Font("Arial", 3, 12));
         jLabel141.setText("Cond. Conex:");
         jPanel8.add(jLabel141);
         jLabel141.setBounds(10, 90, 80, 20);
@@ -2072,7 +2070,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jPanel8.add(CbxMaterialTapaAgua);
         CbxMaterialTapaAgua.setBounds(70, 60, 135, 20);
 
-        jLabel136.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel136.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel136.setForeground(new java.awt.Color(0, 0, 102));
         jLabel136.setText("Mat. Tapa:");
         jPanel8.add(jLabel136);
@@ -2086,13 +2084,13 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jPanel8.add(CbxEstadoTapaAgua);
         CbxEstadoTapaAgua.setBounds(660, 30, 135, 20);
 
-        jLabel137.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel137.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel137.setForeground(new java.awt.Color(0, 0, 102));
         jLabel137.setText("Estado Tapa:");
         jPanel8.add(jLabel137);
         jLabel137.setBounds(580, 30, 73, 20);
 
-        LblCondicionConexionConsulta.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        LblCondicionConexionConsulta.setFont(new java.awt.Font("Arial", 3, 12));
         LblCondicionConexionConsulta.setForeground(new java.awt.Color(51, 102, 0));
         jPanel8.add(LblCondicionConexionConsulta);
         LblCondicionConexionConsulta.setBounds(90, 90, 120, 20);
@@ -2104,13 +2102,13 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jPanel9.add(CbxUbiCajaConexDesague);
         CbxUbiCajaConexDesague.setBounds(720, 50, 150, 20);
 
-        jLabel93.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel93.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel93.setForeground(new java.awt.Color(0, 0, 102));
         jLabel93.setText("Ubi/Caja/Conex:");
         jPanel9.add(jLabel93);
         jLabel93.setBounds(620, 50, 90, 20);
 
-        jLabel95.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel95.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel95.setForeground(new java.awt.Color(0, 0, 102));
         jLabel95.setText("Diam. de Conex:");
         jPanel9.add(jLabel95);
@@ -2120,7 +2118,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jPanel9.add(CbxCondicionConexDesague);
         CbxCondicionConexDesague.setBounds(720, 80, 150, 20);
 
-        jLabel96.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel96.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel96.setForeground(new java.awt.Color(0, 0, 102));
         jLabel96.setText("Cond. Conex:");
         jPanel9.add(jLabel96);
@@ -2134,13 +2132,13 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jPanel9.add(CbxMaterialCajaDesague);
         CbxMaterialCajaDesague.setBounds(110, 80, 140, 20);
 
-        jLabel97.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel97.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel97.setForeground(new java.awt.Color(0, 0, 102));
         jLabel97.setText("Mat. Caja:");
         jPanel9.add(jLabel97);
         jLabel97.setBounds(20, 80, 80, 20);
 
-        jLabel98.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel98.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel98.setForeground(new java.awt.Color(0, 0, 102));
         jLabel98.setText("Estado Tapa:");
         jPanel9.add(jLabel98);
@@ -2156,13 +2154,13 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jPanel9.add(CbxMaterialTapaDesague);
         CbxMaterialTapaDesague.setBounds(450, 50, 150, 20);
 
-        jLabel99.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel99.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel99.setForeground(new java.awt.Color(0, 0, 102));
         jLabel99.setText("Mat. Tapa:");
         jPanel9.add(jLabel99);
         jLabel99.setBounds(390, 50, 60, 20);
 
-        jLabel100.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel100.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel100.setForeground(new java.awt.Color(0, 0, 102));
         jLabel100.setText("Estado Caja:");
         jPanel9.add(jLabel100);
@@ -2176,7 +2174,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jPanel9.add(CbxEstadoCajaDesague);
         CbxEstadoCajaDesague.setBounds(720, 20, 150, 20);
 
-        jLabel142.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel142.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel142.setForeground(new java.awt.Color(0, 0, 102));
         jLabel142.setText("¿Con Tapa?");
         jPanel9.add(jLabel142);
@@ -2191,7 +2189,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jPanel9.add(ChckSiNoTapaConexionDesague);
         ChckSiNoTapaConexionDesague.setBounds(100, 50, 21, 21);
 
-        jLabel143.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel143.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel143.setForeground(new java.awt.Color(0, 0, 102));
         jLabel143.setText("Mat. Conexion:");
         jPanel9.add(jLabel143);
@@ -2205,7 +2203,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jPanel9.add(CbxMaterialConexionDesague);
         CbxMaterialConexionDesague.setBounds(110, 110, 140, 20);
 
-        jLabel144.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel144.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel144.setForeground(new java.awt.Color(0, 0, 102));
         jLabel144.setText("¿Fugas?");
         jPanel9.add(jLabel144);
@@ -2213,38 +2211,38 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jPanel9.add(ChckSiNoFugaDesague);
         ChckSiNoFugaDesague.setBounds(610, 110, 30, 21);
 
-        jLabel145.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel145.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel145.setForeground(new java.awt.Color(0, 0, 102));
         jLabel145.setText("Caracteristicas:");
         jPanel9.add(jLabel145);
         jLabel145.setBounds(20, 20, 100, 20);
 
         buttonGroup2.add(RbtOpcionConCaja);
-        RbtOpcionConCaja.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        RbtOpcionConCaja.setFont(new java.awt.Font("Arial", 1, 11));
         RbtOpcionConCaja.setSelected(true);
         RbtOpcionConCaja.setText("Con Caja");
         jPanel9.add(RbtOpcionConCaja);
         RbtOpcionConCaja.setBounds(120, 20, 73, 20);
 
         buttonGroup2.add(RbtOpcionNoDeterminado);
-        RbtOpcionNoDeterminado.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        RbtOpcionNoDeterminado.setFont(new java.awt.Font("Arial", 1, 11));
         RbtOpcionNoDeterminado.setText("No Determinado");
         jPanel9.add(RbtOpcionNoDeterminado);
         RbtOpcionNoDeterminado.setBounds(360, 20, 113, 20);
 
-        LblCondicionConexionDesague.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        LblCondicionConexionDesague.setFont(new java.awt.Font("Arial", 1, 12));
         LblCondicionConexionDesague.setForeground(new java.awt.Color(51, 102, 0));
         jPanel9.add(LblCondicionConexionDesague);
         LblCondicionConexionDesague.setBounds(470, 80, 130, 20);
 
-        jLabel147.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel147.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel147.setForeground(new java.awt.Color(0, 0, 102));
         jLabel147.setText("Cond. Conex:");
         jPanel9.add(jLabel147);
         jLabel147.setBounds(640, 80, 80, 20);
 
         buttonGroup2.add(RbtOpcionSinCaja);
-        RbtOpcionSinCaja.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        RbtOpcionSinCaja.setFont(new java.awt.Font("Arial", 1, 11));
         RbtOpcionSinCaja.setText("Sin Caja/Conex. Directa");
         RbtOpcionSinCaja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3007,14 +3005,14 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
             .addGap(0, 268, Short.MAX_VALUE)
         );
 
-        buttonGroup3.add(jRadioButton1);
-        jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jRadioButton1.setSelected(true);
-        jRadioButton1.setText("Agua");
+        buttonGroup3.add(RbtAgua);
+        RbtAgua.setFont(new java.awt.Font("Tahoma", 1, 11));
+        RbtAgua.setSelected(true);
+        RbtAgua.setText("Agua");
 
-        buttonGroup3.add(jRadioButton2);
-        jRadioButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jRadioButton2.setText("Desagüe");
+        buttonGroup3.add(RbtDesague);
+        RbtDesague.setFont(new java.awt.Font("Tahoma", 1, 11));
+        RbtDesague.setText("Desagüe");
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -3043,10 +3041,9 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jPanelImageCaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addGroup(jPanel17Layout.createSequentialGroup()
-                                                .addComponent(jRadioButton1)
+                                                .addComponent(RbtAgua)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jRadioButton2)))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                                .addComponent(RbtDesague)))))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel106, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -3087,8 +3084,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                     .addGroup(jPanel17Layout.createSequentialGroup()
                         .addGap(277, 277, 277)
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TxtUbiConexAgua, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel110, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel110, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxtUbiConexAgua, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(TxtUbiConexDesague, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -3127,9 +3124,9 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel17Layout.createSequentialGroup()
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(TxtUbiConexAgua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jRadioButton1)
-                            .addComponent(jRadioButton2))
+                            .addComponent(TxtUbiConexAgua, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(RbtAgua)
+                            .addComponent(RbtDesague))
                         .addComponent(jLabel110, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel17Layout.createSequentialGroup()
                         .addComponent(TxtUbiConexDesague, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -3216,16 +3213,17 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(11, 11, 11)
-                            .addComponent(jLabel2)
-                            .addGap(6, 6, 6)
-                            .addComponent(jLabel3))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel4)
-                            .addGap(0, 0, 0)
-                            .addComponent(TxtNumeroFicha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(0, 0, 0)
+                                .addComponent(TxtNumeroFicha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
@@ -3998,24 +3996,26 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         oCEMedida.setUbicacionConexionAgua(Double.parseDouble(TxtUbiConexAgua.getText()));//95
         oCEMedida.setUbicacionConexionDesague(Double.parseDouble(TxtUbiConexDesague.getText()));//96
         oCEMedida.setCod_Encuestador(TxtCodigoEncuestador.getText());//97
+        oCEMedida.setIdTipoFotoAgua(RbtAgua.isSelected()?1:2);
         ConvertidorFecha oConvertidorFecha=new ConvertidorFecha();
         if(DateFechaEncuestador.getCalendar()!=null)
         {
         oConvertidorFecha.setFecha(DateFechaEncuestador.getCalendar());
         oConvertidorFecha.setFechaConvertida();
+        oCEMedida.setFecha_Encuestador(oConvertidorFecha.getFechaConvertida()+"");//98
         }
+
+        oCEMedida.setCod_Supervisor(TxtCodigoSupervisor.getText());//99
         if(DateFechaSupervision.getCalendar()!=null)
         {
-        oCEMedida.setFecha_Encuestador(oConvertidorFecha.getFechaConvertida()+"");//98
-        oCEMedida.setCod_Supervisor(TxtCodigoSupervisor.getText());//99
         oConvertidorFecha.setFecha(DateFechaSupervision.getCalendar());
         oConvertidorFecha.setFechaConvertida();
-        }
-        if(DateFechaSupervision.getCalendar()!=null)
-        {
         oCEMedida.setFecha_Supervisor(oConvertidorFecha.getFechaConvertida()+"");//100
+        }
         oCEMedida.setCod_Digitado(TxtCodigoDigitador.getText());//101
-        oConvertidorFecha.setFecha(DateFechaSupervision.getCalendar());
+        if(DateFechaDigitador.getCalendar()!=null)
+        {
+        oConvertidorFecha.setFecha(DateFechaDigitador.getCalendar());
         oConvertidorFecha.setFechaConvertida();
         oCEMedida.setFecha_Digitador(oConvertidorFecha.getFechaConvertida()+"");//102
         }
@@ -4169,6 +4169,14 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                 RbtOpcionSinCaja.setSelected(true);
             }
         }
+        if(oCEMedida.getIdTipoFotoAgua()==1)
+        {
+            RbtAgua.setSelected(true);
+        }
+        else
+        {
+            RbtDesague.setSelected(true);
+        }
         buscarEstadoCajaAgua(oCEMedida.getIdEstadoCajaAgua());
         buscarMaterialCajaAgua(oCEMedida.getIdMaterialCajaAgua());
         buscarEstadoTapaAgua(oCEMedida.getIdEstadoTapaAgua());
@@ -4224,16 +4232,16 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         }
         if(oCEMedida.getFecha_Supervisor()!=null)
         {
-        int ano1=Integer.parseInt(oCEMedida.getFecha_Encuestador().substring(0,4));
-        int mes1=Integer.parseInt(oCEMedida.getFecha_Encuestador().substring(5,7));
-        int dia1=Integer.parseInt(oCEMedida.getFecha_Encuestador().substring(8,10));
+        int ano1=Integer.parseInt(oCEMedida.getFecha_Supervisor().substring(0,4));
+        int mes1=Integer.parseInt(oCEMedida.getFecha_Supervisor().substring(5,7));
+        int dia1=Integer.parseInt(oCEMedida.getFecha_Supervisor().substring(8,10));
         DateFechaSupervision.setCalendar(new GregorianCalendar(ano1,mes1-1,dia1));
         }
         if(oCEMedida.getFecha_Digitador()!=null)
         {
-        int ano2=Integer.parseInt(oCEMedida.getFecha_Encuestador().substring(0,4));
-        int mes2=Integer.parseInt(oCEMedida.getFecha_Encuestador().substring(5,7));
-        int dia2=Integer.parseInt(oCEMedida.getFecha_Encuestador().substring(8,10));
+        int ano2=Integer.parseInt(oCEMedida.getFecha_Digitador().substring(0,4));
+        int mes2=Integer.parseInt(oCEMedida.getFecha_Digitador().substring(5,7));
+        int dia2=Integer.parseInt(oCEMedida.getFecha_Digitador().substring(8,10));
         DateFechaDigitador.setCalendar(new GregorianCalendar(ano2,mes2-1,dia2));
         }
         setLstUsos(oCEMedida.getoLstUsos());
@@ -4688,6 +4696,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     private javax.swing.JLabel LblDireccion;
     private javax.swing.JLabel LblTipoServicio;
     private javax.swing.JLabel LblUsuario;
+    private javax.swing.JRadioButton RbtAgua;
+    private javax.swing.JRadioButton RbtDesague;
     private javax.swing.JRadioButton RbtOpcionAntes;
     private javax.swing.JRadioButton RbtOpcionConCaja;
     private javax.swing.JRadioButton RbtOpcionDespues;
@@ -4932,8 +4942,6 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel9;
     private util.JPanelImage jPanelImageCaja;
     private util.JPanelImage jPanelImagePredio;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
