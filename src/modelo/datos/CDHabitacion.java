@@ -7,6 +7,8 @@ package modelo.datos;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.acceso.ConexionBD;
 import modelo.entidad.CEHabilitacion;
 
@@ -93,4 +95,40 @@ public class CDHabitacion {
         return oLstHabilitacion;
 
     }
+   public boolean abmHabilitacion(CEHabilitacion oCEMedida,int valor)
+  {
+        try {
+            Connection conn = ConexionBD.obtenerConexion();
+            String sql ;
+            if(valor==1)
+            {
+            sql = "insert into Habilitacion(Codigo,Tipo,NombreHabilitacion) values (" + oCEMedida.getCodigo() + ",'" + oCEMedida.getTipo()+ "','" + oCEMedida.getNombreHabilitacion()+ "')";
+            }
+            else
+            {
+                if(valor==2)
+                {
+                sql = "update Habilitacion set NombreHabilitacion='"+oCEMedida.getNombreHabilitacion()+
+                        "',Tipo='"+oCEMedida.getTipo()+
+                       "',Codigo="+oCEMedida.getCodigo()+
+                       " where IdHabilitacion="+oCEMedida.getIdHabitacion();
+                }
+                else
+                {
+                    sql = "delete from Habilitacion"+
+                       " where IdHabilitacion="+oCEMedida.getIdHabitacion();
+                }
+            }
+            PreparedStatement sp = conn.prepareStatement(sql);
+            int result = sp.executeUpdate();
+            if(result==1) return true;
+            else return false;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(CDHabitacion.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+
+
+  }
 }

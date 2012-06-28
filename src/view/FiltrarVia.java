@@ -7,11 +7,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.JRootPane;
 import javax.swing.KeyStroke;
 import javax.swing.table.TableColumn;
 import modelo.datos.CDHabitacion;
 import modelo.datos.CDVia;
+import modelo.entidad.CEHabilitacion;
 import modelo.entidad.CEVia;
 import util.ArrayListTableModel;
 
@@ -29,6 +31,7 @@ public class FiltrarVia extends javax.swing.JDialog implements ActionListener {
         txtFiltro.setText(param);
         configurarTabla();
         getLista2();
+
     }
     
     private void configurarTabla() {
@@ -112,7 +115,7 @@ public class FiltrarVia extends javax.swing.JDialog implements ActionListener {
     }
     
     public CEVia GetVia() {
-        int selectedRow = FilaSeleccionada;
+        int selectedRow = jTable1.getSelectedRow();
         CEVia oCEVia = new CEVia();
         if (selectedRow != -1) {
             txtFiltro.setText(String.valueOf(jTable1.getValueAt(selectedRow, 3)));
@@ -120,8 +123,7 @@ public class FiltrarVia extends javax.swing.JDialog implements ActionListener {
             oCEVia.setCodigo(Integer.parseInt(jTable1.getValueAt(selectedRow, 1).toString()));
             oCEVia.setTipo(String.valueOf(jTable1.getValueAt(selectedRow, 2)));
             oCEVia.setNombreVia(String.valueOf(jTable1.getValueAt(selectedRow, 3)));
-            
-            dispose();
+         
         }
         return oCEVia;
     }
@@ -133,10 +135,13 @@ public class FiltrarVia extends javax.swing.JDialog implements ActionListener {
         BtnGrupoBusqueda = new javax.swing.ButtonGroup();
         jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtFiltro = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        BtnNuevo2 = new javax.swing.JButton();
+        BtnNuevo1 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        BtnNuevo3 = new javax.swing.JButton();
+        BtnNuevo = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -159,13 +164,6 @@ public class FiltrarVia extends javax.swing.JDialog implements ActionListener {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Consultar Via\n", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 12), new java.awt.Color(102, 0, 0))); // NOI18N
 
-        jButton1.setText("Buscar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         jLabel1.setText("Ingrese Datos");
 
         txtFiltro.addActionListener(new java.awt.event.ActionListener() {
@@ -179,10 +177,38 @@ public class FiltrarVia extends javax.swing.JDialog implements ActionListener {
             }
         });
 
-        jButton2.setText("Nuevo");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        BtnNuevo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/delete.png"))); // NOI18N
+        BtnNuevo2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                BtnNuevo2ActionPerformed(evt);
+            }
+        });
+
+        BtnNuevo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/stock-edit-16.png"))); // NOI18N
+        BtnNuevo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnNuevo1ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/v-search_more.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        BtnNuevo3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/delete.png"))); // NOI18N
+        BtnNuevo3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnNuevo3ActionPerformed(evt);
+            }
+        });
+
+        BtnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/add-icon.png"))); // NOI18N
+        BtnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnNuevoActionPerformed(evt);
             }
         });
 
@@ -190,25 +216,40 @@ public class FiltrarVia extends javax.swing.JDialog implements ActionListener {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(453, Short.MAX_VALUE)
+                .addComponent(BtnNuevo2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2))
+                .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(BtnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(BtnNuevo1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(BtnNuevo3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(BtnNuevo1, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+                        .addComponent(BtnNuevo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, Short.MAX_VALUE)
+                        .addComponent(BtnNuevo3, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BtnNuevo2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Resultados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 12), new java.awt.Color(102, 0, 0))); // NOI18N
@@ -239,13 +280,13 @@ public class FiltrarVia extends javax.swing.JDialog implements ActionListener {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -255,17 +296,17 @@ public class FiltrarVia extends javax.swing.JDialog implements ActionListener {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -316,7 +357,7 @@ public class FiltrarVia extends javax.swing.JDialog implements ActionListener {
             FilaSeleccionada = jTable1.getSelectedRow();
             if (FilaSeleccionada != -1) {
                 GetVia();
-                //dispose();
+                dispose();
             }
         }
     }//GEN-LAST:event_jTable1MouseClicked
@@ -326,7 +367,7 @@ public class FiltrarVia extends javax.swing.JDialog implements ActionListener {
             FilaSeleccionada = jTable1.getSelectedRow();
             if (FilaSeleccionada != -1) {
                 GetVia();
-                //dispose();
+                dispose();
             }
         }
     }//GEN-LAST:event_jTable1KeyPressed
@@ -348,19 +389,54 @@ public class FiltrarVia extends javax.swing.JDialog implements ActionListener {
         getLista2();
     }//GEN-LAST:event_txtFiltroActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        getLista2();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void BtnNuevo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNuevo2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+}//GEN-LAST:event_BtnNuevo2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        getLista2();
+}//GEN-LAST:event_jButton1ActionPerformed
+
+    private void BtnNuevo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNuevo3ActionPerformed
+  int fila=jTable1.getSelectedRow();
+     int valor=JOptionPane.showConfirmDialog(null,"¿Esta seguro de continuar con la operación?","Mensaje de Confirmación",JOptionPane.YES_NO_OPTION);
+       if(valor==JOptionPane.YES_OPTION)
+       {
+                boolean va=(new CDVia().abmVia(GetVia(),3));
+                if(!va)
+                {
+                    JOptionPane.showMessageDialog(null,"No se pudo completar la operación");
+                }
+                else
+                {
+                   getLista2();
+                }
+        }
+}//GEN-LAST:event_BtnNuevo3ActionPerformed
+
+    private void BtnNuevo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNuevo1ActionPerformed
+        int fila=jTable1.getSelectedRow();
+        if(fila!=-1) {
+            DialogMantenimientoVia oDialogMantenimientoUsuario=new DialogMantenimientoVia(null,true,GetVia());
+            oDialogMantenimientoUsuario.setLocationRelativeTo(null);
+            oDialogMantenimientoUsuario.setVisible(true);
+            getLista2();
+        }
+}//GEN-LAST:event_BtnNuevo1ActionPerformed
+
+    private void BtnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNuevoActionPerformed
+        DialogMantenimientoVia oDialogMantenimientoUsuario=new DialogMantenimientoVia(null,true,null);
+        oDialogMantenimientoUsuario.setLocationRelativeTo(null);
+        oDialogMantenimientoUsuario.setVisible(true);
+}//GEN-LAST:event_BtnNuevoActionPerformed
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup BtnGrupoBusqueda;
+    private javax.swing.JButton BtnNuevo;
+    private javax.swing.JButton BtnNuevo1;
+    private javax.swing.JButton BtnNuevo2;
+    private javax.swing.JButton BtnNuevo3;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

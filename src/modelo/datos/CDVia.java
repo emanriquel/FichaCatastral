@@ -7,6 +7,8 @@ package modelo.datos;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.acceso.ConexionBD;
 import modelo.entidad.CEVia;
 import modelo.entidad.CEVia;
@@ -45,10 +47,10 @@ public class CDVia {
                return null;
                 }
                 catch(SQLException e)
-            {
-                e.printStackTrace();
-                return null;
-            }        
+                {
+                    e.printStackTrace();
+                    return null;
+                }
                 catch(Exception e)
                 {
                     e.printStackTrace();
@@ -94,4 +96,40 @@ public class CDVia {
         return oLstVia;
 
     }
+     public boolean abmVia(CEVia oCEMedida,int valor)
+  {
+        try {
+            Connection conn = ConexionBD.obtenerConexion();
+            String sql ;
+            if(valor==1)
+            {
+            sql = "insert into Via(Codigo,Tipo,NombreVia) values (" + oCEMedida.getCodigo() + ",'" + oCEMedida.getTipo()+ "','" + oCEMedida.getNombreVia()+ "')";
+            }
+            else
+            {
+                if(valor==2)
+                {
+                sql = "update Via set NombreVia='"+oCEMedida.getNombreVia()+
+                        "',Tipo='"+oCEMedida.getTipo()+
+                       "',Codigo="+oCEMedida.getIdVia()+
+                       " where IdVia="+oCEMedida.getIdVia();
+                }
+                else
+                {
+                    sql = "delete from Via"+
+                       " where IdVia="+oCEMedida.getIdVia();
+                }
+            }
+            PreparedStatement sp = conn.prepareStatement(sql);
+            int result = sp.executeUpdate();
+            if(result==1) return true;
+            else return false;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(CDVia.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+
+
+  }
 }

@@ -1273,7 +1273,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         TxtBlock.setNextFocusableComponent(TxtPiso);
 
         TxtPiso.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        TxtPiso.setText("2");
+        TxtPiso.setText("1");
         TxtPiso.setNextFocusableComponent(TxtNumero);
 
         jLabel43.setBackground(new java.awt.Color(204, 204, 204));
@@ -3431,6 +3431,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
 
     private void BtnViaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnViaActionPerformed
         FiltrarVia oFiltrarVia = new FiltrarVia(null, true,TxtNombreVia.getText());
+        oFiltrarVia.setLocationRelativeTo(null);
         oFiltrarVia.setVisible(true);
         CEVia oCEVia = oFiltrarVia.GetVia();
         TxtCodigoVia.setText(oCEVia.getCodigo()+"");
@@ -3439,7 +3440,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnViaActionPerformed
 
     private void BtnHabilitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHabilitacionActionPerformed
-         FiltrarHabilitacion oFiltrarHabilitacion = new FiltrarHabilitacion(null, true,1,TxtNombreHabilitacion.getText());
+        FiltrarHabilitacion oFiltrarHabilitacion = new FiltrarHabilitacion(null, true,1,TxtNombreHabilitacion.getText());
+        oFiltrarHabilitacion.setLocationRelativeTo(null);
         oFiltrarHabilitacion.setVisible(true);
         CEHabilitacion oCEHabitacion = oFiltrarHabilitacion.GetHabilitacion();
         TxtCodigoHabilitacion.setText(oCEHabitacion.getCodigo()+"");
