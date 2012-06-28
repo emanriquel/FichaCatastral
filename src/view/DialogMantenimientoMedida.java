@@ -34,6 +34,8 @@ import modelo.datos.CDEstadoTapaDesague;
 import modelo.datos.CDLlavesPaso;
 import modelo.datos.CDMaterialCajaAgua;
 import modelo.datos.CDMaterialCajaDesague;
+import modelo.datos.CDMaterialConexionAgua;
+import modelo.datos.CDMaterialConexionDesague;
 import modelo.datos.CDMaterialTapaAgua;
 import modelo.datos.CDMaterialTapaDesague;
 import modelo.datos.CDMedida;
@@ -71,6 +73,8 @@ import modelo.entidad.CEHabilitacion;
 import modelo.entidad.CELlavesPaso;
 import modelo.entidad.CEMaterialCajaAgua;
 import modelo.entidad.CEMaterialCajaDesague;
+import modelo.entidad.CEMaterialConexionAgua;
+import modelo.entidad.CEMaterialConexionDesague;
 import modelo.entidad.CEMaterialTapaAgua;
 import modelo.entidad.CEMaterialTapaDesague;
 import modelo.entidad.CEMedida;
@@ -127,13 +131,26 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                       {
                          ((JTextField)(e.getNewValue())).setForeground(Color.BLUE);
                       }
-                else
+                 else
                 {
                    if(e.getOldValue() instanceof JTextField)
                       {
                          ((JTextField)(e.getOldValue())).setForeground(Color.BLACK);
                       }
                 }
+               if (("focusOwner".equals(prop)) &&
+                      ((e.getNewValue()) instanceof JComboBox))
+                      {
+                         ((JComboBox)(e.getNewValue())).setForeground(Color.BLUE);
+                      }
+                 else
+                {
+                   if(e.getOldValue() instanceof JComboBox)
+                      {
+                         ((JComboBox)(e.getOldValue())).setForeground(Color.BLACK);
+                      }
+                }
+               
             }
         }
     );
@@ -319,6 +336,13 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     ArrayList oLstTipoAlmacenamiento=oCDTipoAlmacenamiento.listarTipoAlmacenamiento();
     construirModeloCombo(CbxTipoAlmacenamiento, oLstTipoAlmacenamiento);
 
+    CDMaterialConexionAgua oCDMaterialConexionAgua=new CDMaterialConexionAgua();
+    ArrayList oLstMaterialConexionAgua=oCDMaterialConexionAgua.listarMaterialConexionAgua();
+    construirModeloCombo(CbxMaterialConexionAgua, oLstMaterialConexionAgua);
+
+    CDMaterialConexionDesague oCDMaterialConexionDesague=new CDMaterialConexionDesague();
+    ArrayList oLstMaterialConexionDesague=oCDMaterialConexionDesague.listarMaterialConexionDesague();
+    construirModeloCombo(CbxMaterialConexionDesague, oLstMaterialConexionDesague);
 
     }
     private void construirModeloCombo(JComboBox oBox, ArrayList oLista)
@@ -333,6 +357,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jFileChooser1 = new javax.swing.JFileChooser();
         jFileChooser2 = new javax.swing.JFileChooser();
+        buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -495,7 +521,6 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel91 = new javax.swing.JLabel();
         jLabel92 = new javax.swing.JLabel();
         jLabel68 = new javax.swing.JLabel();
-        TxtMaterialConexionAgua = new javax.swing.JTextField();
         jLabel79 = new javax.swing.JLabel();
         ChckSiNoTapaConexionAgua = new javax.swing.JCheckBox();
         ChckSiNoFugaAgua = new javax.swing.JCheckBox();
@@ -512,6 +537,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         CbxEstadoTapaAgua = new javax.swing.JComboBox();
         jLabel137 = new javax.swing.JLabel();
         LblCondicionConexionConsulta = new javax.swing.JLabel();
+        CbxMaterialConexionAgua = new javax.swing.JComboBox();
         jPanel9 = new javax.swing.JPanel();
         CbxUbiCajaConexDesague = new javax.swing.JComboBox();
         jLabel93 = new javax.swing.JLabel();
@@ -523,12 +549,22 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel97 = new javax.swing.JLabel();
         jLabel98 = new javax.swing.JLabel();
         CbxEstadoTapaDesague = new javax.swing.JComboBox();
-        ChckSiNoFugaDesague = new javax.swing.JCheckBox();
-        jLabel85 = new javax.swing.JLabel();
         CbxMaterialTapaDesague = new javax.swing.JComboBox();
         jLabel99 = new javax.swing.JLabel();
         jLabel100 = new javax.swing.JLabel();
         CbxEstadoCajaDesague = new javax.swing.JComboBox();
+        jLabel142 = new javax.swing.JLabel();
+        ChckSiNoTapaConexionDesague = new javax.swing.JCheckBox();
+        jLabel143 = new javax.swing.JLabel();
+        CbxMaterialConexionDesague = new javax.swing.JComboBox();
+        jLabel144 = new javax.swing.JLabel();
+        ChckSiNoFugaDesague = new javax.swing.JCheckBox();
+        jLabel145 = new javax.swing.JLabel();
+        RbtOpcionConCaja = new javax.swing.JRadioButton();
+        RbtOpcionNoDeterminado = new javax.swing.JRadioButton();
+        LblCondicionConexionDesague = new javax.swing.JLabel();
+        jLabel147 = new javax.swing.JLabel();
+        RbtOpcionSinCaja = new javax.swing.JRadioButton();
         jPanel10 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         CbxPavimentacion = new javax.swing.JComboBox();
@@ -650,6 +686,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         LblCodigoFotoPredio = new javax.swing.JLabel();
         jPanelImagePredio = new util.JPanelImage();
         jPanelImageCaja = new util.JPanelImage();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
         BtnGuardar = new javax.swing.JButton();
         BtnCancelar = new javax.swing.JButton();
 
@@ -658,11 +696,11 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/logo.png"))); // NOI18N
 
         jLabel2.setDisplayedMnemonic('M');
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 24));
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 51, 102));
         jLabel2.setText("Mantenimiento de Ficha de Datos Catastrales");
 
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 24));
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel3.setText("EPS EMAPAVIGSSA");
 
         jLabel4.setBackground(new java.awt.Color(204, 204, 204));
@@ -673,7 +711,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel4.setOpaque(true);
 
         TxtNumeroFicha.setEditable(false);
-        TxtNumeroFicha.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        TxtNumeroFicha.setFont(new java.awt.Font("Tahoma", 1, 12));
         TxtNumeroFicha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);
@@ -684,9 +722,9 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 12));
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel5.setText("Situación de Conexión:");
+        jLabel5.setText("Estado de Conexión:");
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Identificación", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12), new java.awt.Color(102, 0, 0))); // NOI18N
 
@@ -1027,12 +1065,14 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
 
         TxtCantidadHabitantesPredio.setEditable(false);
         TxtCantidadHabitantesPredio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TxtCantidadHabitantesPredio.setText("0");
 
         jLabel31.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel31.setForeground(new java.awt.Color(0, 0, 102));
         jLabel31.setText("Num. Pisos:");
 
         TxtNumPisos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TxtNumPisos.setText("1");
 
         jLabel32.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel32.setForeground(new java.awt.Color(0, 0, 102));
@@ -1043,7 +1083,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel138.setText("Cliente:");
         jLabel138.setOpaque(true);
 
-        LblUsuario.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        LblUsuario.setFont(new java.awt.Font("Arial", 3, 12));
         LblUsuario.setForeground(new java.awt.Color(51, 102, 0));
         LblUsuario.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LblUsuario.setOpaque(true);
@@ -1166,7 +1206,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                     .addComponent(TxtNumPisos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CbxTipoPredio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -1235,6 +1275,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         TxtBlock.setNextFocusableComponent(TxtPiso);
 
         TxtPiso.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TxtPiso.setText("2");
         TxtPiso.setNextFocusableComponent(TxtNumero);
 
         jLabel43.setBackground(new java.awt.Color(204, 204, 204));
@@ -1371,7 +1412,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         });
 
         jLabel38.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel38.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel38.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel38.setForeground(new java.awt.Color(0, 0, 102));
         jLabel38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel38.setText("Nombre de Vía");
@@ -1408,7 +1449,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel140.setText("Tipo Servicio:");
         jLabel140.setOpaque(true);
 
-        LblTipoServicio.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        LblTipoServicio.setFont(new java.awt.Font("Arial", 3, 12));
         LblTipoServicio.setForeground(new java.awt.Color(0, 102, 0));
         LblTipoServicio.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LblTipoServicio.setOpaque(true);
@@ -1521,11 +1562,11 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(LblTipoServicio, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+                    .addComponent(LblTipoServicio, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(LblDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel139, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE))
-                    .addComponent(jLabel140, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
+                    .addComponent(jLabel140, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
@@ -1649,6 +1690,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         });
 
         TxtPorcentajeDomestico.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TxtPorcentajeDomestico.setText("0");
 
         jLabel51.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel51.setForeground(new java.awt.Color(0, 0, 102));
@@ -1659,14 +1701,17 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel52.setText("% Comercial:");
 
         TxtPorcentajeComercial.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TxtPorcentajeComercial.setText("0");
 
         jLabel53.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel53.setForeground(new java.awt.Color(0, 0, 102));
         jLabel53.setText("% Estatal:");
 
         TxtPorcentajeEstatal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TxtPorcentajeEstatal.setText("0");
 
         TxtPorcentajeSocial.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TxtPorcentajeSocial.setText("0");
 
         jLabel54.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel54.setForeground(new java.awt.Color(0, 0, 102));
@@ -1761,11 +1806,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                 ChkSiNoMedidorItemStateChanged(evt);
             }
         });
-        ChkSiNoMedidor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChkSiNoMedidorActionPerformed(evt);
-            }
-        });
+
+        TxtLecturaMedidor.setText("0");
 
         jLabel74.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel74.setForeground(new java.awt.Color(0, 0, 102));
@@ -1893,38 +1935,71 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         );
 
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Datos de la Conexion del Agua", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12), new java.awt.Color(102, 0, 0))); // NOI18N
+        jPanel8.setLayout(null);
 
-        jLabel87.setFont(new java.awt.Font("Arial", 1, 12));
+        CbxSituacionAgua.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CbxSituacionAguaItemStateChanged(evt);
+            }
+        });
+        jPanel8.add(CbxSituacionAgua);
+        CbxSituacionAgua.setBounds(70, 30, 134, 20);
+
+        jLabel87.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel87.setForeground(new java.awt.Color(0, 0, 102));
         jLabel87.setText("Situación:");
+        jPanel8.add(jLabel87);
+        jLabel87.setBounds(10, 30, 60, 20);
+        jPanel8.add(CbxUbiCajaConexAgua);
+        CbxUbiCajaConexAgua.setBounds(310, 60, 135, 20);
 
-        jLabel88.setFont(new java.awt.Font("Arial", 1, 12));
+        jLabel88.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel88.setForeground(new java.awt.Color(0, 0, 102));
         jLabel88.setText("Ubi/Caja/Conex:");
+        jPanel8.add(jLabel88);
+        jLabel88.setBounds(220, 60, 90, 20);
 
-        jLabel89.setFont(new java.awt.Font("Arial", 1, 12));
+        jLabel89.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel89.setForeground(new java.awt.Color(0, 0, 102));
         jLabel89.setText("Diametro de Conex:");
+        jPanel8.add(jLabel89);
+        jLabel89.setBounds(10, 120, 120, 20);
+        jPanel8.add(CbxDiametroConexionAgua);
+        CbxDiametroConexionAgua.setBounds(130, 120, 162, 20);
+        jPanel8.add(CbxCondicionConexionAgua);
+        CbxCondicionConexionAgua.setBounds(310, 90, 110, 20);
 
-        jLabel90.setFont(new java.awt.Font("Arial", 1, 12));
+        jLabel90.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel90.setForeground(new java.awt.Color(0, 0, 102));
         jLabel90.setText("Cond. Conex:");
+        jPanel8.add(jLabel90);
+        jLabel90.setBounds(230, 90, 74, 21);
+        jPanel8.add(CbxMaterialCajaAgua);
+        CbxMaterialCajaAgua.setBounds(520, 60, 108, 20);
 
-        jLabel91.setFont(new java.awt.Font("Arial", 1, 12));
+        jLabel91.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel91.setForeground(new java.awt.Color(0, 0, 102));
         jLabel91.setText("Mat. Caja:");
+        jPanel8.add(jLabel91);
+        jLabel91.setBounds(460, 60, 55, 20);
 
-        jLabel92.setFont(new java.awt.Font("Arial", 1, 12));
+        jLabel92.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel92.setForeground(new java.awt.Color(0, 0, 102));
         jLabel92.setText("Estado Caja:");
+        jPanel8.add(jLabel92);
+        jLabel92.setBounds(220, 30, 70, 20);
 
-        jLabel68.setFont(new java.awt.Font("Arial", 1, 12));
+        jLabel68.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel68.setForeground(new java.awt.Color(0, 0, 102));
         jLabel68.setText("Mat. de la Conexión:");
+        jPanel8.add(jLabel68);
+        jLabel68.setBounds(430, 90, 113, 20);
 
-        jLabel79.setFont(new java.awt.Font("Arial", 1, 12));
+        jLabel79.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel79.setForeground(new java.awt.Color(0, 0, 102));
         jLabel79.setText("¿Con Tapa?");
+        jPanel8.add(jLabel79);
+        jLabel79.setBounds(470, 30, 67, 20);
 
         ChckSiNoTapaConexionAgua.setSelected(true);
         ChckSiNoTapaConexionAgua.addActionListener(new java.awt.event.ActionListener() {
@@ -1932,6 +2007,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                 ChckSiNoTapaConexionAguaActionPerformed(evt);
             }
         });
+        jPanel8.add(ChckSiNoTapaConexionAgua);
+        ChckSiNoTapaConexionAgua.setBounds(550, 30, 21, 21);
 
         ChckSiNoFugaAgua.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -1943,292 +2020,250 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                 ChckSiNoFugaAguaActionPerformed(evt);
             }
         });
+        jPanel8.add(ChckSiNoFugaAgua);
+        ChckSiNoFugaAgua.setBounds(360, 120, 21, 20);
 
         jLabel80.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel80.setForeground(new java.awt.Color(0, 0, 102));
         jLabel80.setText("Tipo de Fuga:");
+        jPanel8.add(jLabel80);
+        jLabel80.setBounds(400, 120, 80, 20);
 
         jLabel81.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel81.setForeground(new java.awt.Color(0, 0, 102));
         jLabel81.setText("¿Fugas?");
+        jPanel8.add(jLabel81);
+        jLabel81.setBounds(310, 120, 50, 20);
 
         buttonGroup1.add(RbtOpcionAntes);
         RbtOpcionAntes.setFont(new java.awt.Font("Arial", 1, 11));
         RbtOpcionAntes.setText("Antes");
+        jPanel8.add(RbtOpcionAntes);
+        RbtOpcionAntes.setBounds(480, 120, 60, 20);
 
         buttonGroup1.add(RbtOpcionDespues);
-        RbtOpcionDespues.setFont(new java.awt.Font("Arial", 1, 11));
+        RbtOpcionDespues.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         RbtOpcionDespues.setText("Después");
+        jPanel8.add(RbtOpcionDespues);
+        RbtOpcionDespues.setBounds(550, 120, 80, 20);
 
         buttonGroup1.add(RbtOpcionIndeterminado);
         RbtOpcionIndeterminado.setFont(new java.awt.Font("Arial", 1, 11));
         RbtOpcionIndeterminado.setText("Indeterminado");
+        jPanel8.add(RbtOpcionIndeterminado);
+        RbtOpcionIndeterminado.setBounds(630, 120, 120, 20);
 
-        jLabel141.setFont(new java.awt.Font("Arial", 3, 12));
+        jLabel141.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         jLabel141.setText("Cond. Conex:");
+        jPanel8.add(jLabel141);
+        jLabel141.setBounds(10, 90, 80, 20);
 
         LblCondicionConexion.setFont(new java.awt.Font("Arial", 3, 12));
+        jPanel8.add(LblCondicionConexion);
+        LblCondicionConexion.setBounds(883, 63, 0, 20);
 
         CbxEstadoCajaAgua.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 CbxEstadoCajaAguaItemStateChanged(evt);
             }
         });
+        jPanel8.add(CbxEstadoCajaAgua);
+        CbxEstadoCajaAgua.setBounds(300, 30, 150, 20);
+        jPanel8.add(CbxMaterialTapaAgua);
+        CbxMaterialTapaAgua.setBounds(70, 60, 135, 20);
 
-        jLabel136.setFont(new java.awt.Font("Arial", 1, 12));
+        jLabel136.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel136.setForeground(new java.awt.Color(0, 0, 102));
         jLabel136.setText("Mat. Tapa:");
+        jPanel8.add(jLabel136);
+        jLabel136.setBounds(10, 60, 58, 20);
 
-        jLabel137.setFont(new java.awt.Font("Arial", 1, 12));
+        CbxEstadoTapaAgua.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CbxEstadoTapaAguaItemStateChanged(evt);
+            }
+        });
+        jPanel8.add(CbxEstadoTapaAgua);
+        CbxEstadoTapaAgua.setBounds(660, 30, 135, 20);
+
+        jLabel137.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel137.setForeground(new java.awt.Color(0, 0, 102));
         jLabel137.setText("Estado Tapa:");
+        jPanel8.add(jLabel137);
+        jLabel137.setBounds(580, 30, 73, 20);
 
         LblCondicionConexionConsulta.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         LblCondicionConexionConsulta.setForeground(new java.awt.Color(51, 102, 0));
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel141, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                            .addComponent(jLabel87, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel92))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(CbxEstadoCajaAgua, 0, 180, Short.MAX_VALUE)
-                            .addComponent(CbxSituacionAgua, 0, 180, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel8Layout.createSequentialGroup()
-                                .addComponent(LblCondicionConexion)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(LblCondicionConexionConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel8Layout.createSequentialGroup()
-                                        .addComponent(jLabel88, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(CbxUbiCajaConexAgua, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel8Layout.createSequentialGroup()
-                                        .addComponent(jLabel90)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(CbxCondicionConexionAgua, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel89, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel68))
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(TxtMaterialConexionAgua)
-                                    .addComponent(CbxDiametroConexionAgua, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addComponent(jLabel91)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CbxMaterialCajaAgua, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                                .addComponent(jLabel79)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(ChckSiNoTapaConexionAgua)
-                                .addGap(12, 12, 12)
-                                .addComponent(jLabel136)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CbxMaterialTapaAgua, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel137)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(CbxEstadoTapaAgua, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel81, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ChckSiNoFugaAgua)
-                        .addGap(19, 19, 19)
-                        .addComponent(jLabel80, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(RbtOpcionAntes, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(RbtOpcionDespues, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(RbtOpcionIndeterminado, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel87, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CbxSituacionAgua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel141, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(LblCondicionConexion, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel92, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel89, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(CbxDiametroConexionAgua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(TxtMaterialConexionAgua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel68, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel88, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(CbxUbiCajaConexAgua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(CbxCondicionConexionAgua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(LblCondicionConexionConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel90, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ChckSiNoTapaConexionAgua)
-                            .addComponent(jLabel79, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(CbxMaterialTapaAgua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel136, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(CbxEstadoCajaAgua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel91, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(CbxMaterialCajaAgua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(CbxEstadoTapaAgua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel137, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel80, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(RbtOpcionAntes)
-                    .addComponent(RbtOpcionDespues)
-                    .addComponent(RbtOpcionIndeterminado)
-                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLabel81, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ChckSiNoFugaAgua))))
-        );
+        jPanel8.add(LblCondicionConexionConsulta);
+        LblCondicionConexionConsulta.setBounds(90, 90, 120, 20);
+        jPanel8.add(CbxMaterialConexionAgua);
+        CbxMaterialConexionAgua.setBounds(550, 90, 162, 20);
 
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Datos de la Conexion del Desague", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12), new java.awt.Color(102, 0, 0))); // NOI18N
+        jPanel9.setLayout(null);
+        jPanel9.add(CbxUbiCajaConexDesague);
+        CbxUbiCajaConexDesague.setBounds(720, 50, 150, 20);
 
-        jLabel93.setFont(new java.awt.Font("Arial", 1, 12));
+        jLabel93.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel93.setForeground(new java.awt.Color(0, 0, 102));
         jLabel93.setText("Ubi/Caja/Conex:");
+        jPanel9.add(jLabel93);
+        jLabel93.setBounds(620, 50, 90, 20);
 
-        jLabel95.setFont(new java.awt.Font("Arial", 1, 12));
+        jLabel95.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel95.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel95.setText("Diametro de Conex:");
+        jLabel95.setText("Diam. de Conex:");
+        jPanel9.add(jLabel95);
+        jLabel95.setBounds(290, 110, 100, 20);
+        jPanel9.add(CbxDiametroConexionDesague);
+        CbxDiametroConexionDesague.setBounds(390, 110, 130, 20);
+        jPanel9.add(CbxCondicionConexDesague);
+        CbxCondicionConexDesague.setBounds(720, 80, 150, 20);
 
-        jLabel96.setFont(new java.awt.Font("Arial", 1, 12));
+        jLabel96.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel96.setForeground(new java.awt.Color(0, 0, 102));
         jLabel96.setText("Cond. Conex:");
+        jPanel9.add(jLabel96);
+        jLabel96.setBounds(390, 80, 80, 20);
 
         CbxMaterialCajaDesague.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 CbxMaterialCajaDesagueItemStateChanged(evt);
             }
         });
+        jPanel9.add(CbxMaterialCajaDesague);
+        CbxMaterialCajaDesague.setBounds(110, 80, 140, 20);
 
-        jLabel97.setFont(new java.awt.Font("Arial", 1, 12));
+        jLabel97.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel97.setForeground(new java.awt.Color(0, 0, 102));
         jLabel97.setText("Mat. Caja:");
+        jPanel9.add(jLabel97);
+        jLabel97.setBounds(20, 80, 80, 20);
 
-        jLabel98.setFont(new java.awt.Font("Arial", 1, 12));
+        jLabel98.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel98.setForeground(new java.awt.Color(0, 0, 102));
         jLabel98.setText("Estado Tapa:");
+        jPanel9.add(jLabel98);
+        jLabel98.setBounds(150, 50, 80, 20);
 
-        jLabel85.setFont(new java.awt.Font("Arial", 1, 12));
-        jLabel85.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel85.setText("¿Fugas?");
+        CbxEstadoTapaDesague.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CbxEstadoTapaDesagueItemStateChanged(evt);
+            }
+        });
+        jPanel9.add(CbxEstadoTapaDesague);
+        CbxEstadoTapaDesague.setBounds(230, 50, 150, 20);
+        jPanel9.add(CbxMaterialTapaDesague);
+        CbxMaterialTapaDesague.setBounds(450, 50, 150, 20);
 
-        jLabel99.setFont(new java.awt.Font("Arial", 1, 12));
+        jLabel99.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel99.setForeground(new java.awt.Color(0, 0, 102));
         jLabel99.setText("Mat. Tapa:");
+        jPanel9.add(jLabel99);
+        jLabel99.setBounds(390, 50, 60, 20);
 
-        jLabel100.setFont(new java.awt.Font("Arial", 1, 12));
+        jLabel100.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel100.setForeground(new java.awt.Color(0, 0, 102));
         jLabel100.setText("Estado Caja:");
+        jPanel9.add(jLabel100);
+        jLabel100.setBounds(630, 20, 80, 20);
 
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jLabel93, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(CbxUbiCajaConexDesague, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel95, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(CbxDiametroConexionDesague, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel96, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(CbxCondicionConexDesague, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jLabel97, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(CbxMaterialCajaDesague, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel99, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)
-                        .addComponent(CbxMaterialTapaDesague, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel98, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(CbxEstadoTapaDesague, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jLabel100, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(CbxEstadoCajaDesague, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel85, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(ChckSiNoFugaDesague, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(9, 9, 9)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel93, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CbxUbiCajaConexDesague, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel95, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CbxDiametroConexionDesague, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel96, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CbxCondicionConexDesague, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel97, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CbxMaterialCajaDesague, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel99, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CbxMaterialTapaDesague, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel98, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CbxEstadoTapaDesague, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel100, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CbxEstadoCajaDesague, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel85, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ChckSiNoFugaDesague)))
-        );
+        CbxEstadoCajaDesague.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CbxEstadoCajaDesagueItemStateChanged(evt);
+            }
+        });
+        jPanel9.add(CbxEstadoCajaDesague);
+        CbxEstadoCajaDesague.setBounds(720, 20, 150, 20);
+
+        jLabel142.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel142.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel142.setText("¿Con Tapa?");
+        jPanel9.add(jLabel142);
+        jLabel142.setBounds(20, 50, 70, 20);
+
+        ChckSiNoTapaConexionDesague.setSelected(true);
+        ChckSiNoTapaConexionDesague.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChckSiNoTapaConexionDesagueActionPerformed(evt);
+            }
+        });
+        jPanel9.add(ChckSiNoTapaConexionDesague);
+        ChckSiNoTapaConexionDesague.setBounds(100, 50, 21, 21);
+
+        jLabel143.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel143.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel143.setText("Mat. Conexion:");
+        jPanel9.add(jLabel143);
+        jLabel143.setBounds(20, 110, 100, 20);
+
+        CbxMaterialConexionDesague.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CbxMaterialConexionDesagueItemStateChanged(evt);
+            }
+        });
+        jPanel9.add(CbxMaterialConexionDesague);
+        CbxMaterialConexionDesague.setBounds(110, 110, 140, 20);
+
+        jLabel144.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel144.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel144.setText("¿Fugas?");
+        jPanel9.add(jLabel144);
+        jLabel144.setBounds(560, 110, 50, 20);
+        jPanel9.add(ChckSiNoFugaDesague);
+        ChckSiNoFugaDesague.setBounds(610, 110, 30, 21);
+
+        jLabel145.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel145.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel145.setText("Caracteristicas:");
+        jPanel9.add(jLabel145);
+        jLabel145.setBounds(20, 20, 100, 20);
+
+        buttonGroup2.add(RbtOpcionConCaja);
+        RbtOpcionConCaja.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        RbtOpcionConCaja.setSelected(true);
+        RbtOpcionConCaja.setText("Con Caja");
+        jPanel9.add(RbtOpcionConCaja);
+        RbtOpcionConCaja.setBounds(120, 20, 73, 20);
+
+        buttonGroup2.add(RbtOpcionNoDeterminado);
+        RbtOpcionNoDeterminado.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        RbtOpcionNoDeterminado.setText("No Determinado");
+        jPanel9.add(RbtOpcionNoDeterminado);
+        RbtOpcionNoDeterminado.setBounds(360, 20, 113, 20);
+
+        LblCondicionConexionDesague.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        LblCondicionConexionDesague.setForeground(new java.awt.Color(51, 102, 0));
+        jPanel9.add(LblCondicionConexionDesague);
+        LblCondicionConexionDesague.setBounds(470, 80, 130, 20);
+
+        jLabel147.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel147.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel147.setText("Cond. Conex:");
+        jPanel9.add(jLabel147);
+        jLabel147.setBounds(640, 80, 80, 20);
+
+        buttonGroup2.add(RbtOpcionSinCaja);
+        RbtOpcionSinCaja.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        RbtOpcionSinCaja.setText("Sin Caja/Conex. Directa");
+        RbtOpcionSinCaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RbtOpcionSinCajaActionPerformed(evt);
+            }
+        });
+        jPanel9.add(RbtOpcionSinCaja);
+        RbtOpcionSinCaja.setBounds(200, 20, 151, 20);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+            .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 890, Short.MAX_VALUE)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 890, Short.MAX_VALUE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 890, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -2236,11 +2271,11 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Pag 3", jPanel6);
@@ -2261,6 +2296,12 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
 
         jLabel103.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel103.setText("Frecuencia de Abastecimiento");
+
+        TxtHorasPorDia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TxtHorasPorDia.setText("0");
+
+        TxtDiaPorSemana.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TxtDiaPorSemana.setText("0");
 
         jLabel104.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel104.setForeground(new java.awt.Color(0, 0, 102));
@@ -2343,6 +2384,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
 
         jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Datos del Entrevistado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12), new java.awt.Color(102, 0, 0))); // NOI18N
 
+        TxtApellidoPaternoEntrevistado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         jLabel55.setBackground(new java.awt.Color(204, 204, 204));
         jLabel55.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel55.setForeground(new java.awt.Color(0, 0, 102));
@@ -2350,6 +2393,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel55.setText("Apellido Paterno ");
         jLabel55.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel55.setOpaque(true);
+
+        TxtApellidoMaternoEntrevistado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel56.setBackground(new java.awt.Color(204, 204, 204));
         jLabel56.setFont(new java.awt.Font("Arial", 1, 12));
@@ -2366,6 +2411,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel57.setText("Nombre ");
         jLabel57.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel57.setOpaque(true);
+
+        TxtNombreEntrevistado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel58.setBackground(new java.awt.Color(204, 204, 204));
         jLabel58.setFont(new java.awt.Font("Arial", 1, 12));
@@ -2559,6 +2606,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel112.setForeground(new java.awt.Color(0, 0, 102));
         jLabel112.setText("Tipo Propiedad:");
 
+        TxtNumeroDocumentoEntrevistado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
@@ -2641,12 +2690,14 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Pag 4", jPanel10);
 
         jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Ubicación de la Conexión", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12), new java.awt.Color(102, 0, 0))); // NOI18N
+
+        TxtUbiConexAgua.setText("0");
 
         jLabel110.setBackground(new java.awt.Color(204, 204, 204));
         jLabel110.setFont(new java.awt.Font("Arial", 1, 12));
@@ -2655,6 +2706,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel110.setText("Ub. Conex de Agua");
         jLabel110.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel110.setOpaque(true);
+
+        TxtUbiConexDesague.setText("0");
 
         jLabel111.setBackground(new java.awt.Color(204, 204, 204));
         jLabel111.setFont(new java.awt.Font("Arial", 1, 12));
@@ -2938,7 +2991,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         );
         jPanelImagePredioLayout.setVerticalGroup(
             jPanelImagePredioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 264, Short.MAX_VALUE)
+            .addGap(0, 268, Short.MAX_VALUE)
         );
 
         jPanelImageCaja.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -2951,8 +3004,17 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         );
         jPanelImageCajaLayout.setVerticalGroup(
             jPanelImageCajaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 264, Short.MAX_VALUE)
+            .addGap(0, 268, Short.MAX_VALUE)
         );
+
+        buttonGroup3.add(jRadioButton1);
+        jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jRadioButton1.setSelected(true);
+        jRadioButton1.setText("Agua");
+
+        buttonGroup3.add(jRadioButton2);
+        jRadioButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jRadioButton2.setText("Desagüe");
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -2978,7 +3040,13 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                                         .addComponent(BtnFotoCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel17Layout.createSequentialGroup()
                                         .addGap(10, 10, 10)
-                                        .addComponent(jPanelImageCaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jPanelImageCaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGroup(jPanel17Layout.createSequentialGroup()
+                                                .addComponent(jRadioButton1)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jRadioButton2)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel106, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -3026,7 +3094,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                             .addComponent(TxtUbiConexDesague, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel111, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(333, 333, 333)))
-                .addGap(0, 0, 0))
+                .addGap(3, 3, 3))
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3053,12 +3121,15 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                         .addComponent(LblCodigoFotoCaja)))
                 .addGap(4, 4, 4)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelImagePredio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelImageCaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jPanelImageCaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelImagePredio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel17Layout.createSequentialGroup()
-                        .addComponent(TxtUbiConexAgua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TxtUbiConexAgua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jRadioButton1)
+                            .addComponent(jRadioButton2))
                         .addComponent(jLabel110, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel17Layout.createSequentialGroup()
                         .addComponent(TxtUbiConexDesague, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -3118,50 +3189,51 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(785, Short.MAX_VALUE)
+                .addComponent(BtnGuardar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(BtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 915, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(BtnGuardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(6, 6, 6)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3))
-                            .addGap(64, 64, 64)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(TxtNumeroFicha, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 915, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1, 0, 0, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(64, 64, 64)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxtNumeroFicha, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(11, 11, 11)
                             .addComponent(jLabel2)
                             .addGap(6, 6, 6)
-                            .addComponent(jLabel3)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(0, 0, 0)
-                        .addComponent(TxtNumeroFicha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel3))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addGap(0, 0, 0)
+                            .addComponent(TxtNumeroFicha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(BtnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BtnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(BtnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
@@ -3186,15 +3258,21 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         {
             if(codigo==1)
             {
-            // insertar
             CEMedida oCEMedida=getMedida();
             CDMedida oCDMedida=new CDMedida();
             boolean valor=oCDMedida.registrarMedida(oCEMedida);
             if(valor)
             {
+                if(jFileChooser1.getSelectedFile()!=null)
+                {
                 copiarImagenes(jFileChooser1.getSelectedFile(),1);
+                }
+                if(jFileChooser2.getSelectedFile()!=null)
+                {
                 copiarImagenes(jFileChooser2.getSelectedFile(),2);
-               JOptionPane.showMessageDialog(null, "Se registro correctamente");
+                }
+                JOptionPane.showMessageDialog(null, "Se registro correctamente");
+                dispose();
             }
             else
             {
@@ -3205,7 +3283,6 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
             {
                if(codigo==2)
                {
-                // modificar
                 CEMedida oCEMedida=getMedida();
                 CDMedida oCDMedida=new CDMedida();
                 oCEMedida.setIdRegistroMedida(IdRegistroMedida);
@@ -3220,14 +3297,14 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                     {
                         copiarImagenes(jFileChooser2.getSelectedFile(),1);
                     }
-                   
+
                    JOptionPane.showMessageDialog(null, "Se actualizo correctamente");
                    dispose();
                 }
                 else
                 {
                    JOptionPane.showMessageDialog(null, "No se pudo actualizar el registro");
-                   
+
                 }
             }
         }
@@ -3287,6 +3364,22 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
             {
                 return 3;
             }
+        }
+    }
+    private int getOpcionTipoCaracteristica()
+    {
+        if(RbtOpcionConCaja.isSelected())
+        {
+            return 1;
+        }
+        else
+        {
+           if(RbtOpcionNoDeterminado.isSelected())
+            {
+                return 2;
+            }
+            else
+                return 3;
         }
     }
     private void BtnBuscarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarUsuarioActionPerformed
@@ -3377,10 +3470,6 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         TxtNombreHabilitacion.setText(oCEHabitacion.getNombreHabilitacion());
     }//GEN-LAST:event_TxtNombreHabilitacionActionPerformed
 
-    private void ChkSiNoMedidorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkSiNoMedidorActionPerformed
-    
-    }//GEN-LAST:event_ChkSiNoMedidorActionPerformed
-
     private void BtnAgregarUsoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarUsoActionPerformed
      Vector oVector=new Vector();
      oVector.add(0);
@@ -3390,12 +3479,12 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     private void ChckSiNoIlegibleLecturaMedidorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChckSiNoIlegibleLecturaMedidorActionPerformed
     if(ChckSiNoIlegibleLecturaMedidor.isSelected())
     {
-        TxtLecturaMedidor.setText("");
+        TxtLecturaMedidor.setText("0");
         TxtLecturaMedidor.setEditable(false);
     }
     else
     {
-        TxtLecturaMedidor.setText("");
+        TxtLecturaMedidor.setText("0");
         TxtLecturaMedidor.setEditable(true);
     }
     }//GEN-LAST:event_ChckSiNoIlegibleLecturaMedidorActionPerformed
@@ -3404,10 +3493,14 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     if(ChckSiNoTapaConexionAgua.isSelected())
     {
        CbxMaterialTapaAgua.setEnabled(true);
+       CbxEstadoTapaAgua.setEnabled(true);
     }
     else
     {
        CbxMaterialTapaAgua.setEnabled(false);
+       CbxEstadoTapaAgua.setEnabled(false);
+       CbxEstadoTapaAgua.setSelectedIndex(0);
+       CbxMaterialTapaAgua.setSelectedIndex(0);
     }
     }//GEN-LAST:event_ChckSiNoTapaConexionAguaActionPerformed
 
@@ -3423,8 +3516,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     }
     else
     {
-        TxtLecturaMedidor.setText("");
-        TxtLecturaMedidor.setEditable(true);
+        TxtNumeroMedidor.setText("");
+        TxtNumeroMedidor.setEditable(true);
     }
     }//GEN-LAST:event_ChkSiNoIlegibleNumeroMedidorActionPerformed
 
@@ -3444,158 +3537,20 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     }//GEN-LAST:event_ChckSiNoFugaAguaActionPerformed
 
     private void CbxMaterialCajaDesagueItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CbxMaterialCajaDesagueItemStateChanged
-     if(((CEMaterialCajaDesague)CbxMaterialCajaDesague.getSelectedItem()).getIdMaterialCajaDesague()==3)
-     {
-         CbxMaterialTapaDesague.setEnabled(false);
-         CbxEstadoTapaDesague.setEnabled(false);
-         CbxEstadoCajaDesague.setEnabled(false);
-         CbxMaterialTapaDesague.setSelectedIndex(0);
-         CbxEstadoTapaDesague.setSelectedIndex(0);
-         CbxEstadoCajaDesague.setSelectedIndex(0);
-     }
-    else{
-        if(((CETipoServicio)(CbxTipoServicio.getSelectedItem())).getIdTipoServicio()==2||((CETipoServicio)(CbxTipoServicio.getSelectedItem())).getIdTipoServicio()==3)
-        {
-         CbxMaterialTapaDesague.setEnabled(true);
-         CbxEstadoTapaDesague.setEnabled(true);
-         CbxEstadoCajaDesague.setEnabled(true);
-         }
-    }
+  
     }//GEN-LAST:event_CbxMaterialCajaDesagueItemStateChanged
 
     private void CbxTipoServicioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CbxTipoServicioItemStateChanged
-     if(((CETipoServicio)(CbxTipoServicio.getSelectedItem())).getIdTipoServicio()==1)
-     {// Agua
-        CbxUbiCajaConexDesague.setEnabled(false);
-        CbxDiametroConexionDesague.setEnabled(false);
-        CbxCondicionConexDesague.setEnabled(false);
-        CbxMaterialCajaDesague.setEnabled(false);
-        CbxMaterialTapaDesague.setEnabled(false);
-        CbxEstadoTapaDesague.setEnabled(false);
-        CbxEstadoCajaDesague.setEnabled(false);
-        ChckSiNoFugaDesague.setEnabled(false);
-        ChckSiNoFugaDesague.setSelected(false);
-        if(cargo)
-        {
-        CbxUbiCajaConexAgua.setSelectedIndex(0);
-        CbxDiametroConexionDesague.setSelectedIndex(0);
-        CbxCondicionConexDesague.setSelectedIndex(0);
-        CbxMaterialCajaDesague.setSelectedIndex(0);
-        CbxMaterialTapaDesague.setSelectedIndex(0);
-        CbxEstadoTapaDesague.setSelectedIndex(0);
-        CbxEstadoCajaDesague.setSelectedIndex(0);
-        }
-
-            CbxSituacionAgua.setEnabled(true);
-        CbxUbiCajaConexAgua.setEnabled(true);
-        CbxDiametroConexionAgua.setEnabled(true);
-        CbxCondicionConexionAgua.setEnabled(true);
-        TxtMaterialConexionAgua.setEditable(true);
-        TxtMaterialConexionAgua.setText("");
-        CbxMaterialCajaAgua.setEnabled(true);
-        CbxMaterialTapaAgua.setEnabled(true);
-        CbxEstadoTapaAgua.setEnabled(true);
-        CbxEstadoCajaAgua.setEnabled(true);
-        ChckSiNoFugaAgua.setEnabled(true);
-        ChckSiNoFugaAgua.setSelected(true);
-        ChckSiNoTapaConexionAgua.setSelected(true);
-        if(cargo)
-        {
-            CbxSituacionAgua.setSelectedIndex(0);
-            CbxUbiCajaConexAgua.setSelectedIndex(0);
-            CbxDiametroConexionAgua.setSelectedIndex(0);
-            CbxCondicionConexionAgua.setSelectedIndex(0);
-            CbxMaterialCajaAgua.setSelectedIndex(0);
-         }
-     }
-    else{
-        if(((CETipoServicio)(CbxTipoServicio.getSelectedItem())).getIdTipoServicio()==2)
-        { //Desague
-        CbxSituacionAgua.setEnabled(false);
-        CbxUbiCajaConexAgua.setEnabled(false);
-        CbxDiametroConexionAgua.setEnabled(false);
-        CbxCondicionConexionAgua.setEnabled(false);
-        TxtMaterialConexionAgua.setEditable(false);
-        TxtMaterialConexionAgua.setText("");
-        CbxMaterialCajaAgua.setEnabled(false);
-        CbxMaterialTapaAgua.setEnabled(false);
-        CbxEstadoTapaAgua.setEnabled(false);
-        CbxEstadoCajaAgua.setEnabled(false);
-        ChckSiNoFugaAgua.setEnabled(false);
-        ChckSiNoFugaAgua.setSelected(false);
-        ChckSiNoTapaConexionAgua.setSelected(false);
-        if(cargo)
-        {
-            CbxSituacionAgua.setSelectedIndex(0);
-            CbxUbiCajaConexAgua.setSelectedIndex(0);
-            CbxDiametroConexionAgua.setSelectedIndex(0);
-            CbxCondicionConexionAgua.setSelectedIndex(0);
-            CbxMaterialCajaAgua.setSelectedIndex(0);
-         }
-
-          CbxUbiCajaConexDesague.setEnabled(true);
-        CbxDiametroConexionDesague.setEnabled(true);
-        CbxCondicionConexDesague.setEnabled(true);
-        CbxMaterialCajaDesague.setEnabled(true);
-        CbxMaterialTapaDesague.setEnabled(true);
-        CbxEstadoTapaDesague.setEnabled(true);
-        CbxEstadoCajaDesague.setEnabled(true);
-        ChckSiNoFugaDesague.setEnabled(true);
-        ChckSiNoFugaDesague.setSelected(true);
-        if(cargo)
-        {
-        CbxUbiCajaConexAgua.setSelectedIndex(0);
-        CbxDiametroConexionDesague.setSelectedIndex(0);
-        CbxCondicionConexDesague.setSelectedIndex(0);
-        CbxMaterialCajaDesague.setSelectedIndex(0);
-        CbxMaterialTapaDesague.setSelectedIndex(0);
-        CbxEstadoTapaDesague.setSelectedIndex(0);
-        CbxEstadoCajaDesague.setSelectedIndex(0);
-        ChkSiNoMedidor.setSelected(false);
-        }
-
-
-        }
-        else{
-         if(((CETipoServicio)(CbxTipoServicio.getSelectedItem())).getIdTipoServicio()==3)
-        { //Desague
-        CbxSituacionAgua.setEnabled(true);
-        CbxUbiCajaConexAgua.setEnabled(true);
-        CbxDiametroConexionAgua.setEnabled(true);
-        CbxCondicionConexionAgua.setEnabled(true);
-        TxtMaterialConexionAgua.setEditable(true);
-        TxtMaterialConexionAgua.setText("");
-        CbxMaterialCajaAgua.setEnabled(true);
-        CbxMaterialTapaAgua.setEnabled(true);
-        CbxEstadoTapaAgua.setEnabled(true);
-        CbxEstadoCajaAgua.setEnabled(true);
-        ChckSiNoFugaAgua.setEnabled(true);
-        ChckSiNoFugaAgua.setSelected(true);
-        ChckSiNoTapaConexionAgua.setSelected(true);
-
-         CbxUbiCajaConexDesague.setEnabled(true);
-        CbxDiametroConexionDesague.setEnabled(true);
-        CbxCondicionConexDesague.setEnabled(true);
-        CbxMaterialCajaDesague.setEnabled(true);
-        CbxMaterialTapaDesague.setEnabled(true);
-        CbxEstadoTapaDesague.setEnabled(true);
-        CbxEstadoCajaDesague.setEnabled(true);
-        ChckSiNoFugaDesague.setEnabled(true);
-        ChckSiNoFugaDesague.setSelected(true);
-        ChkSiNoMedidor.setSelected(true);
-        }
-        }
-     
-    }
-
+    
     }//GEN-LAST:event_CbxTipoServicioItemStateChanged
 
     private void ChkSiNoMedidorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ChkSiNoMedidorItemStateChanged
-       if(!ChkSiNoMedidor.isSelected())
+     if(codigo!=0)
+     if(!ChkSiNoMedidor.isSelected())
      {
         TxtNumeroMedidor.setText("");
         TxtMarcaMedidor.setText("");
-        TxtLecturaMedidor.setText("");
+        TxtLecturaMedidor.setText("0");
         TxtNumeroMedidor.setEditable(false);
         TxtMarcaMedidor.setEditable(false);
         TxtLecturaMedidor.setEditable(false);
@@ -3620,7 +3575,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         TxtNumeroMedidor.setText("");
         TxtMarcaMedidor.setText("");
-        TxtLecturaMedidor.setText("");
+        TxtLecturaMedidor.setText("0");
          TxtNumeroMedidor.setEditable(true);
         TxtMarcaMedidor.setEditable(true);
         TxtLecturaMedidor.setEditable(true);
@@ -3639,11 +3594,32 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     private void CbxEstadoCajaAguaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CbxEstadoCajaAguaItemStateChanged
     if(((CEEstadoCajaAgua)CbxEstadoCajaAgua.getSelectedItem()).getIdEstadoCajaAgua()==3)
     {
-        CbxMaterialCajaAgua.setEnabled(false);
+        
         CbxMaterialCajaAgua.setSelectedIndex(0);
+        CbxEstadoTapaAgua.setSelectedIndex(0);
+        CbxMaterialTapaAgua.setSelectedIndex(0);
+        CbxDiametroConexionAgua.setSelectedIndex(0);
+        CbxMaterialCajaAgua.setSelectedIndex(0);
+        CbxMaterialConexionAgua.setSelectedIndex(0);
+        ChckSiNoTapaConexionAgua.setSelected(false);
+        ChckSiNoTapaConexionAgua.setEnabled(false);
+        CbxMaterialCajaAgua.setEnabled(false);
+        CbxEstadoTapaAgua.setEnabled(false);
+        CbxMaterialTapaAgua.setEnabled(false);
+        CbxDiametroConexionAgua.setEnabled(false);
+        CbxMaterialCajaAgua.setEnabled(false);
+        CbxMaterialConexionAgua.setEnabled(false);
+
     }
     else{
-         CbxMaterialCajaAgua.setEnabled(true);
+        ChckSiNoTapaConexionAgua.setSelected(true);
+        ChckSiNoTapaConexionAgua.setEnabled(true);
+        CbxMaterialCajaAgua.setEnabled(true);
+        CbxEstadoTapaAgua.setEnabled(true);
+        CbxMaterialTapaAgua.setEnabled(true);
+        CbxDiametroConexionAgua.setEnabled(true);
+        CbxMaterialCajaAgua.setEnabled(true);
+        CbxMaterialConexionAgua.setEnabled(true);
     }
     }//GEN-LAST:event_CbxEstadoCajaAguaItemStateChanged
 
@@ -3677,26 +3653,191 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnEliminarUsoActionPerformed
 
     private void CbxSituacionConexionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CbxSituacionConexionItemStateChanged
-     if(((CESituacionConexion)CbxSituacionConexion.getSelectedItem()).getIdSituacionConexion()==2||((CESituacionConexion)CbxSituacionConexion.getSelectedItem()).getIdSituacionConexion()==3)
-     {
-         jTabbedPane1.setEnabledAt(2,false);
-         CbxTipoServicio.setSelectedIndex(0);
-     }
+    if(codigo!=0)    
+        if (((CESituacionConexion) CbxSituacionConexion.getSelectedItem()).getIdSituacionConexion() == 2 || ((CESituacionConexion) CbxSituacionConexion.getSelectedItem()).getIdSituacionConexion() == 3)
+        {
+           jTabbedPane1.setEnabledAt(2,false);
+           CbxTipoServicio.setSelectedIndex(0);
+
+            ChkSiNoMedidor.setSelected(false);
+            CbxTipoServicio.setSelectedIndex(0);
+            CbxSituacionAgua.setSelectedIndex(0);
+            CbxEstadoCajaAgua.setSelectedIndex(0);
+            ChckSiNoTapaConexionAgua.setSelected(false);
+            CbxUbiCajaConexAgua.setSelectedIndex(0);
+            CbxMaterialCajaAgua.setSelectedIndex(0);
+            CbxCondicionConexionAgua.setSelectedIndex(0);
+            CbxMaterialConexionAgua.setSelectedIndex(0);
+            CbxDiametroConexionAgua.setSelectedIndex(0);
+            ChckSiNoFugaAgua.setSelected(false);
+            ChckSiNoTapaConexionAgua.setSelected(false);
+            ChckSiNoTapaConexionDesague.setSelected(false);
+            RbtOpcionNoDeterminado.setSelected(true);
+            CbxEstadoCajaDesague.setSelectedIndex(0);
+            CbxEstadoTapaDesague.setSelectedIndex(0);
+            CbxMaterialTapaDesague.setSelectedIndex(0);
+            CbxUbiCajaConexDesague.setSelectedIndex(0);
+            CbxMaterialCajaDesague.setSelectedIndex(0);
+            CbxCondicionConexDesague.setSelectedIndex(0);
+            CbxMaterialConexionDesague.setSelectedIndex(0);
+            CbxDiametroConexionDesague.setSelectedIndex(0);
+            ChckSiNoFugaDesague.setSelected(false);
+         }
+        else
+        {
+         ChkSiNoMedidor.setSelected(true);
+         ChckSiNoFugaAgua.setSelected(true);
+         ChckSiNoTapaConexionAgua.setSelected(true);
+         ChckSiNoFugaDesague.setSelected(true);
+         ChckSiNoTapaConexionAgua.setSelected(true);
+         ChckSiNoTapaConexionDesague.setSelected(true);
+         jTabbedPane1.setEnabledAt(2,true);
+
+        }
+    
+    }//GEN-LAST:event_CbxSituacionConexionItemStateChanged
+
+    private void ChckSiNoTapaConexionDesagueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChckSiNoTapaConexionDesagueActionPerformed
+    if(ChckSiNoTapaConexionDesague.isSelected())
+    {
+       CbxMaterialTapaDesague.setEnabled(true);
+       CbxEstadoTapaDesague.setEnabled(true);
+    }
     else
     {
-         if(codigo==1)
-         {
-            jTabbedPane1.setEnabledAt(2,true);
-            CbxTipoServicio.setSelectedIndex(0);
-         }
+       CbxMaterialTapaDesague.setEnabled(false);
+       CbxEstadoTapaDesague.setEnabled(false);
+       CbxMaterialTapaDesague.setSelectedIndex(0);
+       CbxEstadoTapaDesague.setSelectedIndex(0);
     }
-    }//GEN-LAST:event_CbxSituacionConexionItemStateChanged
+
+    }//GEN-LAST:event_ChckSiNoTapaConexionDesagueActionPerformed
+
+    private void CbxMaterialConexionDesagueItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CbxMaterialConexionDesagueItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CbxMaterialConexionDesagueItemStateChanged
+
+    private void CbxEstadoCajaDesagueItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CbxEstadoCajaDesagueItemStateChanged
+    if(((CEEstadoCajaDesague)CbxEstadoCajaDesague.getSelectedItem()).getIdEstadoCajaDesague()==3)
+    {
+
+        CbxMaterialCajaDesague.setSelectedIndex(0);
+        CbxEstadoTapaDesague.setSelectedIndex(0);
+        CbxMaterialTapaDesague.setSelectedIndex(0);
+        CbxDiametroConexionDesague.setSelectedIndex(0);
+        CbxMaterialCajaDesague.setSelectedIndex(0);
+        CbxMaterialConexionDesague.setSelectedIndex(0);
+        ChckSiNoTapaConexionDesague.setSelected(false);
+        ChckSiNoTapaConexionDesague.setEnabled(false);
+        CbxMaterialCajaDesague.setEnabled(false);
+        CbxEstadoTapaDesague.setEnabled(false);
+        CbxMaterialTapaDesague.setEnabled(false);
+        CbxDiametroConexionDesague.setEnabled(false);
+        CbxMaterialCajaDesague.setEnabled(false);
+        CbxMaterialConexionDesague.setEnabled(false);
+
+    }
+    else{
+        ChckSiNoTapaConexionDesague.setSelected(true);
+        ChckSiNoTapaConexionDesague.setEnabled(true);
+        CbxMaterialCajaDesague.setEnabled(true);
+        CbxEstadoTapaDesague.setEnabled(true);
+        CbxMaterialTapaDesague.setEnabled(true);
+        CbxDiametroConexionDesague.setEnabled(true);
+        CbxMaterialCajaDesague.setEnabled(true);
+        CbxMaterialConexionDesague.setEnabled(true);
+    }
+    }//GEN-LAST:event_CbxEstadoCajaDesagueItemStateChanged
+
+    private void CbxEstadoTapaDesagueItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CbxEstadoTapaDesagueItemStateChanged
+     if(((CEEstadoTapaDesague)CbxEstadoTapaDesague.getSelectedItem()).getIdEstadoTapaDesague()==3)
+    {
+
+        CbxDiametroConexionDesague.setSelectedIndex(0);
+        CbxMaterialCajaDesague.setSelectedIndex(0);
+        CbxDiametroConexionDesague.setEnabled(false);
+        CbxMaterialCajaDesague.setEnabled(false);
+
+    }
+    else{
+         CbxDiametroConexionDesague.setEnabled(true);
+         CbxMaterialCajaDesague.setEnabled(true);
+    }
+    }//GEN-LAST:event_CbxEstadoTapaDesagueItemStateChanged
+
+    private void CbxEstadoTapaAguaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CbxEstadoTapaAguaItemStateChanged
+    if(((CEEstadoTapaAgua)CbxEstadoTapaAgua.getSelectedItem()).getIdEstadoTapaAgua()==3)
+    {
+
+        CbxDiametroConexionAgua.setSelectedIndex(0);
+        CbxMaterialCajaAgua.setSelectedIndex(0);
+        CbxDiametroConexionAgua.setEnabled(false);
+        CbxMaterialCajaAgua.setEnabled(false);
+
+    }
+    else{
+         CbxDiametroConexionAgua.setEnabled(true);
+         CbxMaterialCajaAgua.setEnabled(true);
+    }
+    }//GEN-LAST:event_CbxEstadoTapaAguaItemStateChanged
+
+    private void CbxSituacionAguaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CbxSituacionAguaItemStateChanged
+    if(((CESituacionAgua)CbxSituacionAgua.getSelectedItem()).getIdSituacionAgua()==5)
+    {
+
+        CbxEstadoCajaAgua.setSelectedIndex(0);
+        ChckSiNoTapaConexionAgua.setSelected(false);
+        CbxEstadoTapaAgua.setSelectedIndex(0);
+        CbxMaterialTapaAgua.setSelectedIndex(0);
+        
+        CbxEstadoCajaAgua.setEnabled(false);
+        ChckSiNoTapaConexionAgua.setEnabled(false);
+        CbxEstadoTapaAgua.setEnabled(false);
+        CbxMaterialTapaAgua.setEnabled(false);
+
+    }
+    else{
+        CbxEstadoCajaAgua.setEnabled(true);
+        ChckSiNoTapaConexionAgua.setEnabled(true);
+        CbxEstadoTapaAgua.setEnabled(true);
+        CbxMaterialTapaAgua.setEnabled(true);
+    }
+    }//GEN-LAST:event_CbxSituacionAguaItemStateChanged
+
+    private void RbtOpcionSinCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RbtOpcionSinCajaActionPerformed
+    if(RbtOpcionSinCaja.isSelected())
+    {
+
+        CbxEstadoCajaDesague.setSelectedIndex(0);
+        ChckSiNoTapaConexionDesague.setSelected(false);
+        CbxEstadoTapaDesague.setSelectedIndex(0);
+        CbxMaterialTapaDesague.setSelectedIndex(0);
+        CbxUbiCajaConexDesague.setSelectedIndex(0);
+        CbxMaterialCajaDesague.setSelectedIndex(0);
+
+        CbxEstadoCajaAgua.setEnabled(false);
+        ChckSiNoTapaConexionDesague.setEnabled(false);
+        CbxEstadoTapaDesague.setEnabled(false);
+        CbxMaterialTapaDesague.setEnabled(false);
+        CbxUbiCajaConexDesague.setEnabled(false);
+        CbxMaterialCajaDesague.setEnabled(false);
+
+    }
+    else{
+        CbxEstadoCajaDesague.setEnabled(true);
+        ChckSiNoTapaConexionDesague.setEnabled(true);
+        CbxEstadoTapaDesague.setEnabled(true);
+        CbxMaterialTapaDesague.setEnabled(true);
+        CbxUbiCajaConexDesague.setEnabled(true);
+        CbxMaterialCajaDesague.setEnabled(true);
+    }
+    }//GEN-LAST:event_RbtOpcionSinCajaActionPerformed
     private void limpiarEtiquetasDeConsulta(){
         
     }
     private CEMedida getMedida(){
         CEMedida oCEMedida=new CEMedida();
-        oCEMedida.setNumeroFicha(Integer.parseInt(TxtNumeroFicha.getText()));//1
+        oCEMedida.setNumeroFicha(TxtNumeroFicha.getText());//1
         CESituacionConexion oSituacionConexion=(CESituacionConexion)CbxSituacionConexion.getSelectedItem();
         oCEMedida.setIdSituacionConexion(oSituacionConexion.getIdSituacionConexion());//2
         oCEMedida.setCodDepartamento(TxtDepartamento.getText());//3
@@ -3802,7 +3943,9 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         oCEMedida.setIdMaterialCajaAgua(oCEMaterialCajaAgua.getIdMaterialCajaAgua());//67
         CEEstadoCajaAgua oCEEstadoCajaAgua=(CEEstadoCajaAgua)CbxEstadoCajaAgua.getSelectedItem();
         oCEMedida.setIdEstadoCajaAgua(oCEEstadoCajaAgua.getIdEstadoCajaAgua());//68
-        oCEMedida.setMaterialConexionAgua(TxtMaterialConexionAgua.getText());//69
+        oCEMedida.setIdMaterialConexionAgua(((CEMaterialConexionAgua)CbxMaterialConexionAgua.getSelectedItem()).getIdMaterialConexionAgua());//69
+        oCEMedida.setIdMaterialConexionDesague(((CEMaterialConexionDesague)CbxMaterialConexionDesague.getSelectedItem()).getIdMaterialConexionDesague());//69
+        oCEMedida.setIdTipoCaracteristicasCajaDesague(getOpcionTipoCaracteristica());//opcion
         oCEMedida.setSiNoTapaConexionAgua(ChckSiNoTapaConexionAgua.isSelected());//70
 
         CEMaterialTapaAgua oCEMaterialTapaAgua=(CEMaterialTapaAgua)CbxMaterialTapaAgua.getSelectedItem();
@@ -3855,19 +3998,27 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         oCEMedida.setUbicacionConexionAgua(Double.parseDouble(TxtUbiConexAgua.getText()));//95
         oCEMedida.setUbicacionConexionDesague(Double.parseDouble(TxtUbiConexDesague.getText()));//96
         oCEMedida.setCod_Encuestador(TxtCodigoEncuestador.getText());//97
-
         ConvertidorFecha oConvertidorFecha=new ConvertidorFecha();
+        if(DateFechaEncuestador.getCalendar()!=null)
+        {
         oConvertidorFecha.setFecha(DateFechaEncuestador.getCalendar());
         oConvertidorFecha.setFechaConvertida();
+        }
+        if(DateFechaSupervision.getCalendar()!=null)
+        {
         oCEMedida.setFecha_Encuestador(oConvertidorFecha.getFechaConvertida()+"");//98
         oCEMedida.setCod_Supervisor(TxtCodigoSupervisor.getText());//99
         oConvertidorFecha.setFecha(DateFechaSupervision.getCalendar());
         oConvertidorFecha.setFechaConvertida();
+        }
+        if(DateFechaSupervision.getCalendar()!=null)
+        {
         oCEMedida.setFecha_Supervisor(oConvertidorFecha.getFechaConvertida()+"");//100
         oCEMedida.setCod_Digitado(TxtCodigoDigitador.getText());//101
-         oConvertidorFecha.setFecha(DateFechaSupervision.getCalendar());
+        oConvertidorFecha.setFecha(DateFechaSupervision.getCalendar());
         oConvertidorFecha.setFechaConvertida();
         oCEMedida.setFecha_Digitador(oConvertidorFecha.getFechaConvertida()+"");//102
+        }
         oCEMedida.setoLstUsos(getLstUsos());
         return oCEMedida;
     }
@@ -3990,6 +4141,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         TxtMarcaMedidor.setText(oCEMedida.getMarcaMedidor());
         TxtLecturaMedidor.setText(oCEMedida.getLectura()+"");
         ChckSiNoIlegibleLecturaMedidor.setSelected(oCEMedida.isSiNoIlegibleLectura());
+        buscarMaterialTapaAgua(oCEMedida.getIdMaterialTapaAgua());
         buscarDiametroMedidor(oCEMedida.getIdDiametroMedidor());
         buscarEstadoMedidor(oCEMedida.getIdEstadoMedidor());
         buscarLlavesPaso(oCEMedida.getIdLlavePaso());
@@ -4000,7 +4152,23 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         buscarUbiCajaConexAgua(oCEMedida.getIdUbiCajaConexAgua());
         buscarDiametroConexionAgua(oCEMedida.getIdDiametroConexionAgua());
         buscarCondicionConexionAgua(oCEMedida.getIdCondicionConexionAgua());
-        TxtMaterialConexionAgua.setText(oCEMedida.getMaterialConexionAgua());
+        buscarMaterialConexionAgua(oCEMedida.getIdMaterialConexionAgua());
+        buscarMaterialConexionDesague(oCEMedida.getIdMaterialConexionDesague());
+        if(oCEMedida.getIdTipoCaracteristicasCajaDesague()==1)
+        {
+            RbtOpcionConCaja.setSelected(true);
+        }
+        else
+        {
+            if(oCEMedida.getTipoFugaAgua()==3)
+            {
+                RbtOpcionNoDeterminado.setSelected(true);
+            }
+            else
+            {
+                RbtOpcionSinCaja.setSelected(true);
+            }
+        }
         buscarEstadoCajaAgua(oCEMedida.getIdEstadoCajaAgua());
         buscarMaterialCajaAgua(oCEMedida.getIdMaterialCajaAgua());
         buscarEstadoTapaAgua(oCEMedida.getIdEstadoTapaAgua());
@@ -4047,18 +4215,27 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         TxtCodigoEncuestador.setText(oCEMedida.getCod_Encuestador());
         TxtCodigoDigitador.setText(oCEMedida.getCod_Digitado());
         TxtCodigoSupervisor.setText(oCEMedida.getCod_Supervisor());
+        if(oCEMedida.getFecha_Encuestador()!=null)
+        {
         int ano=Integer.parseInt(oCEMedida.getFecha_Encuestador().substring(0,4));
         int mes=Integer.parseInt(oCEMedida.getFecha_Encuestador().substring(5,7));
         int dia=Integer.parseInt(oCEMedida.getFecha_Encuestador().substring(8,10));
         DateFechaEncuestador.setCalendar(new GregorianCalendar(ano,mes-1,dia));
+        }
+        if(oCEMedida.getFecha_Supervisor()!=null)
+        {
         int ano1=Integer.parseInt(oCEMedida.getFecha_Encuestador().substring(0,4));
         int mes1=Integer.parseInt(oCEMedida.getFecha_Encuestador().substring(5,7));
         int dia1=Integer.parseInt(oCEMedida.getFecha_Encuestador().substring(8,10));
         DateFechaSupervision.setCalendar(new GregorianCalendar(ano1,mes1-1,dia1));
+        }
+        if(oCEMedida.getFecha_Digitador()!=null)
+        {
         int ano2=Integer.parseInt(oCEMedida.getFecha_Encuestador().substring(0,4));
         int mes2=Integer.parseInt(oCEMedida.getFecha_Encuestador().substring(5,7));
         int dia2=Integer.parseInt(oCEMedida.getFecha_Encuestador().substring(8,10));
         DateFechaDigitador.setCalendar(new GregorianCalendar(ano2,mes2-1,dia2));
+        }
         setLstUsos(oCEMedida.getoLstUsos());
     }
     private void buscarTipoPropiedadEntrevistado(int IdSituacionConexion)
@@ -4271,6 +4448,28 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
             }
         }
     }
+       private void buscarMaterialConexionAgua(int IdTipoDocumento)
+    {
+        for(int i=0;i<CbxMaterialConexionAgua.getItemCount();i++)
+        {
+            if(IdTipoDocumento==((CEMaterialConexionAgua)CbxMaterialConexionAgua.getItemAt(i)).getIdMaterialConexionAgua())
+            {
+                CbxMaterialConexionAgua.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+    private void buscarMaterialConexionDesague(int IdTipoDocumento)
+    {
+        for(int i=0;i<CbxMaterialConexionDesague.getItemCount();i++)
+        {
+            if(IdTipoDocumento==((CEMaterialConexionDesague)CbxMaterialConexionDesague.getItemAt(i)).getIdMaterialConexionDesague())
+            {
+                CbxMaterialConexionDesague.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
     private void buscarEstadoCajaAgua(int IdTipoDocumento)
     {
         for(int i=0;i<CbxEstadoCajaAgua.getItemCount();i++)
@@ -4341,7 +4540,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxMaterialCajaDesague.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CEMaterialCajaDesague)CbxMaterialCajaDesague.getItemAt(i)).getIdMaterialCajaDesague());
+            if(IdTipoDocumento==((CEMaterialCajaDesague)CbxMaterialCajaDesague.getItemAt(i)).getIdMaterialCajaDesague())
             {
                 CbxMaterialCajaDesague.setSelectedIndex(i);
                 break;
@@ -4352,9 +4551,20 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
         for(int i=0;i<CbxMaterialTapaDesague.getItemCount();i++)
         {
-            if(IdTipoDocumento==((CEMaterialTapaDesague)CbxMaterialTapaDesague.getItemAt(i)).getIdMaterialTapaDesague());
+            if(IdTipoDocumento==((CEMaterialTapaDesague)CbxMaterialTapaDesague.getItemAt(i)).getIdMaterialTapaDesague())
             {
                 CbxMaterialTapaDesague.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+   private void buscarMaterialTapaAgua(int IdTipoDocumento)
+    {
+        for(int i=0;i<CbxMaterialTapaAgua.getItemCount();i++)
+        {
+            if(IdTipoDocumento==((CEMaterialTapaAgua)CbxMaterialTapaAgua.getItemAt(i)).getIdMaterialTapaAgua())
+            {
+                CbxMaterialTapaAgua.setSelectedIndex(i);
                 break;
             }
         }
@@ -4437,6 +4647,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     private javax.swing.JComboBox CbxLlavesPaso;
     private javax.swing.JComboBox CbxMaterialCajaAgua;
     private javax.swing.JComboBox CbxMaterialCajaDesague;
+    private javax.swing.JComboBox CbxMaterialConexionAgua;
+    private javax.swing.JComboBox CbxMaterialConexionDesague;
     private javax.swing.JComboBox CbxMaterialTapaAgua;
     private javax.swing.JComboBox CbxMaterialTapaDesague;
     private javax.swing.JComboBox CbxMedioAbastecimiento;
@@ -4462,6 +4674,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     private javax.swing.JCheckBox ChckSiNoIlegibleLecturaMedidor;
     private javax.swing.JCheckBox ChckSiNoPredioHabilitado;
     private javax.swing.JCheckBox ChckSiNoTapaConexionAgua;
+    private javax.swing.JCheckBox ChckSiNoTapaConexionDesague;
     private javax.swing.JCheckBox ChkSiNoIlegibleNumeroMedidor;
     private javax.swing.JCheckBox ChkSiNoMedidor;
     private com.toedter.calendar.JDateChooser DateFechaDigitador;
@@ -4471,12 +4684,16 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     private javax.swing.JLabel LblCodigoFotoPredio;
     private javax.swing.JLabel LblCondicionConexion;
     private javax.swing.JLabel LblCondicionConexionConsulta;
+    private javax.swing.JLabel LblCondicionConexionDesague;
     private javax.swing.JLabel LblDireccion;
     private javax.swing.JLabel LblTipoServicio;
     private javax.swing.JLabel LblUsuario;
     private javax.swing.JRadioButton RbtOpcionAntes;
+    private javax.swing.JRadioButton RbtOpcionConCaja;
     private javax.swing.JRadioButton RbtOpcionDespues;
     private javax.swing.JRadioButton RbtOpcionIndeterminado;
+    private javax.swing.JRadioButton RbtOpcionNoDeterminado;
+    private javax.swing.JRadioButton RbtOpcionSinCaja;
     private javax.swing.JTable TblUsos;
     private javax.swing.JTextField TxtApellidoMaternoConyugue;
     private javax.swing.JTextField TxtApellidoMaternoEntrevistado;
@@ -4506,7 +4723,6 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     private javax.swing.JTextField TxtLote;
     private javax.swing.JTextField TxtManzana;
     private javax.swing.JTextField TxtMarcaMedidor;
-    private javax.swing.JTextField TxtMaterialConexionAgua;
     private javax.swing.JTextField TxtNombreConyugue;
     private javax.swing.JTextField TxtNombreEntrevistado;
     private javax.swing.JTextField TxtNombreHabilitacion;
@@ -4538,6 +4754,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     private javax.swing.JTextField TxtUbiConexAgua;
     private javax.swing.JTextField TxtUbiConexDesague;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JComboBox jComboBox35;
     private javax.swing.JComboBox jComboBox36;
     private javax.swing.JComboBox jComboBox37;
@@ -4594,6 +4812,11 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel140;
     private javax.swing.JLabel jLabel141;
+    private javax.swing.JLabel jLabel142;
+    private javax.swing.JLabel jLabel143;
+    private javax.swing.JLabel jLabel144;
+    private javax.swing.JLabel jLabel145;
+    private javax.swing.JLabel jLabel147;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
@@ -4671,7 +4894,6 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel82;
     private javax.swing.JLabel jLabel83;
     private javax.swing.JLabel jLabel84;
-    private javax.swing.JLabel jLabel85;
     private javax.swing.JLabel jLabel86;
     private javax.swing.JLabel jLabel87;
     private javax.swing.JLabel jLabel88;
@@ -4710,6 +4932,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel9;
     private util.JPanelImage jPanelImageCaja;
     private util.JPanelImage jPanelImagePredio;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;

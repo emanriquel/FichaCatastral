@@ -16,7 +16,7 @@ public class CDPavimentacion
         try
         {
             Connection conn = ConexionBD.obtenerConexion();
-            String sql = "SELECT * FROM posicion_medidor";
+            String sql = "SELECT * FROM pavimentacion";
             PreparedStatement sp = conn.prepareStatement(sql);
             ResultSet rs=sp.executeQuery();
             while(rs.next())

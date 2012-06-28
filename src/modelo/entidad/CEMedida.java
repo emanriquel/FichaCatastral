@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class CEMedida
 {
   private int IdRegistroMedida ;
-  private int NumeroFicha ;
+  private String NumeroFicha ;
   private int IdSituacionConexion;
   private int IdCondicionConexionAgua;
   private int IdCondicionConexionDesague;
@@ -84,7 +84,6 @@ public class CEMedida
   private boolean SiNoIlegibleLectura;
   private String MarcaMedidor;
   private boolean SiNoTapaConexionAgua;
-  private String MaterialConexionAgua;
   private boolean SiNoFugaAgua;
   private int TipoFugaAgua;
   private boolean SiNoFugaDesague;
@@ -109,6 +108,33 @@ public class CEMedida
   private double UbicacionConexionAgua;
   private double UbicacionConexionDesague;
   private ArrayList<CEUsos> oLstUsos;
+  private int IdTipoCaracteristicasCajaDesague;
+  private int IdMaterialConexionAgua;
+  private int IdMaterialConexionDesague;
+
+    public int getIdMaterialConexionAgua() {
+        return IdMaterialConexionAgua;
+    }
+
+    public void setIdMaterialConexionAgua(int IdMaterialConexionAgua) {
+        this.IdMaterialConexionAgua = IdMaterialConexionAgua;
+    }
+
+    public int getIdMaterialConexionDesague() {
+        return IdMaterialConexionDesague;
+    }
+
+    public void setIdMaterialConexionDesague(int IdMaterialConexionDesague) {
+        this.IdMaterialConexionDesague = IdMaterialConexionDesague;
+    }
+
+    public int getIdTipoCaracteristicasCajaDesague() {
+        return IdTipoCaracteristicasCajaDesague;
+    }
+
+    public void setIdTipoCaracteristicasCajaDesague(int IdTipoCaracteristicasCajaDesague) {
+        this.IdTipoCaracteristicasCajaDesague = IdTipoCaracteristicasCajaDesague;
+    }
 
     public String getApellidoMaternoConyugue() {
         return ApellidoMaternoConyugue;
@@ -622,15 +648,6 @@ public class CEMedida
     public void setMarcaMedidor(String MarcaMedidor) {
         this.MarcaMedidor = MarcaMedidor;
     }
-
-    public String getMaterialConexionAgua() {
-        return MaterialConexionAgua;
-    }
-
-    public void setMaterialConexionAgua(String MaterialConexion) {
-        this.MaterialConexionAgua = MaterialConexion;
-    }
-
     public String getNombreCompletoEntrevistado() {
         return NombreCompletoEntrevistado;
     }
@@ -711,11 +728,11 @@ public class CEMedida
         this.Numero = Numero;
     }
 
-    public int getNumeroFicha() {
+    public String getNumeroFicha() {
         return NumeroFicha;
     }
 
-    public void setNumeroFicha(int NumeroFicha) {
+    public void setNumeroFicha(String NumeroFicha) {
         this.NumeroFicha = NumeroFicha;
     }
 

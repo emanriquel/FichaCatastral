@@ -95,7 +95,7 @@ public class CDMedida
                     + "SiNoIlegibleLectura, "//73
                     + "MarcaMedidor, "//74
                     + "SiNoTapaConexionAgua, "//75
-                    + "MaterialConexionAgua,"//76
+                    + "IdMaterialConexionAgua,"//76
                     + "SiNoFugaAgua, "//77
                     + "IdTipoFugaAgua,"//78
                     + "SiNoFugaDesague,"//79
@@ -122,7 +122,9 @@ public class CDMedida
                     + "PorcentajeComercial,"
                     + "PorcentajeDomestico,"
                     + "PorcentajeEstatal,"
-                    + "IdSituacionConexion)"//99
+                    + "IdSituacionConexion,"
+                    + "IdMaterialConexionDesague,"
+                    + "IdTipoCaracteristicaDesague)"//99
                     + "VALUES (?, "
                     + "?,"
                     + " ?,"
@@ -224,9 +226,9 @@ public class CDMedida
                     + "?,"
                     + "?,"
                     + "?,"
-                    + "?,?)";
+                    + "?,?,?,?)";
             PreparedStatement ps = con.prepareCall(sql);
-            ps.setInt(1,1);
+            ps.setString(1,oCEMedida.getNumeroFicha());
             ps.setDouble(2,oCEMedida.getPorcentajeSocial());
             ps.setInt(3,oCEMedida.getIdCondicionConexionAgua());
             ps.setInt(4,oCEMedida.getIdCondicionConexionDesague());
@@ -301,7 +303,7 @@ public class CDMedida
             ps.setBoolean(73,oCEMedida.isSiNoIlegibleLectura());
             ps.setString(74,oCEMedida.getMarcaMedidor());
             ps.setBoolean(75,oCEMedida.isSiNoTapaConexionAgua());
-            ps.setString(76,oCEMedida.getMaterialConexionAgua());
+            ps.setInt(76,oCEMedida.getIdMaterialCajaAgua());
             ps.setBoolean(77,oCEMedida.isSiNoFugaAgua());
             ps.setInt(78,oCEMedida.getTipoFugaAgua());
             ps.setBoolean(79,oCEMedida.isSiNoFugaDesague());
@@ -328,15 +330,17 @@ public class CDMedida
             ps.setDouble(100, oCEMedida.getPorcentajeComercial());
             ps.setDouble(101, oCEMedida.getPorcentajeDomestico());
             ps.setDouble(102, oCEMedida.getPorcentajeEstatal());
-            ps.setDouble(103, oCEMedida.getIdSituacionConexion());
-            boolean valor=ps.execute();
+            ps.setInt(103, oCEMedida.getIdSituacionConexion());
+            ps.setInt(104, oCEMedida.getIdMaterialConexionDesague());
+            ps.setInt(105, oCEMedida.getIdTipoCaracteristicasCajaDesague());
+            int valor=ps.executeUpdate();
             ResultSet oRS=ps.getGeneratedKeys();
             if(oRS.next())
             {
-                oCEMedida.setIdRegistroMedida(oRS.getInt(0));
+                oCEMedida.setIdRegistroMedida(oRS.getInt(1));
             }
 
-            if(valor)
+            if(valor==1)
             {
                 int a=1;
                 for(CEUsos oCEUsos:oCEMedida.getoLstUsos())
@@ -364,10 +368,11 @@ public class CDMedida
                 }
                 if(a==1)
                 {
-                    con.commit();
-                    String sql4 = "update medidor m set m.Valor=m.Valor+1 where m.Nombre='NumFicha'";
+                   
+                    String sql4 = "update parametros m set m.Valor=m.Valor+1 where m.Nombre='NumFicha'";
                     PreparedStatement ps1 = con.prepareCall(sql4);
                     ps1.execute();
+                     con.commit();
                     return true;
                 }
                 else
@@ -471,7 +476,7 @@ public class CDMedida
                     + "SiNoIlegibleLectura =?, "//73
                     + "MarcaMedidor =?, "//74
                     + "SiNoTapaConexionAgua =?, "//75
-                    + "MaterialConexionAgua =?,"//76
+                    + "IdMaterialConexionAgua =?,"//76
                     + "SiNoFugaAgua =?, "//77
                     + "IdTipoFugaAgua =?,"//78
                     + "SiNoFugaDesague =?,"//79
@@ -498,10 +503,12 @@ public class CDMedida
                     + "PorcentajeComercial =?,"//100
                     + "PorcentajeDomestico =?,"//101
                     + "PorcentajeEstatal =?,"//102
-                    + "IdSituacionConexion =?"//103
+                    + "IdSituacionConexion =?,"
+                    + "IdMaterialConexionDesague=?,"
+                    + "IdTipoCaracteristicaDesague=?"//103
                     + " where IdRegistroMedida="+oCEMedida.getIdRegistroMedida();//104
             PreparedStatement ps = con.prepareCall(sql);
-            ps.setInt(1,oCEMedida.getNumeroFicha());
+            ps.setString(1,oCEMedida.getNumeroFicha());
             ps.setDouble(2,oCEMedida.getPorcentajeSocial());
             ps.setInt(3,oCEMedida.getIdCondicionConexionAgua());
             ps.setInt(4,oCEMedida.getIdCondicionConexionDesague());
@@ -576,7 +583,7 @@ public class CDMedida
             ps.setBoolean(73,oCEMedida.isSiNoIlegibleLectura());
             ps.setString(74,oCEMedida.getMarcaMedidor());
             ps.setBoolean(75,oCEMedida.isSiNoTapaConexionAgua());
-            ps.setString(76,oCEMedida.getMaterialConexionAgua());
+            ps.setInt(76,oCEMedida.getIdMaterialConexionAgua());
             ps.setBoolean(77,oCEMedida.isSiNoFugaAgua());
             ps.setInt(78,oCEMedida.getTipoFugaAgua());
             ps.setBoolean(79,oCEMedida.isSiNoFugaDesague());
@@ -604,6 +611,9 @@ public class CDMedida
             ps.setDouble(101, oCEMedida.getPorcentajeDomestico());
             ps.setDouble(102, oCEMedida.getPorcentajeEstatal());
             ps.setDouble(103, oCEMedida.getIdSituacionConexion());
+            ps.setInt(104,oCEMedida.getIdMaterialConexionDesague());
+            ps.setInt(105,oCEMedida.getIdTipoCaracteristicasCajaDesague());
+
             int valor=ps.executeUpdate();
             if(valor==1)
             {
@@ -722,7 +732,7 @@ public class CDMedida
             while(rs.next())
             {
                 CEMedida oCEMedida=new CEMedida();
-                oCEMedida.setNumeroFicha(rs.getInt(1));
+                oCEMedida.setNumeroFicha(rs.getString(1));
                 oCEMedida.setCod_Inscripcion(rs.getString(2));
                 oCEMedida.setApellidoPaternoPropietario(rs.getString(3));
                 oCEMedida.setCodDepartamento(rs.getString(4));
@@ -762,7 +772,7 @@ public class CDMedida
             while(rs.next())
             {
                 CEMedida oCEMedida=new CEMedida();
-                oCEMedida.setNumeroFicha(rs.getInt(1));
+                oCEMedida.setNumeroFicha(rs.getString(1));
                 oCEMedida.setCod_Inscripcion(rs.getString(2));
                 oCEMedida.setApellidoPaternoPropietario(rs.getString(3));
                 oCEMedida.setCodDepartamento(rs.getString(4));
@@ -818,7 +828,7 @@ public class CDMedida
             while(rs.next())
             {
                 CEMedida oCEMedida=new CEMedida();
-                oCEMedida.setNumeroFicha(rs.getInt(1));
+                oCEMedida.setNumeroFicha(rs.getString(1));
                 oCEMedida.setCod_Inscripcion(rs.getString(2));
                 oCEMedida.setApellidoPaternoPropietario(rs.getString(3));
                 oCEMedida.setCodDepartamento(rs.getString(4));
@@ -851,7 +861,8 @@ public class CDMedida
         try
         {
             Connection conn = ConexionBD.obtenerConexion();
-            String sql = "SELECT IdRegistroMedida,"
+            String sql = "SELECT "
+                    + "IdRegistroMedida,"
                     + "NumeroFicha,"
                     + "IdCondicionConexionAgua,"
                     + "IdCondicionConexionDesague,"
@@ -926,7 +937,7 @@ public class CDMedida
                     + "SiNoIlegibleLectura,"
                     + "MarcaMedidor,"
                     + "SiNoTapaConexionAgua,"
-                    + "MaterialConexionAgua,"
+                    + "IdMaterialConexionAgua,"
                     + "IdTipoFugaAgua,"
                     + "SiNoFugaAgua,"
                     + "SiNoFugaDesague,"
@@ -954,15 +965,19 @@ public class CDMedida
                     + "PorcentajeEstatal,"
                     + "PorcentajeDomestico,"
                     + "PorcentajeSocial,"
-                    + "IdSituacionConexion"
+                    + "IdSituacionConexion,"
+                    + "IdMaterialConexionDesague,"
+                    + "IdTipoCaracteristicaDesague"
                     + " FROM"
                     + " registro_medida m where m.IdRegistroMedida="+dato;
             PreparedStatement sp = conn.prepareStatement(sql);
             ResultSet rs=sp.executeQuery();
             if(rs.next())
             {
-                oCEMedida.setNumeroFicha(rs.getInt(2));//1
+                oCEMedida.setNumeroFicha(rs.getString(2));//1
                 oCEMedida.setIdSituacionConexion(rs.getInt(104));//2
+                oCEMedida.setIdMaterialConexionDesague(rs.getInt(105));//2
+                oCEMedida.setIdTipoCaracteristicasCajaDesague(rs.getInt(106));//2
                 oCEMedida.setCodDepartamento(rs.getString(90));//3
                 oCEMedida.setCodProvincia(rs.getString(91));//4
                 oCEMedida.setCodDistrito(rs.getString(92));//5
@@ -1046,7 +1061,7 @@ public class CDMedida
                 oCEMedida.setIdCondicionConexionAgua(rs.getInt(3));//66
                 oCEMedida.setIdMaterialCajaAgua(rs.getInt(13));//67
                 oCEMedida.setIdEstadoCajaAgua(rs.getInt(8));//68
-                oCEMedida.setMaterialConexionAgua(rs.getString(76));//69
+                oCEMedida.setIdMaterialConexionAgua(rs.getInt(76));//69
                 oCEMedida.setSiNoTapaConexionAgua(rs.getBoolean(75));//70
 
                 oCEMedida.setIdMaterialTapaAgua(rs.getInt(15));//68
@@ -1093,6 +1108,7 @@ public class CDMedida
                 oCEMedida.setFecha_Supervisor(rs.getString(35));//100
                 oCEMedida.setCod_Digitado(rs.getString(36));//101
                 oCEMedida.setFecha_Digitador(rs.getString(37));//102
+
                 oCEMedida.setoLstUsos(oLstUsos());
             }
             conn.close();
