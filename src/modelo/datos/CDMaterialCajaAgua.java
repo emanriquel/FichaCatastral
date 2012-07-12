@@ -14,9 +14,10 @@ public class CDMaterialCajaAgua
     public ArrayList<CEMaterialCajaAgua> listarMaterialCajaAgua()
     {
         ArrayList<CEMaterialCajaAgua> oLstMaterialCajaAgua=new ArrayList<CEMaterialCajaAgua>();
+        Connection conn = ConexionBD.obtenerConexion();
         try
         {
-            Connection conn = ConexionBD.obtenerConexion();
+            
             String sql = "SELECT * FROM material_caja_agua";
             PreparedStatement sp = conn.prepareStatement(sql);
             ResultSet rs=sp.executeQuery();
@@ -35,6 +36,16 @@ public class CDMaterialCajaAgua
         {
 
         }
+        finally
+           {
+                try
+                {
+                    conn.close();
+                }
+                catch (SQLException ex) {
+
+                }
+            }
         return oLstMaterialCajaAgua;
 
     }

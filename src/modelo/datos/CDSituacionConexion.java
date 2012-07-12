@@ -14,9 +14,10 @@ public class CDSituacionConexion
     public ArrayList<CESituacionConexion> listarSituacionConexion()
     {
         ArrayList<CESituacionConexion> oLstSituacionConexion=new ArrayList<CESituacionConexion>();
+        Connection conn = ConexionBD.obtenerConexion();
         try
         {
-            Connection conn = ConexionBD.obtenerConexion();
+            
             String sql = "SELECT * FROM situacion_Conexion";
             PreparedStatement sp = conn.prepareStatement(sql);
             ResultSet rs=sp.executeQuery();
@@ -35,6 +36,16 @@ public class CDSituacionConexion
         {
 
         }
+         finally
+           {
+                try
+                {
+                    conn.close();
+                }
+                catch (SQLException ex) {
+
+                }
+            }
         return oLstSituacionConexion;
 
     }

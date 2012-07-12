@@ -14,9 +14,10 @@ public class CDEstadoTapaDesague
     public ArrayList<CEEstadoTapaDesague> listarEstadoTapaDesague()
     {
         ArrayList<CEEstadoTapaDesague> oLstEstadoTapaDesague=new ArrayList<CEEstadoTapaDesague>();
+        Connection conn = ConexionBD.obtenerConexion();
         try
         {
-            Connection conn = ConexionBD.obtenerConexion();
+            
             String sql = "SELECT * FROM estado_tapa_desague";
             PreparedStatement sp = conn.prepareStatement(sql);
             ResultSet rs=sp.executeQuery();
@@ -33,6 +34,18 @@ public class CDEstadoTapaDesague
         }
         catch (SQLException ex)
         {
+
+        }
+           finally
+       {
+            try
+            {
+                conn.close();
+            }
+            catch (SQLException ex)
+            {
+
+            }
 
         }
         return oLstEstadoTapaDesague;

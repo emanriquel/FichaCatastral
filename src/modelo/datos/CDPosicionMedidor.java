@@ -13,10 +13,11 @@ public class CDPosicionMedidor
 {
     public ArrayList<CEPosicionMedidor> listarPosicionMedidor()
     {
+        Connection conn = ConexionBD.obtenerConexion();
         ArrayList<CEPosicionMedidor> oLstPosicionMedidor=new ArrayList<CEPosicionMedidor>();
         try
         {
-            Connection conn = ConexionBD.obtenerConexion();
+            
             String sql = "SELECT * FROM posicion_medidor";
             PreparedStatement sp = conn.prepareStatement(sql);
             ResultSet rs=sp.executeQuery();
@@ -35,6 +36,16 @@ public class CDPosicionMedidor
         {
 
         }
+         finally
+           {
+                try
+                {
+                    conn.close();
+                }
+                catch (SQLException ex) {
+
+                }
+            }
         return oLstPosicionMedidor;
 
     }

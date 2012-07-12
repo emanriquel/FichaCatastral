@@ -14,9 +14,10 @@ public class CDTipoPropiedad
     public ArrayList<CETipoPropiedad> listarTipoPropiedad()
     {
         ArrayList<CETipoPropiedad> oLstTipoPropiedad=new ArrayList<CETipoPropiedad>();
+        Connection conn = ConexionBD.obtenerConexion();
         try
         {
-            Connection conn = ConexionBD.obtenerConexion();
+            
             String sql = "SELECT * FROM tipo_propiedad";
             PreparedStatement sp = conn.prepareStatement(sql);
             ResultSet rs=sp.executeQuery();
@@ -35,6 +36,16 @@ public class CDTipoPropiedad
         {
 
         }
+         finally
+           {
+                try
+                {
+                    conn.close();
+                }
+                catch (SQLException ex) {
+
+                }
+            }
         return oLstTipoPropiedad;
 
     }

@@ -14,9 +14,10 @@ public class CDEstadoCajaAgua
     public ArrayList<CEEstadoCajaAgua> listarEstadoCajaAgua()
     {
         ArrayList<CEEstadoCajaAgua> oLstEstadoCajaAgua=new ArrayList<CEEstadoCajaAgua>();
+        Connection conn = ConexionBD.obtenerConexion();
         try
         {
-            Connection conn = ConexionBD.obtenerConexion();
+            
             String sql = "SELECT * FROM estado_caja_agua";
             PreparedStatement sp = conn.prepareStatement(sql);
             ResultSet rs=sp.executeQuery();
@@ -33,6 +34,18 @@ public class CDEstadoCajaAgua
         }
         catch (SQLException ex)
         {
+
+        }
+         finally
+       {
+            try
+            {
+                conn.close();
+            }
+            catch (SQLException ex)
+            {
+
+            }
 
         }
         return oLstEstadoCajaAgua;

@@ -14,9 +14,10 @@ public class CDTipoDocumento
     public ArrayList<CETipoDocumento> listarTipoDocumento()
     {
         ArrayList<CETipoDocumento> oLstTipoDocumento=new ArrayList<CETipoDocumento>();
+        Connection conn = ConexionBD.obtenerConexion();
         try
         {
-            Connection conn = ConexionBD.obtenerConexion();
+            
             String sql = "SELECT * FROM tipo_documento";
             PreparedStatement sp = conn.prepareStatement(sql);
             ResultSet rs=sp.executeQuery();
@@ -35,6 +36,16 @@ public class CDTipoDocumento
         {
 
         }
+         finally
+           {
+                try
+                {
+                    conn.close();
+                }
+                catch (SQLException ex) {
+
+                }
+            }
         return oLstTipoDocumento;
 
     }

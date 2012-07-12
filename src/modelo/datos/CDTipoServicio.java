@@ -18,7 +18,7 @@ public class CDTipoServicio
                 Connection conexion = ConexionBD.obtenerConexion();
                 try
                 {
-                  List<CETipoServicio> Lst = new ArrayList<CETipoServicio>();
+                  
                   String sql = null;
                     sql = "SELECT * FROM tipo_servicio WHERE IdTipoServicio = "+oCETipoServicio.getIdTipoServicio()+";";
 
@@ -34,7 +34,7 @@ public class CDTipoServicio
                         oCETipoServicio.setTipoServicio(resultado.getString(2));
 
 
-                        Lst.add(oCETipoServicio);
+                        
                     }
                     conexion.close();
                     return oCETipoServicio;
@@ -55,9 +55,10 @@ public class CDTipoServicio
     public ArrayList<CETipoServicio> listarTipoServicio()
     {
         ArrayList<CETipoServicio> oLstTipoServicio=new ArrayList<CETipoServicio>();
+        Connection conn = ConexionBD.obtenerConexion();
         try
         {
-            Connection conn = ConexionBD.obtenerConexion();
+            
             String sql = "SELECT * FROM tipo_servicio";
             PreparedStatement sp = conn.prepareStatement(sql);
             ResultSet rs=sp.executeQuery();
@@ -76,6 +77,16 @@ public class CDTipoServicio
         {
 
         }
+         finally
+           {
+                try
+                {
+                    conn.close();
+                }
+                catch (SQLException ex) {
+
+                }
+            }
         return oLstTipoServicio;
 
     }

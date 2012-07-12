@@ -12,10 +12,11 @@ public class CDPavimentacion
 {
   public ArrayList<CEPavimentacion> listarPavimentacion()
     {
+      Connection conn = ConexionBD.obtenerConexion();
         ArrayList<CEPavimentacion> oLstPavimentacion=new ArrayList<CEPavimentacion>();
         try
         {
-            Connection conn = ConexionBD.obtenerConexion();
+            
             String sql = "SELECT * FROM pavimentacion";
             PreparedStatement sp = conn.prepareStatement(sql);
             ResultSet rs=sp.executeQuery();
@@ -32,6 +33,16 @@ public class CDPavimentacion
         {
 
         }
+         finally
+           {
+                try
+                {
+                    conn.close();
+                }
+                catch (SQLException ex) {
+
+                }
+            }
         return oLstPavimentacion;
 
     }

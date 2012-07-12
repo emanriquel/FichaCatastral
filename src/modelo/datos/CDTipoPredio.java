@@ -14,9 +14,10 @@ public class CDTipoPredio
     public ArrayList<CETipoPredio> listarTipoPredio()
     {
         ArrayList<CETipoPredio> oLstTipoPredio=new ArrayList<CETipoPredio>();
+        Connection conn = ConexionBD.obtenerConexion();
         try
         {
-            Connection conn = ConexionBD.obtenerConexion();
+            
             String sql = "SELECT * FROM tipo_predio";
             PreparedStatement sp = conn.prepareStatement(sql);
             ResultSet rs=sp.executeQuery();
@@ -35,6 +36,16 @@ public class CDTipoPredio
         {
 
         }
+         finally
+           {
+                try
+                {
+                    conn.close();
+                }
+                catch (SQLException ex) {
+
+                }
+            }
         return oLstTipoPredio;
 
     }

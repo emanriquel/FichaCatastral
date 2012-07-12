@@ -17,9 +17,10 @@ public class CDUsuario
     public ArrayList<CEUsuario> listarUsuario()
     {
         ArrayList<CEUsuario> oLstUsuario=new ArrayList<CEUsuario>();
+        Connection conn = ConexionBD.obtenerConexion();
         try
         {
-            Connection conn = ConexionBD.obtenerConexion();
+            
             String sql = "SELECT us.IdUsuario,us.Usuario,us.Contrasenia,if(us.IdTipoUsuario=1,'Administrador','Limitado'),us.IdTipoUsuario FROM usuario us";
             PreparedStatement sp = conn.prepareStatement(sql);
             ResultSet rs=sp.executeQuery();
@@ -40,15 +41,25 @@ public class CDUsuario
         {
             ex.printStackTrace();
         }
+         finally
+           {
+                try
+                {
+                    conn.close();
+                }
+                catch (SQLException ex) {
+
+                }
+            }
         return oLstUsuario;
     }
-    public boolean verificarUsuario(String usuario, String password)
+    public CEUsuario verificarUsuario(String usuario, String password)
     {
-
+        Connection conn = ConexionBD.obtenerConexion();
         try
         {
-            Connection conn = ConexionBD.obtenerConexion();
-            String sql = "SELECT usuario,contrasenia FROM usuario us where us.usuario='"+usuario+"'";
+            
+            String sql = "SELECT usuario,contrasenia,IdTipoUsuario FROM usuario us where us.usuario='"+usuario+"'";
             PreparedStatement sp = conn.prepareStatement(sql);
             ResultSet rs=sp.executeQuery();
             if(rs.next())
@@ -57,27 +68,39 @@ public class CDUsuario
                 
                 oCEUsuario.setUsuario(rs.getString(1));
                 oCEUsuario.setPassword(rs.getString(2));
+                oCEUsuario.setIdTipoUsuario(rs.getInt(3));
 
                 if(oCEUsuario.getPassword().equals(password))
                 {
-                    return true;
+                    return oCEUsuario;
                 }
-                return false;
+                return null;
 
             }
-            return false;
+            return null;
 
         }
         catch (SQLException ex)
         {
-            return false;
+            return null;
         }
+         finally
+           {
+                try
+                {
+                    conn.close();
+                }
+                catch (SQLException ex) {
+
+                }
+            }
 
     }
   public boolean abmUsuario(CEUsuario oCEMedida,int valor)
   {
+      Connection conn = ConexionBD.obtenerConexion();
         try {
-            Connection conn = ConexionBD.obtenerConexion();
+            
             String sql ;
             if(valor==1)
             {
@@ -103,11 +126,21 @@ public class CDUsuario
             if(result==1) return true;
             else return false;
 
-        } catch (SQLException ex) {
+        }
+        catch (SQLException ex) {
             Logger.getLogger(CDUsuario.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
+         finally
+           {
+                try
+                {
+                    conn.close();
+                }
+                catch (SQLException ex) {
 
+                }
+            }
 
   }
 }

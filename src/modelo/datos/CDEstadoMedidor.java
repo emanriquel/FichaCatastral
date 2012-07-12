@@ -14,9 +14,10 @@ public class CDEstadoMedidor
     public ArrayList<CEEstadoMedidor> listarEstadoMedidor()
     {
         ArrayList<CEEstadoMedidor> oLstEstadoMedidor=new ArrayList<CEEstadoMedidor>();
+        Connection conn = ConexionBD.obtenerConexion();
         try
         {
-            Connection conn = ConexionBD.obtenerConexion();
+            
             String sql = "SELECT * FROM estado_medidor";
             PreparedStatement sp = conn.prepareStatement(sql);
             ResultSet rs=sp.executeQuery();
@@ -33,6 +34,18 @@ public class CDEstadoMedidor
         }
         catch (SQLException ex)
         {
+
+        }
+           finally
+       {
+            try
+            {
+                conn.close();
+            }
+            catch (SQLException ex)
+            {
+
+            }
 
         }
         return oLstEstadoMedidor;

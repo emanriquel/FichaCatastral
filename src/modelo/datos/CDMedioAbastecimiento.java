@@ -14,9 +14,10 @@ public class CDMedioAbastecimiento
     public ArrayList<CEMedioAbastecimiento> listarMedioAbastecimiento()
     {
         ArrayList<CEMedioAbastecimiento> oLstMedioAbastecimiento=new ArrayList<CEMedioAbastecimiento>();
+        Connection conn = ConexionBD.obtenerConexion();
         try
         {
-            Connection conn = ConexionBD.obtenerConexion();
+            
             String sql = "SELECT * FROM medio_abastecimiento";
             PreparedStatement sp = conn.prepareStatement(sql);
             ResultSet rs=sp.executeQuery();
@@ -35,6 +36,16 @@ public class CDMedioAbastecimiento
         {
 
         }
+        finally
+           {
+                try
+                {
+                    conn.close();
+                }
+                catch (SQLException ex) {
+
+                }
+            }
         return oLstMedioAbastecimiento;
 
     }

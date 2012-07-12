@@ -1,14 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package modelo.entidad;
 
-/**
- *
- * @author Edwar
- */
-public class CECliente {
+public class CECliente
+{
     private int IdCliente;
     private int IdCondicionConexionAgua;
     private String AntiguoCodigoCatastral;
@@ -24,13 +17,14 @@ public class CECliente {
     private String Telefono;
     private String ApellidoPaternoPropietario;
     private String CorreoElectronico;
-    private int IdMedioAbastecimiento;
+    private int IdCondicionConexionDesague;
     private int IdTipoServicio;
+    private int IdUsoPredio;
 
     public CECliente() {
     }
 
-    public CECliente(int IdCliente, int IdCondicionConexionAgua, String AntiguoCodigoCatastral, String NuevoCodigoCatastral, String NumeroInscripcion, String RutaLectura, String RutaReparto, String Secuencia, String Categoria, String Direccion, int IdTipoDocumento, String NumeroDocumento, String Telefono, String ApellidoPaternoPropietario, String CorreoElectronico, int IdMedioAbastecimiento) {
+    public CECliente(int IdCliente, int IdCondicionConexionAgua, String AntiguoCodigoCatastral, String NuevoCodigoCatastral, String NumeroInscripcion, String RutaLectura, String RutaReparto, String Secuencia, String Categoria, String Direccion, int IdTipoDocumento, String NumeroDocumento, String Telefono, String ApellidoPaternoPropietario, String CorreoElectronico, int IdMedioAbastecimiento,int IdUsoPredio) {
         this.IdCliente = IdCliente;
         this.IdCondicionConexionAgua = IdCondicionConexionAgua;
         this.AntiguoCodigoCatastral = AntiguoCodigoCatastral;
@@ -46,7 +40,9 @@ public class CECliente {
         this.Telefono = Telefono;
         this.ApellidoPaternoPropietario = ApellidoPaternoPropietario;
         this.CorreoElectronico = CorreoElectronico;
-        this.IdMedioAbastecimiento = IdMedioAbastecimiento;
+        this.IdCondicionConexionDesague = IdMedioAbastecimiento;
+        this.IdUsoPredio=IdUsoPredio;
+
     }
 
     
@@ -99,12 +95,12 @@ public class CECliente {
         this.IdCliente = IdCliente;
     }
 
-    public int getIdMedioAbastecimiento() {
-        return IdMedioAbastecimiento;
+    public int getIdCondicionConexionDesague() {
+        return IdCondicionConexionDesague;
     }
 
-    public void setIdMedioAbastecimiento(int IdMedioAbastecimiento) {
-        this.IdMedioAbastecimiento = IdMedioAbastecimiento;
+    public void setIdCondicionConexionDesague(int IdMedioAbastecimiento) {
+        this.IdCondicionConexionDesague = IdMedioAbastecimiento;
     }
 
 
@@ -198,6 +194,20 @@ public class CECliente {
      */
     public void setIdTipoServicio(int IdTipoServicio) {
         this.IdTipoServicio = IdTipoServicio;
+    }
+
+    /**
+     * @return the IdUsoPredio
+     */
+    public int getIdUsoPredio() {
+        return IdUsoPredio;
+    }
+
+    /**
+     * @param IdUsoPredio the IdUsoPredio to set
+     */
+    public void setIdUsoPredio(int IdUsoPredio) {
+        this.IdUsoPredio = IdUsoPredio;
     }
 
  

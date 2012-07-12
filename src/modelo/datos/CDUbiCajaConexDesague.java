@@ -14,9 +14,10 @@ public class CDUbiCajaConexDesague
     public ArrayList<CEUbiCajaConexDesague> listarUbiCajaConexDesague()
     {
         ArrayList<CEUbiCajaConexDesague> oLstUbiCajaConexDesague=new ArrayList<CEUbiCajaConexDesague>();
+        Connection conn = ConexionBD.obtenerConexion();
         try
         {
-            Connection conn = ConexionBD.obtenerConexion();
+            
             String sql = "SELECT * FROM ubi_caja_conex_desague";
             PreparedStatement sp = conn.prepareStatement(sql);
             ResultSet rs=sp.executeQuery();
@@ -35,6 +36,16 @@ public class CDUbiCajaConexDesague
         {
 
         }
+         finally
+           {
+                try
+                {
+                    conn.close();
+                }
+                catch (SQLException ex) {
+
+                }
+            }
         return oLstUbiCajaConexDesague;
 
     }

@@ -74,21 +74,21 @@ public class CEMedida
   private String ApellidoMaternoConyugue;
   private String NombreConyugue;
   private String CorreoElectronico;
-  private int CantHabitantesPredio;
-  private int NumPiso;
+  private String CantHabitantesPredio;
+  private String NumPiso;
   private boolean SiNoPredioHabilitado;
   private boolean SiNoMedidor;
   private String NumeroMedidor;
   private boolean SiNoIlegibleNumMedidor;
-  private double Lectura;
+  private String Lectura;
   private boolean SiNoIlegibleLectura;
   private String MarcaMedidor;
   private boolean SiNoTapaConexionAgua;
   private boolean SiNoFugaAgua;
   private int TipoFugaAgua;
   private boolean SiNoFugaDesague;
-  private double FrecuenciaAbastecimientoHorasPorDia;
-  private double FrecuenciaAbastecimientoDiasPorSemana;
+  private String FrecuenciaAbastecimientoHorasPorDia;
+  private String FrecuenciaAbastecimientoDiasPorSemana;
   private String Observaciones;
   private String ApellidoPaternoEntrevistado;
   private String ApellidoMaternoEntrevistado;
@@ -101,17 +101,18 @@ public class CEMedida
   private String CodProvincia;
   private String CodDistrito;
   private String Telefono;
-  private double PorcentajeEstatal;
-  private double PorcentajeComercial;
-  private double PorcentajeDomestico;
-  private double PorcentajeSocial;
-  private double UbicacionConexionAgua;
-  private double UbicacionConexionDesague;
+  private String PorcentajeEstatal;
+  private String PorcentajeComercial;
+  private String PorcentajeDomestico;
+  private String PorcentajeSocial;
+  private String UbicacionConexionAgua;
+  private String UbicacionConexionDesague;
   private ArrayList<CEUsos> oLstUsos;
   private int IdTipoCaracteristicasCajaDesague;
   private int IdMaterialConexionAgua;
   private int IdMaterialConexionDesague;
   private int IdTipoFotoAgua;
+  private boolean SiNoTapaConexionDesague;
 
     public int getIdMaterialConexionAgua() {
         return IdMaterialConexionAgua;
@@ -193,11 +194,11 @@ public class CEMedida
         this.Block = Block;
     }
 
-    public int getCantHabitantesPredio() {
+    public String getCantHabitantesPredio() {
         return CantHabitantesPredio;
     }
 
-    public void setCantHabitantesPredio(int CantHabitantesPredio) {
+    public void setCantHabitantesPredio(String CantHabitantesPredio) {
         this.CantHabitantesPredio = CantHabitantesPredio;
     }
 
@@ -354,19 +355,19 @@ public class CEMedida
         this.Fecha_Supervisor = Fecha_Supervisor;
     }
 
-    public double getFrecuenciaAbastecimientoDiasPorSemana() {
+    public String getFrecuenciaAbastecimientoDiasPorSemana() {
         return FrecuenciaAbastecimientoDiasPorSemana;
     }
 
-    public void setFrecuenciaAbastecimientoDiasPorSemana(double FrecuenciaAbastecimientoDiasPorSemana) {
+    public void setFrecuenciaAbastecimientoDiasPorSemana(String FrecuenciaAbastecimientoDiasPorSemana) {
         this.FrecuenciaAbastecimientoDiasPorSemana = FrecuenciaAbastecimientoDiasPorSemana;
     }
 
-    public double getFrecuenciaAbastecimientoHorasPorDia() {
+    public String getFrecuenciaAbastecimientoHorasPorDia() {
         return FrecuenciaAbastecimientoHorasPorDia;
     }
 
-    public void setFrecuenciaAbastecimientoHorasPorDia(double FrecuenciaAbastecimientoHorasPorDia) {
+    public void setFrecuenciaAbastecimientoHorasPorDia(String FrecuenciaAbastecimientoHorasPorDia) {
         this.FrecuenciaAbastecimientoHorasPorDia = FrecuenciaAbastecimientoHorasPorDia;
     }
 
@@ -618,11 +619,11 @@ public class CEMedida
         this.IdVereda = IdVereda;
     }
 
-    public double getLectura() {
+    public String getLectura() {
         return Lectura;
     }
 
-    public void setLectura(double Lectura) {
+    public void setLectura(String Lectura) {
         this.Lectura = Lectura;
     }
 
@@ -713,11 +714,11 @@ public class CEMedida
         this.NumMunicipal = NumMunicipal;
     }
 
-    public int getNumPiso() {
+    public String getNumPiso() {
         return NumPiso;
     }
 
-    public void setNumPiso(int NumPiso) {
+    public void setNumPiso(String NumPiso) {
         this.NumPiso = NumPiso;
     }
 
@@ -944,56 +945,56 @@ public class CEMedida
     /**
      * @return the PorcentajeEstatal
      */
-    public double getPorcentajeEstatal() {
+    public String getPorcentajeEstatal() {
         return PorcentajeEstatal;
     }
 
     /**
      * @param PorcentajeEstatal the PorcentajeEstatal to set
      */
-    public void setPorcentajeEstatal(double PorcentajeEstatal) {
+    public void setPorcentajeEstatal(String PorcentajeEstatal) {
         this.PorcentajeEstatal = PorcentajeEstatal;
     }
 
     /**
      * @return the PorcentajeComercial
      */
-    public double getPorcentajeComercial() {
+    public String getPorcentajeComercial() {
         return PorcentajeComercial;
     }
 
     /**
      * @param PorcentajeComercial the PorcentajeComercial to set
      */
-    public void setPorcentajeComercial(double PorcentajeComercial) {
+    public void setPorcentajeComercial(String PorcentajeComercial) {
         this.PorcentajeComercial = PorcentajeComercial;
     }
 
     /**
      * @return the PorcentajeDomestico
      */
-    public double getPorcentajeDomestico() {
+    public String getPorcentajeDomestico() {
         return PorcentajeDomestico;
     }
 
     /**
      * @param PorcentajeDomestico the PorcentajeDomestico to set
      */
-    public void setPorcentajeDomestico(double PorcentajeDomestico) {
+    public void setPorcentajeDomestico(String PorcentajeDomestico) {
         this.PorcentajeDomestico = PorcentajeDomestico;
     }
 
     /**
      * @return the PorcentajeSocial
      */
-    public double getPorcentajeSocial() {
+    public String getPorcentajeSocial() {
         return PorcentajeSocial;
     }
 
     /**
      * @param PorcentajeSocial the PorcentajeSocial to set
      */
-    public void setPorcentajeSocial(double PorcentajeSocial) {
+    public void setPorcentajeSocial(String PorcentajeSocial) {
         this.PorcentajeSocial = PorcentajeSocial;
     }
 
@@ -1028,28 +1029,28 @@ public class CEMedida
     /**
      * @return the UbicacionConexionAgua
      */
-    public double getUbicacionConexionAgua() {
+    public String getUbicacionConexionAgua() {
         return UbicacionConexionAgua;
     }
 
     /**
      * @param UbicacionConexionAgua the UbicacionConexionAgua to set
      */
-    public void setUbicacionConexionAgua(double UbicacionConexionAgua) {
+    public void setUbicacionConexionAgua(String UbicacionConexionAgua) {
         this.UbicacionConexionAgua = UbicacionConexionAgua;
     }
 
     /**
      * @return the UbicacionConexionDesague
      */
-    public double getUbicacionConexionDesague() {
+    public String getUbicacionConexionDesague() {
         return UbicacionConexionDesague;
     }
 
     /**
      * @param UbicacionConexionDesague the UbicacionConexionDesague to set
      */
-    public void setUbicacionConexionDesague(double UbicacionConexionDesague) {
+    public void setUbicacionConexionDesague(String UbicacionConexionDesague) {
         this.UbicacionConexionDesague = UbicacionConexionDesague;
     }
 
@@ -1084,6 +1085,20 @@ public class CEMedida
      */
     public void setIdTipoFotoAgua(int IdTipoFotoAgua) {
         this.IdTipoFotoAgua = IdTipoFotoAgua;
+    }
+
+    /**
+     * @return the SiNoTapaConexionDesague
+     */
+    public boolean isSiNoTapaConexionDesague() {
+        return SiNoTapaConexionDesague;
+    }
+
+    /**
+     * @param SiNoTapaConexionDesague the SiNoTapaConexionDesague to set
+     */
+    public void setSiNoTapaConexionDesague(boolean SiNoTapaConexionDesague) {
+        this.SiNoTapaConexionDesague = SiNoTapaConexionDesague;
     }
 
 }

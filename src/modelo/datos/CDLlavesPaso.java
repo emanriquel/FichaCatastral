@@ -14,9 +14,10 @@ public class CDLlavesPaso
     public ArrayList<CELlavesPaso> listarLlavesPaso()
     {
         ArrayList<CELlavesPaso> oLstLlavesPaso=new ArrayList<CELlavesPaso>();
+        Connection conn = ConexionBD.obtenerConexion();
         try
         {
-            Connection conn = ConexionBD.obtenerConexion();
+            
             String sql = "SELECT * FROM llaves_paso";
             PreparedStatement sp = conn.prepareStatement(sql);
             ResultSet rs=sp.executeQuery();
@@ -35,6 +36,16 @@ public class CDLlavesPaso
         {
 
         }
+        finally
+           {
+                try
+                {
+                    conn.close();
+                }
+                catch (SQLException ex) {
+
+                }
+            }
         return oLstLlavesPaso;
 
     }

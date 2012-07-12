@@ -60,9 +60,10 @@ public class CDVia {
     public ArrayList<CEVia> listarVia(int tipo,String Parametro)
     {
         ArrayList<CEVia> oLstVia=new ArrayList<CEVia>();
+        Connection conn = ConexionBD.obtenerConexion();
         try
         {
-            Connection conn = ConexionBD.obtenerConexion();
+            
             String sql = null;
             String SqlBase = "SELECT * FROM Via ";
                   switch(tipo)
@@ -93,13 +94,24 @@ public class CDVia {
         {
 
         }
+         finally
+           {
+                try
+                {
+                    conn.close();
+                }
+                catch (SQLException ex) {
+
+                }
+            }
         return oLstVia;
 
     }
      public boolean abmVia(CEVia oCEMedida,int valor)
   {
+         Connection conn = ConexionBD.obtenerConexion();
         try {
-            Connection conn = ConexionBD.obtenerConexion();
+            
             String sql ;
             if(valor==1)
             {
@@ -125,10 +137,22 @@ public class CDVia {
             if(result==1) return true;
             else return false;
 
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex)
+        {
             Logger.getLogger(CDVia.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
+          finally
+           {
+                try
+                {
+                    conn.close();
+                }
+                catch (SQLException ex) {
+
+                }
+            }
 
 
   }

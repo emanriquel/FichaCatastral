@@ -15,10 +15,11 @@ public class CDCondicionConexionAgua
 {
     public  ArrayList<CECondicionConexionAgua> listarCondicionConexionAgua()
     {
+        Connection conn = ConexionBD.obtenerConexion();
         ArrayList<CECondicionConexionAgua> oLstCondicionConexionAgua=new ArrayList<CECondicionConexionAgua>();
         try
         {
-            Connection conn = ConexionBD.obtenerConexion();
+            
             String sql = "SELECT * FROM condicion_conexion_agua";
             PreparedStatement sp = conn.prepareStatement(sql);
             ResultSet rs=sp.executeQuery();
@@ -37,6 +38,16 @@ public class CDCondicionConexionAgua
         {
 
         }
+         finally
+           {
+                try
+                {
+                    conn.close();
+                }
+                catch (SQLException ex) {
+
+                }
+            }
         return oLstCondicionConexionAgua;
 
     }
@@ -78,5 +89,15 @@ public class CDCondicionConexionAgua
                     e.printStackTrace();
                     return null;
                 }
+                 finally
+           {
+                try
+                {
+                    conexion.close();
+                }
+                catch (SQLException ex) {
+
+                }
+            }
          }
 }

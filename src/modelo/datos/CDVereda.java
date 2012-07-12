@@ -14,9 +14,10 @@ public class CDVereda
     public ArrayList<CEVereda> listarVereda()
     {
         ArrayList<CEVereda> oLstVereda=new ArrayList<CEVereda>();
+        Connection conn = ConexionBD.obtenerConexion();
         try
         {
-            Connection conn = ConexionBD.obtenerConexion();
+            
             String sql = "SELECT * FROM vereda";
             PreparedStatement sp = conn.prepareStatement(sql);
             ResultSet rs=sp.executeQuery();
@@ -35,6 +36,16 @@ public class CDVereda
         {
 
         }
+         finally
+           {
+                try
+                {
+                    conn.close();
+                }
+                catch (SQLException ex) {
+
+                }
+            }
         return oLstVereda;
 
     }

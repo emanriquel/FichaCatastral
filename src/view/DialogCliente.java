@@ -1,12 +1,8 @@
 package view;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.SwingWorker;
 import modelo.datos.*;
 import modelo.entidad.*;
 import util.ArrayListComboBoxModel;
@@ -47,9 +43,9 @@ public class DialogCliente extends javax.swing.JDialog {
         ArrayList oLstTipoDocumento=oCDTipoDocumento.listarTipoDocumento();
         construirModeloCombo(CbxTipoDocumento, oLstTipoDocumento);
 
-        CDMedioAbastecimiento oCDMedioAbastecimiento=new CDMedioAbastecimiento();
-        ArrayList oLstMedioAbastecimiento=oCDMedioAbastecimiento.listarMedioAbastecimiento();
-        construirModeloCombo(CbxMedioAbastecimiento, oLstMedioAbastecimiento);
+        CDCondicionConexionDesague oCDCondicionConexionDesague=new CDCondicionConexionDesague();
+        ArrayList oLstCondicionConexionDesague=oCDCondicionConexionDesague.listarCondicionConexionDesague();
+        construirModeloCombo(CbxCondicionConexionDesague, oLstCondicionConexionDesague);
 
         CDCondicionConexionAgua oCDCondicionConexionAgua=new CDCondicionConexionAgua();
         ArrayList oLstCondicionConexionAgua=oCDCondicionConexionAgua.listarCondicionConexionAgua();
@@ -87,7 +83,7 @@ public class DialogCliente extends javax.swing.JDialog {
          
          buscarIndexComboTipoDocumento(oCECliente.getIdTipoDocumento());
          TxtDireccion.setText(oCECliente.getDireccion());
-         buscarIndexComboMedioAbastecimiento(oCECliente.getIdMedioAbastecimiento());         
+         buscarIndexComboCondicionConexionDesague(oCECliente.getIdCondicionConexionDesague());
          buscarIndexComboCondicionConexionAgua(oCECliente.getIdCondicionConexionAgua());
          lblCodigo.setText(oCECliente.getIdCliente()+"");
          TxtAntiguoCodigoCatastral.setText(oCECliente.getAntiguoCodigoCatastral());
@@ -140,16 +136,16 @@ public class DialogCliente extends javax.swing.JDialog {
         }
       }
 
-    private void buscarIndexComboMedioAbastecimiento(int pId){
-      int size=CbxMedioAbastecimiento.getItemCount();
+    private void buscarIndexComboCondicionConexionDesague(int pId){
+      int size=CbxCondicionConexionDesague.getItemCount();
       if(size>0)
       {
           for(int i=1;i<size;i++)
           {
-            CEMedioAbastecimiento obj =(CEMedioAbastecimiento)CbxMedioAbastecimiento.getItemAt(i);
-            if(obj.getIdMedioAbastecimiento()== pId)
+            CECondicionConexionDesague obj =(CECondicionConexionDesague)CbxCondicionConexionDesague.getItemAt(i);
+            if(obj.getIdCondicionConexionDesague()== pId)
                 {
-                    CbxMedioAbastecimiento.setSelectedIndex(i);
+                    CbxCondicionConexionDesague.setSelectedIndex(i);
                     break;
                 }
           }
@@ -201,8 +197,8 @@ public class DialogCliente extends javax.swing.JDialog {
         CECondicionConexionAgua oCECondicionConexionAgua =(CECondicionConexionAgua)CbxCondicionConexionAgua.getSelectedItem();
         oCECliente.setIdCondicionConexionAgua(oCECondicionConexionAgua.getIdCondicionConexionAgua());
 
-        CEMedioAbastecimiento oCEMedioAbastecimiento =(CEMedioAbastecimiento)CbxMedioAbastecimiento.getSelectedItem();
-        oCECliente.setIdMedioAbastecimiento(oCEMedioAbastecimiento.getIdMedioAbastecimiento());
+        CECondicionConexionDesague oCECondicionConexionDesague =(CECondicionConexionDesague)CbxCondicionConexionDesague.getSelectedItem();
+        oCECliente.setIdCondicionConexionDesague(oCECondicionConexionDesague.getIdCondicionConexionDesague());
 
         CETipoServicio oCETipoServicio =(CETipoServicio)CbxTipoServicio.getSelectedItem();
         oCECliente.setIdTipoServicio(oCETipoServicio.getIdTipoServicio());
@@ -244,12 +240,12 @@ public class DialogCliente extends javax.swing.JDialog {
         TxtNumDocumento = new javax.swing.JTextField();
         jLabel70 = new javax.swing.JLabel();
         TxtDireccion = new javax.swing.JTextField();
-        jLabel67 = new javax.swing.JLabel();
-        CbxMedioAbastecimiento = new javax.swing.JComboBox();
         jLabel141 = new javax.swing.JLabel();
         CbxCondicionConexionAgua = new javax.swing.JComboBox();
         CbxTipoServicio = new javax.swing.JComboBox();
         jLabel48 = new javax.swing.JLabel();
+        CbxCondicionConexionDesague = new javax.swing.JComboBox();
+        jLabel142 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         BtnGuardar = new javax.swing.JButton();
@@ -446,21 +442,13 @@ public class DialogCliente extends javax.swing.JDialog {
         jPanel5.add(TxtDireccion);
         TxtDireccion.setBounds(370, 110, 490, 20);
 
-        jLabel67.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel67.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel67.setText("Medio de Abas.:");
-        jPanel5.add(jLabel67);
-        jLabel67.setBounds(290, 170, 90, 20);
-        jPanel5.add(CbxMedioAbastecimiento);
-        CbxMedioAbastecimiento.setBounds(380, 170, 170, 20);
-
-        jLabel141.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel141.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel141.setForeground(new java.awt.Color(0, 0, 102));
         jLabel141.setText("Cond. Conex Agua:");
         jPanel5.add(jLabel141);
-        jLabel141.setBounds(580, 170, 110, 20);
+        jLabel141.setBounds(280, 170, 110, 20);
         jPanel5.add(CbxCondicionConexionAgua);
-        CbxCondicionConexionAgua.setBounds(690, 170, 170, 20);
+        CbxCondicionConexionAgua.setBounds(390, 170, 170, 20);
 
         CbxTipoServicio.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -470,11 +458,19 @@ public class DialogCliente extends javax.swing.JDialog {
         jPanel5.add(CbxTipoServicio);
         CbxTipoServicio.setBounds(110, 170, 150, 20);
 
-        jLabel48.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel48.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel48.setForeground(new java.awt.Color(0, 0, 102));
         jLabel48.setText("Tipo Servicio:");
         jPanel5.add(jLabel48);
         jLabel48.setBounds(30, 170, 76, 20);
+        jPanel5.add(CbxCondicionConexionDesague);
+        CbxCondicionConexionDesague.setBounds(710, 170, 150, 20);
+
+        jLabel142.setFont(new java.awt.Font("Arial", 1, 12));
+        jLabel142.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel142.setText("Cond. Conex Desague:");
+        jPanel5.add(jLabel142);
+        jLabel142.setBounds(580, 170, 127, 20);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -633,7 +629,7 @@ public class DialogCliente extends javax.swing.JDialog {
     private javax.swing.JButton BtnCancelar;
     private javax.swing.JButton BtnGuardar;
     private javax.swing.JComboBox CbxCondicionConexionAgua;
-    private javax.swing.JComboBox CbxMedioAbastecimiento;
+    private javax.swing.JComboBox CbxCondicionConexionDesague;
     private javax.swing.JComboBox CbxTipoDocumento;
     private javax.swing.JComboBox CbxTipoServicio;
     private javax.swing.JTextField TxtAntiguoCodigoCatastral;
@@ -649,6 +645,7 @@ public class DialogCliente extends javax.swing.JDialog {
     private javax.swing.JTextField TxtSecuencia;
     private javax.swing.JTextField TxtTelefono;
     private javax.swing.JLabel jLabel141;
+    private javax.swing.JLabel jLabel142;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel37;
@@ -662,7 +659,6 @@ public class DialogCliente extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel52;
-    private javax.swing.JLabel jLabel67;
     private javax.swing.JLabel jLabel70;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

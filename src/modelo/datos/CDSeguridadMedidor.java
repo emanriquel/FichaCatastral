@@ -14,9 +14,10 @@ public class CDSeguridadMedidor
     public ArrayList<CESeguridadMedidor> listarSeguridadMedidor()
     {
         ArrayList<CESeguridadMedidor> oLstSeguridadMedidor=new ArrayList<CESeguridadMedidor>();
+        Connection conn = ConexionBD.obtenerConexion();
         try
         {
-            Connection conn = ConexionBD.obtenerConexion();
+            
             String sql = "SELECT * FROM seguridad_medidor";
             PreparedStatement sp = conn.prepareStatement(sql);
             ResultSet rs=sp.executeQuery();
@@ -35,6 +36,16 @@ public class CDSeguridadMedidor
         {
 
         }
+         finally
+           {
+                try
+                {
+                    conn.close();
+                }
+                catch (SQLException ex) {
+
+                }
+            }
         return oLstSeguridadMedidor;
 
     }

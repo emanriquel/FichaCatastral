@@ -59,9 +59,10 @@ public class CDHabitacion {
     public ArrayList<CEHabilitacion> listarHabilitacion(int tipo,String Parametro)
     {
         ArrayList<CEHabilitacion> oLstHabilitacion=new ArrayList<CEHabilitacion>();
+        Connection conn = ConexionBD.obtenerConexion();
         try
         {
-            Connection conn = ConexionBD.obtenerConexion();
+            
             String sql = null;
             String SqlBase = "SELECT * FROM habilitacion ";
                   switch(tipo)
@@ -92,13 +93,26 @@ public class CDHabitacion {
         {
 
         }
+           finally
+       {
+            try
+            {
+                conn.close();
+            }
+            catch (SQLException ex)
+            {
+
+            }
+
+        }
         return oLstHabilitacion;
 
     }
    public boolean abmHabilitacion(CEHabilitacion oCEMedida,int valor)
   {
+       Connection conn = ConexionBD.obtenerConexion();
         try {
-            Connection conn = ConexionBD.obtenerConexion();
+            
             String sql ;
             if(valor==1)
             {
@@ -129,6 +143,17 @@ public class CDHabitacion {
             return false;
         }
 
+ finally
+       {
+            try
+            {
+                conn.close();
+            }
+            catch (SQLException ex)
+            {
 
+            }
+
+        }
   }
 }

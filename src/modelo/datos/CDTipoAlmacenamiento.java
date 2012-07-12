@@ -14,9 +14,10 @@ public class CDTipoAlmacenamiento
     public ArrayList<CETipoAlmacenamiento> listarTipoAlmacenamiento()
     {
         ArrayList<CETipoAlmacenamiento> oLstTipoAlmacenamiento=new ArrayList<CETipoAlmacenamiento>();
+        Connection conn = ConexionBD.obtenerConexion();
         try
         {
-            Connection conn = ConexionBD.obtenerConexion();
+            
             String sql = "SELECT * FROM tipo_almacenamiento";
             PreparedStatement sp = conn.prepareStatement(sql);
             ResultSet rs=sp.executeQuery();
@@ -35,6 +36,16 @@ public class CDTipoAlmacenamiento
         {
 
         }
+         finally
+           {
+                try
+                {
+                    conn.close();
+                }
+                catch (SQLException ex) {
+
+                }
+            }
         return oLstTipoAlmacenamiento;
 
     }

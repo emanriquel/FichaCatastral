@@ -14,9 +14,10 @@ public class CDSituacionAgua
     public ArrayList<CESituacionAgua> listarSituacionAgua()
     {
         ArrayList<CESituacionAgua> oLstSituacionAgua=new ArrayList<CESituacionAgua>();
+        Connection conn = ConexionBD.obtenerConexion();
         try
         {
-            Connection conn = ConexionBD.obtenerConexion();
+            
             String sql = "SELECT * FROM situacion_agua";
             PreparedStatement sp = conn.prepareStatement(sql);
             ResultSet rs=sp.executeQuery();
@@ -35,6 +36,16 @@ public class CDSituacionAgua
         {
 
         }
+         finally
+           {
+                try
+                {
+                    conn.close();
+                }
+                catch (SQLException ex) {
+
+                }
+            }
         return oLstSituacionAgua;
 
     }

@@ -15,9 +15,10 @@ public class CDDiametroMedidor
     public ArrayList<CEDiametroMedidor> listarDiametroMedidor()
     {
         ArrayList<CEDiametroMedidor> oLstDiametroMedidor=new ArrayList<CEDiametroMedidor>();
+        Connection conn = ConexionBD.obtenerConexion();
         try
         {
-            Connection conn = ConexionBD.obtenerConexion();
+            
             String sql = "SELECT * FROM diametro_medidor";
             PreparedStatement sp = conn.prepareStatement(sql);
             ResultSet rs=sp.executeQuery();
@@ -34,9 +35,20 @@ public class CDDiametroMedidor
         }
         catch (SQLException ex)
         {
-
+            
         }
-        return oLstDiametroMedidor;
+      finally
+       {
+            try
+            {
+                conn.close();
+            }
+            catch (SQLException ex)
+            {
 
+            }
+        
+        }
+      return oLstDiametroMedidor;
     }
 }

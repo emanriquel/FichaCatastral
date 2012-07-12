@@ -15,9 +15,10 @@ public class CDMedida
 {
     public boolean registrarMedida(CEMedida oCEMedida)
     {
+        Connection con = ConexionBD.obtenerConexion();
         try
         {
-            Connection con = ConexionBD.obtenerConexion();
+            
             con.setAutoCommit(false);
             con.setTransactionIsolation(Connection.TRANSACTION_READ_UNCOMMITTED);
             String sql = "INSERT INTO registro_medida (NumeroFicha,"//1
@@ -125,7 +126,7 @@ public class CDMedida
                     + "IdSituacionConexion,"
                     + "IdMaterialConexionDesague,"
                     + "IdTipoCaracteristicaDesague,"
-                    + "IdTipoFotoAgua)"//99
+                    + "IdTipoFotoAgua,SiNoTapaConexionDesague)"//99
                     + "VALUES (?, "
                     + "?,"
                     + " ?,"
@@ -227,10 +228,10 @@ public class CDMedida
                     + "?,"
                     + "?,"
                     + "?,"
-                    + "?,?,?,?,?)";
+                    + "?,?,?,?,?,?) ";
             PreparedStatement ps = con.prepareCall(sql);
             ps.setString(1,oCEMedida.getNumeroFicha());
-            ps.setDouble(2,oCEMedida.getPorcentajeSocial());
+            ps.setString(2,oCEMedida.getPorcentajeSocial());
             ps.setInt(3,oCEMedida.getIdCondicionConexionAgua());
             ps.setInt(4,oCEMedida.getIdCondicionConexionDesague());
             ps.setInt(5,oCEMedida.getIdDiametroConexionDesague());
@@ -294,13 +295,13 @@ public class CDMedida
             ps.setString(63,oCEMedida.getApellidoMaternoConyugue());
             ps.setString(64,oCEMedida.getNombreConyugue());
             ps.setString(65,oCEMedida.getCorreoElectronico());
-            ps.setInt(66,oCEMedida.getCantHabitantesPredio());
-            ps.setInt(67,oCEMedida.getNumPiso());
+            ps.setString(66,oCEMedida.getCantHabitantesPredio());
+            ps.setString(67,oCEMedida.getNumPiso());
             ps.setBoolean(68,oCEMedida.isSiNoPredioHabilitado());
             ps.setBoolean(69,oCEMedida.isSiNoMedidor());
             ps.setString(70,oCEMedida.getNumeroMedidor());
             ps.setBoolean(71,oCEMedida.isSiNoIlegibleNumMedidor());
-            ps.setDouble(72,oCEMedida.getLectura());
+            ps.setString(72,oCEMedida.getLectura());
             ps.setBoolean(73,oCEMedida.isSiNoIlegibleLectura());
             ps.setString(74,oCEMedida.getMarcaMedidor());
             ps.setBoolean(75,oCEMedida.isSiNoTapaConexionAgua());
@@ -308,8 +309,8 @@ public class CDMedida
             ps.setBoolean(77,oCEMedida.isSiNoFugaAgua());
             ps.setInt(78,oCEMedida.getTipoFugaAgua());
             ps.setBoolean(79,oCEMedida.isSiNoFugaDesague());
-            ps.setDouble(80,oCEMedida.getFrecuenciaAbastecimientoHorasPorDia());
-            ps.setDouble(81,oCEMedida.getFrecuenciaAbastecimientoDiasPorSemana());
+            ps.setString(80,oCEMedida.getFrecuenciaAbastecimientoHorasPorDia());
+            ps.setString(81,oCEMedida.getFrecuenciaAbastecimientoDiasPorSemana());
             ps.setString(82,oCEMedida.getObservaciones());
             ps.setString(83,oCEMedida.getApellidoPaternoEntrevistado());
             ps.setString(84,oCEMedida.getApellidoMaternoEntrevistado());
@@ -325,16 +326,17 @@ public class CDMedida
             ps.setInt(94, oCEMedida.getIdTipoDocumento());
             ps.setString(95, oCEMedida.getNumeroDocumento());
             ps.setString(96, oCEMedida.getTelefono());
-            ps.setDouble(97, oCEMedida.getUbicacionConexionAgua());
-            ps.setDouble(98, oCEMedida.getUbicacionConexionDesague());
-            ps.setDouble(99, oCEMedida.getIdEstadoMedidor());
-            ps.setDouble(100, oCEMedida.getPorcentajeComercial());
-            ps.setDouble(101, oCEMedida.getPorcentajeDomestico());
-            ps.setDouble(102, oCEMedida.getPorcentajeEstatal());
+            ps.setString(97, oCEMedida.getUbicacionConexionAgua());
+            ps.setString(98, oCEMedida.getUbicacionConexionDesague());
+            ps.setInt(99, oCEMedida.getIdEstadoMedidor());
+            ps.setString(100, oCEMedida.getPorcentajeComercial());
+            ps.setString(101, oCEMedida.getPorcentajeDomestico());
+            ps.setString(102, oCEMedida.getPorcentajeEstatal());
             ps.setInt(103, oCEMedida.getIdSituacionConexion());
             ps.setInt(104, oCEMedida.getIdMaterialConexionDesague());
             ps.setInt(105, oCEMedida.getIdTipoCaracteristicasCajaDesague());
             ps.setInt(106, oCEMedida.getIdTipoFotoAgua());
+            ps.setBoolean(107, oCEMedida.isSiNoTapaConexionDesague());
             int valor=ps.executeUpdate();
             ResultSet oRS=ps.getGeneratedKeys();
             if(oRS.next())
@@ -342,7 +344,7 @@ public class CDMedida
                 oCEMedida.setIdRegistroMedida(oRS.getInt(1));
             }
 
-            if(valor==1)
+            if(valor>0)
             {
                 int a=1;
                 for(CEUsos oCEUsos:oCEMedida.getoLstUsos())
@@ -350,7 +352,7 @@ public class CDMedida
 
                     if(oCEUsos.getCodigo()==1)
                     {
-                        String sql2="INSERT INTO usos (Numero, Respo, TipoUso, CodUso, PtosAgua, NumPersona, Complemento, Categoria,IdRegistoMedida) VALUES ( ?,?,?,?,?,?,?,?,?)";
+                        String sql2="INSERT INTO usos (Numero, Respo, TipoUso, CodUso, PtosAgua, NumPersona, Complemento, Categoria,IdRegistroMedida) VALUES ( ?,?,?,?,?,?,?,?,?)";
                         PreparedStatement ps1 = con.prepareCall(sql2);
                         ps1.setString(1, oCEUsos.getNumero());
                         ps1.setString(2, oCEUsos.getRespo());
@@ -371,7 +373,7 @@ public class CDMedida
                 if(a==1)
                 {
                    
-                    String sql4 = "update parametros m set m.Valor=m.Valor+1 where m.Nombre='NumFicha'";
+                    String sql4 = "update parametros m set m.Valor=(select max(cast( NumeroFicha as signed)) from registro_medida ) where m.Nombre='NumFicha'";
                     PreparedStatement ps1 = con.prepareCall(sql4);
                     ps1.execute();
                      con.commit();
@@ -399,9 +401,10 @@ public class CDMedida
     }
      public boolean actualizarMedida(CEMedida oCEMedida)
     {
+         Connection con = ConexionBD.obtenerConexion();
         try
         {
-            Connection con = ConexionBD.obtenerConexion();
+            
             con.setAutoCommit(false);
             String sql = "update  registro_medida  set NumeroFicha =?,"//1
                     + "PorcentajeSocial  =?,"//2
@@ -508,11 +511,12 @@ public class CDMedida
                     + "IdSituacionConexion =?,"
                     + "IdMaterialConexionDesague=?,"
                     + "IdTipoCaracteristicaDesague=?,"
-                    + "IdTipoFotoAgua=?"//103
+                    + "IdTipoFotoAgua=?,"
+                    + "SiNoTapaConexionDesague=?"//103
                     + " where IdRegistroMedida="+oCEMedida.getIdRegistroMedida();//104
             PreparedStatement ps = con.prepareCall(sql);
             ps.setString(1,oCEMedida.getNumeroFicha());
-            ps.setDouble(2,oCEMedida.getPorcentajeSocial());
+            ps.setString(2,oCEMedida.getPorcentajeSocial());
             ps.setInt(3,oCEMedida.getIdCondicionConexionAgua());
             ps.setInt(4,oCEMedida.getIdCondicionConexionDesague());
             ps.setInt(5,oCEMedida.getIdDiametroConexionDesague());
@@ -576,13 +580,13 @@ public class CDMedida
             ps.setString(63,oCEMedida.getApellidoMaternoConyugue());
             ps.setString(64,oCEMedida.getNombreConyugue());
             ps.setString(65,oCEMedida.getCorreoElectronico());
-            ps.setInt(66,oCEMedida.getCantHabitantesPredio());
-            ps.setInt(67,oCEMedida.getNumPiso());
+            ps.setString(66,oCEMedida.getCantHabitantesPredio());
+            ps.setString(67,oCEMedida.getNumPiso());
             ps.setBoolean(68,oCEMedida.isSiNoPredioHabilitado());
             ps.setBoolean(69,oCEMedida.isSiNoMedidor());
             ps.setString(70,oCEMedida.getNumeroMedidor());
             ps.setBoolean(71,oCEMedida.isSiNoIlegibleNumMedidor());
-            ps.setDouble(72,oCEMedida.getLectura());
+            ps.setString(72,oCEMedida.getLectura());
             ps.setBoolean(73,oCEMedida.isSiNoIlegibleLectura());
             ps.setString(74,oCEMedida.getMarcaMedidor());
             ps.setBoolean(75,oCEMedida.isSiNoTapaConexionAgua());
@@ -590,8 +594,8 @@ public class CDMedida
             ps.setBoolean(77,oCEMedida.isSiNoFugaAgua());
             ps.setInt(78,oCEMedida.getTipoFugaAgua());
             ps.setBoolean(79,oCEMedida.isSiNoFugaDesague());
-            ps.setDouble(80,oCEMedida.getFrecuenciaAbastecimientoHorasPorDia());
-            ps.setDouble(81,oCEMedida.getFrecuenciaAbastecimientoDiasPorSemana());
+            ps.setString(80,oCEMedida.getFrecuenciaAbastecimientoHorasPorDia());
+            ps.setString(81,oCEMedida.getFrecuenciaAbastecimientoDiasPorSemana());
             ps.setString(82,oCEMedida.getObservaciones());
             ps.setString(83,oCEMedida.getApellidoPaternoEntrevistado());
             ps.setString(84,oCEMedida.getApellidoMaternoEntrevistado());
@@ -607,16 +611,17 @@ public class CDMedida
             ps.setInt(94, oCEMedida.getIdTipoDocumento());
             ps.setString(95, oCEMedida.getNumeroDocumento());
             ps.setString(96, oCEMedida.getTelefono());
-            ps.setDouble(97, oCEMedida.getUbicacionConexionAgua());
-            ps.setDouble(98, oCEMedida.getUbicacionConexionDesague());
+            ps.setString(97, oCEMedida.getUbicacionConexionAgua());
+            ps.setString(98, oCEMedida.getUbicacionConexionDesague());
             ps.setDouble(99, oCEMedida.getIdEstadoMedidor());
-            ps.setDouble(100, oCEMedida.getPorcentajeComercial());
-            ps.setDouble(101, oCEMedida.getPorcentajeDomestico());
-            ps.setDouble(102, oCEMedida.getPorcentajeEstatal());
+            ps.setString(100, oCEMedida.getPorcentajeComercial());
+            ps.setString(101, oCEMedida.getPorcentajeDomestico());
+            ps.setString(102, oCEMedida.getPorcentajeEstatal());
             ps.setDouble(103, oCEMedida.getIdSituacionConexion());
             ps.setInt(104,oCEMedida.getIdMaterialConexionDesague());
             ps.setInt(105,oCEMedida.getIdTipoCaracteristicasCajaDesague());
             ps.setInt(106,oCEMedida.getIdTipoFotoAgua());
+            ps.setBoolean(107,oCEMedida.isSiNoTapaConexionDesague());
 
             int valor=ps.executeUpdate();
             if(valor==1)
@@ -704,15 +709,26 @@ public class CDMedida
             Logger.getLogger(CDMedida.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
+          finally
+           {
+                try
+                {
+                    con.close();
+                }
+                catch (SQLException ex) {
+
+                }
+            }
 
 
     }
        public ArrayList<CEMedida> listarPorCodigoInscripcion(String dato)
     {
         ArrayList<CEMedida> oLstLlavesPaso=new ArrayList<CEMedida>();
+        Connection conn = ConexionBD.obtenerConexion();
         try
         {
-            Connection conn = ConexionBD.obtenerConexion();
+            
             String sql = "SELECT  rm.NumeroFicha,"
                     + " rm.Cod_Inscripcion,"
                     + "concat(rm.ApellidoPaternoPropietario,' ',rm.ApellidoMaternoPropietario,',',rm.NombrePropietario),"
@@ -766,10 +782,11 @@ public class CDMedida
        public ArrayList<CEMedida> listarPorUsuario(String dato)
     {
         ArrayList<CEMedida> oLstLlavesPaso=new ArrayList<CEMedida>();
+           Connection conn = ConexionBD.obtenerConexion();
         try
         {
-            Connection conn = ConexionBD.obtenerConexion();
-            String sql = "SELECT  rm.NumeroFicha, rm.Cod_Inscripcion,concat(rm.ApellidoPaternoPropietario,' ',rm.ApellidoMaternoPropietario,',',rm.NombrePropietario),rm.Fecha_Encuestador,  rm.CodDepartamento,  rm.CodProvincia,  rm.CodDistrito,  rm.Manzana,  rm.Lote,  rm.CodigoVia,  rm.TipoVia,  rm.NombreVia,  rm.CodigoHabilitacion,  rm.TipoHabilitacion,  rm.NombreHabilitacion FROM medidor.registro_medida rm"
+         
+            String sql = "SELECT  rm.NumeroFicha, rm.Cod_Inscripcion,concat(rm.ApellidoPaternoPropietario,' ',rm.ApellidoMaternoPropietario,',',rm.NombrePropietario), date_format(rm.Fecha_Encuestador,'%d/%m/%Y'),  rm.CodDepartamento,  rm.CodProvincia,  rm.CodDistrito,  rm.Manzana,  rm.Lote,  rm.CodigoVia,  rm.TipoVia,  rm.NombreVia,  rm.CodigoHabilitacion,  rm.TipoHabilitacion,  rm.NombreHabilitacion FROM medidor.registro_medida rm"
                     + " WHERE rm.concat(rm.ApellidoPaternoPropietario,' ',rm.ApellidoMaternoPropietario,',',rm.NombrePropietario,rm.IdRegistroMedida) like '"+dato+"%'";
             PreparedStatement sp = conn.prepareStatement(sql);
             ResultSet rs=sp.executeQuery();
@@ -800,15 +817,26 @@ public class CDMedida
 
             ex.printStackTrace();
         }
+            finally
+           {
+                try
+                {
+                    conn.close();
+                }
+                catch (SQLException ex) {
+
+                }
+            }
         return oLstLlavesPaso;
 
     }
     public ArrayList<CEMedida> listarPorNumeroFicha(String dato)
     {
         ArrayList<CEMedida> oLstLlavesPaso=new ArrayList<CEMedida>();
+        Connection conn = ConexionBD.obtenerConexion();
         try
         {
-            Connection conn = ConexionBD.obtenerConexion();
+            
             String sql = "SELECT  rm.NumeroFicha,"
                     + " rm.Cod_Inscripcion,"
                     + "concat(rm.ApellidoPaternoPropietario,' ',rm.ApellidoMaternoPropietario,',',rm.NombrePropietario),"
@@ -824,7 +852,7 @@ public class CDMedida
                     + " rm.TipoHabilitacion, "
                     + " rm.NombreHabilitacion,"
                     + "rm.IdRegistroMedida,"
-                     + "rm.Fecha_Encuestador"
+                     + "date_format(rm.Fecha_Encuestador,'%d/%m/%Y') "
                     + " FROM medidor.registro_medida rm"
                     + " WHERE rm.NumeroFicha like '"+dato+"%'";
             PreparedStatement sp = conn.prepareStatement(sql);
@@ -856,15 +884,26 @@ public class CDMedida
         {
             ex.printStackTrace();
         }
+         finally
+           {
+                try
+                {
+                    conn.close();
+                }
+                catch (SQLException ex) {
+
+                }
+            }
         return oLstLlavesPaso;
 
     }
     public CEMedida ConsultarMedida(int dato)
     {
         CEMedida oCEMedida=new CEMedida();
+        Connection conn = ConexionBD.obtenerConexion();
         try
         {
-            Connection conn = ConexionBD.obtenerConexion();
+            
             String sql = "SELECT "
                     + "IdRegistroMedida,"
                     + "NumeroFicha,"
@@ -972,7 +1011,8 @@ public class CDMedida
                     + "IdSituacionConexion,"
                     + "IdMaterialConexionDesague,"
                     + "IdTipoCaracteristicaDesague,"
-                    + "IdTipoFotoAgua"
+                    + "IdTipoFotoAgua,"
+                    + "SiNoTapaConexionDesague"
                     + " FROM"
                     + " registro_medida m where m.IdRegistroMedida="+dato;
             PreparedStatement sp = conn.prepareStatement(sql);
@@ -1010,8 +1050,8 @@ public class CDMedida
                 oCEMedida.setNombreConyugue(rs.getString(64));//23
                 oCEMedida.setCorreoElectronico(rs.getString(65));//24
                 oCEMedida.setIdTipoPropiedad(rs.getInt(26));//25
-                oCEMedida.setCantHabitantesPredio(rs.getInt(66));//26
-                oCEMedida.setNumPiso(rs.getInt(67));//27
+                oCEMedida.setCantHabitantesPredio(rs.getString(66));//26
+                oCEMedida.setNumPiso(rs.getString(67));//27
                 oCEMedida.setIdTipoPredio(rs.getInt(25));//28 OK
 
 
@@ -1039,16 +1079,16 @@ public class CDMedida
                 oCEMedida.setIdSituacionPredio(rs.getInt(23));//46
                 oCEMedida.setIdTipoAlmacenamiento(rs.getInt(24));//47
 
-                oCEMedida.setPorcentajeDomestico(rs.getDouble(102));//48
-                oCEMedida.setPorcentajeComercial(rs.getDouble(100));//49
-                oCEMedida.setPorcentajeEstatal(rs.getDouble(101));//50
-                oCEMedida.setPorcentajeSocial(rs.getDouble(103));//51
+                oCEMedida.setPorcentajeDomestico(rs.getString(102));//48
+                oCEMedida.setPorcentajeComercial(rs.getString(100));//49
+                oCEMedida.setPorcentajeEstatal(rs.getString(101));//50
+                oCEMedida.setPorcentajeSocial(rs.getString(103));//51
 
                 oCEMedida.setSiNoMedidor(rs.getBoolean(69));//52
                 oCEMedida.setNumeroMedidor(rs.getString(70));//53
                 oCEMedida.setSiNoIlegibleNumMedidor(rs.getBoolean(71));//54
                 oCEMedida.setMarcaMedidor(rs.getString(74));//55
-                oCEMedida.setLectura(rs.getInt(72));//56
+                oCEMedida.setLectura(rs.getString(72));//56
                 oCEMedida.setSiNoIlegibleLectura(rs.getBoolean(73));//57
 
 
@@ -1092,8 +1132,8 @@ public class CDMedida
 
 
                 oCEMedida.setIdPozoArtesanal(rs.getInt(20));//84
-                oCEMedida.setFrecuenciaAbastecimientoHorasPorDia(rs.getDouble(80));//85
-                oCEMedida.setFrecuenciaAbastecimientoDiasPorSemana(rs.getDouble(81));//86 ok
+                oCEMedida.setFrecuenciaAbastecimientoHorasPorDia(rs.getString(80));//85
+                oCEMedida.setFrecuenciaAbastecimientoDiasPorSemana(rs.getString(81));//86 ok
 
                 oCEMedida.setObservaciones(rs.getString(82));//87
                 oCEMedida.setApellidoPaternoEntrevistado(rs.getString(83));//88
@@ -1104,8 +1144,8 @@ public class CDMedida
 
                 oCEMedida.setCodigoFotoCaja(rs.getString(88));//93
                 oCEMedida.setCodigoFotoPredio(rs.getString(89));//94
-                oCEMedida.setUbicacionConexionAgua(rs.getInt(97));//95
-                oCEMedida.setUbicacionConexionDesague(rs.getInt(98));//96
+                oCEMedida.setUbicacionConexionAgua(rs.getString(97));//95
+                oCEMedida.setUbicacionConexionDesague(rs.getString(98));//96
                 oCEMedida.setCod_Encuestador(rs.getString(32));//97
 
 
@@ -1114,6 +1154,7 @@ public class CDMedida
                 oCEMedida.setFecha_Supervisor(rs.getString(35));//100
                 oCEMedida.setCod_Digitado(rs.getString(36));//101
                 oCEMedida.setFecha_Digitador(rs.getString(37));//102
+                oCEMedida.setSiNoTapaConexionDesague(rs.getBoolean(108));//102
 
                 oCEMedida.setoLstUsos(oLstUsos());
             }
@@ -1125,13 +1166,24 @@ public class CDMedida
 
             ex.printStackTrace();
         }
+         finally
+           {
+                try
+                {
+                    conn.close();
+                }
+                catch (SQLException ex) {
+
+                }
+            }
         return oCEMedida;
 
     }
     public ArrayList oLstUsos()
     {
+        Connection con = ConexionBD.obtenerConexion();
         try {
-            Connection con = ConexionBD.obtenerConexion();
+            
             ArrayList<CEUsos> oLstUsos=new ArrayList<CEUsos>();
             String sql = "SELECT IdRegistroMedida,IdUso, Numero, Respo,TipoUso,CodUso,PtosAgua,NumPersona,Complemento,Categoria FROM medidor.usos";
             PreparedStatement sp = con.prepareStatement(sql);
@@ -1156,6 +1208,16 @@ public class CDMedida
             Logger.getLogger(CDMedida.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
+         finally
+           {
+                try
+                {
+                    con.close();
+                }
+                catch (SQLException ex) {
+
+                }
+            }
     }
     public boolean eliminarMedida(int dato)
     {
@@ -1166,6 +1228,7 @@ public class CDMedida
             String sql2 = "DELETE FROM usos where IdRegistroMedida="+dato;
             PreparedStatement ps = con.prepareCall(sql);
             PreparedStatement ps1 = con.prepareCall(sql2);
+            
             ps.execute();
             ps1.execute();
             return true;

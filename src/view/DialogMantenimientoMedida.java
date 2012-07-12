@@ -21,6 +21,7 @@ import javax.swing.JTextField;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
+import modelo.datos.CDCliente;
 import modelo.datos.CDCondicionConexionAgua;
 import modelo.datos.CDCondicionConexionDesague;
 import modelo.datos.CDDiametroConexionAgua;
@@ -99,18 +100,25 @@ import modelo.entidad.CEUsos;
 import modelo.entidad.CEVereda;
 import modelo.entidad.CEVia;
 import util.ArrayListComboBoxModel;
+import util.CTratamientoImagen;
 import util.ConvertidorFecha;
+import util.PreviewFile;
 
 public class DialogMantenimientoMedida extends javax.swing.JDialog {
 
     private int codigo;
     private int IdRegistroMedida;
     private boolean cargo=false;
+    private boolean fotoCargadaCaja=true;
+    private boolean fotoCargadaPredio=true;
+    private String fotoCaja="";
+    private String fotoPredio="";
+
     ArrayList<CEUsos> oLstUsosEliminados =new ArrayList<CEUsos>();
     public DialogMantenimientoMedida(java.awt.Frame parent, boolean modal,int codigo,CEMedida oCEMedida) {
         super(parent, modal);
         initComponents();
-
+        TblUsos.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
         Container con = this.getContentPane();
 	con.setBackground( new Color(204,204,204 ));
         cargarComboBox();
@@ -167,6 +175,37 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
             }
         }
         cargo=true;
+        if(oCEMedida!=null)
+        {
+            CDCliente oCDCliente =new CDCliente();
+
+            CECliente oCEClienteSeleccionado = oCDCliente.getClientePorNumeroInscripcion(TxtCodigoInscripcion.getText());
+              if(oCEClienteSeleccionado!=null)
+    {
+
+        LblUsuario.setText(oCEClienteSeleccionado.getApellidoPaternoPropietario());
+        LblDireccion.setText(oCEClienteSeleccionado.getDireccion());
+        TxtCodigoInscripcion.setText(oCEClienteSeleccionado.getNumeroInscripcion());
+        CECondicionConexionAgua oCECondicionConexionAgua = new CECondicionConexionAgua();
+        CDCondicionConexionAgua oCDCondicionConexionAgua = new CDCondicionConexionAgua();
+        oCECondicionConexionAgua.setIdCondicionConexionAgua(oCEClienteSeleccionado.getIdCondicionConexionAgua());
+        CECondicionConexionAgua ooCECondicionConexionAgua = oCDCondicionConexionAgua.DetalleCondicionConexionAgua(oCECondicionConexionAgua);
+        LblCondicionConexionConsulta.setText(ooCECondicionConexionAgua.getCondicionConexionAgua());
+         CETipoServicio oCETipoServicio = new CETipoServicio();
+        CDTipoServicio oCDTipoServicio = new CDTipoServicio();
+        oCETipoServicio.setIdTipoServicio(oCEClienteSeleccionado.getIdTipoServicio());
+        CETipoServicio ooCETipoServicio = oCDTipoServicio.DetalleServicio(oCETipoServicio);
+        LblTipoServicio.setText(ooCETipoServicio.getTipoServicio());
+        CbxTipoDocumento.requestFocus();
+    }
+        }
+
+        PreviewFile preview = new PreviewFile(jFileChooser1);
+        jFileChooser1.setAccessory(preview);
+        jFileChooser1.addPropertyChangeListener(preview);
+        PreviewFile preview2 = new PreviewFile(jFileChooser2);
+        jFileChooser2.setAccessory(preview2);
+        jFileChooser2.addPropertyChangeListener(preview2);
     }
      private void cargarEventoTablaGrupos(final JTable tbl)
     {
@@ -472,6 +511,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         LblDireccion = new javax.swing.JLabel();
         jLabel140 = new javax.swing.JLabel();
         LblTipoServicio = new javax.swing.JLabel();
+        jLabel149 = new javax.swing.JLabel();
+        LblUPredio = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TblUsos = new javax.swing.JTable();
         BtnAgregarUso = new javax.swing.JButton();
@@ -665,7 +706,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jComboBox41 = new javax.swing.JComboBox();
         jLabel129 = new javax.swing.JLabel();
         jLabel106 = new javax.swing.JLabel();
-        TxtFotoDesague = new javax.swing.JTextField();
+        TxtFotoPredio = new javax.swing.JTextField();
         TxtFotoCaja = new javax.swing.JTextField();
         jLabel113 = new javax.swing.JLabel();
         BtnFotoDesague = new javax.swing.JButton();
@@ -688,8 +729,13 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jPanelImageCaja = new util.JPanelImage();
         RbtAgua = new javax.swing.JRadioButton();
         RbtDesague = new javax.swing.JRadioButton();
+        jLabel85 = new javax.swing.JLabel();
+        jLabel146 = new javax.swing.JLabel();
+        BtnFotoCaja1 = new javax.swing.JButton();
+        BtnFotoDesague1 = new javax.swing.JButton();
         BtnGuardar = new javax.swing.JButton();
         BtnCancelar = new javax.swing.JButton();
+        jLabel148 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -765,7 +811,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel10.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel10.setForeground(new java.awt.Color(0, 0, 102));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("Sección");
+        jLabel10.setText("Sector");
         jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel10.setOpaque(true);
 
@@ -1070,7 +1116,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel31.setText("Num. Pisos:");
 
         TxtNumPisos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        TxtNumPisos.setText("1");
+        TxtNumPisos.setText("0");
 
         jLabel32.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel32.setForeground(new java.awt.Color(0, 0, 102));
@@ -1204,7 +1250,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                     .addComponent(TxtNumPisos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CbxTipoPredio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -1273,7 +1319,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         TxtBlock.setNextFocusableComponent(TxtPiso);
 
         TxtPiso.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        TxtPiso.setText("1");
+        TxtPiso.setText("0");
         TxtPiso.setNextFocusableComponent(TxtNumero);
 
         jLabel43.setBackground(new java.awt.Color(204, 204, 204));
@@ -1293,6 +1339,12 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel44.setOpaque(true);
 
         TxtNumero.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        CbxUsoPredio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CbxUsoPredioActionPerformed(evt);
+            }
+        });
 
         jLabel45.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel45.setForeground(new java.awt.Color(0, 0, 102));
@@ -1452,6 +1504,12 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         LblTipoServicio.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LblTipoServicio.setOpaque(true);
 
+        jLabel149.setFont(new java.awt.Font("Arial", 1, 12));
+        jLabel149.setText("U. del Predio:");
+
+        LblUPredio.setFont(new java.awt.Font("Arial", 1, 12));
+        LblUPredio.setForeground(new java.awt.Color(0, 0, 102));
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -1502,10 +1560,15 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                         .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
                         .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel149)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LblUPredio, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel46)
                         .addGap(5, 5, 5)
-                        .addComponent(CbxUsoPredio, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(CbxUsoPredio, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel135)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1560,11 +1623,11 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(LblTipoServicio, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(LblTipoServicio, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(LblDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel139, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE))
-                    .addComponent(jLabel140, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
+                    .addComponent(jLabel140, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
@@ -1584,20 +1647,21 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(TxtCodigoHabilitacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)
-                                .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(TxtTipoHabilitacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)
-                                .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(TxtNombreHabilitacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)
-                                .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TxtCodigoHabilitacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(TxtTipoHabilitacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(TxtNombreHabilitacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BtnHabilitacion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(TxtNumeroManzana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TxtNumeroLote, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1609,16 +1673,20 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                             .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel149, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CbxUsoPredio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TxtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ChckSiNoPredioHabilitado)))
-                    .addComponent(BtnHabilitacion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(LblUPredio, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(CbxUsoPredio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ChckSiNoPredioHabilitado))
                 .addGap(9, 9, 9)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1964,6 +2032,12 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel89.setBounds(10, 120, 120, 20);
         jPanel8.add(CbxDiametroConexionAgua);
         CbxDiametroConexionAgua.setBounds(130, 120, 162, 20);
+
+        CbxCondicionConexionAgua.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CbxCondicionConexionAguaItemStateChanged(evt);
+            }
+        });
         jPanel8.add(CbxCondicionConexionAgua);
         CbxCondicionConexionAgua.setBounds(310, 90, 110, 20);
 
@@ -2047,7 +2121,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
 
         buttonGroup1.add(RbtOpcionIndeterminado);
         RbtOpcionIndeterminado.setFont(new java.awt.Font("Arial", 1, 11));
-        RbtOpcionIndeterminado.setText("Indeterminado");
+        RbtOpcionIndeterminado.setText("No determinado");
         jPanel8.add(RbtOpcionIndeterminado);
         RbtOpcionIndeterminado.setBounds(630, 120, 120, 20);
 
@@ -2115,11 +2189,16 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel95.setBounds(290, 110, 100, 20);
         jPanel9.add(CbxDiametroConexionDesague);
         CbxDiametroConexionDesague.setBounds(390, 110, 130, 20);
+
+        CbxCondicionConexDesague.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CbxCondicionConexDesagueItemStateChanged(evt);
+            }
+        });
         jPanel9.add(CbxCondicionConexDesague);
         CbxCondicionConexDesague.setBounds(720, 80, 150, 20);
 
         jLabel96.setFont(new java.awt.Font("Arial", 1, 12));
-        jLabel96.setForeground(new java.awt.Color(0, 0, 102));
         jLabel96.setText("Cond. Conex:");
         jPanel9.add(jLabel96);
         jLabel96.setBounds(390, 80, 80, 20);
@@ -2221,12 +2300,22 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         RbtOpcionConCaja.setFont(new java.awt.Font("Arial", 1, 11));
         RbtOpcionConCaja.setSelected(true);
         RbtOpcionConCaja.setText("Con Caja");
+        RbtOpcionConCaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RbtOpcionConCajaActionPerformed(evt);
+            }
+        });
         jPanel9.add(RbtOpcionConCaja);
         RbtOpcionConCaja.setBounds(120, 20, 73, 20);
 
         buttonGroup2.add(RbtOpcionNoDeterminado);
         RbtOpcionNoDeterminado.setFont(new java.awt.Font("Arial", 1, 11));
         RbtOpcionNoDeterminado.setText("No Determinado");
+        RbtOpcionNoDeterminado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RbtOpcionNoDeterminadoActionPerformed(evt);
+            }
+        });
         jPanel9.add(RbtOpcionNoDeterminado);
         RbtOpcionNoDeterminado.setBounds(360, 20, 113, 20);
 
@@ -2272,7 +2361,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                 .addGap(11, 11, 11)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -2688,7 +2777,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(122, Short.MAX_VALUE))
+                .addContainerGap(148, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Pag 4", jPanel10);
@@ -2899,7 +2988,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jLabel106.setForeground(new java.awt.Color(0, 0, 102));
         jLabel106.setText("Foto Predio:");
 
-        TxtFotoDesague.setEnabled(false);
+        TxtFotoPredio.setEnabled(false);
 
         TxtFotoCaja.setEnabled(false);
 
@@ -2985,11 +3074,11 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jPanelImagePredio.setLayout(jPanelImagePredioLayout);
         jPanelImagePredioLayout.setHorizontalGroup(
             jPanelImagePredioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 436, Short.MAX_VALUE)
+            .addGap(0, 438, Short.MAX_VALUE)
         );
         jPanelImagePredioLayout.setVerticalGroup(
             jPanelImagePredioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 268, Short.MAX_VALUE)
+            .addGap(0, 265, Short.MAX_VALUE)
         );
 
         jPanelImageCaja.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -2998,11 +3087,11 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jPanelImageCaja.setLayout(jPanelImageCajaLayout);
         jPanelImageCajaLayout.setHorizontalGroup(
             jPanelImageCajaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 378, Short.MAX_VALUE)
+            .addGap(0, 376, Short.MAX_VALUE)
         );
         jPanelImageCajaLayout.setVerticalGroup(
             jPanelImageCajaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 268, Short.MAX_VALUE)
+            .addGap(0, 265, Short.MAX_VALUE)
         );
 
         buttonGroup3.add(RbtAgua);
@@ -3014,46 +3103,32 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         RbtDesague.setFont(new java.awt.Font("Tahoma", 1, 11));
         RbtDesague.setText("Desagüe");
 
+        jLabel85.setText("(a.b)");
+
+        jLabel146.setText("(a.b)");
+
+        BtnFotoCaja1.setText("X");
+        BtnFotoCaja1.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        BtnFotoCaja1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnFotoCaja1ActionPerformed(evt);
+            }
+        });
+
+        BtnFotoDesague1.setText("X");
+        BtnFotoDesague1.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        BtnFotoDesague1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnFotoDesague1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
         jPanel17Layout.setHorizontalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel17Layout.createSequentialGroup()
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
-                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel17Layout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addComponent(jLabel113, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel17Layout.createSequentialGroup()
-                                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(LblCodigoFotoCaja)
-                                    .addGroup(jPanel17Layout.createSequentialGroup()
-                                        .addComponent(TxtFotoCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, 0)
-                                        .addComponent(BtnFotoCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel17Layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jPanelImageCaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addGroup(jPanel17Layout.createSequentialGroup()
-                                                .addComponent(RbtAgua)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(RbtDesague)))))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel106, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(LblCodigoFotoPredio)
-                            .addGroup(jPanel17Layout.createSequentialGroup()
-                                .addComponent(TxtFotoDesague, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(BtnFotoDesague, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanelImagePredio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(12, 12, 12))
                     .addGroup(jPanel17Layout.createSequentialGroup()
                         .addGap(115, 115, 115)
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3082,15 +3157,65 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                                 .addGap(10, 10, 10)
                                 .addComponent(DateFechaDigitador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel17Layout.createSequentialGroup()
-                        .addGap(277, 277, 277)
+                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel17Layout.createSequentialGroup()
+                                    .addGap(7, 7, 7)
+                                    .addComponent(jLabel113, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel17Layout.createSequentialGroup()
+                                    .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel17Layout.createSequentialGroup()
+                                            .addGap(10, 10, 10)
+                                            .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jPanelImageCaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGroup(jPanel17Layout.createSequentialGroup()
+                                                    .addComponent(RbtAgua)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(RbtDesague)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                                                    .addComponent(jLabel146)
+                                                    .addGap(126, 126, 126))))
+                                        .addGroup(jPanel17Layout.createSequentialGroup()
+                                            .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(TxtFotoCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(LblCodigoFotoCaja))
+                                            .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(BtnFotoCaja1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(BtnFotoCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGap(10, 10, 10)))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel17Layout.createSequentialGroup()
+                                .addGap(277, 277, 277)
+                                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel110, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TxtUbiConexAgua, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel110, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TxtUbiConexAgua, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TxtUbiConexDesague, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel111, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(333, 333, 333)))
+                            .addGroup(jPanel17Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel17Layout.createSequentialGroup()
+                                        .addComponent(TxtUbiConexDesague, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel85))
+                                    .addComponent(jLabel111, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(305, 305, 305))
+                            .addGroup(jPanel17Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel106, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jPanelImagePredio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jPanel17Layout.createSequentialGroup()
+                                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(TxtFotoPredio, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(LblCodigoFotoPredio))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(BtnFotoDesague1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(BtnFotoDesague, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(12, 12, 12)))))
                 .addGap(3, 3, 3))
         );
         jPanel17Layout.setVerticalGroup(
@@ -3107,12 +3232,15 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                             .addComponent(TxtFotoCaja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(BtnFotoCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(TxtFotoDesague, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(TxtFotoPredio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(BtnFotoDesague, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel17Layout.createSequentialGroup()
                         .addGap(3, 3, 3)
-                        .addComponent(LblCodigoFotoPredio))
+                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(LblCodigoFotoPredio)
+                            .addComponent(BtnFotoCaja1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BtnFotoDesague1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel17Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(LblCodigoFotoCaja)))
@@ -3126,10 +3254,13 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(TxtUbiConexAgua, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(RbtAgua)
-                            .addComponent(RbtDesague))
+                            .addComponent(RbtDesague)
+                            .addComponent(jLabel146))
                         .addComponent(jLabel110, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel17Layout.createSequentialGroup()
-                        .addComponent(TxtUbiConexDesague, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TxtUbiConexDesague, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel85))
                         .addComponent(jLabel111, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(17, 17, 17)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3161,7 +3292,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         jPanel21Layout.setVerticalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel21Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(37, 37, 37)
                 .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -3182,21 +3313,25 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
             }
         });
 
+        jLabel148.setFont(new java.awt.Font("Arial", 1, 12));
+        jLabel148.setForeground(new java.awt.Color(102, 0, 0));
+        jLabel148.setText("Nota: Para número con parte decimal utilize el signo \".\" en vez de \",\". Caso Contrario el sistema no podrá registrar su operación");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(785, Short.MAX_VALUE)
-                .addComponent(BtnGuardar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(BtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 915, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel148)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                        .addComponent(BtnGuardar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 915, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1, 0, 0, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3226,11 +3361,13 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                                 .addComponent(TxtNumeroFicha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BtnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BtnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(BtnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BtnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel148))
                 .addContainerGap())
         );
 
@@ -3246,12 +3383,16 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
 
     private void BtnFotoDesagueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnFotoDesagueActionPerformed
         jFileChooser2.showOpenDialog(null);
-        TxtFotoDesague.setText(jFileChooser2.getSelectedFile().getAbsolutePath());
+        TxtFotoPredio.setText(jFileChooser2.getSelectedFile().getAbsolutePath());
         LblCodigoFotoPredio.setText(jFileChooser2.getSelectedFile().getName());
       jPanelImagePredio.setImage(new ImageIcon(jFileChooser2.getSelectedFile().getAbsolutePath()).getImage());
     }//GEN-LAST:event_BtnFotoDesagueActionPerformed
 
     private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarActionPerformed
+      //  verificarVacios();
+        int value=JOptionPane.showConfirmDialog(null,"¿Esta seguro de guardar los cambios?","",JOptionPane.YES_NO_OPTION);
+        if(value==JOptionPane.YES_OPTION)
+        {
         try
         {
             if(codigo==1)
@@ -3261,6 +3402,14 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
             boolean valor=oCDMedida.registrarMedida(oCEMedida);
             if(valor)
             {
+                if(!fotoCargadaCaja)
+                {
+                    eliminarImagenes(fotoCaja,1);
+                }
+                if(!fotoCargadaPredio)
+                {
+                    eliminarImagenes(fotoPredio,2);
+                }
                 if(jFileChooser1.getSelectedFile()!=null)
                 {
                 copiarImagenes(jFileChooser1.getSelectedFile(),1);
@@ -3269,12 +3418,13 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                 {
                 copiarImagenes(jFileChooser2.getSelectedFile(),2);
                 }
+               
                 JOptionPane.showMessageDialog(null, "Se registro correctamente");
                 dispose();
             }
             else
             {
-               JOptionPane.showMessageDialog(null, "No se pudo guardar el registro");
+               JOptionPane.showMessageDialog(null, "<html>No se pudo guardar el registro, revise si le falta algún campo <br> y si el formato de los campos es correcto</html>");
             }
         }
             else
@@ -3287,6 +3437,14 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                 boolean valor=oCDMedida.actualizarMedida(oCEMedida);
                 if(valor)
                 {
+                    if(!fotoCargadaCaja)
+                    {
+                        eliminarImagenes(fotoCaja,1);
+                    }
+                    if(!fotoCargadaPredio)
+                    {
+                        eliminarImagenes(fotoPredio,2);
+                    }
                     if(jFileChooser1.getSelectedFile()!=null)
                     {
                         copiarImagenes(jFileChooser1.getSelectedFile(),1);
@@ -3301,7 +3459,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
                 }
                 else
                 {
-                   JOptionPane.showMessageDialog(null, "No se pudo actualizar el registro");
+                   JOptionPane.showMessageDialog(null, "<html>No se pudo actualizar el registro, <br> revise si le falta algun campo y si el formato de los campos es correcto</html>");
 
                 }
             }
@@ -3312,36 +3470,94 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
          JOptionPane.showMessageDialog(null, "No se pudo guardar el registro. Campos Incompletos");
          ex.printStackTrace();
     }
+        }
 
     }//GEN-LAST:event_BtnGuardarActionPerformed
-    private void copiarImagenes(File in,int tipo){
-
-       try
+    private void verificarVacios()
+    {
+        
+        if(TxtCantidadHabitantesPredio.getText().equals(""))
         {
+            TxtCantidadHabitantesPredio.setText("0");
+        }
+        if(TxtNumPisos.getText().equals(""))
+        {
+            TxtNumPisos.setText("0");
+        }
+        if(TxtPiso.getText().equals(""))
+        {
+            TxtPiso.setText("0");
+        }
+        if(TxtPorcentajeDomestico.getText().equals(""))
+        {
+            TxtPorcentajeDomestico.setText("0");
+        }
+        if(TxtPorcentajeComercial.getText().equals(""))
+        {
+            TxtPorcentajeComercial.setText("0");
+        }
+        if(TxtPorcentajeEstatal.getText().equals(""))
+        {
+            TxtPorcentajeEstatal.setText("0");
+        }
+        if(TxtPorcentajeSocial.getText().equals(""))
+        {
+            TxtPorcentajeSocial.setText("0");
+        }
+        if(TxtLecturaMedidor.getText().equals(""))
+        {
+            TxtLecturaMedidor.setText("0");
+        }
+        if(TxtHorasPorDia.getText().equals(""))
+        {
+            TxtHorasPorDia.setText("0");
+        }
+        if(TxtDiaPorSemana.getText().equals(""))
+        {
+            TxtDiaPorSemana.setText("0");
+        }
+        if(TxtUbiConexAgua.getText().equals(""))
+        {
+            TxtUbiConexAgua.setText("0");
+        }
+        if(TxtUbiConexDesague.getText().equals(""))
+        {
+            TxtUbiConexDesague.setText("0");
+        }
 
-        FileInputStream fis = new FileInputStream(in.getPath());
-        FileOutputStream fos=null;
+        
+    }
+    private void copiarImagenes(File in,int tipo){
+        CTratamientoImagen oCTratamientoImagen=new CTratamientoImagen();
+        oCTratamientoImagen.setTamanio(400,500);
+        oCTratamientoImagen.setFormato("JPG");
+
+        File fos=null;
         if(tipo==1)
         {
-        fos = new FileOutputStream("C:/Program Files/FichasCatastral/Imagenes/Caja/"+in.getName());
+        fos = new File("C:/fotos catastro2/Caja/"+in.getName());
         }
         else
         {
-        fos = new FileOutputStream("C:/Program Files/FichasCatastral/Imagenes/Predio/"+in.getName());
+        fos = new File("C:/fotos catastro2/Predio/"+in.getName());
         }
-        FileChannel canalFuente = fis.getChannel();
-        FileChannel canalDestino = fos.getChannel();
-        canalFuente.transferTo(0, canalFuente.size(), canalDestino);
-        fis.close();
-        fos.close();
-        }
-        catch (IOException ex)
+        oCTratamientoImagen.setImagenReducir(new ImageIcon(in.getPath()));
+        oCTratamientoImagen.guardarImagen(fos);
+    }
+       private void eliminarImagenes(String dirc,int tipo){
+
+
+
+        File fis;
+        if(tipo==1)
         {
-            ex.printStackTrace();
-
-
+        fis = new File("\\\\192.168.1.167/fotos catastro2/Caja/"+dirc);
+           }
+        else
+        {
+        fis = new File("\\\\192.168.1.167/fotos catastro2/Predio/"+dirc);
         }
-
+        fis.delete();
     }
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
     dispose();
@@ -3419,12 +3635,28 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         CDCondicionConexionAgua oCDCondicionConexionAgua = new CDCondicionConexionAgua();
         oCECondicionConexionAgua.setIdCondicionConexionAgua(oCEClienteSeleccionado.getIdCondicionConexionAgua());
         CECondicionConexionAgua ooCECondicionConexionAgua = oCDCondicionConexionAgua.DetalleCondicionConexionAgua(oCECondicionConexionAgua);
-        LblCondicionConexion.setText(ooCECondicionConexionAgua.getCondicionConexionAgua());
+        LblCondicionConexionConsulta.setText(ooCECondicionConexionAgua.getCondicionConexionAgua());
+
+        CECondicionConexionDesague oCECondicionConexionDesague= new CECondicionConexionDesague();
+        CDCondicionConexionDesague oCDCondicionConexionDesague = new CDCondicionConexionDesague();
+        oCECondicionConexionDesague.setIdCondicionConexionDesague(oCEClienteSeleccionado.getIdCondicionConexionAgua());
+        CECondicionConexionDesague ooCECondicionConexionDesague = oCDCondicionConexionDesague.DetalleCondicionConexionDesague(oCECondicionConexionDesague);
+        LblCondicionConexionDesague.setText(ooCECondicionConexionDesague.getCondicionConexionDesague());
+
+
         CETipoServicio oCETipoServicio = new CETipoServicio();
         CDTipoServicio oCDTipoServicio = new CDTipoServicio();
         oCETipoServicio.setIdTipoServicio(oCEClienteSeleccionado.getIdTipoServicio());
         CETipoServicio ooCETipoServicio = oCDTipoServicio.DetalleServicio(oCETipoServicio);
         LblTipoServicio.setText(ooCETipoServicio.getTipoServicio());
+
+
+        CEUsoPredio oCEUsoPredio = new CEUsoPredio();
+        CDUsoPredio oCDUsoPredio = new CDUsoPredio();
+        oCEUsoPredio.setIdUsoPredio(oCEClienteSeleccionado.getIdUsoPredio());
+        CEUsoPredio ooCEUsoPredio = oCDUsoPredio.DetalleServicio(oCEUsoPredio);
+        LblUPredio.setText(ooCEUsoPredio.getUsoPredio());
+
         CbxTipoDocumento.requestFocus();
     }
     }//GEN-LAST:event_TxtCodigoInscripcionActionPerformed
@@ -3473,6 +3705,19 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     private void BtnAgregarUsoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarUsoActionPerformed
      Vector oVector=new Vector();
      oVector.add(0);
+     oVector.add("");
+     oVector.add("");
+     oVector.add("");
+     oVector.add("");
+     oVector.add("");
+     oVector.add("");
+     oVector.add("");
+     oVector.add("");
+     oVector.add("");
+     oVector.add("");
+     oVector.add("");
+
+
      ((DefaultTableModel)TblUsos.getModel()).addRow(oVector);
     }//GEN-LAST:event_BtnAgregarUsoActionPerformed
 
@@ -3599,7 +3844,6 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         CbxEstadoTapaAgua.setSelectedIndex(0);
         CbxMaterialTapaAgua.setSelectedIndex(0);
         CbxDiametroConexionAgua.setSelectedIndex(0);
-        CbxMaterialCajaAgua.setSelectedIndex(0);
         CbxMaterialConexionAgua.setSelectedIndex(0);
         ChckSiNoTapaConexionAgua.setSelected(false);
         ChckSiNoTapaConexionAgua.setEnabled(false);
@@ -3607,7 +3851,6 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         CbxEstadoTapaAgua.setEnabled(false);
         CbxMaterialTapaAgua.setEnabled(false);
         CbxDiametroConexionAgua.setEnabled(false);
-        CbxMaterialCajaAgua.setEnabled(false);
         CbxMaterialConexionAgua.setEnabled(false);
 
     }
@@ -3618,7 +3861,6 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         CbxEstadoTapaAgua.setEnabled(true);
         CbxMaterialTapaAgua.setEnabled(true);
         CbxDiametroConexionAgua.setEnabled(true);
-        CbxMaterialCajaAgua.setEnabled(true);
         CbxMaterialConexionAgua.setEnabled(true);
     }
     }//GEN-LAST:event_CbxEstadoCajaAguaItemStateChanged
@@ -3725,26 +3967,21 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         CbxEstadoTapaDesague.setSelectedIndex(0);
         CbxMaterialTapaDesague.setSelectedIndex(0);
         CbxDiametroConexionDesague.setSelectedIndex(0);
-        CbxMaterialCajaDesague.setSelectedIndex(0);
         CbxMaterialConexionDesague.setSelectedIndex(0);
         ChckSiNoTapaConexionDesague.setSelected(false);
         ChckSiNoTapaConexionDesague.setEnabled(false);
-        CbxMaterialCajaDesague.setEnabled(false);
         CbxEstadoTapaDesague.setEnabled(false);
         CbxMaterialTapaDesague.setEnabled(false);
         CbxDiametroConexionDesague.setEnabled(false);
-        CbxMaterialCajaDesague.setEnabled(false);
         CbxMaterialConexionDesague.setEnabled(false);
 
     }
     else{
         ChckSiNoTapaConexionDesague.setSelected(true);
-        ChckSiNoTapaConexionDesague.setEnabled(true);
-        CbxMaterialCajaDesague.setEnabled(true);
+        ChckSiNoTapaConexionDesague.setEnabled(true);        
         CbxEstadoTapaDesague.setEnabled(true);
         CbxMaterialTapaDesague.setEnabled(true);
         CbxDiametroConexionDesague.setEnabled(true);
-        CbxMaterialCajaDesague.setEnabled(true);
         CbxMaterialConexionDesague.setEnabled(true);
     }
     }//GEN-LAST:event_CbxEstadoCajaDesagueItemStateChanged
@@ -3754,14 +3991,13 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
 
         CbxDiametroConexionDesague.setSelectedIndex(0);
-        CbxMaterialCajaDesague.setSelectedIndex(0);
+        
         CbxDiametroConexionDesague.setEnabled(false);
-        CbxMaterialCajaDesague.setEnabled(false);
 
     }
     else{
          CbxDiametroConexionDesague.setEnabled(true);
-         CbxMaterialCajaDesague.setEnabled(true);
+        
     }
     }//GEN-LAST:event_CbxEstadoTapaDesagueItemStateChanged
 
@@ -3770,14 +4006,14 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     {
 
         CbxDiametroConexionAgua.setSelectedIndex(0);
-        CbxMaterialCajaAgua.setSelectedIndex(0);
+        
         CbxDiametroConexionAgua.setEnabled(false);
-        CbxMaterialCajaAgua.setEnabled(false);
+        
 
     }
     else{
          CbxDiametroConexionAgua.setEnabled(true);
-         CbxMaterialCajaAgua.setEnabled(true);
+        
     }
     }//GEN-LAST:event_CbxEstadoTapaAguaItemStateChanged
 
@@ -3789,11 +4025,13 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         ChckSiNoTapaConexionAgua.setSelected(false);
         CbxEstadoTapaAgua.setSelectedIndex(0);
         CbxMaterialTapaAgua.setSelectedIndex(0);
+        CbxMaterialCajaAgua.setSelectedIndex(0);
         
         CbxEstadoCajaAgua.setEnabled(false);
         ChckSiNoTapaConexionAgua.setEnabled(false);
         CbxEstadoTapaAgua.setEnabled(false);
         CbxMaterialTapaAgua.setEnabled(false);
+        CbxMaterialCajaAgua.setEnabled(false);
 
     }
     else{
@@ -3801,6 +4039,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         ChckSiNoTapaConexionAgua.setEnabled(true);
         CbxEstadoTapaAgua.setEnabled(true);
         CbxMaterialTapaAgua.setEnabled(true);
+        CbxMaterialCajaAgua.setEnabled(true);
     }
     }//GEN-LAST:event_CbxSituacionAguaItemStateChanged
 
@@ -3815,7 +4054,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         CbxUbiCajaConexDesague.setSelectedIndex(0);
         CbxMaterialCajaDesague.setSelectedIndex(0);
 
-        CbxEstadoCajaAgua.setEnabled(false);
+        CbxEstadoCajaDesague.setEnabled(false);
         ChckSiNoTapaConexionDesague.setEnabled(false);
         CbxEstadoTapaDesague.setEnabled(false);
         CbxMaterialTapaDesague.setEnabled(false);
@@ -3832,6 +4071,106 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         CbxMaterialCajaDesague.setEnabled(true);
     }
     }//GEN-LAST:event_RbtOpcionSinCajaActionPerformed
+
+    private void CbxCondicionConexionAguaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CbxCondicionConexionAguaItemStateChanged
+    String agua=LblCondicionConexionConsulta.getText();
+    CECondicionConexionAgua oCECondicionConexionAgua=(CECondicionConexionAgua)CbxCondicionConexionAgua.getSelectedItem();
+        if(agua.equals("Cortada")&&oCECondicionConexionAgua.getCondicionConexionAgua().equals("Activada"))
+        {
+            int valor=JOptionPane.showConfirmDialog(null,"<html>El condicion de conexion del agua indicado no coincide con la base de datos<br>¿Desea Corregirlo?</html>","Mensaje de Información",JOptionPane.YES_NO_OPTION);
+            if(valor==JOptionPane.YES_OPTION)
+            {
+                CbxCondicionConexionAgua.setSelectedIndex(0);
+
+            }
+            else
+            {
+                dispose();
+            }
+        }
+    
+    }//GEN-LAST:event_CbxCondicionConexionAguaItemStateChanged
+
+    private void CbxCondicionConexDesagueItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CbxCondicionConexDesagueItemStateChanged
+    String desague=LblCondicionConexionConsulta.getText();
+    CECondicionConexionDesague oCECondicionConexionDesague=(CECondicionConexionDesague)CbxCondicionConexDesague.getSelectedItem();
+    
+        if(desague.equals("Cortada")&&oCECondicionConexionDesague.getCondicionConexionDesague().equals("Activada"))
+        {
+            int valor=JOptionPane.showConfirmDialog(null,"<html>El condicion de conexion del desague indicado no coincide con la base de datos<br>¿Desea Corregirlo?</html>","Mensaje de Información",JOptionPane.YES_NO_OPTION);
+            if(valor==JOptionPane.YES_OPTION)
+            {
+              CbxCondicionConexDesague.setSelectedIndex(0);
+            }
+            else
+            {
+
+                dispose();
+            }
+        }
+    
+    }//GEN-LAST:event_CbxCondicionConexDesagueItemStateChanged
+
+    private void CbxUsoPredioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CbxUsoPredioActionPerformed
+    CESituacionConexion oCESituacionConexion=(CESituacionConexion)CbxSituacionConexion.getSelectedItem();
+
+    if(codigo==1&&oCESituacionConexion.getIdSituacionConexion()==1)
+    {
+         String desague=LblUPredio.getText();
+         CEUsoPredio oCEUsoPredio=(CEUsoPredio)CbxUsoPredio.getSelectedItem();
+       if(!desague.equals(""))
+       {
+        if(!oCEUsoPredio.getUsoPredio().equals(desague))
+        {
+            int valor=JOptionPane.showConfirmDialog(null,"<html>El uso del predio indicado no coincide con la base de datos<br>¿Desea Corregirlo?</html>","Mensaje de Información",JOptionPane.YES_NO_OPTION);
+            if(valor==JOptionPane.YES_OPTION)
+            {
+              CbxUsoPredio.setSelectedIndex(0);
+            }
+            else
+            {
+
+                dispose();
+            }
+        }
+        }
+        }
+
+    }//GEN-LAST:event_CbxUsoPredioActionPerformed
+
+    private void RbtOpcionConCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RbtOpcionConCajaActionPerformed
+     CbxEstadoCajaDesague.setEnabled(true);
+        ChckSiNoTapaConexionDesague.setEnabled(true);
+        CbxEstadoTapaDesague.setEnabled(true);
+        CbxMaterialTapaDesague.setEnabled(true);
+        CbxUbiCajaConexDesague.setEnabled(true);
+        CbxMaterialCajaDesague.setEnabled(true);
+    }//GEN-LAST:event_RbtOpcionConCajaActionPerformed
+
+    private void RbtOpcionNoDeterminadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RbtOpcionNoDeterminadoActionPerformed
+        CbxEstadoCajaDesague.setEnabled(true);
+        ChckSiNoTapaConexionDesague.setEnabled(true);
+        CbxEstadoTapaDesague.setEnabled(true);
+        CbxMaterialTapaDesague.setEnabled(true);
+        CbxUbiCajaConexDesague.setEnabled(true);
+        CbxMaterialCajaDesague.setEnabled(true);
+    }//GEN-LAST:event_RbtOpcionNoDeterminadoActionPerformed
+
+    private void BtnFotoCaja1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnFotoCaja1ActionPerformed
+        fotoCargadaCaja=false;
+        fotoCaja=LblCodigoFotoCaja.getText();
+        LblCodigoFotoCaja.setText("");
+        TxtFotoCaja.setText("");
+        jPanelImageCaja.setImage(null);
+    }//GEN-LAST:event_BtnFotoCaja1ActionPerformed
+
+    private void BtnFotoDesague1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnFotoDesague1ActionPerformed
+        fotoCargadaPredio=false;
+        fotoPredio=LblCodigoFotoPredio.getText();
+        LblCodigoFotoPredio.setText("");
+        TxtFotoPredio.setText("");
+        jPanelImagePredio.setImage(null);
+    }//GEN-LAST:event_BtnFotoDesague1ActionPerformed
     private void limpiarEtiquetasDeConsulta(){
         
     }
@@ -3869,8 +4208,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         oCEMedida.setCorreoElectronico(TxtCorreoElectronico.getText());//24
         CETipoPropiedad oCETipoPropiedad=(CETipoPropiedad)CbxTipoPropiedad.getSelectedItem();
         oCEMedida.setIdTipoPropiedad(oCETipoPropiedad.getIdTipoPropiedad());//25
-        oCEMedida.setCantHabitantesPredio(Integer.parseInt(TxtCantidadHabitantesPredio.getText()));//26
-        oCEMedida.setNumPiso(Integer.parseInt(TxtNumPisos.getText()));//27
+        oCEMedida.setCantHabitantesPredio((TxtCantidadHabitantesPredio.getText()));//26
+        oCEMedida.setNumPiso((TxtNumPisos.getText()));//27
         CETipoPredio oCETipoPredio=(CETipoPredio)CbxTipoPredio.getSelectedItem();
         oCEMedida.setIdTipoPredio(oCETipoPredio.getIdTipoPredio());//28 OK
 
@@ -3904,16 +4243,16 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         CETipoAlmacenamiento oCETipoAlmacenamiento=(CETipoAlmacenamiento) CbxTipoAlmacenamiento.getSelectedItem();
         oCEMedida.setIdTipoAlmacenamiento(oCETipoAlmacenamiento.getIdTipoAlmacenamiento());//47
 
-        oCEMedida.setPorcentajeDomestico(Double.parseDouble(TxtPorcentajeDomestico.getText()));//48
-        oCEMedida.setPorcentajeComercial(Double.parseDouble(TxtPorcentajeComercial.getText()));//49
-        oCEMedida.setPorcentajeEstatal(Double.parseDouble(TxtPorcentajeEstatal.getText()));//50
-        oCEMedida.setPorcentajeSocial(Double.parseDouble(TxtPorcentajeSocial.getText()));//51
+        oCEMedida.setPorcentajeDomestico((TxtPorcentajeDomestico.getText()));//48
+        oCEMedida.setPorcentajeComercial((TxtPorcentajeComercial.getText()));//49
+        oCEMedida.setPorcentajeEstatal((TxtPorcentajeEstatal.getText()));//50
+        oCEMedida.setPorcentajeSocial((TxtPorcentajeSocial.getText()));//51
 
         oCEMedida.setSiNoMedidor(ChkSiNoMedidor.isSelected());//52
         oCEMedida.setNumeroMedidor(TxtNumeroMedidor.getText());//53
         oCEMedida.setSiNoIlegibleNumMedidor(ChkSiNoIlegibleNumeroMedidor.isSelected());//54
         oCEMedida.setMarcaMedidor(TxtMarcaMedidor.getText());//55
-        oCEMedida.setLectura(Double.parseDouble(TxtLecturaMedidor.getText()));//56
+        oCEMedida.setLectura((TxtLecturaMedidor.getText()));//56
         oCEMedida.setSiNoIlegibleLectura(ChckSiNoIlegibleLecturaMedidor.isSelected());//57
 
 
@@ -3982,8 +4321,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
 
         CEPozoArtesanal oCEPozoArtesanal=(CEPozoArtesanal)CbxPozoArtesanal.getSelectedItem();
         oCEMedida.setIdPozoArtesanal(oCEPozoArtesanal.getIdPozoArtesanal());//84
-        oCEMedida.setFrecuenciaAbastecimientoHorasPorDia(Double.parseDouble(TxtHorasPorDia.getText()));//85
-        oCEMedida.setFrecuenciaAbastecimientoDiasPorSemana(Double.parseDouble(TxtDiaPorSemana.getText()));//86 ok
+        oCEMedida.setFrecuenciaAbastecimientoHorasPorDia((TxtHorasPorDia.getText()));//85
+        oCEMedida.setFrecuenciaAbastecimientoDiasPorSemana((TxtDiaPorSemana.getText()));//86 ok
 
         oCEMedida.setObservaciones(TxtObservaciones.getText());//87
         oCEMedida.setApellidoPaternoEntrevistado(TxtApellidoPaternoEntrevistado.getText());//88
@@ -3992,11 +4331,11 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         oCEMedida.setDocumentoEntrevistado(TxtNumeroDocumentoEntrevistado.getText());//91
         CETipoPropiedadInquilino oCETipoPropiedadEntrevistado=(CETipoPropiedadInquilino)CbxTipoPropiedadEntrevistado.getSelectedItem();
         oCEMedida.setIdTipoPropiedadEntrevistado(oCETipoPropiedadEntrevistado.getIdTipoPropiedadInquilino());//92 ok
-
+        oCEMedida.setSiNoTapaConexionDesague(ChckSiNoTapaConexionDesague.isSelected());
         oCEMedida.setCodigoFotoCaja(LblCodigoFotoCaja.getText());//93
         oCEMedida.setCodigoFotoPredio(LblCodigoFotoPredio.getText());//94
-        oCEMedida.setUbicacionConexionAgua(Double.parseDouble(TxtUbiConexAgua.getText()));//95
-        oCEMedida.setUbicacionConexionDesague(Double.parseDouble(TxtUbiConexDesague.getText()));//96
+        oCEMedida.setUbicacionConexionAgua((TxtUbiConexAgua.getText()));//95
+        oCEMedida.setUbicacionConexionDesague((TxtUbiConexDesague.getText()));//96
         oCEMedida.setCod_Encuestador(TxtCodigoEncuestador.getText());//97
         oCEMedida.setIdTipoFotoAgua(RbtAgua.isSelected()?1:2);
         ConvertidorFecha oConvertidorFecha=new ConvertidorFecha();
@@ -4052,7 +4391,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         {
            Object valor=TblUsos.getValueAt(i,1);
            int codigoI=Integer.parseInt(TblUsos.getValueAt(i,0).toString());
-            CEUsos oCEUsos=new CEUsos();
+           CEUsos oCEUsos=new CEUsos();
            if(valor instanceof CEUsos)
            {
            
@@ -4064,14 +4403,14 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
            {
              oCEUsos.setCodigo(1);         
            }
-         oCEUsos.setNumero(TblUsos.getValueAt(i, 2).toString());
-         oCEUsos.setRespo(TblUsos.getValueAt(i, 3).toString());
-         oCEUsos.setTipoUso(TblUsos.getValueAt(i, 4).toString());
-         oCEUsos.setCodUso(TblUsos.getValueAt(i, 5).toString());
-         oCEUsos.setPtosAgua(TblUsos.getValueAt(i, 6).toString());
-         oCEUsos.setNumPersona(TblUsos.getValueAt(i, 7)==null?"0":TblUsos.getValueAt(i, 7).toString());
-         oCEUsos.setComplemento(TblUsos.getValueAt(i, 8).toString());
-         oCEUsos.setCategoria(TblUsos.getValueAt(i, 9).toString());
+         oCEUsos.setNumero(TblUsos.getValueAt(i, 2)+"");
+         oCEUsos.setRespo(TblUsos.getValueAt(i, 3)+"");
+         oCEUsos.setTipoUso(TblUsos.getValueAt(i, 4)+"");
+         oCEUsos.setCodUso(TblUsos.getValueAt(i, 5)+"");
+         oCEUsos.setPtosAgua(TblUsos.getValueAt(i, 6)+"");
+         oCEUsos.setNumPersona(TblUsos.getValueAt(i, 7)==null?"0":TblUsos.getValueAt(i, 7)+"");
+         oCEUsos.setComplemento(TblUsos.getValueAt(i, 8)+"");
+         oCEUsos.setCategoria(TblUsos.getValueAt(i, 9)+"");
          oLstUsos.add(oCEUsos);
         }
 
@@ -4084,8 +4423,8 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
 
     private void setMedida(CEMedida oCEMedida)
     {
-        jPanelImageCaja.setImage(new ImageIcon(("C:/Program Files/FichasCatastral/Imagenes/Caja/"+oCEMedida.getCodigoFotoCaja())).getImage());
-        jPanelImagePredio.setImage(new ImageIcon(("C:/Program Files/FichasCatastral/Imagenes/Predio/"+oCEMedida.getCodigoFotoPredio())).getImage());
+        jPanelImageCaja.setImage(new ImageIcon(("\\\\'192.168.1.128/Program Files/FichasCatastral/Imagenes/Caja/"+oCEMedida.getCodigoFotoCaja())).getImage());
+        jPanelImagePredio.setImage(new ImageIcon(("\\\\'192.168.1.128/Program Files/FichasCatastral/Imagenes/Predio/"+oCEMedida.getCodigoFotoPredio())).getImage());
         TxtNumeroFicha.setText(oCEMedida.getNumeroFicha()+"");
         buscarSituacionConexion(oCEMedida.getIdSituacionConexion());
         TxtDepartamento.setText(oCEMedida.getCodDepartamento());
@@ -4183,6 +4522,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
         buscarMaterialCajaAgua(oCEMedida.getIdMaterialCajaAgua());
         buscarEstadoTapaAgua(oCEMedida.getIdEstadoTapaAgua());
         ChckSiNoFugaAgua.setSelected(oCEMedida.isSiNoFugaAgua());
+        ChckSiNoTapaConexionDesague.setSelected(oCEMedida.isSiNoTapaConexionDesague());
         // tipo fuga
         if(oCEMedida.getTipoFugaAgua()==1)
         {
@@ -4640,7 +4980,9 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     private javax.swing.JButton BtnCancelar;
     private javax.swing.JButton BtnEliminarUso;
     private javax.swing.JButton BtnFotoCaja;
+    private javax.swing.JButton BtnFotoCaja1;
     private javax.swing.JButton BtnFotoDesague;
+    private javax.swing.JButton BtnFotoDesague1;
     private javax.swing.JButton BtnGuardar;
     private javax.swing.JButton BtnHabilitacion;
     private javax.swing.JButton BtnVia;
@@ -4697,6 +5039,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     private javax.swing.JLabel LblCondicionConexionDesague;
     private javax.swing.JLabel LblDireccion;
     private javax.swing.JLabel LblTipoServicio;
+    private javax.swing.JLabel LblUPredio;
     private javax.swing.JLabel LblUsuario;
     private javax.swing.JRadioButton RbtAgua;
     private javax.swing.JRadioButton RbtDesague;
@@ -4729,7 +5072,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     private javax.swing.JTextField TxtDiaPorSemana;
     private javax.swing.JTextField TxtDistrito;
     private javax.swing.JTextField TxtFotoCaja;
-    private javax.swing.JTextField TxtFotoDesague;
+    private javax.swing.JTextField TxtFotoPredio;
     private javax.swing.JTextField TxtHorasPorDia;
     private javax.swing.JTextField TxtLecturaMedidor;
     private javax.swing.JTextField TxtLote;
@@ -4828,7 +5171,10 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel143;
     private javax.swing.JLabel jLabel144;
     private javax.swing.JLabel jLabel145;
+    private javax.swing.JLabel jLabel146;
     private javax.swing.JLabel jLabel147;
+    private javax.swing.JLabel jLabel148;
+    private javax.swing.JLabel jLabel149;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
@@ -4906,6 +5252,7 @@ public class DialogMantenimientoMedida extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel82;
     private javax.swing.JLabel jLabel83;
     private javax.swing.JLabel jLabel84;
+    private javax.swing.JLabel jLabel85;
     private javax.swing.JLabel jLabel86;
     private javax.swing.JLabel jLabel87;
     private javax.swing.JLabel jLabel88;

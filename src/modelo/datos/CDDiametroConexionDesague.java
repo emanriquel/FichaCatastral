@@ -14,9 +14,10 @@ public class CDDiametroConexionDesague
     public ArrayList<CEDiametroConexionDesague> listarDiametroConexionDesague()
     {
         ArrayList<CEDiametroConexionDesague> oLstDiametroConexionDesague=new ArrayList<CEDiametroConexionDesague>();
+        Connection conn = ConexionBD.obtenerConexion();
         try
         {
-            Connection conn = ConexionBD.obtenerConexion();
+            
             String sql = "SELECT * FROM diametro_conexion_desague";
             PreparedStatement sp = conn.prepareStatement(sql);
             ResultSet rs=sp.executeQuery();
@@ -35,6 +36,16 @@ public class CDDiametroConexionDesague
         {
 
         }
+        finally
+           {
+                try
+                {
+                    conn.close();
+                }
+                catch (SQLException ex) {
+
+                }
+            }
         return oLstDiametroConexionDesague;
 
     }

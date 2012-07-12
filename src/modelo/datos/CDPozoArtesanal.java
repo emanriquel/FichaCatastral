@@ -14,9 +14,10 @@ public class CDPozoArtesanal
     public ArrayList<CEPozoArtesanal> listarPozoArtesenal()
     {
         ArrayList<CEPozoArtesanal> oLstPozoArtesenal=new ArrayList<CEPozoArtesanal>();
+        Connection conn = ConexionBD.obtenerConexion();
         try
         {
-            Connection conn = ConexionBD.obtenerConexion();
+            
             String sql = "SELECT * FROM pozo_artesanal";
             PreparedStatement sp = conn.prepareStatement(sql);
             ResultSet rs=sp.executeQuery();
@@ -35,6 +36,16 @@ public class CDPozoArtesanal
         {
 
         }
+         finally
+           {
+                try
+                {
+                    conn.close();
+                }
+                catch (SQLException ex) {
+
+                }
+            }
         return oLstPozoArtesenal;
 
     }
